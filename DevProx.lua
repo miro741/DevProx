@@ -3425,10 +3425,10 @@ end
 t = t..'"linkgroup":"'..link..'"}'
 end
 t = t..'}}'
-local File = io.open('./'..bot_id..'.json', "w")
+local File = io.open('./DevProx_File/'..bot_id..'.json', "w")
 File:write(t)
 File:close()
-sendDocument(msg.chat_id_, msg.id_, 0, 1, nil, './'..DevProx..'.json', '❗️🚸 ⌯ عدد كروبٱت ٱڵبوت : ('..#list..')',dl_cb, nil)
+sendDocument(msg.chat_id_, msg.id_, 0, 1, nil, './DevProx_File/'..DevProx..'.json', '❗️🚸 ⌯ عدد كروبٱت ٱڵبوت : ('..#list..')',dl_cb, nil)
 end
 if text == 'رفع النسخه' and tonumber(msg.sender_user_id_) == tonumber(bot_owner) then   
 if tonumber(msg.reply_to_message_id_) > 0 then
@@ -11130,7 +11130,7 @@ DevAbs:sadd("ABS_PROX:addg"..bot_id, gps[i])
 DevAbs:set(DevProx.."bot:enable:"..gps[i],true)
 DevAbs:set( DevProx.."bot:charge:"..gps[i],true)
 end
-Dev_Abs(msg.chat_id_, msg.id_, 1, '❗️☻ تـۖم تـفعيـۧڵ ٱڵبـۄت فيۧ جميع ٱڵمجـمۄعٱت \n❕🧩 عدد المجموعات : *('..(#gps - #gps2)..')*', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '❗️☻ تـۖم تـفعيـۧڵ ٱڵبـۄت فيۧ جميع ٱڵمجـمۄعٱت \n❗️🚸 ⌯ عدد المجموعات ⌯» ◝ '..(#gps - #gps2)..' ◟', 1, 'md')
 end   
 if text:match("^تعطيل كل الكروبات$") then
 local gps = DevAbs:smembers(DevProx.."bot:groups") or 0
@@ -11140,7 +11140,7 @@ DevAbs:del("ABS_PROX:addg"..bot_id, gps[i])
 DevAbs:del(DevProx.."bot:enable:"..gps[i],true)
 DevAbs:del( DevProx.."bot:charge:"..gps[i],true)
 end
-Dev_Abs(msg.chat_id_, msg.id_, 1, '❗️☻ تـۖم تـعطيـۧڵ ٱڵبـۄت فيۧ جميع ٱڵمجـمۄعٱت \n❕🧩 عدد المجموعات : *('..(#gps - #gps2)..')*', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '❗️☻ تـۖم تـعطيـۧڵ ٱڵبـۄت فيۧ جميع ٱڵمجـمۄعٱت \n❗️🚸 ⌯ عدد المجموعات ⌯» ◝ '..(#gps - #gps2)..' ◟', 1, 'md')
 end   
 
 if text:match("^الدعم$") or text:match("^المطور$") then
