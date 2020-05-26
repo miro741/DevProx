@@ -605,7 +605,7 @@ DevAbs13(chat,msg.id_,"❗️☻ جٱري رفـع ٱڵـمڵف ... .")
 else
 DevAbs13(chat,msg.id_,"❗️📛 ⌯ ڵقد حدث خطٱء \n❗️💢 ⌯ يرجى ٱڵتحقق من صيغة ٱڵمڵف ")   
 end      
-local info_file = io.open('./'..DevProx..'.json', "r"):read('*a')
+local info_file = io.open('./DevProx_File/'..DevProx..'.json', "r"):read('*a')
 local groups = JSON.decode(info_file)
 DevAbs13(chat,msg.id_,"❗️🔑 ⌯ تـۖم رفع ٱڵنسخه بنجٱح \n❗️⚜️ ⌯ تـۖم تفعيڵ جميع ٱڵـمجموعٱت \n❗️🎗 ⌯  تـۖم ٱسترجٱع مشرفين ٱڵمجمۄعات \n❗️🚸 ⌯ تـۖم ٱسترجٱع ٱوٱمر ٱڵقفڵ وٱڵفتح في جميع مجموعٱت ٱڵبوت ")
 vardump(groups)
