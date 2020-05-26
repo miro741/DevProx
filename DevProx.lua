@@ -605,7 +605,7 @@ DevAbs13(chat,msg.id_,"❗️☻ جٱري رفـع ٱڵـمڵف ... .")
 else
 DevAbs13(chat,msg.id_,"❗️📛 ⌯ ڵقد حدث خطٱء \n❗️💢 ⌯ يرجى ٱڵتحقق من صيغة ٱڵمڵف ")   
 end      
-local info_file = io.open('./DevProx_File/'..DevProx..'.json', "r"):read('*a')
+local info_file = io.open('./'..DevProx..'.json', "r"):read('*a')
 local groups = JSON.decode(info_file)
 DevAbs13(chat,msg.id_,"❗️🔑 ⌯ تـۖم رفع ٱڵنسخه بنجٱح \n❗️⚜️ ⌯ تـۖم تفعيڵ جميع ٱڵـمجموعٱت \n❗️🎗 ⌯  تـۖم ٱسترجٱع مشرفين ٱڵمجمۄعات \n❗️🚸 ⌯ تـۖم ٱسترجٱع ٱوٱمر ٱڵقفڵ وٱڵفتح في جميع مجموعٱت ٱڵبوت ")
 vardump(groups)
@@ -3425,10 +3425,10 @@ end
 t = t..'"linkgroup":"'..link..'"}'
 end
 t = t..'}}'
-local File = io.open('./DevProx_File/'..bot_id..'.json', "w")
+local File = io.open('./'..bot_id..'.json', "w")
 File:write(t)
 File:close()
-sendDocument(msg.chat_id_, msg.id_, 0, 1, nil, './DevProx_File/'..DevProx..'.json', '❗️🚸 ⌯ عدد كروبٱت ٱڵبوت : ('..#list..')',dl_cb, nil)
+sendDocument(msg.chat_id_, msg.id_, 0, 1, nil, './'..DevProx..'.json', '❗️🚸 ⌯ عدد كروبٱت ٱڵبوت : ('..#list..')',dl_cb, nil)
 end
 if text == 'رفع النسخه' and tonumber(msg.sender_user_id_) == tonumber(bot_owner) then   
 if tonumber(msg.reply_to_message_id_) > 0 then
