@@ -6645,6 +6645,11 @@ local abs =  'abs:sudo3:'
 local list = DevAbs:smembers(DevProx..abs)
 text = "❗️🎒 ⌯ مطورين ٱڵـبوت : \n〰️➖〰️➖〰️➖〰️➖〰️\n"
 for k, v in pairs(list) do
+if DevAbs:get(DevProx.."SudoNumberGp" .. v) then
+gps = tonumber(DevAbs:get(DevProx.."SudoNumberGp" .. v))
+else
+gps = 0
+end
 local user_info = DevAbs:get(DevProx.."user:Name" .. v)
 if user_info then
 local username = user_info
