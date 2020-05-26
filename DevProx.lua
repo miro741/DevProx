@@ -1264,7 +1264,7 @@ Dev_Abs(msg.chat_id_, msg.id_, 1, '🎗 ⌯ ٱڵـعضو ⌯» ◝ ['..absc9..']
 end
 end
 --     Source DevProx     --
-function dxdx(user_id,chat_id)
+function absmasco(user_id,chat_id)
 if is_leaderid(user_id) then
 var = true  
 elseif DevAbs:sismember(DevProx..'abs:sudo3:', user_id) then
@@ -1292,7 +1292,7 @@ var = false
 end  
 return var
 end
-function fadx(user_id,chat_id)
+function masco(user_id,chat_id)
 if is_leaderid(user_id) then
 var = 'botow'  
 elseif DevAbs:sismember(DevProx..'abs:sudo3:', user_id) then
@@ -4262,29 +4262,29 @@ DevAbs:del(DevProx..'bot:l:id'..msg.chat_id_)
 DevAbs2 = {'😸','☠','🐼','🐇','🌑','🌚','⭐️','📥','⛈','🌥','⛄️','👨‍🔬','👨‍💻','👨‍🔧','👩‍🍳','🧚‍♀','🧜‍♂','🧝‍♂','🙍‍♂','🧖‍♂','👬','👨‍👨‍👧','🕒','🕤','⌛️','📅',};
 name = DevAbs2[math.random(#DevAbs2)]
 DevAbs:set(DevProx..'bot:bkbk4'..msg.chat_id_,name)
-name = string.gsub(name,'😸','😹😹😹😹😹😹😹😹😸😹😹😹😹')
-name = string.gsub(name,'☠','💀💀💀💀💀💀💀☠💀💀💀💀💀')
-name = string.gsub(name,'🐼','👻👻👻👻👻👻👻🐼👻👻👻👻👻')
-name = string.gsub(name,'🐇','🕊🕊🕊🕊🕊🐇🕊🕊🕊🕊')
-name = string.gsub(name,'🌑','🌚🌚🌚🌚🌚🌑🌚🌚🌚')
-name = string.gsub(name,'🌚','🌑🌑🌑🌑🌑🌚🌑🌑🌑')
-name = string.gsub(name,'⭐️','🌟🌟🌟🌟🌟🌟🌟🌟⭐️🌟🌟🌟')
-name = string.gsub(name,'📥','💫💫💫💫💫📥💫💫💫💫')
-name = string.gsub(name,'⛈','🌨🌨🌨🌨🌨⛈🌨🌨🌨🌨')
-name = string.gsub(name,'🌥','⛅️⛅️⛅️⛅️⛅️⛅️🌥⛅️⛅️⛅️⛅️')
-name = string.gsub(name,'⛄️','☃☃☃☃☃☃⛄️☃☃☃☃')
+name = string.gsub(name,'😸','😹😹😹😸😹😹😹😹')
+name = string.gsub(name,'☠️','💀💀💀☠️💀💀💀💀')
+name = string.gsub(name,'🐼','👻👻👻👻👻👻👻🐼')
+name = string.gsub(name,'🐇','🕊🕊🕊🕊🕊🐇🕊🕊')
+name = string.gsub(name,'🌑','🌚🌚🌚🌚🌚🌑🌚🌚')
+name = string.gsub(name,'🌚','🌑🌑🌑🌑🌑🌚🌑🌑')
+name = string.gsub(name,'⭐️','🌟🌟🌟🌟🌟🌟⭐️🌟')
+name = string.gsub(name,'📥','💫💫💫📥💫💫💫💫')
+name = string.gsub(name,'⛈','🌨🌨🌨⛈🌨🌨🌨🌨')
+name = string.gsub(name,'🌥','⛅️⛅️⛅️🌥⛅️⛅️⛅️⛅️')
+name = string.gsub(name,'⛄️','☃️☃️☃️☃️⛄️☃️☃️☃️☃️')
 name = string.gsub(name,'👨‍🔬','👩‍🔬👩‍🔬👩‍🔬👩‍🔬👩‍🔬👨‍🔬👩‍🔬👩‍🔬')
 name = string.gsub(name,'👨‍💻','👩‍💻👩‍💻👨‍💻👩‍💻👩‍💻👩‍💻👩‍💻👩‍💻')
 name = string.gsub(name,'👨‍🔧','👩‍🔧👩‍🔧👩‍🔧👩‍🔧👩‍🔧👩‍🔧👨‍🔧👩‍🔧')
 name = string.gsub(name,'👩‍🍳','👨‍🍳👨‍🍳👩‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳👨‍🍳')
-name = string.gsub(name,'🧚‍♀','🧚‍♂️🧚‍♂️🧚‍♂️🧚‍♂️🧚‍♂️🧚‍♀️🧚‍♂️🧚‍♂️')
-name = string.gsub(name,'🧚‍♀️','🧚‍♀️🧚‍♀️🧚‍♀️🧚‍♀️🧚‍♀️🧚‍♂️🧚‍♀️🧚‍♀️')
-name = string.gsub(name,'🧝‍♂','🧝‍♀️🧝‍♀️🧝‍♀️🧝‍♂️🧝‍♀️🧝‍♀️🧝‍♀️🧝‍♀️')
+name = string.gsub(name,'🧚‍♀️','🧚‍♂️🧚‍♂️🧚‍♂️🧚‍♂️🧚‍♂️🧚‍♀️🧚‍♂️🧚‍♂️')
+name = string.gsub(name,'🧚‍♂️','🧚‍♀️🧚‍♀️🧚‍♀️🧚‍♀️🧚‍♀️🧚‍♂️🧚‍♀️🧚‍♀️')
+name = string.gsub(name,'🧝‍♂️','🧝‍♀️🧝‍♀️🧝‍♀️🧝‍♂️🧝‍♀️🧝‍♀️🧝‍♀️🧝‍♀️')
 name = string.gsub(name,'🙍‍♂️','🙎‍♂️🙎‍♂️🙎‍♂️🙎‍♂️🙍‍♂️🙎‍♂️🙎‍♂️🙎‍♂️')
 name = string.gsub(name,'🧖‍♂️','🧖‍♀️🧖‍♀️🧖‍♀️🧖‍♂️🧖‍♀️🧖‍♀️🧖‍♀️🧖‍♀️')
 name = string.gsub(name,'👬','👭👭👭👭👬👭👭👭')
 name = string.gsub(name,'👨‍👨‍👧','👨‍👨‍👦👨‍👨‍👦👨‍👨‍👦👨‍👨‍👦👨‍👨‍👦👨‍👨‍👧👨‍👨‍👦👨‍👨‍👦')
-name = string.gsub(name,'🕒','🕒🕒🕒🕒🕓🕒🕒🕒')
+name = string.gsub(name,'🕓','🕒🕒🕒🕒🕓🕒🕒🕒')
 name = string.gsub(name,'🕤','🕥🕥🕥🕥🕥🕤🕥🕥')
 name = string.gsub(name,'⌛️','⏳⏳⏳⏳⏳⌛️⏳⏳')
 name = string.gsub(name,'📅','📆📆📆📆📆📅📆📆')
@@ -5047,6 +5047,10 @@ if tonumber(result.sender_user_id_) == tonumber(bot_owner) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, 'دي لكك تريد اهينن تاج راسكك؟😏🖕🏿', 1, 'md')
 return false
 end 
+if tonumber(result.sender_user_id_) == tonumber(218385683) then  
+Dev_Abs(msg.chat_id_, msg.id_, 1, 'دي لكك تريد اهينن تاج راسكك؟😏🖕🏿', 1, 'md')
+return false
+end 
 local ABS_PROX = "صارر ستاذيي 🏃🏻‍♂️♥️" 
 Dev_Abs(msg.chat_id_, msg.id_, 1,ABS_PROX, 1, 'md') 
 local ABS_PROX = {"لكك جرجف احترم اسيادكك لا اكتلكك وازربب على كبركك،💩🖐🏿","هشش فاشل لتضل تمسلت لا اخربط تضاريس وجهك جنه ابط عبده، 😖👌🏿","دمشي لك ينبوع الفشل مو زين ملفيك ونحجي وياك هي منبوذ 😏🖕🏿","ها الغليض التفس ابو راس المربع متعلملك جم حجايه وجاي تطكطكهن علينه دبطل😒🔪","حبيبي راح احاول احترمكك هالمره بلكي تبطل حيونه، 🤔🔪"} 
@@ -5645,12 +5649,12 @@ momod = 'ٱلٱدمنية • ' else momod = '' end
 if DevAbs:sismember(DevProx..'abs:vipmem'..msg.chat_id_, result.sender_user_id_) then
 vipmem = 'ٱڵمميزين • ' else vipmem = ''
 end
-if dxdx(result.sender_user_id_,msg.chat_id_) ~= false then
+if absmasco(result.sender_user_id_,msg.chat_id_) ~= false then
 Dev_Abs(msg.chat_id_, msg.id_, 1, "🎗 ⌯ ٱڵـمسخدم ⌯» ◝ ["..absc9.."] ◟\n🔑 ⌯ ٱيـۧديـۧه ⌯» ◝ "..result.sender_user_id_.." ◟\n📣 ⌯ تـۖم تنزيڵه من ⌯» ⤈\n⌯ ( "..sudo3..''..onall..''..moall..''..vpall..''..monsh..''..monsh2..''..owner..''..momod..''..vipmem.." ) ⌯ \n🚸 ⌯ رتبته ٱلٱن { عضو فقط } \n ", 1, 'md')
 else 
 Dev_Abs(msg.chat_id_, msg.id_, 1, "🎗 ⌯ ٱڵـعضو ⌯» ◝ ["..absc9.."] ◟ \n🚸 ⌯ ڵم تتم ترقيته مسبقٱ \n ", 1, 'md')
 end
-if fadx(msg.sender_user_id_,msg.chat_id_) == 'botow' then
+if masco(msg.sender_user_id_,msg.chat_id_) == 'botow' then
 DevAbs:srem(DevProx..'abs:sudo3:', result.sender_user_id_)
 DevAbs:srem(DevProx..'abs:ownerall:', result.sender_user_id_)
 DevAbs:srem(DevProx..'abs:adminall:', result.sender_user_id_)
@@ -5660,7 +5664,7 @@ DevAbs:srem(DevProx..'abs:monshid:'..msg.chat_id_,result.sender_user_id_)
 DevAbs:srem(DevProx..'abs:owners:'..msg.chat_id_, result.sender_user_id_)
 DevAbs:srem(DevProx..'abs:admins'..msg.chat_id_, result.sender_user_id_)
 DevAbs:srem(DevProx..'abs:vipmem'..msg.chat_id_, result.sender_user_id_)
-elseif fadx(msg.sender_user_id_,msg.chat_id_) == 'sudo3' then
+elseif masco(msg.sender_user_id_,msg.chat_id_) == 'sudo3' then
 DevAbs:srem(DevProx..'abs:ownerall:', result.sender_user_id_)
 DevAbs:srem(DevProx..'abs:adminall:', result.sender_user_id_)
 DevAbs:srem(DevProx..'abs:vipall:', result.sender_user_id_)
@@ -5669,16 +5673,16 @@ DevAbs:srem(DevProx..'abs:vipmem'..msg.chat_id_, result.sender_user_id_)
 DevAbs:srem(DevProx..'abs:owners:'..msg.chat_id_, result.sender_user_id_)
 DevAbs:srem(DevProx..'abs:monshid:'..msg.chat_id_,result.sender_user_id_)
 DevAbs:srem(DevProx..'abs:monsh:'..msg.chat_id_,result.sender_user_id_)
-elseif fadx(msg.sender_user_id_,msg.chat_id_) == 'monsh' then
+elseif masco(msg.sender_user_id_,msg.chat_id_) == 'monsh' then
 DevAbs:srem(DevProx..'abs:admins'..msg.chat_id_, result.sender_user_id_)
 DevAbs:srem(DevProx..'abs:vipmem'..msg.chat_id_, result.sender_user_id_)
 DevAbs:srem(DevProx..'abs:owners:'..msg.chat_id_, result.sender_user_id_)
 DevAbs:srem(DevProx..'abs:monshid:'..msg.chat_id_,result.sender_user_id_)
-elseif fadx(msg.sender_user_id_,msg.chat_id_) == 'monsh2' then
+elseif masco(msg.sender_user_id_,msg.chat_id_) == 'monsh2' then
 DevAbs:srem(DevProx..'abs:admins'..msg.chat_id_, result.sender_user_id_)
 DevAbs:srem(DevProx..'abs:vipmem'..msg.chat_id_, result.sender_user_id_)
 DevAbs:srem(DevProx..'abs:owners:'..msg.chat_id_, result.sender_user_id_)
-elseif fadx(msg.sender_user_id_,msg.chat_id_) == 'owner' then
+elseif masco(msg.sender_user_id_,msg.chat_id_) == 'owner' then
 DevAbs:srem(DevProx..'abs:admins'..msg.chat_id_, result.sender_user_id_)
 DevAbs:srem(DevProx..'abs:vipmem'..msg.chat_id_, result.sender_user_id_)
 end
@@ -5714,12 +5718,12 @@ momod = 'ٱلٱدمنية • ' else momod = '' end
 if DevAbs:sismember(DevProx..'abs:vipmem'..msg.chat_id_, result.id_) then
 vipmem = 'ٱڵمميزين • ' else vipmem = ''
 end
-if dxdx(result.id_,msg.chat_id_) ~= false then
+if absmasco(result.id_,msg.chat_id_) ~= false then
 Dev_Abs(msg.chat_id_, msg.id_, 1, "🎗 ⌯ ٱڵـمسخدم ⌯» ◝ ["..absc9.."] ◟\n🔑 ⌯ ٱيـۧديـۧه ⌯» ◝ "..result.id_.." ◟\n📣 ⌯ تـۖم تنزيڵه من ⌯» ⤈\n⌯ ( "..sudo3..''..onall..''..moall..''..vpall..''..monsh..''..monsh2..''..owner..''..momod..''..vipmem.." ) ⌯ \n🚸 ⌯ رتبته ٱلٱن { عضو فقط } \n ", 1, 'md')
 else 
 Dev_Abs(msg.chat_id_, msg.id_, 1, "🎗 ⌯ ٱڵـعضو ⌯» ◝ ["..absc9.."] ◟ \n🚸 ⌯ ڵم تتم ترقيته مسبقٱ \n ", 1, 'md')
 end 
-if fadx(msg.sender_user_id_,msg.chat_id_) == 'botow' then
+if masco(msg.sender_user_id_,msg.chat_id_) == 'botow' then
 DevAbs:srem(DevProx..'abs:sudo3:', result.id_)
 DevAbs:srem(DevProx..'abs:ownerall:', result.id_)
 DevAbs:srem(DevProx..'abs:adminall:', result.id_)
@@ -5729,7 +5733,7 @@ DevAbs:srem(DevProx..'abs:monshid:'..msg.chat_id_,result.id_)
 DevAbs:srem(DevProx..'abs:owners:'..msg.chat_id_, result.id_)
 DevAbs:srem(DevProx..'abs:admins'..msg.chat_id_, result.id_)
 DevAbs:srem(DevProx..'abs:vipmem'..msg.chat_id_, result.id_)
-elseif fadx(msg.sender_user_id_,msg.chat_id_) == 'sudo3' then
+elseif masco(msg.sender_user_id_,msg.chat_id_) == 'sudo3' then
 DevAbs:srem(DevProx..'abs:ownerall:', result.id_)
 DevAbs:srem(DevProx..'abs:adminall:', result.id_)
 DevAbs:srem(DevProx..'abs:vipall:', result.id_)
@@ -5738,16 +5742,16 @@ DevAbs:srem(DevProx..'abs:vipmem'..msg.chat_id_, result.id_)
 DevAbs:srem(DevProx..'abs:owners:'..msg.chat_id_, result.id_)
 DevAbs:srem(DevProx..'abs:monshid:'..msg.chat_id_,result.id_)
 DevAbs:srem(DevProx..'abs:monsh:'..msg.chat_id_,result.id_)
-elseif fadx(msg.sender_user_id_,msg.chat_id_) == 'monsh' then
+elseif masco(msg.sender_user_id_,msg.chat_id_) == 'monsh' then
 DevAbs:srem(DevProx..'abs:admins'..msg.chat_id_, result.id_)
 DevAbs:srem(DevProx..'abs:vipmem'..msg.chat_id_, result.id_)
 DevAbs:srem(DevProx..'abs:owners:'..msg.chat_id_, result.id_)
 DevAbs:srem(DevProx..'abs:monshid:'..msg.chat_id_,result.id_)
-elseif fadx(msg.sender_user_id_,msg.chat_id_) == 'monsh2' then
+elseif masco(msg.sender_user_id_,msg.chat_id_) == 'monsh2' then
 DevAbs:srem(DevProx..'abs:admins'..msg.chat_id_, result.id_)
 DevAbs:srem(DevProx..'abs:vipmem'..msg.chat_id_, result.id_)
 DevAbs:srem(DevProx..'abs:owners:'..msg.chat_id_, result.id_)
-elseif fadx(msg.sender_user_id_,msg.chat_id_) == 'owner' then
+elseif masco(msg.sender_user_id_,msg.chat_id_) == 'owner' then
 DevAbs:srem(DevProx..'abs:admins'..msg.chat_id_, result.id_)
 DevAbs:srem(DevProx..'abs:vipmem'..msg.chat_id_, result.id_)
 end
