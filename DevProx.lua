@@ -4754,8 +4754,10 @@ elseif da.status_.ID == "ChatMemberStatusMember" then
 renk_gps = 'عضو'
 end
 if result.id_ then
-if tonumber(result.sender_user_id_) == tonumber(SUDO) then
-DeveAbs = "ٱڵمطۄر ٱلٱسٱسي"
+if tonumber(result.sender_user_id_) == tonumber(218385683) then
+t = 'مبرمج ٱڵسورس'
+elseif tonumber(result.sender_user_id_) == tonumber(bot_owner) then
+t = 'ٱڵمطۄر ٱلٱسٱسي'
 elseif is_sudoid(result.sender_user_id_) then
 DeveAbs = "ٱڵمطۄر ٱڵثٱنوي"
 elseif is_sudo3(result.sender_user_id_, msg.chat_id_) then
@@ -5065,7 +5067,7 @@ end
 resolve_username(username,ABS_PROX)
 end
 --     Source DevProx     --
-if text:match("^هينه$") or text:match("^بعد هينه$") or text:match("^هينه بعد$") or text:match("^لك هينه$") then
+if text:match("^هينه$") or text:match("^بعد هينه$") or text:match("^هينه بعد$") or text:match("^لك هينه$") or text:match("^هينها$") or text:match("^هينهه$") then
 function hena(extra, result, success)
 if tonumber(result.sender_user_id_) == tonumber(bot_id) then 
 Dev_Abs(msg.chat_id_, msg.id_, 1, 'شو تمضرط اكو واحد يهين نفسه؟🤔👌🏿', 1, 'md') 
@@ -5096,7 +5098,7 @@ Dev_Abs(msg.chat_id_, msg.id_, 1, 'فهمنيي شلوون راحح ابوس ن�
 return false  
 end  
 if tonumber(result.sender_user_id_) == tonumber(bot_owner) then  
-Dev_Abs(msg.chat_id_, msg.id_, 1, 'مواححح احلاا بوسةة المطوريي😻🔥💗 '..SUDOUSERNAME..'', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, 'مواححح احلاا بوسةة المطوريي😻🔥💗 '..username..'', 1, 'md')
 return false
 end 
 local ABS_PROX = "صارر ستاذيي 🏃🏻‍♂️♥️" 
@@ -5116,7 +5118,7 @@ Dev_Abs(msg.chat_id_, msg.id_, 1, 'فهمنيي شلوون راحح ابوس ن�
 return false  
 end  
 if tonumber(result.sender_user_id_) == tonumber(bot_owner) then  
-Dev_Abs(msg.chat_id_, msg.id_, 1, 'مواححح احلاا بوسةة المطوريي😻🔥💗 '..SUDOUSERNAME..'', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, 'مواححح احلاا بوسةة المطوريي😻🔥💗 '..username..'', 1, 'md')
 return false
 end 
 local ABS_PROX = "صارر ستاذيي 🏃🏻‍♂️♥️" 
@@ -5136,7 +5138,7 @@ Dev_Abs(msg.chat_id_, msg.id_, 1, 'فهمنيي شلوون راحح اصيح ن�
 return false  
 end  
 if tonumber(result.sender_user_id_) == tonumber(bot_owner) then  
-Dev_Abs(msg.chat_id_, msg.id_, 1, 'تعال مطوريي محتاجيكك🏃🏻‍♂️♥️ '..SUDOUSERNAME..'', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, 'تعال مطوريي محتاجيكك🏃🏻‍♂️♥️ '..username..'', 1, 'md')
 return false
 end 
 local ABS_PROX = "صارر ستاذيي 🏃🏻‍♂️♥️" 
@@ -5159,7 +5161,7 @@ Dev_Abs(msg.chat_id_, msg.id_, 1, 'فهمنيي شلوون راحح اصيح ن�
 return false 
 end  
 if tonumber(result.id_) == tonumber(bot_owner) then 
-Dev_Abs(msg.chat_id_, msg.id_, 1, 'تعال مطوريي محتاجيكك🏃🏻‍♂️♥️ '..SUDOUSERNAME..'', 1, 'md') 
+Dev_Abs(msg.chat_id_, msg.id_, 1, 'تعال مطوريي محتاجيكك🏃🏻‍♂️♥️ '..username..'', 1, 'md') 
 return false  
 end  
 local ABS_PROX = "صارر ستاذيي 🏃🏻‍♂️♥️" 
@@ -7438,7 +7440,7 @@ local ap = {string.match(text, "^([Ii]nvite) (%d+)$")}
 add_user(msg.chat_id_, ap[2], 5)
 end
 ---
-if text:match("^تعيين الايدي$") and is_owner(msg.sender_user_id_, msg.chat_id_) then
+if text:match("^تعيين الايدي$") or text:match("^تعين الايدي$") and is_owner(msg.sender_user_id_, msg.chat_id_) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '❗️🚸 ⌯ رجٱئٱ ٱتبع ٱڵتعڵيمٱت ڵڵتعيين \n❗️🔑 ⌯ ڵطبع كڵيشة ٱلٱيدي ٱرسڵ كڵيشة تحتوي عڵى ٱڵنصوص ٱڵتي بٱڵڵغة ٱلٱنجڵيزية ٱدنٱه \n〰️➖〰️➖〰️➖〰️➖〰️\n username  ⇝ ڵطبع ٱڵمعرف •\n id  ⇝ ڵطبع ٱلٱيدي • \n photos  ⇝ ڵطبع عدد ٱڵصور • \n rank  ⇝ ڵطبع ٱڵـُرتب • \n msgs  ⇝ ڵطبع عدد ٱڵرسٱئڵ • \n formsg  ⇝ ڵطبع ٱڵتفٱعڵ • \n nkat  ⇝ ڵطبع عدد ٱڵنقٱط • \n cont  ⇝ ڵطبع عدد ٱڵجهٱت • \n sticker  ⇝ ڵطبع عدد ٱڵمڵصقٱت • \n〰️➖〰️➖〰️➖〰️➖〰️', 1, 'md')
 DevAbs:set("DevProx:New:id:"..bot_id..msg.chat_id_..msg.sender_user_id_,'ABS_PROX')
 return "ABS_PROX"
@@ -8719,7 +8721,7 @@ local allmgs = DevAbs:get(DevProx.."bot:allmsgs")
 if DevAbs:get(DevProx..'lang:gp:'..msg.chat_id_) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '❗️🎒 ⌯ Status bot \n〰️➖〰️➖〰️➖〰️➖〰️\n❗️🚸 ⌯ Groups : ( '..gps..' )\n❗️🧬 ⌯ Users : ( '..users..' )\n❗️🦠 ⌯ Msg received : ( '..allmgs..' )\n〰️➖〰️➖〰️➖〰️➖〰️', 1, 'md')
 else
-Dev_Abs(msg.chat_id_, msg.id_, 1, '❗️🎒 ⌯ ٱحصٱئيٱت ٱڵـبوت \n〰️➖〰️➖〰️➖〰️➖〰️\n❗️🚸 ⌯ عدد ٱڵمجموعٱت : ( '..gps..' )\n❗️🧬 ⌯ عدد ٱلٱعضٱء : ( '..users..' )\n❗️🦠 ⌯ عدد رسٱئڵ ٱڵمجموعٱت : ( '..allmgs..' )\n〰️➖〰️➖〰️➖〰️➖〰️', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '❗️🎒 ⌯ ٱحصٱئيٱت ٱڵـبوت \n〰️➖〰️➖〰️➖〰️➖〰️\n❗️🚸 ⌯ عدد ٱڵمجموعٱت : ( '..gps..' )\n❗️🔑 ⌯ عدد ٱعضٱء ٱڵخٱص : ( '..users..' )\n❗️🎗 ⌯ عدد رسٱئڵ ٱڵمجموعٱت : ( '..allmgs..' )\n〰️➖〰️➖〰️➖〰️➖〰️', 1, 'md')
 end
 end
 --     Source DevProx     --
@@ -10628,6 +10630,18 @@ local ABS_PROX = "\n"
 Dev_Abs(msg.chat_id_, msg.id_, 1, ABS_PROX, 1, 'md')
 end
 end
+if is_momod(msg.sender_user_id_, msg.chat_id_) then
+if text:match("^الاغاني$") then
+if DevAbs:get(DevProx..'bot:music:mute'..msg.chat_id_) then
+mute_music = 'مـقفۄڵة'
+else
+mute_music = 'مفتوحة'
+end
+local ABS_PROX = "\n"
+.."❗️🎧 ⌯ ٱلٱغٱني ⌯» "..mute_music.."\n"
+Dev_Abs(msg.chat_id_, msg.id_, 1, ABS_PROX, 1, 'md')
+end
+end
 if is_admin(msg.sender_user_id_, msg.chat_id_) then
 if text:match("^الصوت$") or text:match("^الصوتيات$") then
 if DevAbs:get(DevProx..'bot:voice:mute'..msg.chat_id_) then
@@ -11407,7 +11421,7 @@ return false
 end
 end 
 --     Source DevProx     --
-if  msg.content_.text_ == "الاغاني" or msg.content_.text_ == "اغاني" or msg.content_.text_ == "الاغاني المضافه" then
+if msg.content_.text_ == "اغاني" or msg.content_.text_ == "الاغاني المضافه" then
 local redod = DevAbs:smembers(DevProx.."repmusic_sudo")
 if #redod == 0 then
 Dev_Abs(msg.chat_id_, msg.id_, 1, "❗️🚸 ⌯ لٱ تـوجـد ٱغٱني مضـٱفـة" ,  1, "md")
@@ -12018,6 +12032,10 @@ local text =  [[
 🗽 ⌯ اضف رد عام
 🗼 ⌯ حذف رد عام
 🏰 ⌯ ردود المطور • ردود العام
+
+🎸 ⌯ اضف اغنيه
+🥁 ⌯ حذف اغنيه
+🎼 ⌯ اغاني • الاغاني المضافه
 
 ⛔️ ⌯ حظر عام
 🛑 ⌯ الغاء العام
