@@ -2282,6 +2282,29 @@ if DevAbs:get(DevProx.."text_repall"..msg.content_.text_) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, DevAbs:get(DevProx.."text_repall"..msg.content_.text_) ,  1, "md")
 end
 end 
+if msg.content_.text_  or msg.content_.video_ or msg.content_.sticker_ or msg.content_.voice_ or msg.content_.animation_ then
+local content_text = DevAbs:get(DevProx.."add:repmusic"..msg.sender_user_id_)
+if content_text == 'save_repmusic' then
+DevAbs:del(DevProx.."add:repmusic"..msg.sender_user_id_)
+local content_text = DevAbs:get(DevProx.."addreply3:"..msg.sender_user_id_)
+if msg.content_.video_ then
+DevAbs:set(DevProx.."video_repmusic"..content_text, msg.content_.video_.video_.persistent_id_)
+end
+if msg.content_.voice_ then
+DevAbs:set(DevProx.."voice_repmusic"..content_text, msg.content_.voice_.voice_.persistent_id_)
+end
+DevAbs:sadd('repmusic_sudo',content_text)
+Dev_Abs(msg.chat_id_, msg.id_, 1, '❗️☻ تـۖم حفـۨظ ٱلٱغنيه ٱڵـجـډيـډة', 1, 'md') 
+DevAbs:del(DevProx.."addreply3:"..msg.sender_user_id_)
+return false end end
+if msg.content_.text_ and not DevAbs:get(DevProx..'lock_reeeep'..msg.chat_id_) then
+if DevAbs:get(DevProx.."video_repmusic"..msg.content_.text_) then
+sendVideo(msg.chat_id_, msg.id_, 0, 1,nil, DevAbs:get(DevProx.."video_repmusic"..msg.content_.text_))
+end
+if DevAbs:get(DevProx.."voice_repmusic"..msg.content_.text_)  then
+sendVoice(msg.chat_id_, msg.id_, 0, 1, nil, DevAbs:get(DevProx.."voice_repmusic"..msg.content_.text_))
+end
+end 
 -- end functions DevProx --
 --      Anti FLood       -- 
 --      Flood Max        --
@@ -11297,6 +11320,37 @@ DevAbs:sadd(DevProx.."rep_sudo",msg.content_.text_)
 return false 
 end    end
 --     Source DevProx     --
+if msg.content_.text_ == 'حذف اغنيه' then
+DevAbs:set(DevProx.."add:repmusic"..msg.sender_user_id_,'del_rep1music')
+Dev_Abs(msg.chat_id_, msg.id_, 1, "❗️🚸 ⌯ حسنٱ ٱرسـڵ ٱسم ٱلٱغنيه ڵحذفهٱ " ,  1, "md")
+return false
+end
+if msg.content_.text_ then
+local content_text = DevAbs:get(DevProx.."add:repmusic"..msg.sender_user_id_)
+if content_text == 'del_rep1music' then
+Dev_Abs(msg.chat_id_, msg.id_, 1,'❗️🚸 ⌯ ٱلٱغنيه *('..msg.content_.text_..')*\n❗️⚠️ ⌯ تـۖم حـذفهٱ ',  1, "md")
+DevAbs:del(DevProx.."add:repmusic"..msg.sender_user_id_)
+DevAbs:del(DevProx.."voice_repmusic"..msg.content_.text_)
+DevAbs:del(DevProx.."video_repmusic"..msg.content_.text_)
+DevAbs:del(DevProx.."repmusic_sudo",msg.content_.text_)
+return false
+end
+end
+
+if msg.content_.text_ == 'اضف اغنيه' and is_sudo(msg) then
+DevAbs:set(DevProx.."add:repmusic"..msg.sender_user_id_,'set_repmusic')
+Dev_Abs(msg.chat_id_, msg.id_, 1, "❗️🚸 ⌯ حسنٱ ٱرسـڵ ٱسم ٱلٱغنيه ٱلٱن" ,  1, "md")
+return false    end
+if msg.content_.text_ then
+local content_DevAbs2 = DevAbs:get(DevProx.."add:repmusic"..msg.sender_user_id_)
+if content_DevAbs2 == 'set_repmusic' then
+Dev_Abs(msg.chat_id_, msg.id_, 1, "❗️🚸 ⌯ حسنٱ ٱرسـڵ ٱلٱغنيه ٱلٱن" ,  1, "md")
+DevAbs:set(DevProx.."add:repmusic"..msg.sender_user_id_,'save_repmusic')
+DevAbs:set(DevProx.."addreply3:"..msg.sender_user_id_, msg.content_.text_)
+DevAbs:sadd(DevProx.."repmusic_sudo",msg.content_.text_)
+return false 
+end    end
+--     Source DevProx     --
 if  msg.content_.text_ == 'الردود' and is_owner(msg.sender_user_id_, msg.chat_id_) then
 local redod = DevAbs:smembers(DevProx..'rep_owner'..msg.chat_id_..'')
 if #redod == 0 then
@@ -11360,6 +11414,37 @@ DevAbs:del(DevProx.."text_repall"..v)
 DevAbs:del(DevProx.."rep_sudo",msg.content_.text_)
 end
 Dev_Abs(msg.chat_id_, msg.id_, 1, "❗️🚸 ⌯ تـۖم حـذف جميع رډوډ ٱڵـمطور" ,  1, "md")
+return false
+end
+end 
+--     Source DevProx     --
+if  msg.content_.text_ == "الاغاني" or msg.content_.text_ == "اغاني" then
+local redod = DevAbs:smembers(DevProx.."repmusic_sudo")
+if #redod == 0 then
+Dev_Abs(msg.chat_id_, msg.id_, 1, "❗️🚸 ⌯ لٱ تـوجـد رډوډ مضـٱفـة" ,  1, "md")
+else
+local i = 1
+msg_rep = '❗️🎒 ⌯ ٱلٱغٱني ٱڵمضٱفه : \n〰️➖〰️➖〰️➖〰️➖〰️\n'
+for k,v in pairs(redod) do
+msg_rep = msg_rep ..k.." ⌯ *{ "..v.." }* \n"
+end
+Dev_Abs(msg.chat_id_, msg.id_, 1, msg_rep,1, "md")
+end
+return false
+end
+--     Source DevProx     --
+if msg.content_.text_ == "حذف الاغاني" and is_sudo(msg) then
+local redod = DevAbs:smembers(DevProx.."repmusic_sudo")
+if #redod == 0 then
+Dev_Abs(msg.chat_id_, msg.id_, 1, "❗️🚸 ⌯ لٱ تـوجـد ٱغٱني مضـٱفـة" ,  1, "md")
+else
+for k,v in pairs(redod) do
+DevAbs:del(DevProx.."add:repmusic"..v)
+DevAbs:del(DevProx.."voice_repmusic"..v)
+DevAbs:del(DevProx.."video_repmusic"..v)
+DevAbs:del(DevProx.."repmusic_sudo",msg.content_.text_)
+end
+Dev_Abs(msg.chat_id_, msg.id_, 1, "❗️🚸 ⌯ تـۖم حـذف جميع ٱلٱغٱني" ,  1, "md")
 return false
 end
 end 
