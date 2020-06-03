@@ -4514,7 +4514,7 @@ Dev_Abs(msg.chat_id_, msg.id_, 1, '❗️🚸 ⌯ ٱخي ٱڵهمسه ڵيست �
 end
 end  
 --     Source DevProx     --
-if text == 'رفع المشرفين' then  
+if text == 'رفع المشرفين' or text == 'رفع الادمنيه' then  
 local function promote_admin(extra, result, success)  
 local num = 0
 local admins = result.members_  
@@ -7305,7 +7305,7 @@ if not is_admin(result.sender_user_id_, result.chat_id_) then
 if DevAbs:get(DevProx..'lang:gp:'..msg.chat_id_) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '*❗️🎗 ⌯ The user : '..result.sender_user_id_..' \n️❗️🏌🏻‍♂️ ⌯ has been kicked \n ', 1, 'md')
 else
-Dev_Abs(msg.chat_id_, msg.id_, 1, '🎗 ⌯ ٱڵـعضو ⌯» ◝ ['..absc9..'] ◟\n📮 ⌯ ٱيـۧديـۧه ⌯» ◝ '..ap[2]..' ◟\n🏌🏻‍♂️ ⌯ تـۖم طردة من ٱڵـمجموعة \n🚸 ⌯ بوٱسـۧطة ⌯» '..abs_rank(msg)..' \n', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '🎗 ⌯ ٱڵـعضو ⌯» ◝ ['..absc9..'] ◟\n📮 ⌯ ٱيـۧديـۧه ⌯» ◝ '..result.sender_user_id_..' ◟\n🏌🏻‍♂️ ⌯ تـۖم طردة من ٱڵـمجموعة \n🚸 ⌯ بوٱسـۧطة ⌯» '..abs_rank(msg)..' \n', 1, 'md')
 end
 chat_kick(result.chat_id_, result.sender_user_id_)
 end
@@ -7328,7 +7328,7 @@ if not is_admin(result.id_, msg.chat_id_) then
 if DevAbs:get(DevProx..'lang:gp:'..msg.chat_id_) then
 texts = '*❗️🎗 ⌯ The User : '..result.id_..' \n❗️🏌🏻‍♂️ ⌯ has been kicked\n '
 else
-texts = '🎗 ⌯ ٱڵـعضو ⌯» ◝ ['..absc9..'] ◟\n📮 ⌯ ٱيـۧديـۧه ⌯» ◝ '..ap[2]..' ◟\n🏌🏻‍♂️ ⌯ تـۖم طردة من ٱڵـمجموعة \n🚸 ⌯ بوٱسـۧطة ⌯» '..abs_rank(msg)..' \n'
+texts = '🎗 ⌯ ٱڵـعضو ⌯» ◝ ['..absc9..'] ◟\n📮 ⌯ ٱيـۧديـۧه ⌯» ◝ '..result.id_..' ◟\n🏌🏻‍♂️ ⌯ تـۖم طردة من ٱڵـمجموعة \n🚸 ⌯ بوٱسـۧطة ⌯» '..abs_rank(msg)..' \n'
 end
 chat_kick(msg.chat_id_, result.id_)
 end
