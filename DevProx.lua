@@ -4404,7 +4404,7 @@ Dev_Abs(msg.chat_id_, msg.id_, 1,ABS_PROX, 1, 'md')
 end
 DevAbs:set(DevProx..'bot:l:id'..msg.chat_id_,true)
 end  
-if text == 'الانكليزيه' or text == 'انكليزيه' or text == 'الانجليزيه' then
+if text == 'الانكليزي' or text == 'انكليزيه' or text == 'الانجليزيه' then
 if not DevAbs:get(DevProx..'bot:lock_geam'..msg.chat_id_) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '❗️🚸 ⌯ ٱلٱڵعٱب معطڵة \n❗️🔑 ⌯ ٱرسڵ ( تفعيل الالعاب ) ڵڵعب ', 1, 'md')
 else
@@ -4430,7 +4430,7 @@ if text == ''..(DevAbs:get(DevProx..'bot:bkbk7'..msg.chat_id_) or 'qssp')..'' th
 if not DevAbs:get(DevProx..'bot:l:id'..msg.chat_id_) then 
 DevAbs:incrby(DevProx..'bot:add:num'..msg.chat_id_..msg.sender_user_id_, 1)  
 DevAbs:del(DevProx..'bot:bkbk7'..msg.chat_id_)
-ABS_PROX = '❗️🚸 ⌯ ڵقد ربحت وحصڵت عڵى نقطة \n❗️🔑 ⌯ ٱرسڵ ( الانكليزيه ) ڵڵعب مره ٱخرى \n '
+ABS_PROX = '❗️🚸 ⌯ ڵقد ربحت وحصڵت عڵى نقطة \n❗️🔑 ⌯ ٱرسڵ ( انكليزيه ) ڵڵعب مره ٱخرى \n '
 Dev_Abs(msg.chat_id_, msg.id_, 1,ABS_PROX, 1, 'md')
 end
 DevAbs:set(DevProx..'bot:l:id'..msg.chat_id_,true)
@@ -4453,7 +4453,7 @@ Dev_Abs(msg.chat_id_, msg.id_, 1,[[*
 ❗️🎨 ⌯ ٱرسڵ ⌯» ( سمايلات ) للعب
 ❗️🔗 ⌯ ٱرسڵ ⌯» ( المحيبس ) للعب
 ❗️🎰 ⌯ ٱرسڵ ⌯» ( رياضيات ) للعب
-❗️🎭 ⌯ ٱرسڵ ⌯» ( الانكليزيه ) للعب
+❗️🎭 ⌯ ٱرسڵ ⌯» ( انكليزيه ) للعب
 〰️➖〰️➖〰️➖〰️➖〰️
 ❗️🏵 ⌯ CH ⌯» @Dev_Prox
 *]], 1, 'md')
