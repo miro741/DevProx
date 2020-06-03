@@ -1719,6 +1719,7 @@ local key = {
 {'تعطيل البوت الخدمي','تفعيل البوت الخدمي'},
 {'نسخه ملف السورس','تحديث السورس','جلب نسخه الكروبات'},
 {'حذف رد عام','الردود العام','اضف رد عام'},
+{'حذف اغنيه','الاغاني المضافه','اضف اغنيه'},
 {'حذف قناة الاشتراك','قناة الاشتراك','تعيين قناة الاشتراك'},
 {'حذف كليشه الاشتراك','كليشه الاشتراك','تغيير كليشه الاشتراك'},
 {"رد الخاص تعطيل",'تعيين كليشة ستارت',"رد الخاص تفعيل"},
@@ -10628,18 +10629,6 @@ Dev_Abs(msg.chat_id_, msg.id_, 1, ABS_PROX, 1, 'md')
 end
 end
 if is_admin(msg.sender_user_id_, msg.chat_id_) then
-if text:match("^الاغاني$") then
-if DevAbs:get(DevProx..'bot:music:mute'..msg.chat_id_) then
-mute_music = 'مـقفۄڵة'
-else
-mute_music = 'مفتوحة'
-end
-local ABS_PROX = "\n"
-.."❗️🎧 ⌯ ٱلٱغٱني ⌯» "..mute_music.."\n"
-Dev_Abs(msg.chat_id_, msg.id_, 1, ABS_PROX, 1, 'md')
-end
-end
-if is_admin(msg.sender_user_id_, msg.chat_id_) then
 if text:match("^الصوت$") or text:match("^الصوتيات$") then
 if DevAbs:get(DevProx..'bot:voice:mute'..msg.chat_id_) then
 mute_voice = 'مـقفۄڵ'
@@ -11418,10 +11407,10 @@ return false
 end
 end 
 --     Source DevProx     --
-if  msg.content_.text_ == "الاغاني" or msg.content_.text_ == "اغاني" then
+if  msg.content_.text_ == "الاغاني" or msg.content_.text_ == "اغاني" or msg.content_.text_ == "الاغاني المضافه" then
 local redod = DevAbs:smembers(DevProx.."repmusic_sudo")
 if #redod == 0 then
-Dev_Abs(msg.chat_id_, msg.id_, 1, "❗️🚸 ⌯ لٱ تـوجـد رډوډ مضـٱفـة" ,  1, "md")
+Dev_Abs(msg.chat_id_, msg.id_, 1, "❗️🚸 ⌯ لٱ تـوجـد ٱغٱني مضـٱفـة" ,  1, "md")
 else
 local i = 1
 msg_rep = '❗️🎒 ⌯ ٱلٱغٱني ٱڵمضٱفه : \n〰️➖〰️➖〰️➖〰️➖〰️\n'
