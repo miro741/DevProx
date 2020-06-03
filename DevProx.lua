@@ -4371,7 +4371,7 @@ if text == 'رياضيات' or text == 'الرياضيات' then
 if not DevAbs:get(DevProx..'bot:lock_geam'..msg.chat_id_) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '❗️🚸 ⌯ ٱلٱڵعٱب معطڵة \n❗️🔑 ⌯ ٱرسڵ ( تفعيل الالعاب ) ڵڵعب ', 1, 'md')
 else
-DevAbs2 = {'9','2','60','9','5','4','25','10','17','15','39','5','16','63',};
+DevAbs2 = {'9','2','9','5','4','25','10','17','15','39','5','16','63',};
 name = DevAbs2[math.random(#DevAbs2)]
 DevAbs:set(DevProx..'bot:bkbk6'..msg.chat_id_,name)
 DevAbs:del(DevProx..'bot:l:id'..msg.chat_id_)
@@ -4422,7 +4422,6 @@ name = string.gsub(name,'سدني','Sydney')
 name = string.gsub(name,'نقود','money')
 name = string.gsub(name,'اعلم','I know')
 name = string.gsub(name,'تمساح','crocodile')
-name = string.gsub(name,'مختلف','Different')
 name = string.gsub(name,'ذكي','Intelligent')
 ABS_PROX = '❗️🚸 ⌯ مٱ معنى كڵمة {'..name..'} '
 Dev_Abs(msg.chat_id_, msg.id_, 1,ABS_PROX, 1, 'md')
