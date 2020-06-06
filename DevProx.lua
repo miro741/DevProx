@@ -12070,8 +12070,6 @@ Dev_Abs(msg.chat_id_, msg.id_, 1, text , 1, 'md')
 return false end
 end
 if text:match("^م٨$") or text:match("^م8$") or text:match("^اوامر8$") or text:match("^اوامر٨$") then
-if not is_sudo(msg) then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '❗️📛 ⌯ ڵڵمطورين فقط ', 1, 'md')
 local help = DevAbs:get(DevProx..'bot:help8')
 local text =  [[
 ❗️🎒 ⌯ Developers orders
@@ -12158,7 +12156,6 @@ local text =  [[
 ]]
 Dev_Abs(msg.chat_id_, msg.id_, 1, (help or text), 1, 'html')
 end 
-end
 --     Source DevProx     --
 if text == "تحديث السورس" and is_leader(msg) then 
 Dev_Abs(msg.chat_id_, msg.id_, 1, '❗️🚸 ⌯ جٱري تـۧحډيث سۄرس ډيف برۄكس', 1, 'md') 
