@@ -6743,7 +6743,7 @@ local list = DevAbs:smembers(DevProx..abs)
 text = "❗️🎒 ⌯ مطورين ٱڵـبوت : \n〰️➖〰️➖〰️➖〰️➖〰️\n"
 for k, v in pairs(list) do
 if DevAbs:get(DevProx.."SudoNumberGp" .. v) then
-gps = tonumber(DevAbs:get(DevProx.."SudoNumberGp" .. v))
+gps = tonumber(DevAbs:get(DevProx.."ABS_PROX:addg" .. v))
 else
 gps = 0
 end
