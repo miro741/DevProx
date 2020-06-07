@@ -8781,7 +8781,7 @@ local allmgs = DevAbs:get(DevProx.."bot:allmsgs")
 if DevAbs:get(DevProx..'lang:gp:'..msg.chat_id_) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '❗️🎒 ⌯ Status bot \n〰️➖〰️➖〰️➖〰️➖〰️\n❗️🚸 ⌯ Groups : ( '..gps..' )\n❗️🧬 ⌯ Users : ( '..users..' )\n❗️🦠 ⌯ Msg received : ( '..allmgs..' )\n〰️➖〰️➖〰️➖〰️➖〰️', 1, 'md')
 else
-Dev_Abs(msg.chat_id_, msg.id_, 1, '❗️🎒 ⌯ ٱحصٱئيٱت ٱڵـبوت \n〰️➖〰️➖〰️➖〰️➖〰️\n❗️🚸 ⌯ عدد ٱڵمشتركين ⌯» ◟ '..users..' ◝\n❗️🔑 ⌯ عدد ٱڵمجموعٱت ⌯» ◟ '..gps..' ◝\n❗️🎗 ⌯ مجموع ٱڵرسٱئل ⌯» ◟ '..allmgs..' ◝\n〰️➖〰️➖〰️➖〰️➖〰️', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '❗️🎒 ⌯ ٱحصٱئيٱت ٱڵـبوت \n〰️➖〰️➖〰️➖〰️➖〰️\n❗️🚸 ⌯ عدد ٱڵمشتركين ⌯» ◝ '..users..' ◟\n❗️🔑 ⌯ عدد ٱڵمجموعٱت ⌯» ◝ '..gps..' ◟\n❗️🎗 ⌯ مجموع ٱڵرسٱئل ⌯» ◝ '..allmgs..' ◟\n〰️➖〰️➖〰️➖〰️➖〰️', 1, 'md')
 end
 end
 --     Source DevProx     --
