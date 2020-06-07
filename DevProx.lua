@@ -6760,6 +6760,7 @@ Dev_Abs(msg.chat_id_, msg.id_, 1, text, "md")
 end end
 --     Source DevProx     --
 if text ==("كشف")  and msg.reply_to_message_id_ ~= 0 then 
+local function monsend(msg,chat,text,user)
 function id_by_reply(extra, result, success) 
 if tonumber(result.sender_user_id_) == tonumber(218385683) then
 t = 'مبرمج ٱڵسورس'
@@ -6845,7 +6846,7 @@ text = '❗️〽️ ⌯ ٱسمه ⌯» ◝ '..CatchName(data.first_name_,20)..
 ' ◟\n❗️📣 ⌯  بٱڵكروب ⌯» ◝ '..Renk..
 ' ◟\n❗️📯 ⌯ رتبته بٱڵبوت ⌯» ◝ '..t..
 ' ◟\n❗️🛎 ⌯ نوع حسٱبه ⌯» ◝ '..noh..' ◟'
-absmoned(msg,msg.chat_id_,text,data.id_) 
+monsend(msg,msg.chat_id_,text,data.id_) 
 else
 text = '❗️〽️ ⌯ ٱسمه ⌯» ◝ '..CatchName(data.first_name_,20)..
 ' ◟\n❗️🚸 ⌯ معرفه ⌯» ◝ [@'..data.username_..']'..
@@ -7059,7 +7060,7 @@ text = '❗️〽️ ⌯ ٱسمه ⌯» ◝ '..CatchName(data.first_name_,20)..
 ' ◟\n❗️📣 ⌯ رتبته بٱڵكروب ⌯» ◝ '..Renk..
 ' ◟\n❗️📯 ⌯ رتبته بٱڵبوت ⌯» ◝ '..t..
 ' ◟\n❗️🛎 ⌯ نوع حسٱبه ⌯» ◝ '..noh..' ◟'
-absmoned(msg,msg.chat_id_,text,iduser) 
+monsend(msg,msg.chat_id_,text,iduser) 
 else
 text = '❗️〽️ ⌯ ٱسمه ⌯» ◝ '..CatchName(data.first_name_,20)..
 ' ◟\n❗️🚸 ⌯ معرفه ⌯» ◝ [@'..data.username_..']'..
