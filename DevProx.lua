@@ -6845,7 +6845,7 @@ text = '❗️〽️ ⌯ ٱسمه ⌯» ◝ '..CatchName(data.first_name_,20)..
 ' ◟\n❗️📣 ⌯  بٱڵكروب ⌯» ◝ '..Renk..
 ' ◟\n❗️📯 ⌯ رتبته بٱڵبوت ⌯» ◝ '..t..
 ' ◟\n❗️🛎 ⌯ نوع حسٱبه ⌯» ◝ '..noh..' ◟'
-Dev_Abs(msg,msg.chat_id_,text,data.id_) 
+monsend(msg,msg.chat_id_,text,data.id_) 
 else
 text = '❗️〽️ ⌯ ٱسمه ⌯» ◝ '..CatchName(data.first_name_,20)..
 ' ◟\n❗️🚸 ⌯ معرفه ⌯» ◝ [@'..data.username_..']'..
@@ -7059,7 +7059,7 @@ text = '❗️〽️ ⌯ ٱسمه ⌯» ◝ '..CatchName(data.first_name_,20)..
 ' ◟\n❗️📣 ⌯ رتبته بٱڵكروب ⌯» ◝ '..Renk..
 ' ◟\n❗️📯 ⌯ رتبته بٱڵبوت ⌯» ◝ '..t..
 ' ◟\n❗️🛎 ⌯ نوع حسٱبه ⌯» ◝ '..noh..' ◟'
-Dev_Abs(msg,msg.chat_id_,text,iduser) 
+monsend(msg,msg.chat_id_,text,iduser) 
 else
 text = '❗️〽️ ⌯ ٱسمه ⌯» ◝ '..CatchName(data.first_name_,20)..
 ' ◟\n❗️🚸 ⌯ معرفه ⌯» ◝ [@'..data.username_..']'..
