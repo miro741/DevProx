@@ -11484,7 +11484,7 @@ end
 end 
 --     Source DevProx     --
 if msg.content_.text_ == "اغاني" or msg.content_.text_ == "الاغاني المضافه" then
-local redod = DevAbs:smembers(DevProx.."repmusic_sudo")
+local redod = DevAbs:smembers(DevProx..'repmusic_sudo'..msg.chat_id_..'')
 if #redod == 0 then
 Dev_Abs(msg.chat_id_, msg.id_, 1, "❗️🚸 ⌯ لٱ تـوجـد ٱغٱني مضـٱفـة" ,  1, "md")
 else
