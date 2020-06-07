@@ -6742,17 +6742,12 @@ local abs =  'abs:sudo3:'
 local list = DevAbs:smembers(DevProx..abs)
 text = "❗️🎒 ⌯ مطورين ٱڵـبوت : \n〰️➖〰️➖〰️➖〰️➖〰️\n"
 for k, v in pairs(list) do
-if DevAbs:get(DevProx.."SudoNumberGp" .. v) then
-gps = tonumber(DevAbs:get(DevProx.."ABS_PROX:addg" .. v))
-else
-gps = 0
-end
 local user_info = DevAbs:get(DevProx.."user:Name" .. v)
 if user_info then
 local username = user_info
-text = text .. k .. "⌯ [" .. username .. "] \n⌯ Groups : ( " .. gps .. " )\n"
+text = text .. k .. "⌯ (["..username.."])\n"
 else
-text = text .. k .. "⌯ ( " .. v .. " ) \n⌯ Groups : ( " .. gps .. " )\n"
+text = text .. k .. "⌯ ("..v..")\n"
 end end
 if #list == 0 then
 text = "❗️⚠️ ⌯ عذرٱ ڵم يتم رفع ٱي مطورين"
