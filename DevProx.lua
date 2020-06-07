@@ -4998,23 +4998,15 @@ end
 --     Source DevProx     --
 if text:match("^source$") or text:match("^Source$") or text:match("^اصدار$") or text:match("^الاصدار$") or  text:match("^السورس$") or text:match("^سورس$") or text:match("^ياسورس$") then 
 local text =  [[
-❗️🎗 ⌯ ◟ [Source DevProx](https://t.me/Dev_Prox) ◝
-❗️🎗 ⌯ ◝ [سورس ديف بروكس](https://t.me/Dev_Prox) ◟
+🗄 ⌯ ❨ Source DevProx ❩
 〰️➖〰️➖〰️➖〰️➖〰️
-❗️📣 ⌯ ◟ [Source Channel](https://t.me/Dev_Prox) ◝
-❗️📣 ⌯ ◝ [قناة السورس](https://t.me/Dev_Prox) ◟
-〰️➖〰️➖〰️➖〰️➖〰️
-❗️🚸 ⌯ ◟ [Source developer](http://t.me/IQ_ABS) ◝
-❗️🚸 ⌯ ◝ [مطور السورس](http://t.me/IQ_ABS) ◟
-〰️➖〰️➖〰️➖〰️➖〰️
-❗️📯 ⌯ ◟ [Blocked connection](http://t.me/IQA_bot) ◝
-❗️📯 ⌯ ◝ [تواصل المحظورين](http://t.me/IQA_bot) ◟
-〰️➖〰️➖〰️➖〰️➖〰️
-❗️🔅 ⌯ ◟ [Explanation Source](https://t.me/Exp_Dev) ◝
-❗️🔅 ⌯ ◝ [شروحات السورس](https://t.me/Exp_Dev) ◟
-〰️➖〰️➖〰️➖〰️➖〰️
-❗️🔑 ⌯ ◟ [Click here to install](https://t.me/Dev_Prox/573) ◝
-❗️🔑 ⌯ [اضغط هنا لتنصيب السورس](https://t.me/Dev_Prox/573) ◟
+📄 ⌯ [Source Channel](https://t.me/Dev_Prox)
+📑 ⌯ [Explanation Source](https://t.me/Exp_Dev)
+
+📰 ⌯ [Source developer](https://t.me/IQ_ABS)
+🗞 ⌯ [Connection bot](https://t.me/IQA_bot)
+
+📜 ⌯ [Click here to install](https://t.me/Dev_Prox/573)
 〰️➖〰️➖〰️➖〰️➖〰️
 ]]
 Dev_Abs(msg.chat_id_, msg.id_, 1, text, 1, 'md')
@@ -12206,6 +12198,139 @@ Dev_Abs(msg.chat_id_, msg.id_, 1, "❗️🚸 ⌯ ٱرسـڵ كڵيشة ٱڵـم
 end
 DevAbs:setex(DevProx.."bot:nerkh" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 100, true)
 end end
+--     Source DevProx     --
+if text == 'رفع القيود' and tonumber(msg.reply_to_message_id_) > 0 and is_admin(msg) then 
+function unbanreply(extra, result, success) 
+if tonumber(result.sender_user_id_) == tonumber(bot_id) then  
+Dev_Abs(msg.chat_id_, msg.id_, 1, '*📮¦ انا البوت وليس لدي قيود * \n', 1, 'md')  
+return false  end 
+tdcli_function ({
+ID = "GetUser",
+user_id_ = result.sender_user_id_
+},function(arg,data) 
+if DevAbs:sismember(DevProx..'tkeed:'..msg.chat_id_,result.sender_user_id_) or DevAbs:sismember(DevProx..'bot:muted:'..msg.chat_id_,result.sender_user_id_) or DevAbs:sismember(DevProx..'bot:banned:'..msg.chat_id_,result.sender_user_id_) then
+if data.username_ == false then
+zo = '📮¦ العضــو » ❪ '..CatchName(data.first_name_,15)..' ❫\n📬¦ تم رفع قيوده\n🍃'   
+getMessage(msg.chat_id_, result.sender_user_id_, msg.id_, zo, 16, utf8.len(CatchName(data.first_name_,15)))  
+HTTPS.request("https://api.telegram.org/bot" .. chaneel .. "/restrictChatMember?chat_id=" ..msg.chat_id_.. "&user_id=" ..result.sender_user_id_.. "&can_send_messages=True&can_send_media_messages=True&can_send_other_messages=True&can_add_web_page_previews=True")  
+DevAbs:srem(DevProx..'tkeed:'..msg.chat_id_,result.sender_user_id_) 
+DevAbs:srem(DevProx..'bot:banned:'..msg.chat_id_,result.sender_user_id_)   
+DevAbs:srem(DevProx..'bot:muted:'..msg.chat_id_,result.sender_user_id_)   
+else
+zo = '*📮¦* العضــو » ❪ [@'..data.username_..'] ❫\n*📬¦ الايـدي » ❪* `'..result.sender_user_id_..'` ❫\n*🚸¦* تم رفع قيوده\n🍃'   
+HTTPS.request("https://api.telegram.org/bot" .. chaneel .. "/restrictChatMember?chat_id=" ..msg.chat_id_.. "&user_id=" ..result.sender_user_id_.. "&can_send_messages=True&can_send_media_messages=True&can_send_other_messages=True&can_add_web_page_previews=True")  
+DevAbs:srem(DevProx..'tkeed:'..msg.chat_id_,result.sender_user_id_) 
+DevAbs:srem(DevProx..'bot:banned:'..msg.chat_id_,result.sender_user_id_)   
+DevAbs:srem(DevProx..'bot:muted:'..msg.chat_id_,result.sender_user_id_)   
+Dev_Abs(msg.chat_id_, msg.id_, 1, zo, 1, 'md') 
+end
+else
+if data.username_ == false then
+zo = '📮¦ العضــو » ❪ '..CatchName(data.first_name_,15)..' ❫\n📬¦ بالتاكيد تم رفع قيوده\n🍃'   
+getMessage(msg.chat_id_, result.sender_user_id_, msg.id_, zo, 16, utf8.len(CatchName(data.first_name_,15)))  
+HTTPS.request("https://api.telegram.org/bot" .. chaneel .. "/restrictChatMember?chat_id=" ..msg.chat_id_.. "&user_id=" ..result.sender_user_id_.. "&can_send_messages=True&can_send_media_messages=True&can_send_other_messages=True&can_add_web_page_previews=True")  
+DevAbs:srem(DevProx..'tkeed:'..msg.chat_id_,result.sender_user_id_) 
+DevAbs:srem(DevProx..'bot:banned:'..msg.chat_id_,result.sender_user_id_)   
+DevAbs:srem(DevProx..'bot:muted:'..msg.chat_id_,result.sender_user_id_)   
+else
+zo = '*📮¦* العضــو » ❪ [@'..data.username_..'] ❫\n*📬¦ الايـدي » ❪* `'..result.sender_user_id_..'` ❫\n*🚸¦* بالتاكيد تم رفع قيوده\n🍃'   
+HTTPS.request("https://api.telegram.org/bot" .. chaneel .. "/restrictChatMember?chat_id=" ..msg.chat_id_.. "&user_id=" ..result.sender_user_id_.. "&can_send_messages=True&can_send_media_messages=True&can_send_other_messages=True&can_add_web_page_previews=True")  
+DevAbs:srem(DevProx..'tkeed:'..msg.chat_id_,result.sender_user_id_) 
+DevAbs:srem(DevProx..'bot:banned:'..msg.chat_id_,result.sender_user_id_)   
+DevAbs:srem(DevProx..'bot:muted:'..msg.chat_id_,result.sender_user_id_)   
+Dev_Abs(msg.chat_id_, msg.id_, 1, zo, 1, 'md') 
+end
+end
+end,nil)   
+end 
+getMessage(msg.chat_id_, tonumber(msg.reply_to_message_id_),unbanreply) 
+end
+if text and text:match('^رفع القيود (%d+)') and is_admin(msg) then 
+local user = text:match('رفع القيود (%d+)') 
+if tonumber(user) == tonumber(bot_id) then  
+Dev_Abs(msg.chat_id_, msg.id_, 1, '*📮¦ انا البوت وليس لدي قيود * \n', 1, 'md')  
+return false  end 
+tdcli_function ({
+ID = "GetUser",
+user_id_ = user
+},function(arg,data) 
+if data and data.code_ and data.code_ == 6 then
+Dev_Abs(msg.chat_id_, msg.id_, 1, '*📮¦ لا استطيع استخراج معلوماته*\n💥', 1, 'md') 
+return false  end
+if DevAbs:sismember(DevProx..'tkeed:'..msg.chat_id_,user) or DevAbs:sismember(DevProx..'bot:muted:'..msg.chat_id_,user) or DevAbs:sismember(DevProx..'bot:banned:'..msg.chat_id_,user) then
+if data.username_ == false then
+zo = '📮¦ العضــو » ❪ '..CatchName(data.first_name_,15)..' ❫\n📬¦ تم رفع قيوده\n🍃'   
+getMessage(msg.chat_id_, user, msg.id_, zo, 16, utf8.len(CatchName(data.first_name_,15)))  
+HTTPS.request("https://api.telegram.org/bot" .. chaneel .. "/restrictChatMember?chat_id=" ..msg.chat_id_.. "&user_id=" ..user.. "&can_send_messages=True&can_send_media_messages=True&can_send_other_messages=True&can_add_web_page_previews=True")  
+DevAbs:srem(DevProx..'tkeed:'..msg.chat_id_,user) 
+DevAbs:srem(DevProx..'bot:banned:'..msg.chat_id_,user)   
+DevAbs:srem(DevProx..'bot:muted:'..msg.chat_id_,user)   
+else
+zo = '*📮¦* العضــو » ❪ [@'..data.username_..'] ❫\n*📬¦ الايـدي » ❪* `'..user..'` ❫\n*🚸¦* تم رفع قيوده\n🍃'   
+HTTPS.request("https://api.telegram.org/bot" .. chaneel .. "/restrictChatMember?chat_id=" ..msg.chat_id_.. "&user_id=" ..user.. "&can_send_messages=True&can_send_media_messages=True&can_send_other_messages=True&can_add_web_page_previews=True")  
+DevAbs:srem(DevProx..'tkeed:'..msg.chat_id_,user) 
+DevAbs:srem(DevProx..'bot:banned:'..msg.chat_id_,user)   
+DevAbs:srem(DevProx..'bot:muted:'..msg.chat_id_,user)   
+Dev_Abs(msg.chat_id_, msg.id_, 1, zo, 1, 'md') 
+end
+else
+if data.username_ == false then
+zo = '📮¦ العضــو » ❪ '..CatchName(data.first_name_,15)..' ❫\n📬¦ بالتاكيد تم رفع قيوده\n💥'   
+getMessage(msg.chat_id_, user, msg.id_, zo, 16, utf8.len(CatchName(data.first_name_,15)))  
+HTTPS.request("https://api.telegram.org/bot" .. chaneel .. "/restrictChatMember?chat_id=" ..msg.chat_id_.. "&user_id=" ..user.. "&can_send_messages=True&can_send_media_messages=True&can_send_other_messages=True&can_add_web_page_previews=True")  
+DevAbs:srem(DevProx..'tkeed:'..msg.chat_id_,user) 
+DevAbs:srem(DevProx..'bot:banned:'..msg.chat_id_,user)   
+DevAbs:srem(DevProx..'bot:muted:'..msg.chat_id_,user)   
+else
+zo = '*📮¦* العضــو » ❪ [@'..data.username_..'] ❫\n*📬¦ الايـدي » ❪* `'..user..'` ❫\n*🚸¦* بالتاكيد تم رفع قيوده\n🍃'   
+HTTPS.request("https://api.telegram.org/bot" .. chaneel .. "/restrictChatMember?chat_id=" ..msg.chat_id_.. "&user_id=" ..user.. "&can_send_messages=True&can_send_media_messages=True&can_send_other_messages=True&can_add_web_page_previews=True")  
+DevAbs:srem(DevProx..'tkeed:'..msg.chat_id_,user) 
+DevAbs:srem(DevProx..'bot:banned:'..msg.chat_id_,user)   
+DevAbs:srem(DevProx..'bot:muted:'..msg.chat_id_,user)   
+Dev_Abs(msg.chat_id_, msg.id_, 1, zo, 1, 'md') 
+end
+end
+end,nil)  
+end
+if text and text:match('^رفع القيود @(.*)') and is_admin(msg) then  
+local username = text:match('رفع القيود @(.*)')  
+function unbanusername(extra,result,success)  
+if result and result.message_ and result.message_ == "USERNAME_NOT_OCCUPIED" then 
+local rami = '*📮¦ المعرف لا يوجد فيه حساب *'
+Dev_Abs(msg.chat_id_, msg.id_, 1,rami, 1, 'md')
+return false  end
+if result and result.type_ and result.type_.channel_ and result.type_.channel_.ID == "Channel" then
+Dev_Abs(msg.chat_id_, msg.id_, 1, '*📮¦ هاذا المعرف قناة وليس معرف حساب *\n💥', 1, 'md') 
+return false  end
+if tonumber(result.id_) == tonumber(bot_id) then  
+Dev_Abs(msg.chat_id_, msg.id_, 1, '*📮¦ انا البوت وليس لدي قيود * \n', 1, 'md')  
+return false  end 
+tdcli_function ({
+ID = "GetUser",
+user_id_ = result.id_
+},function(arg,data) 
+if data and data.code_ and data.code_ == 6 then
+Dev_Abs(msg.chat_id_, msg.id_, 1, '*📮¦ لا استطيع استخراج معلوماته*\n💥', 1, 'md') 
+return false  end
+if DevAbs:sismember(DevProx..'tkeed:'..msg.chat_id_,result.id_) or DevAbs:sismember(DevProx..'bot:muted:'..msg.chat_id_,result.id_) or DevAbs:sismember(DevProx..'bot:banned:'..msg.chat_id_,result.id_) then
+zo = '*📮¦* العضــو » ❪ [@'..data.username_..'] ❫\n*📬¦ الايـدي » ❪* `'..result.id_..'` ❫\n*🚸¦* تم رفع قيوده\n🍃'   
+HTTPS.request("https://api.telegram.org/bot" .. chaneel .. "/restrictChatMember?chat_id=" ..msg.chat_id_.. "&user_id=" ..result.id_.. "&can_send_messages=True&can_send_media_messages=True&can_send_other_messages=True&can_add_web_page_previews=True")  
+DevAbs:srem(DevProx..'tkeed:'..msg.chat_id_,result.id_) 
+DevAbs:srem(DevProx..'bot:banned:'..msg.chat_id_,result.id_)   
+DevAbs:srem(DevProx..'bot:muted:'..msg.chat_id_,result.id_)   
+Dev_Abs(msg.chat_id_, msg.id_, 1, zo, 1, 'md') 
+else
+zo = '*📮¦* العضــو » ❪ [@'..data.username_..'] ❫\n*📬¦ الايـدي » ❪* `'..result.id_..'` ❫\n*🚸¦* بالتاكيد تم رفع قيوده\n🍃'   
+HTTPS.request("https://api.telegram.org/bot" .. chaneel .. "/restrictChatMember?chat_id=" ..msg.chat_id_.. "&user_id=" ..result.id_.. "&can_send_messages=True&can_send_media_messages=True&can_send_other_messages=True&can_add_web_page_previews=True")  
+DevAbs:srem(DevProx..'tkeed:'..msg.chat_id_,result.id_) 
+DevAbs:srem(DevProx..'bot:banned:'..msg.chat_id_,result.id_)   
+DevAbs:srem(DevProx..'bot:muted:'..msg.chat_id_,result.id_)   
+Dev_Abs(msg.chat_id_, msg.id_, 1, zo, 1, 'md') 
+end
+end,nil)   
+end  
+getMessage(username,unbanusername) 
+end 
 --     Source DevProx     --
 if DevAbs:get(DevProx.."textch:user" .. msg.chat_id_ .. "" .. msg.sender_user_id_) then 
 if text and text:match("^الغاء$") then 
