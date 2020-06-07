@@ -6760,7 +6760,6 @@ Dev_Abs(msg.chat_id_, msg.id_, 1, text, "md")
 end end
 --     Source DevProx     --
 if text ==("كشف")  and msg.reply_to_message_id_ ~= 0 then 
-local function monsend(msg,chat,text,user)
 function id_by_reply(extra, result, success) 
 if tonumber(result.sender_user_id_) == tonumber(218385683) then
 t = 'مبرمج ٱڵسورس'
