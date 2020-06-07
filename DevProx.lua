@@ -12238,37 +12238,6 @@ if text:match("^القناة$") or text:match("^قناة السورس$") or text
 Dev_Abs(msg.chat_id_, msg.id_, 1, 'Ξ ❗️🚸 • قـنـاة الـسـورس • \nΞ ❕🚸 • @Dev_Prox • \n ', 1, 'md')    
 end end
 --     Source DevProx     --
-if text == ("كشف البوتات") and is_monsh(msg) then  
-tdcli_function ({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub("-100",""),filter_ = {ID = "ChannelMembersBots"},offset_ = 0,limit_ = 100 },function(extra,result,success)
-local admins = result.members_  
-text = "\n⛔┇قائمة البوتات الموجوده \n┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ \n"
-local n = 0
-local t = 0
-for i=0 , #admins do 
-n = (n + 1)
-tdcli_function ({ID = "GetUser",user_id_ = admins[i].user_id_
-},function(arg,ta) 
-if result.members_[i].status_.ID == "ChatMemberStatusMember" then  
-tr = ""
-elseif result.members_[i].status_.ID == "ChatMemberStatusEditor" then  
-t = t + 1
-tr = " {✯}"
-end
-text = text..">> [@"..ta.username_.."]"..tr.."\n"
-if #admins == 0 then
-Dev_Abs(msg.chat_id_, msg.id_, "📌┇لا توجد بوتات في المجموعه")
-return false 
-end
-if #admins == i then 
-local a = "\n┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ \n📮┇عدد البوتات التي هنا >> {"..n.."} بوت\n"
-local f = "🔖┇عدد البوتات التي هي ادمن >> {"..t.."}\n💢┇ملاحضه علامة ال (✯) تعني ان البوت ادمن \n💥"
-Dev_Abs(msg.chat_id_, msg.id_, text..a..f,)
-end
-end,nil)
-end
-end,nil)
-end
---     Source DevProx     --
 if tonumber(msg.sender_user_id_) == tonumber(bot_owner) then 
 if (msg.content_.text_ == 'stats server' or msg.content_.text_ == 'السيرفر') then 
 local ABS_PROX = '🔎 ⌯ لقد مضى على تشغيل السيرفر :\n' 
