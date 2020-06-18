@@ -4660,6 +4660,46 @@ end
 getUser(msg.sender_user_id_,get_rtba)
 end
 --     Source DevProx     --
+if text:match("^تفاعلي$") and Abbas_Abs(msg) then
+function get_me_msguser(extra,result,success)
+local msguser = tonumber(DevAbs:get(DevProx..'user:msgs'..msg.chat_id_..':'..msg.sender_user_id_))
+function formsgg(msgs) 
+local ABS_PROX = ''  
+if msgs < 100 then 
+ABS_PROX = 'جدٱ ضعيف' 
+elseif msgs < 250 then 
+ABS_PROX = 'ضعيف' 
+elseif msgs < 500 then 
+ABS_PROX = 'غير متفٱعڵ' 
+elseif msgs < 750 then 
+ABS_PROX = 'متوسط' 
+elseif msgs < 1000 then 
+ABS_PROX = 'متفٱعڵ' 
+elseif msgs < 2000 then 
+ABS_PROX = 'قمة ٱڵتفٱعڵ' 
+elseif msgs < 3000 then 
+ABS_PROX = 'مڵك ٱڵتفٱعڵ'  
+elseif msgs < 4000 then 
+ABS_PROX = 'ٱسطورة ٱڵتفٱعڵ' 
+elseif msgs < 5000 then 
+ABS_PROX = 'متفٱعڵ نٱر' 
+elseif msgs < 5500 then 
+ABS_PROX = 'يجدح جدح' 
+elseif msgs < 6000 then 
+ABS_PROX = 'خيٱڵي' 
+elseif msgs < 7000 then 
+ABS_PROX = 'رب ٱڵتفٱعل' 
+elseif msgs < 8000 then 
+ABS_PROX = 'كٱفر بٱڵتفٱعڵ' 
+end 
+return ABS_PROX
+end
+Dev_Abs(msg.chat_id_, msg.id_, 1, '❗️🚸⌯ تفٱعڵک ⇜ { '..formsgg(msguser)..' }', 1, 'html')
+end 
+end
+getUser(msg.sender_user_id_,get_me_msguser)
+end
+--     Source DevProx     --
 if text:match("^معلوماتي$") and Abbas_Abs(msg) then
 function get_me(extra,result,success)
 local Dev_Abss = (DevAbs:get('ABS_PROX:'..bot_id..'nummsg'..msg.chat_id_..msg.sender_user_id_) or 0)
@@ -8789,7 +8829,7 @@ for i = 1, #group do
 tdcli_function({ID='GetChat',chat_id_ = group[i]
 },function(arg,data)
 if data and data.type_ and data.type_.channel_ and data.type_.channel_.status_ and data.type_.channel_.status_.ID == "ChatMemberStatusMember" then
-print('\27[30;34m»» THE BOT IS NOT ADMIN ↓\n»» '..group[i]..'\n\27[1;37m')
+print('\27[30;34m THE BOT IS NOT ADMIN ↓\n'..group[i]..'\n\27[1;37m')
 DevAbs:srem(DevProx.."bot:groups",group[i]) 
 changeChatMemberStatus(group[i], bot_id, "Left")
 w = w + 1
@@ -8797,12 +8837,12 @@ end
 if data and data.type_ and data.type_.channel_ and data.type_.channel_.status_ and data.type_.channel_.status_.ID == "ChatMemberStatusLeft" then
 DevAbs:srem( DevProx.."bot:groups",group[i]) 
 q = q + 1
-print('\27[30;35m»» THE BOT IS LEFT GROUP ↓\n»» '..group[i]..'\n\27[1;37m')
+print('\27[30;35m THE BOT IS LEFT GROUP ↓\n'..group[i]..'\n\27[1;37m')
 end
 if data and data.type_ and data.type_.channel_ and data.type_.channel_.status_ and data.type_.channel_.status_.ID == "ChatMemberStatusKicked" then
 DevAbs:srem( DevProx.."bot:groups",group[i]) 
 q = q + 1
-print('\27[30;36m»» THE BOT IS KICKED GROUP ↓\n»» '..group[i]..'\n\27[1;37m')
+print('\27[30;36m THE BOT IS KICKED GROUP ↓\n'..group[i]..'\n\27[1;37m')
 end
 if data and data.code_ and data.code_ == 400 then
 DevAbs:srem( DevProx.."bot:groups",group[i]) 
@@ -8810,21 +8850,21 @@ w = w + 1
 end
 if #group == i then 
 if (w + q) == 0 then
-Dev_Abs(msg.chat_id_, msg.id_, 1,'🧼┇لا يوجد كروبات وهميه\n', 1, 'md')   
+Dev_Abs(msg.chat_id_, msg.id_, 1,'❗️🚸 ⌯ *لٱتوجد مجموعٱت وهميه* \n ', 1, 'md')   
 else
 local DevProxgp2 = (w + q)
 local DevProxgp3 = #group - DevProxgp2
 if q == 0 then
 DevProxgp2 = ''
 else
-DevProxgp2 = '\n*🗽┇ تم مسح ⌯» { '..q..' } مجموعه من البوت*'
+DevProxgp2 = '\n❗️⚠️ ⌯ تم حذف ⌯» { '..q..' } مجموعه من ٱڵبوت'
 end
 if w == 0 then
 DevProxgp1 = ''
 else
-DevProxgp1 = '\n*🥁┇ تم مسح ⌯» { '..w..' } كروب بسبب تنزيل البوت عضو*'
+DevProxgp1 = '\n❗️⚠️ ⌯ تم حذف ⌯» { '..w..' } مجموعه بسبب تنزيڵ ٱڵبوت ٱڵى عضو'
 end
-Dev_Abs(msg.chat_id_, msg.id_, 1,'*🧼┇ عدد الكروبات الان ⌯» { '..#group..' }*'..DevProxgp1..''..DevProxgp2..'\n*🩸┇العدد الحقيقي الان ⌯» ( '..DevProxgp3..' ) كروب*\n', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1,'❗️🚸 ⌯ عدد ٱڵكروبات ٱلٱن ⌯» { '..#group..' }*'..DevProxgp1..''..DevProxgp2..'\n❗️🔑 ⌯ ٱڵعدد ٱڵحقيقي ٱلٱن  ⌯» ( '..DevProxgp3..' ) \n ', 1, 'md')
 end
 end
 end,nil)
