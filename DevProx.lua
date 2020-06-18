@@ -12274,8 +12274,8 @@ if text:match("^القناة$") or text:match("^قناة السورس$") or text
 Dev_Abs(msg.chat_id_, msg.id_, 1, 'Ξ ❗️🚸 • قـنـاة الـسـورس • \nΞ ❕🚸 • @Dev_Prox • \n ', 1, 'md')    
 end end
 if text == "⚜ قناة السورس ⚜" and Chat_Type == "pv" then
-local inline = {{{text="⚜• قناة السورس •⚜",url="t.me/@[[Dev_Prox]]"}}}
-send_inline(msg.sender_user_id_,'[⚜ قناة سورس ديف بروكس ⚜](t.me/@Dev_Prox)',nil,inline,msg.id_)
+local inline = {{{text="⚜• قناة السورس •⚜",url="t.me/Dev_Prox"}}}
+send_inline(msg.sender_user_id_,'[⚜ قناة سورس ديف بروكس ⚜](t.me/Dev_Prox)',nil,inline,msg.id_)
 return false
 end
 --     Source DevProx     --
