@@ -8810,7 +8810,7 @@ w = w + 1
 end
 if #group == i then 
 if (w + q) == 0 then
-DevProxdx(msg.chat_id_, msg.id_, 1,'🧼┇لا يوجد كروبات وهميه\n', 1, 'md')   
+Dev_Abs(msg.chat_id_, msg.id_, 1,'🧼┇لا يوجد كروبات وهميه\n', 1, 'md')   
 else
 local DevProxgp2 = (w + q)
 local DevProxgp3 = #group - DevProxgp2
@@ -8824,7 +8824,7 @@ DevProxgp1 = ''
 else
 DevProxgp1 = '\n*🥁┇ تم مسح ⌯» { '..w..' } كروب بسبب تنزيل البوت عضو*'
 end
-DevProxdx(msg.chat_id_, msg.id_, 1,'*🧼┇ عدد الكروبات الان ⌯» { '..#group..' }*'..DevProxgp1..''..DevProxgp2..'\n*🩸┇العدد الحقيقي الان ⌯» ( '..DevProxgp3..' ) كروب*\n', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1,'*🧼┇ عدد الكروبات الان ⌯» { '..#group..' }*'..DevProxgp1..''..DevProxgp2..'\n*🩸┇العدد الحقيقي الان ⌯» ( '..DevProxgp3..' ) كروب*\n', 1, 'md')
 end
 end
 end,nil)
