@@ -8802,7 +8802,7 @@ end
 if data and data.type_ and data.type_.channel_ and data.type_.channel_.status_ and data.type_.channel_.status_.ID == "ChatMemberStatusKicked" then
 DevAbs:srem( DevProx.."bot:groups",group[i]) 
 q = q + 1
-print('\27[30;36m THE BOT IS KICKED GROUP ↓\n'..group[i]..'\n\27[1;37m')
+print('\27[30;36m»» THE BOT IS KICKED GROUP ↓\n'..group[i]..'\n\27[1;37m')
 end
 if data and data.code_ and data.code_ == 400 then
 DevAbs:srem( DevProx.."bot:groups",group[i]) 
@@ -8824,7 +8824,7 @@ DevProxgp1 = ''
 else
 DevProxgp1 = '\n❗️⚠️ ⌯ تم حذف ⌯» { '..w..' } مجموعه بسبب تنزيڵ ٱڵبوت ٱڵى عضو'
 end
-Dev_Abs(msg.chat_id_, msg.id_, 1,'❗️🚸 ⌯ عدد ٱڵكروبات ٱلٱن ⌯» { '..#group..' }*'..DevProxgp1..''..DevProxgp2..'\n❗️🔑 ⌯ ٱڵعدد ٱڵحقيقي ٱلٱن  ⌯» ( '..DevProxgp3..' ) \n ', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1,'❗️🚸 ⌯ عدد ٱڵكروبات ٱلٱن ⌯» { '..#group..' }'..DevProxgp1..''..DevProxgp2..'\n❗️🔑 ⌯ ٱڵعدد ٱڵحقيقي ٱلٱن  ⌯» ( '..DevProxgp3..' ) \n ', 1, 'md')
 end
 end
 end,nil)
