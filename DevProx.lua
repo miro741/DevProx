@@ -12273,7 +12273,7 @@ end end end end
 if text:match("^القناة$") or text:match("^قناة السورس$") or text:match("^قنات السورس$") then
 Dev_Abs(msg.chat_id_, msg.id_, 1, 'Ξ ❗️🚸 • قـنـاة الـسـورس • \nΞ ❕🚸 • @Dev_Prox • \n ', 1, 'md')    
 end end
-if text == "عروض عبس" or text == "" and Chat_Type == "pv" then
+if text == "عروض عبس" or text == "عروض جديده" and Chat_Type == "pv" then
 local inline = {{{text="⚜• عروض عبس هنا •⚜",url="t.me/absc9"}}}
 send_inline(msg.sender_user_id_,'[⚜ اضغط هنا لعرض العروض ⚜](t.me/absc9)',nil,inline,msg.id_)
 return false
