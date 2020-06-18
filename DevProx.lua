@@ -4660,46 +4660,6 @@ end
 getUser(msg.sender_user_id_,get_rtba)
 end
 --     Source DevProx     --
-if text:match("^تفاعلي$") and Abbas_Abs(msg) then
-function get_me_msguser(extra,result,success)
-local msguser = tonumber(DevAbs:get(DevProx..'user:msgs'..msg.chat_id_..':'..msg.sender_user_id_))
-function formsgg(msgs) 
-local ABS_PROX = ''  
-if msgs < 100 then 
-ABS_PROX = 'جدٱ ضعيف' 
-elseif msgs < 250 then 
-ABS_PROX = 'ضعيف' 
-elseif msgs < 500 then 
-ABS_PROX = 'غير متفٱعڵ' 
-elseif msgs < 750 then 
-ABS_PROX = 'متوسط' 
-elseif msgs < 1000 then 
-ABS_PROX = 'متفٱعڵ' 
-elseif msgs < 2000 then 
-ABS_PROX = 'قمة ٱڵتفٱعڵ' 
-elseif msgs < 3000 then 
-ABS_PROX = 'مڵك ٱڵتفٱعڵ'  
-elseif msgs < 4000 then 
-ABS_PROX = 'ٱسطورة ٱڵتفٱعڵ' 
-elseif msgs < 5000 then 
-ABS_PROX = 'متفٱعڵ نٱر' 
-elseif msgs < 5500 then 
-ABS_PROX = 'يجدح جدح' 
-elseif msgs < 6000 then 
-ABS_PROX = 'خيٱڵي' 
-elseif msgs < 7000 then 
-ABS_PROX = 'رب ٱڵتفٱعل' 
-elseif msgs < 8000 then 
-ABS_PROX = 'كٱفر بٱڵتفٱعڵ' 
-end 
-return ABS_PROX
-end
-Dev_Abs(msg.chat_id_, msg.id_, 1, '❗️🚸⌯ تفٱعڵک ⇜ { '..formsgg(msguser)..' }', 1, 'html')
-end 
-end
-getUser(msg.sender_user_id_,get_me_msguser)
-end
---     Source DevProx     --
 if text:match("^معلوماتي$") and Abbas_Abs(msg) then
 function get_me(extra,result,success)
 local Dev_Abss = (DevAbs:get('ABS_PROX:'..bot_id..'nummsg'..msg.chat_id_..msg.sender_user_id_) or 0)
