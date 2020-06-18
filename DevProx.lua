@@ -8781,14 +8781,56 @@ Dev_Abs(msg.chat_id_, msg.id_, 1, '❗️🎒 ⌯ ٱحصٱئيٱت ٱڵـبوت 
 end
 end
 --     Source DevProx     --
-if text:match("^[Rr]esgp$") or text:match("^تنظيف الكروبات$") and is_sudo3(msg.sender_user_id_, msg.chat_id_) then
-if DevAbs:get(DevProx..'lang:gp:'..msg.chat_id_) then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '❗️☻ Nubmper of groups bot has been update ', 1, 'md')
+if text == "تنظيف الكروبات" and is_sudo(msg) then 
+local group = DevAbs:smembers(DevProx.."bot:groups")
+local w = 0
+local q = 0
+for i = 1, #group do
+tdcli_function({ID='GetChat',chat_id_ = group[i]
+},function(arg,data)
+if data and data.type_ and data.type_.channel_ and data.type_.channel_.status_ and data.type_.channel_.status_.ID == "ChatMemberStatusMember" then
+print('\27[30;34m»» THE BOT IS NOT ADMIN ↓\n»» '..group[i]..'\n\27[1;37m')
+DevAbs:srem(DevProx.."bot:groups",group[i]) 
+changeChatMemberStatus(group[i], bot_id, "Left")
+w = w + 1
+end
+if data and data.type_ and data.type_.channel_ and data.type_.channel_.status_ and data.type_.channel_.status_.ID == "ChatMemberStatusLeft" then
+DevAbs:srem( DevProx.."bot:groups",group[i]) 
+q = q + 1
+print('\27[30;35m»» THE BOT IS LEFT GROUP ↓\n»» '..group[i]..'\n\27[1;37m')
+end
+if data and data.type_ and data.type_.channel_ and data.type_.channel_.status_ and data.type_.channel_.status_.ID == "ChatMemberStatusKicked" then
+DevAbs:srem( DevProx.."bot:groups",group[i]) 
+q = q + 1
+print('\27[30;36m»» THE BOT IS KICKED GROUP ↓\n»» '..group[i]..'\n\27[1;37m')
+end
+if data and data.code_ and data.code_ == 400 then
+DevAbs:srem( DevProx.."bot:groups",group[i]) 
+w = w + 1
+end
+if #group == i then 
+if (w + q) == 0 then
+DevProxdx(msg.chat_id_, msg.id_, 1,'🧼┇لا يوجد كروبات وهميه\n', 1, 'md')   
 else
-Dev_Abs(msg.chat_id_, msg.id_, 1, '❗️☻ تـۖم تنظيف ٱڵكروبٱت ٱڵوهمية \n❗️🚸 ⌯ بوٱسـۧطة ⌯» ◝ '..msg.sender_user_id_..' ◟ ', 'md')
+local DevProxgp2 = (w + q)
+local DevProxgp3 = #group - DevProxgp2
+if q == 0 then
+DevProxgp2 = ''
+else
+DevProxgp2 = '\n*🗽┇ تم مسح ⌯» { '..q..' } مجموعه من البوت*'
 end
-DevAbs:del(DevProx.."bot:groups")
+if w == 0 then
+DevProxgp1 = ''
+else
+DevProxgp1 = '\n*🥁┇ تم مسح ⌯» { '..w..' } كروب بسبب تنزيل البوت عضو*'
 end
+DevProxdx(msg.chat_id_, msg.id_, 1,'*🧼┇ عدد الكروبات الان ⌯» { '..#group..' }*'..DevProxgp1..''..DevProxgp2..'\n*🩸┇العدد الحقيقي الان ⌯» ( '..DevProxgp3..' ) كروب*\n', 1, 'md')
+end
+end
+end,nil)
+end
+return false
+end 
 --     Source DevProx     --
 if text:match("^[Nn]amegp$") or text:match("^اسم المجموعه$") and is_admin(msg.sender_user_id_, msg.chat_id_) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, "❗️🚸 ⌯ ٱسم ٱڵمجموعة ⌯» ("..title_name(msg.chat_id_)..")", 1, 'md')
