@@ -10034,8 +10034,8 @@ DevAbs:del(DevProx..'bot:banned:'..msg.chat_id_)
 if DevAbs:get(DevProx..'lang:gp:'..msg.chat_id_) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '❗️☻ Banlist has been cleared ', 1, 'md')
 else
-local ABS_PROX = '🚸 ⌯ ٱهلٱ عزيزي ⌯» '..tar..' \n🔑 ⌯ تـۖم حـذف ٱڵمحظورين \n ✓'
-absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 18, string.len(msg.sender_user_id_))
+local ABS_PROX = '❗️☻ تـۖم حـذف ٱڵمحظورين \n❗️🚸 ⌯ بوٱسـۧطة ⌯» '..tar..' \n❗️🔑 ⌯ ٱيـۧديـۧه ⌯» ◝ '..msg.sender_user_id_..' ◟ \n '
+absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 34, string.len(msg.sender_user_id_))
 end
 end
 if is_sudo(msg) then 
