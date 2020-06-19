@@ -10035,7 +10035,7 @@ if DevAbs:get(DevProx..'lang:gp:'..msg.chat_id_) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '❗️☻ Banlist has been cleared ', 1, 'md')
 else
 local ABS_PROX = '🚸 ⌯ ٱهلٱ عزيزي ⌯» '..tar..' \n🔑 ⌯ تـۖم حـذف ٱڵمحظورين \n ✓'
-absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 34, string.len(msg.sender_user_id_))
+absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 20, string.len(msg.sender_user_id_))
 end
 end
 if is_sudo(msg) then 
