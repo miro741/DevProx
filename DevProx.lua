@@ -11646,7 +11646,7 @@ Dev_Abs(msg.chat_id_, msg.id_, 1, text , 1, 'md')
 return false end
 end
 if text:match("^م٨$") or text:match("^م8$") or text:match("^اوامر8$") or text:match("^اوامر٨$") then
-if not is_sudo3(msg) then
+if not is_sudo3(msg.sender_user_id_, msg.chat_id_) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '❗️📛 ⌯ هذٱ ٱلٱمر ڵڵمطورين فقط ', 1, 'md')
 else
 local help = DevAbs:get(DevProx..'bot:help8')
