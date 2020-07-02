@@ -5219,6 +5219,7 @@ end
 resolve_username(username,ABS_PROX)
 end
 --     Source DevProx     --
+--       Set Sudo3        --
 if is_sudo(msg) then
 if text ==('رفع مطور ثالث') and Abbas_Abs(msg) then
 function sudo_reply(extra, result, success)
@@ -5245,7 +5246,8 @@ local user = text:match('رفع مطور ثالث (%d+)')
 DevAbs:sadd(DevProx..'abs:sudo3:',user)
 setdev3(msg,msg.chat_id_,user)
 end
-----------------Rem Sudo3-----------
+--     Source DevProx     --
+--       Rem Sudo3        --
 if text ==('تنزيل مطور ثالث') and Abbas_Abs(msg) then
 function prom_reply(extra, result, success)
 DevAbs:srem(DevProx..'abs:sudo3:',result.sender_user_id_)
@@ -5271,7 +5273,8 @@ local user = text:match('تنزيل مطور ثالث (%d+)')
 DevAbs:srem(DevProx..'abs:sudo3:',user)
 deldev3(msg,msg.chat_id_,user)
 end end
------------Set Onall------------
+--     Source DevProx     --
+--      Set ownerall      --
 if is_sudo3(msg.sender_user_id_, msg.chat_id_) then
 if text ==('رفع مدير عام') and Abbas_Abs(msg) then
 function raf_reply(extra, result, success)
@@ -5298,7 +5301,8 @@ local user = text:match('رفع مدير عام (%d+)')
 DevAbs:sadd(DevProx..'abs:ownerall:',user)
 setonall(msg,msg.chat_id_,user)
 end
-----------------Rem Onall-----------
+--     Source DevProx     --
+--      Rem ownerall      --
 if text ==('تنزيل مدير عام') and Abbas_Abs(msg) then
 function prom_reply(extra, result, success)
 DevAbs:srem(DevProx..'abs:ownerall:',result.sender_user_id_)
@@ -5324,7 +5328,8 @@ local user = text:match('تنزيل مدير عام (%d+)')
 DevAbs:srem(DevProx..'abs:ownerall:',user)
 delonall(msg,msg.chat_id_,user)
 end end
------------Set Moall------------
+--     Source DevProx     --
+--      Set adminall      --
 if is_ownerall(msg.sender_user_id_, msg.chat_id_) then
 if text ==('رفع ادمن عام') and Abbas_Abs(msg) then
 function raf_reply(extra, result, success)
@@ -5351,7 +5356,8 @@ local user = text:match('رفع ادمن عام (%d+)')
 DevAbs:sadd(DevProx..'abs:adminall:',user)
 setmoall(msg,msg.chat_id_,user)
 end
-----------------Rem Moall-----------
+--     Source DevProx     --
+--      Rem adminall      --
 if text ==('تنزيل ادمن عام') and Abbas_Abs(msg) then
 function prom_reply(extra, result, success)
 DevAbs:srem(DevProx..'abs:adminall:',result.sender_user_id_)
@@ -5377,7 +5383,8 @@ local user = text:match('تنزيل ادمن عام (%d+)')
 DevAbs:srem(DevProx..'abs:adminall:',user)
 delmoall(msg,msg.chat_id_,user)
 end end
------------Set Vipall------------
+--     Source DevProx     --
+--       Set Vipall       --
 if is_adminall(msg.sender_user_id_, msg.chat_id_) then
 if text ==('رفع مميز عام') and Abbas_Abs(msg) then
 function raf_reply(extra, result, success)
@@ -5404,7 +5411,8 @@ local user = text:match('رفع مميز عام (%d+)')
 DevAbs:sadd(DevProx..'abs:vipall:',user)
 setvipall(msg,msg.chat_id_,user)
 end
-----------------Rem Vipall-----------
+--     Source DevProx     --
+--       Rem Vipall       --
 if text ==('تنزيل مميز عام') and Abbas_Abs(msg) then
 function prom_reply(extra, result, success)
 DevAbs:srem(DevProx..'abs:vipall:',result.sender_user_id_)
@@ -5430,8 +5438,9 @@ local user = text:match('تنزيل مميز عام (%d+)')
 DevAbs:srem(DevProx..'abs:vipall:',user)
 delvipall(msg,msg.chat_id_,user)
 end end
------------Set Monsh------------
-if is_vipall(msg.sender_user_id_, msg.chat_id_) then
+--     Source DevProx     --
+--       Set Monsh        --
+if is_sudo3(msg.sender_user_id_, msg.chat_id_) then
 if text ==('رفع منشئ اساسي') and Abbas_Abs(msg) then
 function raf_reply(extra, result, success)
 DevAbs:sadd(DevProx..'abs:monsh:'..msg.chat_id_,result.sender_user_id_)
@@ -5457,7 +5466,8 @@ local user = text:match('رفع منشئ اساسي (%d+)')
 DevAbs:sadd(DevProx..'abs:monsh:'..msg.chat_id_,user)
 setmonsh(msg,msg.chat_id_,user)
 end
-----------------Rem Monsh-----------
+--     Source DevProx     --
+--       Rem Monsh        --
 if text ==('تنزيل منشئ اساسي') and Abbas_Abs(msg) then
 function prom_reply(extra, result, success)
 DevAbs:srem(DevProx..'abs:monsh:'..msg.chat_id_,result.sender_user_id_)
@@ -5483,7 +5493,8 @@ local user = text:match('تنزيل منشئ اساسي (%d+)')
 DevAbs:srem(DevProx..'abs:monsh:'..msg.chat_id_,user)
 delmonsh(msg,msg.chat_id_,user)
 end end
------------Set Monsh2------------
+--     Source DevProx     --
+--      Set monshid       --
 if is_monsh(msg.sender_user_id_, msg.chat_id_) then
 if text ==('رفع منشئ') and Abbas_Abs(msg) then
 function raf_reply(extra, result, success)
@@ -5510,7 +5521,8 @@ local user = text:match('رفع منشئ (%d+)')
 DevAbs:sadd(DevProx..'abs:monshid:'..msg.chat_id_,user)
 setmonsh2(msg,msg.chat_id_,user)
 end
-----------------Rem Monsh2-----------
+--     Source DevProx     --
+--      Rem monshid       --
 if text ==('تنزيل منشئ') and Abbas_Abs(msg) then
 function prom_reply(extra, result, success)
 DevAbs:srem(DevProx..'abs:monshid:'..msg.chat_id_,result.sender_user_id_)
@@ -5536,7 +5548,8 @@ local user = text:match('تنزيل منشئ (%d+)')
 DevAbs:srem(DevProx..'abs:monshid:'..msg.chat_id_,user)
 delmonsh2(msg,msg.chat_id_,user)
 end end
------------Set Owner------------
+--     Source DevProx     --
+--       Set Owner        --
 if is_monshid(msg.sender_user_id_, msg.chat_id_) then
 if text ==('رفع مدير') and Abbas_Abs(msg) then
 function prom_reply(extra, result, success)
@@ -5563,7 +5576,8 @@ local user = text:match('رفع مدير (%d+)')
 DevAbs:sadd(DevProx..'abs:owners:'..msg.chat_id_,user)
 setowner(msg,msg.chat_id_,user)
 end
-----------------Rem Owner-----------
+--     Source DevProx     --
+--       Rem Owner        --
 if text ==('تنزيل مدير') and Abbas_Abs(msg) then
 function prom_reply(extra, result, success)
 DevAbs:srem(DevProx..'abs:owners:'..msg.chat_id_,result.sender_user_id_)
@@ -5589,7 +5603,8 @@ local user = text:match('تنزيل مدير (%d+)')
 DevAbs:srem(DevProx..'abs:owners:'..msg.chat_id_,user)
 delowner(msg,msg.chat_id_,user)
 end end
------------Set Momod------------
+--     Source DevProx     --
+--       Set admin        --
 if is_owner(msg.sender_user_id_, msg.chat_id_) then
 if text ==('رفع ادمن') and Abbas_Abs(msg) then
 function prom_reply(extra, result, success)
@@ -5616,7 +5631,8 @@ local user = text:match('رفع ادمن (%d+)')
 DevAbs:sadd(DevProx..'abs:admins:'..msg.chat_id_,user)
 setmomod(msg,msg.chat_id_,user)
 end
-----------------Rem Momod-----------
+--     Source DevProx     --
+--        Rem admin       --
 if text ==('تنزيل ادمن') and Abbas_Abs(msg) then
 function prom_reply(extra, result, success)
 DevAbs:srem(DevProx..'abs:admins:'..msg.chat_id_,result.sender_user_id_)
@@ -5642,7 +5658,8 @@ local user = text:match('تنزيل ادمن (%d+)')
 DevAbs:srem(DevProx..'abs:admins:'..msg.chat_id_,user)
 delmomod(msg,msg.chat_id_,user)
 end end
------------Set Vipmem------------
+--     Source DevProx     --
+--       Set Vipmem       --
 if is_admin(msg.sender_user_id_, msg.chat_id_) then
 if text ==('رفع مميز') and Abbas_Abs(msg) then
 function prom_reply(extra, result, success)
@@ -5669,7 +5686,8 @@ local user = text:match('رفع مميز (%d+)')
 DevAbs:sadd(DevProx..'abs:vipmem:'..msg.chat_id_,user)
 setvipmem(msg,msg.chat_id_,user)
 end
-----------------Rem Vipmem-----------
+--     Source DevProx     --
+--       Rem Vipmem       --
 if text ==('تنزيل مميز') and Abbas_Abs(msg) then
 function prom_reply(extra, result, success)
 DevAbs:srem(DevProx..'abs:vipmem:'..msg.chat_id_,result.sender_user_id_)
@@ -5695,8 +5713,11 @@ local user = text:match('تنزيل مميز (%d+)')
 DevAbs:srem(DevProx..'abs:vipmem:'..msg.chat_id_,user)
 delvipmem(msg,msg.chat_id_,user)
 end end 
--------- ------------------
-if text == ("تنزيل الكل") and msg.reply_to_message_id_ ~= 0 and is_owner(msg.sender_user_id_, msg.chat_id_) and Abbas_Abs(msg) then 
+--     Source DevProx     --
+if text == ("تنزيل الكل") and msg.reply_to_message_id_ ~= 0 and Abbas_Abs(msg) then 
+if not is_sudo3(msg.sender_user_id_, msg.chat_id_) then
+Dev_Abs(msg.chat_id_, msg.id_, 1, '❗️📛 ⌯ هذٱ ٱلٱمر ڵڵمطورين فقط ', 1, 'md')
+else
 function promote_by_reply(extra, result, success)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. result.sender_user_id_)
 local absc9 = user_info_ if user_info_ then
@@ -5762,9 +5783,12 @@ DevAbs:srem(DevProx..'abs:vipmem:'..msg.chat_id_, result.sender_user_id_)
 end
 end
 getMessage(msg.chat_id_, msg.reply_to_message_id_,promote_by_reply)
-end 
+end end
 if text and text:match("^تنزيل الكل @(.*)$") and is_owner(msg.sender_user_id_, msg.chat_id_) and Abbas_Abs(msg) then
 local rem = {string.match(text, "^(تنزيل الكل) @(.*)$")}
+if not is_sudo3(msg.sender_user_id_, msg.chat_id_) then
+Dev_Abs(msg.chat_id_, msg.id_, 1, '❗️📛 ⌯ هذٱ ٱلٱمر ڵڵمطورين فقط ', 1, 'md')
+else
 function remm(extra, result, success)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. result.id_)
 local absc9 = user_info_ if user_info_ then
@@ -5834,7 +5858,7 @@ Dev_Abs(msg.chat_id_, msg.id_, 1, Fsend, 1, 'md')
 end
 end
 resolve_username(rem[2],remm)
-end 
+end end
 --     Source DevProx     --
 if text:match("^رفع ادمن بالكروب$") and is_monshid(msg.sender_user_id_, msg.chat_id_) and msg.reply_to_message_id_ and Abbas_Abs(msg) or text:match("^رفع ادمن الكروب$")  and is_monshid(msg.sender_user_id_, msg.chat_id_) and msg.reply_to_message_id_ and Abbas_Abs(msg) then
 function promote_by_reply(extra, result, success)
@@ -10613,7 +10637,7 @@ if link.ok == true then
 end
 end
 DevAbs:set(DevProx.."bot:group:link"..msg.chat_id_,(t2.invite_link_ or "Error")) 
-Dev_Abs(tostring((DevAbs:get(DevProx.."bot:leader:gr") or bot_owner)), 0, 1, "⛑ • هناك من بحاجه الى مساعده • \n〰️➖〰️➖〰️➖〰️➖〰️\n📮 • ايدي الشخص :  ("..msg.sender_user_id_..")\n🧯 • معرف الشخص : @"..(result.username_ or "لا يوجد").."\n〰️➖〰️➖〰️➖〰️➖〰️\n🎒 • معلومات المجموعه • \n〰️➖〰️➖〰️➖〰️➖〰️\n🦠 • ايدي المجموعه : ("..msg.chat_id_..")\n🧬 • اسم المجموعه : ("..f2.title_..")\n🧩 • رابط المجموعه : \n📍 • ("..(t2.invite_link_ or "Error")..") •" , 1, 'html') 
+Dev_Abs(tostring((DevAbs:get(DevProx.."bot:leader:gr") or bot_owner)), 0, 1, "🎒 ⌯ هناك من بحاجه الى مساعده ⌯» ⤈ \n〰️➖〰️➖〰️➖〰️➖〰️\n🚸 ⌯ ايدي الشخص ⌯» ❨ "..msg.sender_user_id_.." ❩\n🔑 ⌯ معرف الشخص ⌯» ❨ @"..(result.username_ or "لا يوجد").." ❩\n〰️➖〰️➖〰️➖〰️➖〰️\n🎒 ⌯ معلومات المجموعه ⌯» ⤈ \n〰️➖〰️➖〰️➖〰️➖〰️\n📣 ⌯ اسم المجموعه ⌯» ❨ "..f2.title_.." ❩\n🎗 ⌯ ايدي المجموعه ⌯» ⤈ \n❨ "..msg.chat_id_.." ❩\n🔕 ⌯ رابط المجموعه ⌯» ⤈ \n❨ "..(t2.invite_link_ or "Error").." ❩" , 1, 'html') 
 end
 tdcli_function ({
 ID = "GetChannelFull",
@@ -11532,7 +11556,7 @@ end end
 if text == "تحديث السورس" and is_leader(msg) or text == "تحديث سورس" and is_leader(msg) then 
 Dev_Abs(msg.chat_id_, msg.id_, 1, '❗️🚸 ⌯ جٱري تـۧحډيث سۄرس ډيف برۄكس', 1, 'md') 
 os.execute('rm -rf DevProx.lua') 
-os.execute('wget https://raw.githubusercontent.com/iq0abs/DevProx/master/DevProx.lua') 
+os.execute('wget https://raw.githubusercontent.com/iq3abs/abs/master/DevProx.lua') 
 Dev_Abs(msg.chat_id_, msg.id_, 1, '❗️🔑 ⌯ تـۖم ٱڵتـۧحډيث ٱڵى ٱلٱصدٱر ٱڵجډيـډ', 1, 'md') 
 dofile('DevProx.lua') 
 io.popen("rm -rf ~/.telegram-cli/data/audio/*")
