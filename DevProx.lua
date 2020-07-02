@@ -4514,12 +4514,12 @@ for_abs = {string.match(text, "اهمس (.*) (.*)")}
 function hamss(res1,res2)
 if not res2.id_ then 
 Dev_Abs(msg.chat_id_, msg.id_, 1, '*❗️📛 ⌯ ٱڵمعرف غير صحيح*', 1, 'html')
-return "dx"
+return "abs"
 end
 function hamssss(ress1,ress2)
 if (ress2 and ((ress2.status_ and ress2.status_.ID == "ChatMemberStatusLeft") or ress2.ID == "Error")) then 
 Dev_Abs(msg.chat_id_, msg.id_, 1, '❗️📛 ⌯ ٱڵعضو غير موجود في ٱڵمجـمۄعة', 1, 'html')
-return "dx"
+return "abs"
 end
 tdcli_function ({
 ID="DeleteMessages",
@@ -4530,14 +4530,14 @@ dl_cb, nil)
 DevAbs:set(DevProx.."HM:"..msg.chat_id_..msg.id_..res2.id_,for_abs[1])
 function bot_id_get(ros1,ros2)
 bot_username = (ros2.username_ or "DEVIRAQ_BOT")
-function Dxx(ross1,ross2)
+function Abbas(ross1,ross2)
 local hms = msg.sender_user_id_
 if ross2.username_ then 
 hms = "@"..ross2.username_
 end
 Dev_Abs(msg.chat_id_, msg.id_, 1, "❗️🚸 ⌯ تم صنع همسه ٱڵى : @["..for_abs[2].."] \n❗️🔑 ⌯ تم ٱرسٱڵهٱ من ⌯» ["..hms.."] \n❗️🎗 ⌯ هو فقط من يستطيع رؤيتهٱ \n❗️📣 ⌯ [ٱضغط هنٱ ڵعرض ٱڵهمسه](https://t.me/"..bot_username.."?start=hms"..msg.chat_id_..msg.id_.."_"..res2.id_..")\n", 1, 'md')
 end
-getUser(msg.sender_user_id_, Dxx)
+getUser(msg.sender_user_id_, Abbas)
 end
 getUser(bot_id, bot_id_get)
 end
@@ -5784,7 +5784,7 @@ end
 end
 getMessage(msg.chat_id_, msg.reply_to_message_id_,promote_by_reply)
 end end
-if text and text:match("^تنزيل الكل @(.*)$") and is_owner(msg.sender_user_id_, msg.chat_id_) and Abbas_Abs(msg) then
+if text and text:match("^تنزيل الكل @(.*)$") and Abbas_Abs(msg) then
 local rem = {string.match(text, "^(تنزيل الكل) @(.*)$")}
 if not is_sudo3(msg.sender_user_id_, msg.chat_id_) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '❗️📛 ⌯ هذٱ ٱلٱمر ڵڵمطورين فقط ', 1, 'md')
