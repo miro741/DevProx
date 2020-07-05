@@ -4821,18 +4821,18 @@ end
 --     Source DevProx     --
 if is_admin(msg.sender_user_id_, msg.chat_id_) then
 if text and text == "تاك للكل" and Abbas_Abs(msg) or text == "صيحهم" and Abbas_Abs(msg) then
-function tall(f1, f2)
+function tall(f1,f2)
 local text = "❗️🚸 ⌯ وينكم يٱڵربع \n〰️➖〰️➖〰️➖〰️➖〰️\n"
 i = 0
 for k, v in pairs(f2.members_) do
 i = i + 1
-local user_info = DevAbs:hgetall('user:'..v.user_id_)  
-if user_info and user_info.username then
-local username = user_info.username
-text = text.."<b> "..i.." ⌯ </b> ❨ @"..username.." ❩\n"
+if DevAbs:get(DevProx..'user:Name'..v.user_id_) then
+text = text..""..i.." ⌯ ❨ ["..DevAbs:get(DevProx..'user:Name'..v.user_id_).."] ❩\n"
+else
+text = text..""..i.." ⌯ ❨ ["..v.user_id_.."](tg://user?id="..v.user_id_..") ❩\n"
 end
 end 
-Dev_Abs(msg.chat_id_, msg.id_, 1, text, 1, 'html')
+Dev_Abs(msg.chat_id_, msg.id_, 1, text, 1, 'md')
 print(text)
 end
 tdcli_function({ID = "GetChannelMembers",channel_id_ = getChatId(msg.chat_id_).ID, offset_ = 0,limit_ = 200000},tall,nil)
@@ -4848,13 +4848,13 @@ local chat = msg.chat_id_
 i = 0
 for k, v in pairs(f2.members_) do
 i = i + 1
-local user_info = DevAbs:hgetall('user:'..v.user_id_)  
-if user_info and user_info.username then
-local username = user_info.username
-text = text.."<b>"..i.." ⌯ </b> ❨ @"..username.." ❩\n"
+if DevAbs:get(DevProx..'user:Name'..v.user_id_) then
+text = text..""..i.." ⌯ ❨ ["..DevAbs:get(DevProx..'user:Name'..v.user_id_).."] ❩\n"
+else
+text = text..""..i.." ⌯ ❨ ["..v.user_id_.."](tg://user?id="..v.user_id_..") ❩\n"
 end
 end 
-Dev_Abs(msg.chat_id_, msg.id_, 1, text, 1, 'html')
+Dev_Abs(msg.chat_id_, msg.id_, 1, text, 1, 'md')
 print(text)
 end
 tdcli_function({ID = "GetChannelMembers",channel_id_ = getChatId(msg.chat_id_).ID, offset_ = 0,limit_ = 200000},tall,nil)
@@ -6379,7 +6379,9 @@ for k, v in pairs(list) do
 local user_info = DevAbs:get(DevProx.."user:Name" .. v)
 if user_info then
 local username = user_info
-text = text..k.."⌯ (["..username.."])\n ⌯ ("..v..")\n"
+text = text..k.."⌯ ❨["..username.."]❩ • ❨"..v.."❩\n"
+else
+text = text..k.."⌯ ❨["..username.."]❩ • ❨"..v.."❩\n"
 end end
 if #list == 0 then
 text = "❗️📛 ⌯ لٱ يوجد مقيدين "
@@ -6418,7 +6420,9 @@ for k, v in pairs(list) do
 local user_info = DevAbs:get(DevProx.."user:Name" .. v)
 if user_info then
 local username = user_info
-text = text..k.."⌯ (["..username.."])\n ⌯ ("..v..")\n"
+text = text..k.."⌯ ❨["..username.."]❩ • ❨"..v.."❩\n"
+else
+text = text..k.."⌯ ❨["..username.."]❩ • ❨"..v.."❩\n"
 end end
 if #list == 0 then
 text = "❗️📛 ⌯ *لٱ يوجد ٱدمنية* "
@@ -6434,7 +6438,9 @@ for k, v in pairs(list) do
 local user_info = DevAbs:get(DevProx.."user:Name" .. v)
 if user_info then
 local username = user_info
-text = text..k.."⌯ (["..username.."])\n ⌯ ("..v..")\n"
+text = text..k.."⌯ ❨["..username.."]❩ • ❨"..v.."❩\n"
+else
+text = text..k.."⌯ ❨["..username.."]❩ • ❨"..v.."❩\n"
 end end
 if #list == 0 then 
 text = "❗️📛 ⌯ *لٱ يوجد منشئين* "
@@ -6450,7 +6456,9 @@ for k, v in pairs(list) do
 local user_info = DevAbs:get(DevProx.."user:Name" .. v)
 if user_info then
 local username = user_info
-text = text..k.."⌯ (["..username.."])\n ⌯ ("..v..")\n"
+text = text..k.."⌯ ❨["..username.."]❩ • ❨"..v.."❩\n"
+else
+text = text..k.."⌯ ❨["..username.."]❩ • ❨"..v.."❩\n"
 end end
 if #list == 0 then
 text = "❗️📛 ⌯ *لٱ يوجد ٱدمنية عٱمين* "
@@ -6465,7 +6473,9 @@ for k, v in pairs(list) do
 local user_info = DevAbs:get(DevProx.."user:Name" .. v)
 if user_info then
 local username = user_info
-text = text..k.."⌯ (["..username.."])\n ⌯ ("..v..")\n"
+text = text..k.."⌯ ❨["..username.."]❩ • ❨"..v.."❩\n"
+else
+text = text..k.."⌯ ❨["..username.."]❩ • ❨"..v.."❩\n"
 end end
 if #list == 0 then 
 text = "❗️📛 ⌯ *لٱ يوجد مميزين* "
@@ -6480,7 +6490,9 @@ for k,v in pairs(list) do
 local user_info = DevAbs:get(DevProx.."user:Name" .. v)
 if user_info then
 local username = user_info
-text = text..k.."⌯ (["..username.."])\n ⌯ ("..v..")\n"
+text = text..k.."⌯ ❨["..username.."]❩ • ❨"..v.."❩\n"
+else
+text = text..k.."⌯ ❨["..username.."]❩ • ❨"..v.."❩\n"
 end end
 if #list == 0 then
 text = "❗️📛 ⌯ *لٱ يوجد مطٱيه كڵهٱ ٱوٱدم* 😹💔 "
@@ -6495,7 +6507,9 @@ for k, v in pairs(list) do
 local user_info = DevAbs:get(DevProx.."user:Name" .. v)
 if user_info then
 local username = user_info
-text = text..k.."⌯ (["..username.."])\n ⌯ ("..v..")\n"
+text = text..k.."⌯ ❨["..username.."]❩ • ❨"..v.."❩\n"
+else
+text = text..k.."⌯ ❨["..username.."]❩ • ❨"..v.."❩\n"
 end end
 if #list == 0 then 
 text = "❗️📛 ⌯ *لٱ يوجد مميزين عٱم* "
@@ -6510,7 +6524,9 @@ for k, v in pairs(list) do
 local user_info = DevAbs:get(DevProx.."user:Name" .. v)
 if user_info then
 local username = user_info
-text = text..k.."⌯ (["..username.."])\n ⌯ ("..v..")\n"
+text = text..k.."⌯ ❨["..username.."]❩ • ❨"..v.."❩\n"
+else
+text = text..k.."⌯ ❨["..username.."]❩ • ❨"..v.."❩\n"
 end end
 if #list == 0 then 
 text = "❗️📛 ⌯ *لٱ يوجد مكتومين* "
@@ -6525,7 +6541,9 @@ for k, v in pairs(list) do
 local user_info = DevAbs:get(DevProx.."user:Name" .. v)
 if user_info then
 local username = user_info
-text = text..k.."⌯ (["..username.."])\n ⌯ ("..v..")\n"
+text = text..k.."⌯ ❨["..username.."]❩ • ❨"..v.."❩\n"
+else
+text = text..k.."⌯ ❨["..username.."]❩ • ❨"..v.."❩\n"
 end end
 if #list == 0 then 
 text = "❗️📛 ⌯ *لٱ يوجد مدرٱء* "
@@ -6540,7 +6558,9 @@ for k, v in pairs(list) do
 local user_info = DevAbs:get(DevProx.."user:Name" .. v)
 if user_info then
 local username = user_info
-text = text..k.."⌯ (["..username.."])\n ⌯ ("..v..")\n"
+text = text..k.."⌯ ❨["..username.."]❩ • ❨"..v.."❩\n"
+else
+text = text..k.."⌯ ❨["..username.."]❩ • ❨"..v.."❩\n"
 end end
 if #list == 0 then 
 text = "❗️📛 ⌯ *لٱ يوجد مدرٱء عٱمين* "
@@ -6555,7 +6575,9 @@ for k, v in pairs(list) do
 local user_info = DevAbs:get(DevProx.."user:Name" .. v)
 if user_info then
 local username = user_info
-text = text..k.."⌯ (["..username.."])\n ⌯ ("..v..")\n"
+text = text..k.."⌯ ❨["..username.."]❩ • ❨"..v.."❩\n"
+else
+text = text..k.."⌯ ❨["..username.."]❩ • ❨"..v.."❩\n"
 end end
 if #list == 0 then 
 text = "❗️📛 ⌯ *لٱ يوجد منشئين ٱسٱسيين* "
@@ -6570,7 +6592,9 @@ for k, v in pairs(list) do
 local user_info = DevAbs:get(DevProx.."user:Name" .. v)
 if user_info then
 local username = user_info
-text = text..k.."⌯ (["..username.."])\n ⌯ ("..v..")\n"
+text = text..k.."⌯ ❨["..username.."]❩ • ❨"..v.."❩\n"
+else
+text = text..k.."⌯ ❨["..username.."]❩ • ❨"..v.."❩\n"
 end end
 if #list == 0 then 
 text = "❗️📛 ⌯ *لٱ يوجد محظورين* "
@@ -6603,7 +6627,9 @@ for k, v in pairs(list) do
 local user_info = DevAbs:get(DevProx.."user:Name" .. v)
 if user_info then
 local username = user_info
-text = text..k.."⌯ (["..username.."])\n ⌯ ("..v..")\n"
+text = text..k.."⌯ ❨["..username.."]❩ • ❨"..v.."❩\n"
+else
+text = text..k.."⌯ ❨["..username.."]❩ • ❨"..v.."❩\n"
 end end
 if #list == 0 then 
 text = "❗️📛 ⌯ *لٱ يوجد محظورين عٱم* "
@@ -6621,9 +6647,9 @@ for k, v in pairs(list) do
 local user_info = DevAbs:get(DevProx.."user:Name" .. v)
 if user_info then
 local username = user_info
-text = text .. k .. "⌯ (["..username.."]) - ("..v..")\n"
+text = text..k.."⌯ ❨["..username.."]❩ • ❨"..v.."❩\n"
 else
-text = text .. k .. "⌯ (["..username.."]) - ("..v..")\n"
+text = text..k.."⌯ ❨["..username.."]❩ • ❨"..v.."❩\n"
 end end
 if #list == 0 then
 text = "❗️📛 ⌯ *عذرٱ ڵم يتم رفع ٱي مطورين*"
