@@ -8,27 +8,6 @@ THIS_DIR=$(cd $(dirname $0); pwd)
 cd $THIS_DIR
 
 install() {
-wget "https://valtman.name/files/telegram-cli-1222"
-mv telegram-cli-1222 tg
-sudo chmod +x tg
-echo -e "${GREEN}
-#----------------------------------------------
-# This Source Was Developed By (ABS) @IQ_ABS.
-#   This Is The Source Channel @Dev_Prox .
-#                - DevProx -
-#----------------------------------------------${CNIL}"
-echo -e "" 
-echo -e "" 
-}
-
-if [ "$1" = "install" ]; then
-install
-else
-if [ ! -f ./tg ]; then
-echo "" 
-echo ""
-exit 1
-fi
 echo -e "\e[38;5;77m      • Welcome to source DevProx - اهلا بك في سورس ديف بروكس •\e[0m"
 echo -e "\e[38;5;77m           •{ Setting up offices - جاري رفع المكاتب } •\e[0m"
 echo -e "\e[38;5;77m      • Installing source DevProx - جاري تحميل سورس ديف بروكس •\e[0m"
@@ -121,5 +100,15 @@ echo -e "\e[38;5;77m             This Source Was Developed By (ABS) @IQ_ABS.  \e
 echo -e "\e[38;5;77m               This Is The Source Channel @Dev_Prox .  \e[0m"
 echo -e "\e[38;5;77m                            - DevProx -  \e[0m"
 echo -e "\e[38;5;77m            ---------------------------------------------- \e[0m"
+./tg -s DevProx.lua
+}
+
+if [ "$1" = "install" ]; then
+install
+else
+if [ ! -f ./tg ]; then
+echo "Tg Is Not Found"
+exit 1
+fi
 ./tg -s DevProx.lua
 fi
