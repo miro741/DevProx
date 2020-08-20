@@ -991,7 +991,7 @@ function rank_abs(user_id,chat_id) if tonumber(user_id) == tonumber(218385683) t
 function setSudo3(msg,chat,user)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. user)
 local absc9 = user_info_ if user_info_ then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '︙*ٱڵـعضو* ⌯» ❨ ['..absc9..'] ❩\n︙*تـۖم رفعه فيۧ قٱئمة ٱڵمطورين* \n ✓', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '︙ٱڵـعضو ⌯» ❨ ['..absc9..'] ❩\n︙تـۖم رفعه فيۧ قٱئمة ٱڵمطورين', 1, 'md')
 end
 end 
 --     Source DevProx     --
@@ -999,7 +999,7 @@ end
 function delSudo3(msg,chat,user)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. user)
 local absc9 = user_info_ if user_info_ then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '︙*ٱڵـۧمـۧطـۧۄر* ⌯» ❨ ['..absc9..'] ❩\n︙*تـۖم تنزيڵه من قٱئمة ٱڵمطورين* \n ✓', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '︙ٱڵـۧمـۧطـۧۄر ⌯» ❨ ['..absc9..'] ❩\n︙تـۖم تنزيڵه من قٱئمة ٱڵمطورين', 1, 'md')
 end
 end
 --     Source DevProx     --
@@ -1007,7 +1007,7 @@ end
 function setownerall(msg,chat,user)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. user)
 local absc9 = user_info_ if user_info_ then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '︙*ٱڵـعضو* ⌯» ❨ ['..absc9..'] ❩\n︙*تـۖم رفعه فيۧ قٱئمة ٱڵمدرٱء ٱڵعٱمين* \n ✓', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '︙ٱڵـعضو ⌯» ❨ ['..absc9..'] ❩\n︙تـۖم رفعه فيۧ قٱئمة ٱڵمدرٱء ٱڵعٱمين', 1, 'md')
 end
 end
 --     Source DevProx     --
@@ -1015,7 +1015,7 @@ end
 function delownerall(msg,chat,user)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. user)
 local absc9 = user_info_ if user_info_ then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '︙*ٱڵمدير ٱڵعٱم* ⌯» ❨ ['..absc9..'] ❩\n︙*تـۖم تنزيڵه من قٱئمة ٱڵمدرٱء ٱڵعٱمين* \n ✓', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '︙ٱڵمدير ٱڵعٱم ⌯» ❨ ['..absc9..'] ❩\n︙تـۖم تنزيڵه من قٱئمة ٱڵمدرٱء ٱڵعٱمين', 1, 'md')
 end
 end
 --     Source DevProx     --
@@ -1023,7 +1023,7 @@ end
 function setadminall(msg,chat,user)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. user)
 local absc9 = user_info_ if user_info_ then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '︙*ٱڵـعضو* ⌯» ❨ ['..absc9..'] ❩\n︙*تـۖم رفعه فيۧ قٱئمة ٱلٱدمنية ٱڵعٱمين* \n ✓', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '︙ٱڵـعضو ⌯» ❨ ['..absc9..'] ❩\n︙تـۖم رفعه فيۧ قٱئمة ٱلٱدمنية ٱڵعٱمين', 1, 'md')
 end
 end
 --     Source DevProx     --
@@ -1031,7 +1031,7 @@ end
 function deladminall(msg,chat,user)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. user)
 local absc9 = user_info_ if user_info_ then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '︙*ٱلٱدمن ٱڵعٱم* ⌯» ❨ ['..absc9..'] ❩\n︙*تـۖم تنزيڵه من قٱئمة ٱلٱدمنية ٱڵعٱمين* \n ✓', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '︙ٱلٱدمن ٱڵعٱم ⌯» ❨ ['..absc9..'] ❩\n︙تـۖم تنزيڵه من قٱئمة ٱلٱدمنية ٱڵعٱمين', 1, 'md')
 end
 end
 --     Source DevProx     --
@@ -1039,7 +1039,7 @@ end
 function setvipall(msg,chat,user)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. user)
 local absc9 = user_info_ if user_info_ then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '︙*ٱڵـعضو* ⌯» ❨ ['..absc9..'] ❩\n︙*تـۖم رفعه فيۧ قٱئمة ٱڵمميزين ٱڵعٱم* \n ✓', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '︙ٱڵـعضو ⌯» ❨ ['..absc9..'] ❩\n︙تـۖم رفعه فيۧ قٱئمة ٱڵمميزين ٱڵعٱم', 1, 'md')
 end
 end
 --     Source DevProx     --
@@ -1047,7 +1047,7 @@ end
 function delvipall(msg,chat,user)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. user)
 local absc9 = user_info_ if user_info_ then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '︙*ٱڵـمميـۧز ٱڵعٱم* ⌯» ❨ ['..absc9..'] ❩\n︙*تـۖم تنزيڵه من قٱئمة ٱڵمميزين ٱڵعٱم* \n ✓', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '︙ٱڵـمميـۧز ٱڵعٱم ⌯» ❨ ['..absc9..'] ❩\n︙تـۖم تنزيڵه من قٱئمة ٱڵمميزين ٱڵعٱم', 1, 'md')
 end
 end
 --     Source DevProx     --
@@ -1055,7 +1055,7 @@ end
 function setmonsh(msg,chat,user)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. user)
 local absc9 = user_info_ if user_info_ then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '︙*ٱڵـعضو* ⌯» ❨ ['..absc9..'] ❩\n︙*تـۖم رفعه منشئ ٱسٱسي* \n ✓', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '︙ٱڵـعضو ⌯» ❨ ['..absc9..'] ❩\n︙تـۖم رفعه منشئ ٱسٱسي', 1, 'md')
 end
 end
 --     Source DevProx     --
@@ -1063,7 +1063,7 @@ end
 function delmonsh(msg,chat,user)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. user)
 local absc9 = user_info_ if user_info_ then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '︙*ٱڵمنشئ ٱلٱسٱسي* ⌯» ❨ ['..absc9..'] ❩\n︙*تـۖم تنزيڵه منشئ ٱسٱسي* \n ✓', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '︙ٱڵمنشئ ٱلٱسٱسي ⌯» ❨ ['..absc9..'] ❩\n︙تـۖم تنزيڵه منشئ ٱسٱسي', 1, 'md')
 end
 end
 --     Source DevProx     --
@@ -1071,7 +1071,7 @@ end
 function setmonshid(msg,chat,user)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. user)
 local absc9 = user_info_ if user_info_ then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '︙*ٱڵـعضو* ⌯» ❨ ['..absc9..'] ❩\n︙*تـۖم رفعه فيۧ قٱئمة ٱڵمنشئين* \n ✓', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '︙ٱڵـعضو ⌯» ❨ ['..absc9..'] ❩\n︙تـۖم رفعه فيۧ قٱئمة ٱڵمنشئين', 1, 'md')
 end
 end
 --     Source DevProx     --
@@ -1079,7 +1079,7 @@ end
 function delmonshid(msg,chat,user)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. user)
 local absc9 = user_info_ if user_info_ then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '︙*ٱڵـمنشئ* ⌯» ❨ ['..absc9..'] ❩\n︙*تـۖم تنزيڵه من قٱئمة ٱڵمنشئين* \n ✓', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '︙ٱڵـمنشئ ⌯» ❨ ['..absc9..'] ❩\n︙تـۖم تنزيڵه من قٱئمة ٱڵمنشئين', 1, 'md')
 end
 end
 --     Source DevProx     --
@@ -1087,7 +1087,7 @@ end
 function setowner(msg,chat,user)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. user)
 local absc9 = user_info_ if user_info_ then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '︙*ٱڵـعضو* ⌯» ❨ ['..absc9..'] ❩\n︙*تـۖم رفعه فيۧ قٱئمة ٱڵمدرٱء* \n ✓', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '︙ٱڵـعضو ⌯» ❨ ['..absc9..'] ❩\n︙تـۖم رفعه فيۧ قٱئمة ٱڵمدرٱء', 1, 'md')
 end
 end
 --     Source DevProx     --
@@ -1095,7 +1095,7 @@ end
 function delowner(msg,chat,user)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. user)
 local absc9 = user_info_ if user_info_ then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '︙*ٱڵـۧمـۧديـۧر* ⌯» ❨ ['..absc9..'] ❩\n︙*تـۖم تنزيڵه من قٱئمة ٱڵمدرٱء* \n ✓', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '︙ٱڵـۧمـۧديـۧر ⌯» ❨ ['..absc9..'] ❩\n︙تـۖم تنزيڵه من قٱئمة ٱڵمدرٱء', 1, 'md')
 end
 end
 --     Source DevProx     --
@@ -1103,7 +1103,7 @@ end
 function setadmins(msg,chat,user)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. user)
 local absc9 = user_info_ if user_info_ then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '︙*ٱڵـعضو* ⌯» ❨ ['..absc9..'] ❩\n︙*تـۖم رفعه فيۧ قٱئمة ٱلٱدمنية* \n ✓', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '︙ٱڵـعضو ⌯» ❨ ['..absc9..'] ❩\n︙تـۖم رفعه فيۧ قٱئمة ٱلٱدمنية', 1, 'md')
 end
 end
 --     Source DevProx     --
@@ -1111,7 +1111,7 @@ end
 function deladmins(msg,chat,user)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. user)
 local absc9 = user_info_ if user_info_ then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '︙*ٱلٱدمـن* ⌯» ❨ ['..absc9..'] ❩\n︙*تـۖم تنزيڵه من قٱئمة ٱلٱدمنية* \n ✓', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '︙ٱلٱدمـن ⌯» ❨ ['..absc9..'] ❩\n︙تـۖم تنزيڵه من قٱئمة ٱلٱدمنية', 1, 'md')
 end
 end
 --     Source DevProx     --
@@ -1119,7 +1119,7 @@ end
 function setvipmem(msg,chat,user)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. user)
 local absc9 = user_info_ if user_info_ then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '︙*ٱڵـعضو* ⌯» ❨ ['..absc9..'] ❩\n︙*تـۖم رفعه فيۧ قٱئمة ٱڵمميزين* \n ✓', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '︙ٱڵـعضو ⌯» ❨ ['..absc9..'] ❩\n︙تـۖم رفعه فيۧ قٱئمة ٱڵمميزين', 1, 'md')
 end
 end
 --     Source DevProx     --
@@ -1127,7 +1127,7 @@ end
 function delvipmem(msg,chat,user)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. user)
 local absc9 = user_info_ if user_info_ then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '︙*ٱڵـمميز* ⌯» ❨ ['..absc9..'] ❩\n︙*تـۖم تنزيڵه من قٱئمة ٱڵمميزين* \n ✓', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '︙ٱڵـمميز ⌯» ❨ ['..absc9..'] ❩\n︙تـۖم تنزيڵه من قٱئمة ٱڵمميزين', 1, 'md')
 end
 end
 --     Source DevProx     --
@@ -3368,7 +3368,7 @@ local id = msg.id_
 local msgs = { [0] = id}
 local chat = msg.chat_id_
 delete_msg(chat, msgs)
-text = '︙*عذرأ عزيزي* ⌯» [firstname](https://telegram.me/username) \n︙*ممنوع ٱڵـفشٱر هنا* \n ✓'
+text = '︙عذرأ عزيزي ⌯» [firstname](https://telegram.me/username) \n︙ممنوع ٱڵـفشٱر في ٱڵمجـمۄعة'
 local text = text:gsub('firstname',(result.first_name_ or ''))
 local text = text:gsub('username',(result.username_ or 'Dev_Prox'))
 Dev_Abs(msg.chat_id_, msg.id_, 1, text, 1, 'md')
@@ -3383,7 +3383,7 @@ local id = msg.id_
 local msgs = { [0] = id}
 local chat = msg.chat_id_
 delete_msg(chat, msgs)
-text = '︙*عذرأ عزيزي* ⌯» [firstname](https://telegram.me/username) \n︙*ممنوع ٱڵتكلم بٱڵغة ٱڵفارسية هنا* \n ✓'
+text = '︙عذرأ عزيزي ⌯» [firstname](https://telegram.me/username) \n︙ممنوع ٱڵتكلم بٱڵغة ٱڵفارسية هنا'
 local text = text:gsub('firstname',(result.first_name_ or ''))
 local text = text:gsub('username',(result.username_ or 'Dev_Prox'))
 Dev_Abs(msg.chat_id_, msg.id_, 1, text, 1, 'md')
@@ -3406,7 +3406,7 @@ local id = msg.id_
 local msgs = { [0] = id}
 local chat = msg.chat_id_
 delete_msg(chat, msgs)
-text = '︙*عذرأ عزيزي* ⌯» [firstname](https://telegram.me/username) \n︙*ممنوع ٱڵـكفر هنا* \n ✓'
+text = '︙عذرأ عزيزي ⌯» [firstname](https://telegram.me/username) \n︙ممنوع ٱڵـكفر في ٱڵمجـمۄعة'
 local text = text:gsub('firstname',(result.first_name_ or ''))
 local text = text:gsub('username',(result.username_ or 'Dev_Prox'))
 Dev_Abs(msg.chat_id_, msg.id_, 1, text, 1, 'md')
@@ -3421,7 +3421,7 @@ local id = msg.id_
 local msgs = { [0] = id}
 local chat = msg.chat_id_
 delete_msg(chat, msgs)
-text = '︙*عذرأ عزيزي* ⌯» [firstname](https://telegram.me/username) \n︙*ممنوع ٱڵـتكلم بٱڵـطائفية هنا* \n ✓'
+text = '︙عذرأ عزيزي ⌯» [firstname](https://telegram.me/username) \n︙ممنوع ٱڵـتكلم بٱڵـطائفية هنا'
 local text = text:gsub('firstname',(result.first_name_ or ''))
 local text = text:gsub('username',(result.username_ or 'Dev_Prox'))
 Dev_Abs(msg.chat_id_, msg.id_, 1, text, 1, 'md')
@@ -4377,7 +4377,7 @@ Dev_Abs(msg.chat_id_, msg.id_, 1,ABS_PROX, 1, 'md')
 end
 DevAbs:set(DevProx..'bot:l:id'..msg.chat_id_,true)
 end  
-if text == 'الانكليزي' or text == 'انكليزيه' and Abbas_Abs(msg) or text == 'الانجليزيه' then
+if text == 'الانكليزي' or text == 'الانجليزيه' or text == 'انكليزيه' and Abbas_Abs(msg) then
 if not DevAbs:get(DevProx..'bot:lock_geam'..msg.chat_id_) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '', 1, 'md')
 else
@@ -4838,6 +4838,12 @@ if text:match("^ايديي$") and Abbas_Abs(msg) then Dev_Abs(msg.chat_id_, msg.
 if text:match("^رتبتي$") and Abbas_Abs(msg) then Dev_Abs(msg.chat_id_, msg.id_, 1, '︙رتـبتک ⌯» '..id_rank(msg), 1, 'html') end
 if text == 'مسح سحكاتي' or text == 'مسح تعديلاتي' or text == 'حذف سحكاتي' or text == 'حذف تعديلاتي' then DevAbs:del(DevProx..'bot:editmsg'..msg.chat_id_..msg.sender_user_id_) Dev_Abs(msg.chat_id_, msg.id_, 1, '︙تـۖم حذف جميع تعديلاتك بنجٱح' , 1, 'md') end
 --     Source DevProx     --
+if text:match('^الحساب (%d+)$') then
+local id = text:match('^الحساب (%d+)$')
+local text = 'اضغط لمشاهده العضو'
+tdcli_function ({ID="SendMessage", chat_id_=msg.chat_id_, reply_to_message_id_=msg.id_, disable_notification_=0, from_background_=1, reply_markup_=nil, input_message_content_={ID="InputMessageText", text_=text, disable_web_page_preview_=1, clear_draft_=0, entities_={[0] = {ID="MessageEntityMentionName", offset_=0, length_=19, user_id_=id}}}}, dl_cb, nil)
+end
+--     Source DevProx     --
 if text == "المطور" then
 local nerkh = DevAbs:get(DevProx.."nerkh")
 if nerkh then
@@ -4938,7 +4944,7 @@ else
 getMessage(msg.chat_id_, tonumber(msg.reply_to_message_id_),bosh)   
 end
 end
-if text:match("^صيحه$") or text:match("^صيحها$") or text:match("^صيحهه$") then
+if text:match("^صيحه$") or text:match("^صيحها$") or text:match("^صيحهه$") or text:match("^صيح$") then
 function seha(extra, result, success)
 if tonumber(result.sender_user_id_) == tonumber(bot_id) then 
 Dev_Abs(msg.chat_id_, msg.id_, 1, 'فهمنيي شلوون راحح اصيح نفسيي؟😶💔', 1, 'md') 
@@ -4959,8 +4965,8 @@ getMessage(msg.chat_id_, tonumber(msg.reply_to_message_id_),seha)
 end
 end
 --     Source DevProx     --
-if text and text:match('^صيحه @(.*)') and Abbas_Abs(msg) then 
-local username = text:match('^صيحه @(.*)') 
+if text and text:match('^صيحه @(.*)') and Abbas_Abs(msg) or text and text:match('^صيح @(.*)') and Abbas_Abs(msg) then 
+local username = text:match('^صيحه @(.*)') or text:match('^صيح @(.*)') 
 function ABS_PROX(extra,result,success)
 if result.id_ then  
 if tonumber(result.id_) == tonumber(bot_id) then  
@@ -11029,10 +11035,13 @@ return false
 end
 --     Source DevProx     --
 if is_leader(msg) then 
-if (msg.content_.text_ == 'stats server' or msg.content_.text_ == 'السيرفر') then 
-local ABS_PROX = '︙مضى على تشغيل السيرفر ⌯» ⤈\n' 
+if (msg.content_.text_ == 'معلومات السيرفر' or msg.content_.text_ == 'stats server' or msg.content_.text_ == 'السيرفر') then 
+local ABS_PROX = '︙*Info Server* ⌯» ⤈ \n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n'
   local DevAbs1 = DevAbs:info()
-  ABS_PROX = ABS_PROX..'︙الايام ⌯» (*'..DevAbs1.server.uptime_in_days..'*)\n︙الثواني ⌯» (*'..DevAbs1.server.uptime_in_seconds..'*) \n '
+  ABS_PROX = ABS_PROX..'︙*Uptime* ⌯» ⤈\n`'..DevAbs1.server.uptime_in_days..' Days` || `'..DevAbs1.server.uptime_in_seconds..' seconds`\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n'
+  ABS_PROX = ABS_PROX..'︙*Commands Processed* ⌯» ⤈\n`'..DevAbs1.stats.total_commands_processed..'`\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n'
+  ABS_PROX = ABS_PROX..'︙*Expired Keys* ⌯» ⤈\n`'..DevAbs1.stats.expired_keys..'`\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n'
+  ABS_PROX = ABS_PROX..'︙*Ops/sec* ⌯» ⤈\n`'..DevAbs1.stats.instantaneous_ops_per_sec..'`\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n'
   Dev_Abs(msg.chat_id_, msg.id_, 1, ABS_PROX, 1, 'md')
 end
 end
