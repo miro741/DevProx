@@ -1,4 +1,4 @@
-# <p align="center" style="color:#773de3" > تنصيب سورس ديف بروكس
+# <p align="center" > تنصيب سورس ديف بروكس
 # <p align="center" style="color:#cb3349" > ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 # <p align="center" style="color:#cb3349" > ⤈ «⌯ كود التنصيب الاول مع المكاتب ⌯» ⤈
 
