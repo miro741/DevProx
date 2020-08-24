@@ -1,12 +1,11 @@
-#- تنصيب سورس ديف بروكس
+# تنصيب سورس ديف بروكس
+# ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
+# كود التنصيب الاول مع المكاتب ⌯» ⤈
 
-┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 
-كود التنصيب الاول مع المكاتب ⌯» ⤈
+# `git clone https://github.com/iq0abs/DevProx.git && cd DevProx  && chmod +x tg && chmod +x RUNABS.sh && chmod +x ABS && ./RUNABS.sh install`
 
-`git clone https://github.com/iq0abs/DevProx.git && cd DevProx  && chmod +x tg && chmod +x RUNABS.sh && chmod +x ABS && ./RUNABS.sh install`
-
-┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
+# ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 
 كود التنصيب السريع من دون مكاتب ⌯» ⤈
 
