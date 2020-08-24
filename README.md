@@ -46,12 +46,12 @@ cd DevProx;rm -rf config.lua;./ABS
 
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 
-[قناة السورس](https://t.me/Dev_Prox) • [Source Ch](https://t.me/Dev_Prox)
+[Source Ch](https://t.me/Dev_Prox) • [قناة السورس](https://t.me/Dev_Prox)
 
-[شروحات السورس](https://t.me/Exp_Dev) • [Exp Source](https://t.me/Exp_Dev)
+[Exp Source](https://t.me/Exp_Dev) • [شروحات السورس](https://t.me/Exp_Dev)
 
-[مبرمج السورس](https://t.me/IQ_ABS) • [Source Prog](https://t.me/IQ_ABS)
+[Source Prog](https://t.me/IQ_ABS) • [مبرمج السورس](https://t.me/IQ_ABS)
 
-[بوت التواصل](https://t.me/IQA_bot) • [onnection Bot](https://t.me/IQA_bot)
+[onnection Bot](https://t.me/IQA_bot) • [بوت التواصل](https://t.me/IQA_bot)
 
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
