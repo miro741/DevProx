@@ -1,12 +1,12 @@
 # <p align="center" style="color:#cb3349" > تنصيب سورس ديف بروكس
 # <p align="center" style="color:#cb3349" > ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
-# <p align="center" style="color:#cb3349" > كود التنصيب الاول مع المكاتب ⌯» ⤈
+# <p align="center" style="color:#cb3349" > ⤈ «⌯ كود التنصيب الاول مع المكاتب ⌯» ⤈
 
 
 # <p align="center" style="color:#cb3349" > `git clone https://github.com/iq0abs/DevProx.git && cd DevProx  && chmod +x tg && chmod +x RUNABS.sh && chmod +x ABS && ./RUNABS.sh install`
 
 # <p align="center" style="color:#cb3349" > ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
-# <p align="center" style="color:#cb3349" > كود التنصيب السريع من دون مكاتب ⌯» ⤈
+# <p align="center" style="color:#cb3349" > ⤈ «⌯ كود التنصيب السريع من دون مكاتب ⌯» ⤈
 
 # <p align="center" style="color:#cb3349" > `git clone https://github.com/iq0abs/DevProx.git && cd DevProx  && chmod +x tg && chmod +x RUNABS.sh && chmod +x ABS && ./RUNABS.sh`
 
@@ -14,21 +14,21 @@
 # <p align="center" style="color:#cb3349" > قم بنسخ احدى اكواد التنصيب
 # <p align="center" style="color:#cb3349" > والصقه في الترمنال واضغط انتر
 # <p align="center" style="color:#cb3349" > انتظر الى ان ينتهي التنصيب
-# <p align="center" style="color:#cb3349" > بعدها املأ المتطلبات ⌯» ⤈
+# <p align="center" style="color:#cb3349" > ⤈ «⌯ بعدها املأ المتطلبات ⌯» ⤈
 # <p align="center" style="color:#cb3349" > ⌯ ايديك • معرفك • توكن البوت ⌯
 # <p align="center" style="color:#cb3349" > ومبروك عليك تنصيب السورس
 # <p align="center" style="color:#cb3349" > ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
-# <p align="center" style="color:#cb3349" > كود الرن ⌯» ⤈
+# <p align="center" style="color:#cb3349" > ⤈ «⌯ كود الرن ⌯» ⤈
 
 # <p align="center" style="color:#cb3349" > `killall screen;cd DevProx;./ABS`
 
 # <p align="center" style="color:#cb3349" > ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
-# <p align="center" style="color:#cb3349" > كود حذف التنصيب ⌯» ⤈
+# <p align="center" style="color:#cb3349" > ⤈ «⌯ كود حذف التنصيب ⌯» ⤈
 
 # <p align="center" style="color:#cb3349" > `rm -rf DevProx`
 
 # <p align="center" style="color:#cb3349" > ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
-# <p align="center" style="color:#cb3349" > كود تغيير ايدي ومعرف المطور الاساسي وتوكن البوت ⌯» ⤈
+# <p align="center" style="color:#cb3349" > ⤈ «⌯ كود تغيير ايدي ومعرف المطور الاساسي وتوكن البوت ⌯» ⤈
 
 # <p align="center" style="color:#cb3349" > `cd DevProx;rm -rf config.lua;./ABS`
 
