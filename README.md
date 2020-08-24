@@ -1,10 +1,13 @@
 تنصيب سورس ديف بروكس
+
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
+
 كود التنصيب الاول مع المكاتب ⌯» ⤈
 
 `git clone https://github.com/iq0abs/DevProx.git && cd DevProx  && chmod +x tg && chmod +x RUNABS.sh && chmod +x ABS && ./RUNABS.sh install`
 
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
+
 كود التنصيب السريع من دون مكاتب ⌯» ⤈
 
 `git clone https://github.com/iq0abs/DevProx.git && cd DevProx  && chmod +x tg && chmod +x RUNABS.sh && chmod +x ABS && ./RUNABS.sh`
@@ -24,10 +27,25 @@
 ومبروك عليك تنصيب السورس
 
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
+
 كود الرن ⌯» ⤈
+
 `killall screen;cd DevProx;./ABS`
 
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
+
+كود حذف التنصيب ⌯» ⤈
+
+rm -rf DevProx
+
+┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
+
+كود تغيير ايدي ومعرف المطور الاساسي وتوكن البوت ⌯» ⤈
+
+cd DevProx;rm -rf config.lua;./ABS
+
+┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
+
 [قناة السورس](https://t.me/Dev_Prox) • [Source Ch](https://t.me/Dev_Prox)
 
 [شروحات السورس](https://t.me/Exp_Dev) • [Exp Source](https://t.me/Exp_Dev)
