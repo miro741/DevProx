@@ -1,7 +1,6 @@
-# <p align="center" style="color:#cb3349" > تنصيب سورس ديف بروكس
+# <p align="center" style="color:#773de3" > تنصيب سورس ديف بروكس
 # <p align="center" style="color:#cb3349" > ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 # <p align="center" style="color:#cb3349" > ⤈ «⌯ كود التنصيب الاول مع المكاتب ⌯» ⤈
-
 
 # <p align="center" style="color:#cb3349" > `git clone https://github.com/iq0abs/DevProx.git && cd DevProx  && chmod +x tg && chmod +x RUNABS.sh && chmod +x ABS && ./RUNABS.sh install`
 
