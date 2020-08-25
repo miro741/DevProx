@@ -1633,7 +1633,7 @@ Start_Source = start
 else
 Start_Source = "︙مرحبٱ انا بوت ٱسمي "..name_bot.."\n︙ٱختصٱصي حمٱية ٱڵمجموعات\n︙من ٱڵتفليش وٱڵسبام وٱڵـخخ .. . ،\n︙تفعيڵي سهڵ ومجانا فقط قم برفعي ٱدمن في مجموعتك وٱرسڵ ٱمر ⌯» تفعيل\n︙سيتم رفع ٱلٱدمنيه وٱڵمنشئ تڵقٱئيٱ"
 end 
-send_inline(msg.sender_user_id_,Start_Source,nil,inline,msg.id_)
+send_inline(msg.chat_id_,Start_Source,nil,inline,msg.id_)
 end
 DevAbs:setex(DevProx..'Start:Time'..msg.sender_user_id_,300,true)
 return false
@@ -1697,7 +1697,7 @@ Dev_Abs(DevId, 0, 1, Text, 1, "md")
 DevAbs:sadd(DevProx..'BaN:In:User',data.id_)  
 return false  
 end 
-if text =='الغاء الحظر' then
+if text == 'الغاء الحظر' then
 local Text = '︙ٱڵـعضو ⌯» ❨ ['..string.sub(data.first_name_,0, 40)..'](tg://user?id='..data.id_..') ❩'..'\n︙تـۖم ٱڵغٱء حظرة من ٱڵتوٱصڵ \n ✓'
 Dev_Abs(DevId, 0, 1, Text, 1, "md")  
 DevAbs:srem(DevProx..'BaN:In:User',data.id_)  
@@ -8138,11 +8138,6 @@ if text and text:match("^حذف (.*)$") and Abbas_Abs(msg) or text and text:matc
 local txts = {string.match(text, "^(حذف) (.*)$")}
 local txtss = {string.match(text, "^(مسح) (.*)$")}
 local kicbot = {string.match(text, "^(طرد) (.*)$")}
-if txts[2] == 'المحظورين' or txtss[2] == 'المحظورين' then
-DevAbs:del(DevProx..'bot:banned:'..msg.chat_id_)
-local ABS_PROX = '︙ٱهلٱ عزيزي ⌯» '..abs_rank(msg)..' \n︙تـۖم حـذف ٱڵمحظورين \n ✓'
-absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 15, string.len(msg.sender_user_id_))
-end
 if is_sudo(msg) then 
 if txts[2] == 'قائمه العام' or txtss[2] == 'قائمه العام' then
 DevAbs:del(DevProx..'bot:gban:')
@@ -8575,17 +8570,18 @@ end
 tdcli_function ({ID = "GetChannelMembers",channel_id_ = getChatId(msg.chat_id_).ID,offset_ = 0,limit_ = 1096500}, deleteaccounts, nil)
 end
 --     Source DevProx     --
-if text and text:match("^clean kicked$") or text and text:match("^تنظيف قائمه الحظر$") and Abbas_Abs(msg) then
+if text and text:match("^مسح المحظورين$") or text and text:match("^حذف المحظورين$") and Abbas_Abs(msg) then
 local function removeblocklist(extra, result)
 if tonumber(result.total_count_) == 0 then 
 Dev_Abs(msg.chat_id_, msg.id_, 0,'︙لٱ يوجد محظورين في ٱڵـمجموعة', 1, 'md')
 else
 local x = 0
 for x,y in pairs(result.members_) do
-x = x + 1
 changeChatMemberStatus(msg.chat_id_, y.user_id_, 'Left', dl_cb, nil)
+DevAbs:del(DevProx..'bot:banned:'..msg.chat_id_)
+x = x + 1
 end
-local ABS_PROX = '︙ٱهلٱ عزيزي ⌯» '..abs_rank(msg)..' \n︙تـۖم تـنظيـۧف قٱئمة ٱڵـحظر \n ✓'
+local ABS_PROX = '︙ٱهلٱ عزيزي ⌯» '..abs_rank(msg)..' \n︙تـۖم حـذف ٱڵمحظورين \n ✓'
 absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 15, string.len(msg.sender_user_id_))
 end
 end
@@ -9048,7 +9044,7 @@ DevAbs:del(DevProx..'photo_repgp'..msg.content_.text_..''..msg.chat_id_..'')
 DevAbs:del(DevProx..'stecker_repgp'..msg.content_.text_..''..msg.chat_id_..'')
 DevAbs:del(DevProx..'video_repgp'..msg.content_.text_..''..msg.chat_id_..'')
 DevAbs:del(DevProx..'text_repgp'..msg.content_.text_..''..msg.chat_id_..'')
-DevAbs:del(DevProx..'rep_owner'..msg.content_.text_..''..msg.chat_id_..'')
+DevAbs:srem(DevProx..'rep_owner'..msg.chat_id_..'',msg.content_.text_)
 return false
 end
 end
@@ -9262,44 +9258,32 @@ absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 15, string.len(ms
 end end 
 --     Source DevProx     --
 if is_admin(msg.sender_user_id_, msg.chat_id_) then
-if text and text:match('^حذف (%d+)$') and Abbas_Abs(msg) then
-local matches = {string.match(text, "^(حذف) (%d+)$")}
-if msg.chat_id_:match("^-100") then
-if tonumber(matches[2]) > 100 or tonumber(matches[2]) < 1 then
-Dev_Abs(msg.chat_id_,0, 1, '︙ٱختر رقم ٱكثر من 1 وٱقڵ من 100', 1, 'html')
-else
-tdcli_function ({
-ID = "GetChatHistory",
-chat_id_ = msg.chat_id_,
-from_message_id_ = 0,
-offset_ = 0,
-limit_ = tonumber(matches[2])
-}, delmsg, nil)
-Dev_Abs(msg.chat_id_,0, 1, '︙تـۖم حـذف ( '..matches[2]..' ) مـن ٱڵـرسٱئـڵ', 1, 'html')
+if text and text:match('^تنظيف (%d+)$') then    
+local Number = tonumber(text:match('^تنظيف (%d+)$')) 
+if Number > 1000 then 
+Dev_Abs(msg.chat_id_, msg.id_, 1, '︙لٱتستطيع تنظيف ٱكثر من 1000 رسٱڵه', 1, 'md')
+return false  
+end  
+local Message = msg.id_
+for i=1,tonumber(Number) do
+delete_msg(msg.chat_id_,{[0]=Message})
+Message = Message - 1048576 
 end
-else
-Dev_Abs(msg.chat_id_, msg.id_, 1, '︙هنٱك خطٱ ', 1, 'html')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '︙تـۖم تنظيف *'..Number..'* من ٱڵرسٱئڵ', 1, 'md')
+end 
+if text and text:match('^حذف (%d+)$') then    
+local Number = tonumber(text:match('^حذف (%d+)$')) 
+if Number > 1000 then 
+Dev_Abs(msg.chat_id_, msg.id_, 1, '︙لٱتستطيع تنظيف ٱكثر من 1000 رسٱڵه', 1, 'md')
+return false  
+end  
+local Message = msg.id_
+for i=1,tonumber(Number) do
+delete_msg(msg.chat_id_,{[0]=Message})
+Message = Message - 1048576 
 end
-end
-if text and text:match('^مسح (%d+)$') then
-local matches = {string.match(text, "^(مسح) (%d+)$")}
-if msg.chat_id_:match("^-100") then
-if tonumber(matches[2]) > 100 or tonumber(matches[2]) < 1 then
-Dev_Abs(msg.chat_id_,0, 1, '︙ٱختر رقم ٱكثر من 1 وٱقڵ من 100', 1, 'html')
-else
-tdcli_function ({
-ID = "GetChatHistory",
-chat_id_ = msg.chat_id_,
-from_message_id_ = 0,
-offset_ = 0,
-limit_ = tonumber(matches[2])
-}, delmsg, nil)
-Dev_Abs(msg.chat_id_,0, 1, '︙تـۖم حـذف ( '..matches[2]..' ) مـن ٱڵـرسٱئـڵ', 1, 'html')
-end
-else
-Dev_Abs(msg.chat_id_, msg.id_, 1, '︙هنٱك خطٱ', 1, 'html')
-end
-end
+Dev_Abs(msg.chat_id_, msg.id_, 1, '︙تـۖم تنظيف *'..Number..'* من ٱڵرسٱئڵ', 1, 'md')
+end 
 end
 --     Source DevProx     --
 if text and text:match("^استعاده الاوامر$") and is_leader(msg) or text and text:match("^استعادة كلايش الاوامر$") and is_leader(msg) then
@@ -9473,7 +9457,7 @@ local text =  [[
 ︙تثبيت • الغاء التثبيت
 ︙اعاده التثبيت
 
-︙حذف + العدد
+︙تنظيف + العدد
 
 ︙اضف • حذف ⌯» رد
 ︙اضف • حذف ⌯» امر
