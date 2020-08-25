@@ -108,6 +108,8 @@ DevProx = sudos.bot_id
 DevUser = sudos.username
 tokenbot = sudos.token
 name_bot = (DevAbs:get(DevProx..'name_bot') or 'بروكس')
+ExDevUser = DevUser:gsub('@','') 
+ExDevUser = ExDevUser:gsub([[\_]],'_')
 --     Source DevProx     --
 --     Start Functions    --
 ----------Bot Owner---------
@@ -1632,8 +1634,6 @@ Start_Source = start
 else
 Start_Source = "☬︙مرحبٱ انا بوت ٱسمي "..name_bot.."\n☬︙ٱختصٱصي حمٱية ٱڵمجموعات\n☬︙من ٱڵتفليش وٱڵسبام وٱڵـخخ .. . ،\n☬︙تفعيڵي سهڵ ومجانا فقط قم برفعي ٱدمن في مجموعتك وٱرسڵ ٱمر ↫ تفعيل\n☬︙سيتم رفع ٱلٱدمنيه وٱڵمنشئ تڵقٱئيٱ"
 end 
-ExDevUser = DevUser:gsub('@','')
-ExDevUser = ExDevUser:gsub([[\_]],'_')
 local inline = {{{text="☬ ︙ ٱڵمطور ︙ ☬",url="t.me/"..(ExDevUser or "Dev_Prox")}}}
 send_inline(msg.chat_id_,Start_Source,nil,inline)
 end
@@ -1676,7 +1676,7 @@ end
 --     Source DevProx     --
 if Chat_Type == 'pv' then 
 if not is_leader(msg) and not DevAbs:sismember(DevProx..'BaN:In:User',msg.sender_user_id_) and not DevAbs:get(DevProx..'Texting:In:Bv') then
-Dev_Abs(msg.sender_user_id_, msg.id_, 1, '☬︙تـۖم ٱرسٱڵ رسٱڵتك ٱڵى [ٱڵمطور](t.me/'..DevUser..')', 1, 'md') 
+Dev_Abs(msg.sender_user_id_, msg.id_, 1, '☬︙تـۖم ٱرسٱڵ رسٱڵتك ٱڵى [ٱڵمطور](t.me/'..ExDevUser..')', 1, 'md') 
 tdcli_function({ID ="GetChat",chat_id_=DevId},function(arg,chat)  
 tdcli_function({ID ="GetChat",chat_id_=msg.sender_user_id_},function(arg,chat)  
 tdcli_function({ID="ForwardMessages",chat_id_=DevId,from_chat_id_= msg.sender_user_id_,message_ids_={[0]=msg.id_},disable_notification_=1,from_background_=1},function(arg,data) 
@@ -4838,7 +4838,7 @@ Dev_Abs(msg.chat_id_, msg.id_, 1, 'فهمنيي شلوون راحح ابوس ن�
 return false  
 end  
 if tonumber(result.sender_user_id_) == tonumber(DevId) then  
-Dev_Abs(msg.chat_id_, msg.id_, 1, 'مواححح احلاا بوسةة المطوريي😻🔥💗 @['..DevUser..']', 1, 'html')
+Dev_Abs(msg.chat_id_, msg.id_, 1, 'مواححح احلاا بوسةة المطوريي😻🔥💗 @['..ExDevUser..']', 1, 'html')
 return false
 end 
 local ABS_PROX = "صارر ستاذيي 🏃🏻‍♂️♥️" 
@@ -4858,7 +4858,7 @@ Dev_Abs(msg.chat_id_, msg.id_, 1, 'فهمنيي شلوون راحح ابوس ن�
 return false  
 end  
 if tonumber(result.sender_user_id_) == tonumber(DevId) then  
-Dev_Abs(msg.chat_id_, msg.id_, 1, 'مواححح احلاا بوسةة المطوريي😻🔥💗 @['..DevUser..']', 1, 'html')
+Dev_Abs(msg.chat_id_, msg.id_, 1, 'مواححح احلاا بوسةة المطوريي😻🔥💗 @['..ExDevUser..']', 1, 'html')
 return false
 end 
 local ABS_PROX = "صارر ستاذيي 🏃🏻‍♂️♥️" 
@@ -4878,7 +4878,7 @@ Dev_Abs(msg.chat_id_, msg.id_, 1, 'فهمنيي شلوون راحح اصيح ن�
 return false  
 end  
 if tonumber(result.sender_user_id_) == tonumber(DevId) then  
-Dev_Abs(msg.chat_id_, msg.id_, 1, 'تعال مطوريي محتاجيكك🏃🏻‍♂️♥️ @['..DevUser..']', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, 'تعال مطوريي محتاجيكك🏃🏻‍♂️♥️ @['..ExDevUser..']', 1, 'md')
 return false
 end 
 local ABS_PROX = "صارر ستاذيي 🏃🏻‍♂️♥️" 
@@ -4901,7 +4901,7 @@ Dev_Abs(msg.chat_id_, msg.id_, 1, 'فهمنيي شلوون راحح اصيح ن�
 return false 
 end  
 if tonumber(result.id_) == tonumber(DevId) then 
-Dev_Abs(msg.chat_id_, msg.id_, 1, 'تعال مطوريي محتاجيكك🏃🏻‍♂️♥️ @['..DevUser..']', 1, 'html') 
+Dev_Abs(msg.chat_id_, msg.id_, 1, 'تعال مطوريي محتاجيكك🏃🏻‍♂️♥️ @['..ExDevUser..']', 1, 'html') 
 return false  
 end  
 local ABS_PROX = "صارر ستاذيي 🏃🏻‍♂️♥️" 
@@ -9330,7 +9330,7 @@ local text =  [[
 ☬︙م7 ↫ اوامـر حذف القوائم
 ☬︙م8 ↫ اوامـر المطورين
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
-☬︙[𝗗𝗘𝗩 𝗕𝗢𝗧](https://t.me/]]..DevUser..[[) 
+☬︙[𝗗𝗘𝗩 𝗕𝗢𝗧](https://t.me/]]..ExDevUser..[[) 
 ☬︙[𝗧𝗘𝗔𝗠 𝗗𝗘𝗩](https://t.me/Dev_Prox)
 ]] 
 Dev_Abs(msg.chat_id_, msg.id_, 1, (help or text), 1, 'md')
@@ -9394,7 +9394,7 @@ local text =  [[
 ☬︙البوتات بالطرد
 ☬︙البوتات بالتقييد
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
-☬︙[𝗗𝗘𝗩 𝗕𝗢𝗧](https://t.me/]]..DevUser..[[) 
+☬︙[𝗗𝗘𝗩 𝗕𝗢𝗧](https://t.me/]]..ExDevUser..[[) 
 ☬︙[𝗧𝗘𝗔𝗠 𝗗𝗘𝗩](https://t.me/Dev_Prox)
 ]]
 Dev_Abs(msg.chat_id_, msg.id_, 1, (help or text), 1, 'md')
@@ -9475,7 +9475,7 @@ local text =  [[
 ☬︙كشف البوتات
 ☬︙طرد البوتات
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
-☬︙[𝗗𝗘𝗩 𝗕𝗢𝗧](https://t.me/]]..DevUser..[[) 
+☬︙[𝗗𝗘𝗩 𝗕𝗢𝗧](https://t.me/]]..ExDevUser..[[) 
 ☬︙[𝗧𝗘𝗔𝗠 𝗗𝗘𝗩](https://t.me/Dev_Prox)
 ]]
 Dev_Abs(msg.chat_id_, msg.id_, 1, (help or text), 1, 'md')
@@ -9544,7 +9544,7 @@ local text =  [[
 ☬︙ايدي ↫ بالرد • بالمعرف • بالايدي
 ☬︙كشف ↫ بالرد • بالمعرف • بالايدي
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
-☬︙[𝗗𝗘𝗩 𝗕𝗢𝗧](https://t.me/]]..DevUser..[[) 
+☬︙[𝗗𝗘𝗩 𝗕𝗢𝗧](https://t.me/]]..ExDevUser..[[) 
 ☬︙[𝗧𝗘𝗔𝗠 𝗗𝗘𝗩](https://t.me/Dev_Prox)
 ]]
 Dev_Abs(msg.chat_id_, msg.id_, 1, (help or text), 1, 'md')
@@ -9590,7 +9590,7 @@ local text =  [[
 ☬︙ضع ↫ قوانين + الكليشة
 ☬︙ضع ↫ عدد الاحرف + العدد
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
-☬︙[𝗗𝗘𝗩 𝗕𝗢𝗧](https://t.me/]]..DevUser..[[) 
+☬︙[𝗗𝗘𝗩 𝗕𝗢𝗧](https://t.me/]]..ExDevUser..[[) 
 ☬︙[𝗧𝗘𝗔𝗠 𝗗𝗘𝗩](https://t.me/Dev_Prox)
 ]]
 Dev_Abs(msg.chat_id_, msg.id_, 1, (help or text), 1, 'md')
@@ -9634,7 +9634,7 @@ local text =  [[
 ☬︙رفع • تنزيل ↫ مطور ثالث
 ☬︙رفع • تنزيل ↫ منشئ اساسي
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
-☬︙[𝗗𝗘𝗩 𝗕𝗢𝗧](https://t.me/]]..DevUser..[[) 
+☬︙[𝗗𝗘𝗩 𝗕𝗢𝗧](https://t.me/]]..ExDevUser..[[) 
 ☬︙[𝗧𝗘𝗔𝗠 𝗗𝗘𝗩](https://t.me/Dev_Prox)
 ]]
 Dev_Abs(msg.chat_id_, msg.id_, 1, (help or text), 1, 'md')
@@ -9683,7 +9683,7 @@ local text =  [[
 ☬︙تفعيل • تعطيل ↫ البوت الخدمي
 ☬︙تفعيل • تعطيل ↫ الاشتراك الاجباري
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
-☬︙[𝗗𝗘𝗩 𝗕𝗢𝗧](https://t.me/]]..DevUser..[[) 
+☬︙[𝗗𝗘𝗩 𝗕𝗢𝗧](https://t.me/]]..ExDevUser..[[) 
 ☬︙[𝗧𝗘𝗔𝗠 𝗗𝗘𝗩](https://t.me/Dev_Prox)
 ]]
 Dev_Abs(msg.chat_id_, msg.id_, 1, (help or text), 1, 'md')
@@ -9732,7 +9732,7 @@ local text =  [[
 ☬︙حذف الادمنيه العامين
 ☬︙حذف المنشئين الاساسيين
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
-☬︙[𝗗𝗘𝗩 𝗕𝗢𝗧](https://t.me/]]..DevUser..[[) 
+☬︙[𝗗𝗘𝗩 𝗕𝗢𝗧](https://t.me/]]..ExDevUser..[[) 
 ☬︙[𝗧𝗘𝗔𝗠 𝗗𝗘𝗩](https://t.me/Dev_Prox)
 ]]
 Dev_Abs(msg.chat_id_, msg.id_, 1, (help or text), 1, 'md')
@@ -9826,7 +9826,7 @@ local text =  [[
 ☬︙اذاعه خاص بالتوجيه
 ☬︙اذاعه للكل بالتوجيه ↫ بالرد
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
-☬︙[𝗗𝗘𝗩 𝗕𝗢𝗧](https://t.me/]]..DevUser..[[) 
+☬︙[𝗗𝗘𝗩 𝗕𝗢𝗧](https://t.me/]]..ExDevUser..[[) 
 ☬︙[𝗧𝗘𝗔𝗠 𝗗𝗘𝗩](https://t.me/Dev_Prox)
 ]]
 Dev_Abs(msg.chat_id_, msg.id_, 1, (help or text), 1, 'md')
