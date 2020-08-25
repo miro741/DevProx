@@ -5990,7 +5990,7 @@ getMessage(msg.chat_id_, msg.reply_to_message_id_,mute_by_reply)
 end
 --     Source DevProx     --
 if msg.reply_to_message_id_ ~= 0 then  
-if text and text:match("^الغاء تقييد$") and Abbas_Abs(msg) or text and text:match("^الغاء التقييد$") and Abbas_Abs(msg) then
+if text and text:match("^الغاء تقييد$") and Abbas_Abs(msg) or text and text:match("^الغاء تقيد$") and Abbas_Abs(msg) then
 function mute_by_reply(extra, result, success)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. result.sender_user_id_)
 local absc9 = user_info_ if user_info_ then
@@ -6036,57 +6036,60 @@ local ABS_PROX = '︙ٱهلٱ عزيزي ⌯» '..abs_rank(msg)..' \n︙ت
 absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 15, string.len(msg.sender_user_id_))
 end
 --     Source DevProx     --
-if text and text:match('^كتم د (%d+)$') and Abbas_Abs(msg) then 
+local text = msg.content_.text_:gsub('تقيد دقيقه','تقييد دقيقه')
+if text and text:match('^تقييد دقيقه (%d+)$') and Abbas_Abs(msg) then 
 local function mut_time(extra, result,success)
-local mutept = {string.match(text, "^كتم د (%d+)$")}
+local mutept = {string.match(text, "^تقييد دقيقه (%d+)$")}
 local Minutes = string.gsub(mutept[1], 'm', '')
 local num1 = tonumber(Minutes) * 60 
 local num = tonumber(num1)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. result.sender_user_id_)
 local absc9 = user_info_ if user_info_ then end 
 if tonumber(result.sender_user_id_) == tonumber(bot_id) then  
-Dev_Abs(msg.chat_id_, msg.id_, 1, '︙*لٱ تستطيع كتمي*', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '︙*لٱ تستطيع تقييدي*', 1, 'md')
 return false end 
 if is_admin(result.sender_user_id_, msg.chat_id_) then 
-Dev_Abs(msg.chat_id_, msg.id_, 1, '︙لٱ تستطيع كتم ⌯» '..rank_abs(result.sender_user_id_, msg.chat_id_), 1, 'md') else 
+Dev_Abs(msg.chat_id_, msg.id_, 1, '︙لٱ تستطيع تقييد ⌯» '..rank_abs(result.sender_user_id_, msg.chat_id_), 1, 'md') else 
 Mute_time(msg.chat_id_,result.sender_user_id_,msg.date_+num1) 
-Dev_Abs(msg.chat_id_, msg.id_, 1, '︙*ٱڵـعضو* ⌯» ❨ ['..absc9..'] ❩\n︙*تـۖم كتمه ڵمدة* ⌯» ❨ '..mutept[1]..' ) *د*\n ✓', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '︙*ٱڵـعضو* ⌯» ❨ ['..absc9..'] ❩\n︙*تـۖم تقييده ڵمدة* ⌯» ❨ '..mutept[1]..' ) *د*\n ✓', 1, 'md')
 DevAbs:sadd(DevProx..'bot:mutet:'..msg.chat_id_,result.sender_user_id_) end end 
 if tonumber(msg.reply_to_message_id_) == 0 then else
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, mut_time,nil) end end
-if text and text:match('^كتم س (%d+)$') and Abbas_Abs(msg) then 
+local text = msg.content_.text_:gsub('تقيد ساعه','تقييد ساعه')
+if text and text:match('^تقييد ساعه (%d+)$') and Abbas_Abs(msg) then 
 local function mut_time(extra, result,success)
-local mutept = {string.match(text, "^كتم س (%d+)$")}
+local mutept = {string.match(text, "^تقييد ساعه (%d+)$")}
 local hour = string.gsub(mutept[1], 'h', '')
 local num1 = tonumber(hour) * 3600 
 local num = tonumber(num1)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. result.sender_user_id_)
 local absc9 = user_info_ if user_info_ then end 
 if tonumber(result.sender_user_id_) == tonumber(bot_id) then  
-Dev_Abs(msg.chat_id_, msg.id_, 1, '︙*لٱ تستطيع كتمي*', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '︙*لٱ تستطيع تقييدي*', 1, 'md')
 return false end 
 if is_admin(result.sender_user_id_, msg.chat_id_) then 
-Dev_Abs(msg.chat_id_, msg.id_, 1, '︙لٱ تستطيع كتم ⌯» '..rank_abs(result.sender_user_id_, msg.chat_id_), 1, 'md') else 
+Dev_Abs(msg.chat_id_, msg.id_, 1, '︙لٱ تستطيع تقييد ⌯» '..rank_abs(result.sender_user_id_, msg.chat_id_), 1, 'md') else 
 Mute_time(msg.chat_id_,result.sender_user_id_,msg.date_+num1) 
-Dev_Abs(msg.chat_id_, msg.id_, 1, '︙*ٱڵـعضو* ⌯» ❨ ['..absc9..'] ❩\n︙*تـۖم كتمه ڵمدة* ⌯» ❨ '..mutept[1]..' ) *س*\n ✓', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '︙*ٱڵـعضو* ⌯» ❨ ['..absc9..'] ❩\n︙*تـۖم تقييده ڵمدة* ⌯» ❨ '..mutept[1]..' ) *س*\n ✓', 1, 'md')
 DevAbs:sadd(DevProx..'bot:mutet:'..msg.chat_id_,result.sender_user_id_) end end
 if tonumber(msg.reply_to_message_id_) == 0 then else
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, mut_time,nil) end end 
-if text and text:match('^كتم ي (%d+)$') and Abbas_Abs(msg) then 
+local text = msg.content_.text_:gsub('تقيد يوم','تقييد يوم')
+if text and text:match('^تقييد يوم (%d+)$') and Abbas_Abs(msg) then 
 local function mut_time(extra, result,success)
-local mutept = {string.match(text, "^كتم ي (%d+)$")}
+local mutept = {string.match(text, "^تقييد يوم (%d+)$")}
 local day = string.gsub(mutept[1], 'd', '')
 local num1 = tonumber(day) * 86400 
 local num = tonumber(num1)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. result.sender_user_id_)
 local absc9 = user_info_ if user_info_ then end 
 if tonumber(result.sender_user_id_) == tonumber(bot_id) then  
-Dev_Abs(msg.chat_id_, msg.id_, 1, '︙*لٱ تستطيع كتمي*', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '︙*لٱ تستطيع تقييدي*', 1, 'md')
 return false end 
 if is_admin(result.sender_user_id_, msg.chat_id_) then 
-Dev_Abs(msg.chat_id_, msg.id_, 1, '︙لٱ تستطيع كتم ⌯» '..rank_abs(result.sender_user_id_, msg.chat_id_), 1, 'md') else 
+Dev_Abs(msg.chat_id_, msg.id_, 1, '︙لٱ تستطيع تقييد ⌯» '..rank_abs(result.sender_user_id_, msg.chat_id_), 1, 'md') else 
 Mute_time(msg.chat_id_,result.sender_user_id_,msg.date_+num1) 
-Dev_Abs(msg.chat_id_, msg.id_, 1, '︙*ٱڵـعضو* ⌯» ❨ ['..absc9..'] ❩\n︙*تـۖم كتمه ڵمدة* ⌯» ❨ '..mutept[1]..' ) *ي*\n ✓', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '︙*ٱڵـعضو* ⌯» ❨ ['..absc9..'] ❩\n︙*تـۖم تقييده ڵمدة* ⌯» ❨ '..mutept[1]..' ) *ي*\n ✓', 1, 'md')
 DevAbs:sadd(DevProx..'bot:mutet:'..msg.chat_id_,result.sender_user_id_) end end
 if tonumber(msg.reply_to_message_id_) == 0 then else
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, mut_time,nil) end end 
@@ -9420,7 +9423,7 @@ local text =  [[
 ⌯ بالرد • بالمعرف • بالايدي ⌯
 ︙كتم • الغاء كتم ⤈
 ⌯ بالرد • بالمعرف • بالايدي ⌯
-︙تقييد • الغاء التقييد ⤈
+︙تقييد • الغاء تقييد ⤈
 ⌯ بالرد • بالمعرف • بالايدي ⌯
 ︙كشف القيود
 ⌯ بالرد • بالمعرف ⌯
@@ -9428,11 +9431,10 @@ local text =  [[
 ⌯ بالرد • بالمعرف • بالايدي ⌯
 ︙منع + الكلمه
 ︙الغاء منع + الكلمه
-︙تنظيف قائمه الحظر
-︙كتم د + عدد الدقائق
-︙كتم س + عدد الساعات
-︙كتم ي + عدد الايام
-︙الغاء التقييد ⌯» لالغاء تقييد بالوقت
+︙تقييد دقيقه + عدد الدقائق
+︙تقييد ساعه + عدد الساعات
+︙تقييد يوم + عدد الايام
+︙الغاء تقييد ⌯» لالغاء تقييد بالوقت
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ︙قوائم المجموعة ⌯» ⤈
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
