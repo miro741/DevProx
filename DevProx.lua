@@ -1633,7 +1633,7 @@ Start_Source = start
 else
 Start_Source = "︙مرحبٱ انا بوت ٱسمي "..name_bot.."\n︙ٱختصٱصي حمٱية ٱڵمجموعات\n︙من ٱڵتفليش وٱڵسبام وٱڵـخخ .. . ،\n︙تفعيڵي سهڵ ومجانا فقط قم برفعي ٱدمن في مجموعتك وٱرسڵ ٱمر ⌯» تفعيل\n︙سيتم رفع ٱلٱدمنيه وٱڵمنشئ تڵقٱئيٱ"
 end 
-send_inline(msg.chat_id_,Start_Source,nil,inline,msg.id_)
+send_inline(msg.chat_id_, msg.id_, Start_Source, nil, inline)
 end
 DevAbs:setex(DevProx..'Start:Time'..msg.sender_user_id_,300,true)
 return false
