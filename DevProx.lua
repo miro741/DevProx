@@ -1627,12 +1627,14 @@ if Chat_Type == 'pv' then
 if text == '/start' then  
 if not DevAbs:get(DevProx..'Start:Time'..msg.sender_user_id_) then
 local start = DevAbs:get(DevProx.."Start:Bot")
-local inline = {{{text="☬ ︙ ٱڵمطور ︙ ☬",url="t.me/"..(DevUser or "Dev_Prox")}}}
 if start then 
 Start_Source = start
 else
 Start_Source = "☬︙مرحبٱ انا بوت ٱسمي "..name_bot.."\n☬︙ٱختصٱصي حمٱية ٱڵمجموعات\n☬︙من ٱڵتفليش وٱڵسبام وٱڵـخخ .. . ،\n☬︙تفعيڵي سهڵ ومجانا فقط قم برفعي ٱدمن في مجموعتك وٱرسڵ ٱمر ↫ تفعيل\n☬︙سيتم رفع ٱلٱدمنيه وٱڵمنشئ تڵقٱئيٱ"
 end 
+ExDevUser = DevUser:gsub('@','')
+ExDevUser = ExDevUser:gsub([[\_]],'_')
+local inline = {{{text="☬ ︙ ٱڵمطور ︙ ☬",url="t.me/"..(ExDevUser or "Dev_Prox")}}}
 send_inline(msg.chat_id_, msg.id_, Start_Source, nil, inline)
 end
 DevAbs:setex(DevProx..'Start:Time'..msg.sender_user_id_,300,true)
