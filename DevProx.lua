@@ -4772,11 +4772,18 @@ if text:match("^ايدي المجموعه$") and Abbas_Abs(msg) then Dev_Abs(msg
 if text == 'مسح سحكاتي' or text == 'مسح تعديلاتي' or text == 'حذف سحكاتي' or text == 'حذف تعديلاتي' then DevAbs:del(DevProx..'bot:editmsg'..msg.chat_id_..msg.sender_user_id_) Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙تـۖم حذف جميع تعديلاتك بنجٱح' , 1, 'md') end
 --     Source DevProx     --
 if text == "المطور" then
+local DevAbs3 = DevAbs:get(DevProx.."DevAbs3")
+if DevAbs3 then
+DevCh = ''
+else
+DevCh = '\n☬︙Dev Ch ↫ '..DevAbs3
+end
 local nerkh = DevAbs:get(DevProx.."nerkh")
 if nerkh then
-Dev_Abs(msg.chat_id_, msg.id_, 1, nerkh, 1, "md")
-elseif is_leader(msg) then
-Dev_Abs(msg.chat_id_, msg.id_, 1, "☬︙ڵم يتم تعيين كڵيشة ٱڵمطور \n☬︙ٱرسل ( ضع كليشه المطور ) ڵڵحفظ ", 1, "md")
+DevNerkh = nerkh
+else
+DevNerkh = '☬︙Dev User ↫ '..DevUser..'\n☬︙Dev Id ↫ '..DevId..''..DevCh
+Dev_Abs(msg.chat_id_, msg.id_, 1, DevNerkh, 1, "html")
 end
 end 
 --     Source DevProx     --
