@@ -3764,10 +3764,10 @@ Dev_Abs(msg.chat_id_, 0, 1, DevAbs22, 1, 'md')
 end     
 end 
 --     Source DevProx     --
-if DevAbs:get(DevProx.."bot:nerkh" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) then
-DevAbs:del(DevProx.."bot:nerkh" .. msg.chat_id_ .. ":" .. msg.sender_user_id_)
-local nerkh = msg.content_.text_:match("(.*)")
-DevAbs:set(DevProx.."nerkh", nerkh)
+if DevAbs:get(DevProx.."bot:DevText" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) then
+DevAbs:del(DevProx.."bot:DevText" .. msg.chat_id_ .. ":" .. msg.sender_user_id_)
+local DevText = msg.content_.text_:match("(.*)")
+DevAbs:set(DevProx.."DevText", DevText)
 Dev_Abs(msg.chat_id_, msg.id_, 1, "☬︙تـۖم حفظ كڵيشة ٱڵـمطۄر", 1, "md")
 end
 if text and text:match("^(.*)$") then
@@ -4778,12 +4778,12 @@ DevCh = '\n☬︙*Dev Ch* ↬ ['..DevCh1..']'
 else
 DevCh = ''
 end
-local nerkh = DevAbs:get(DevProx.."nerkh")
-if nerkh then
-DevNerkh = nerkh
+local DevText = DevAbs:get(DevProx.."DevText")
+if DevText then
+DevDevText = '☬︙*Dev User* ↬ [@'..ExDevUser..']\n☬︙*Dev Id* ↬ '..DevId..''..DevCh
 else
-DevNerkh = '☬︙*Dev User* ↬ [@'..ExDevUser..']\n☬︙*Dev Id* ↬ '..DevId..''..DevCh
-Dev_Abs(msg.chat_id_, msg.id_, 1, DevNerkh, 1, "md")
+DevDevText = DevText
+Dev_Abs(msg.chat_id_, msg.id_, 1, DevDevText, 1, "md")
 end
 end 
 --     Source DevProx     --
@@ -9884,14 +9884,14 @@ if not is_leader(msg) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ڵڵمطور ٱلٱسٱسي فقط ', 1, 'md')
 else
 Dev_Abs(msg.chat_id_, msg.id_, 1, "☬︙ٱرسـڵ كڵيشة ٱڵـمطور ٱلٱن ", 1, "md")
-DevAbs:setex(DevProx.."bot:nerkh" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 100, true)
+DevAbs:setex(DevProx.."bot:DevText" .. msg.chat_id_ .. ":" .. msg.sender_user_id_, 100, true)
 end end
 if text and text:match("^مسح كليشه المطور$") or text and text:match("^حذف كليشه المطور$") then
 if not is_leader(msg) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ڵڵمطور ٱلٱسٱسي فقط ', 1, 'md')
 else
 Dev_Abs(msg.chat_id_, msg.id_, 1, "☬︙تـۖم حذف كڵيشة ٱڵمطور", 1, "md")
-DevAbs:del(DevProx.."nerkh")
+DevAbs:del(DevProx.."DevText")
 end end
 --     Source DevProx     --
 if DevAbs:get(DevProx.."textch:user" .. msg.chat_id_ .. "" .. msg.sender_user_id_) then 
