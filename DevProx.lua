@@ -898,8 +898,10 @@ send_api = send_api.."&reply_to_message_id="..reply_id
 end 
 return s_api(send_api) 
 end
+
+bot_api = 'https://api.telegram.org/bot'..tokenbot
 function inline_send(chat_id,text,keyboard,markdown)
-local url = Bot_Api
+local url = bot_api
 if keyboard then
 url = url .. '/sendMessage?chat_id=' ..chat_id.. '&text='..URL.escape(text)..'&parse_mode=html&reply_markup='..URL.escape(json:encode(keyboard))
 else
