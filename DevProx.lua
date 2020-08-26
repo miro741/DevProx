@@ -7556,6 +7556,50 @@ end
 return false
 end 
 --     Source DevProx     --
+if is_admin(msg.sender_user_id_, msg.chat_id_) then
+if text == "تنظيف ميديا" or text == "تنظيف الميديا" and Abbas_Abs(msg) then   
+Abs_Del = {[0]= msg.id_}
+local Message = msg.id_
+for i=1,100 do
+Message = Message - 1048576
+Abs_Del[i] = Message
+end
+tdcli_function({ID = "GetMessages",chat_id_ = msg.chat_id_,message_ids_ = Abs_Del},function(arg,data)
+new = 0
+Abs_Del2 = {}
+for i=0 ,data.total_count_ do
+if data.messages_[i] and data.messages_[i].content_ and data.messages_[i].content_.ID ~= "MessageText" then
+Abs_Del2[new] = data.messages_[i].id_
+new = new + 1
+end
+end
+delete_msg(msg.chat_id_,Abs_Del2)
+end,nil)  
+Dev_Abs(msg.chat_id_, msg.id_, 1, "☬︙تـۖم تنظيف 100 من ٱڵميديٱ", 1, 'md')
+end
+--     Source DevProx     --
+if text == "تنظيف تعديل" or text == "تنظيف التعديل" and Abbas_Abs(msg) then   
+Abs_Del = {[0]= msg.id_}
+local Message = msg.id_
+for i=1,100 do
+Message = Message - 1048576
+Abs_Del[i] = Message
+end
+tdcli_function({ID = "GetMessages",chat_id_ = msg.chat_id_,message_ids_ = Abs_Del},function(arg,data)
+new = 0
+Abs_Del2 = {}
+for i=0 ,data.total_count_ do
+if data.messages_[i] and (not data.messages_[i].edit_date_ or data.messages_[i].edit_date_ ~= 0) then
+Abs_Del2[new] = data.messages_[i].id_
+new = new + 1
+end
+end
+delete_msg(msg.chat_id_,Abs_Del2)
+end,nil)  
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙تـۖم تنظيف 100 من ٱڵرسٱئڵ ٱڵمعدڵه', 1, 'md')
+end
+end
+--     Source DevProx     --
 if text and text:match("^[Nn]amegp$") or text and text:match("^اسم المجموعه$") and is_admin(msg.sender_user_id_, msg.chat_id_) and Abbas_Abs(msg) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, "☬︙ٱسم ٱڵمجموعة ↫ ❨"..title_name(msg.chat_id_).."❩", 1, 'md')
 end 
