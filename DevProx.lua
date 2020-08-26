@@ -898,6 +898,20 @@ send_api = send_api.."&reply_to_message_id="..reply_id
 end 
 return s_api(send_api) 
 end
+function inline_send(chat_id,text,keyboard,markdown)
+local url = Bot_Api
+if keyboard then
+url = url .. '/sendMessage?chat_id=' ..chat_id.. '&text='..URL.escape(text)..'&parse_mode=html&reply_markup='..URL.escape(json:encode(keyboard))
+else
+url = url .. '/sendMessage?chat_id=' ..chat_id.. '&text='..URL.escape(text)..'&parse_mode=HTML'
+end
+if markdown == 'md' or markdown == 'markdown' then
+url = url..'&parse_mode=Markdown'
+elseif markdown == 'html' then
+url = url..'&parse_mode=HTML'
+end
+return https.request(url)
+end
 --     Source DevProx     --
 function getChannelMembers(channel_id, offset, filter, limit)
 if not limit or limit > 200 then
@@ -1305,7 +1319,7 @@ if DevAbs:get(DevProx..'bot:textch:user') then
 Dev_Abs(msg.chat_id_, msg.id_, 1, textchuser, 1, 'html')
 else
 InlineCh = "☬︙عذرٱ لٱيمكنك ٱستخدٱم ٱڵبوت \n☬︙رجائٱ ٱشترك في قنٱة ٱڵبوت \n☬︙ڵتتمكن من ٱستخدٱمه \n☬︙ٱڵقنٱة ↫ "..channel
-send_inline(msg.chat_id_,InlineCh,keyboard)
+inline_send(msg.chat_id_,InlineCh,keyboard,'html')
 end
 elseif data.ok then
 return var
