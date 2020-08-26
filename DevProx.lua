@@ -3785,11 +3785,11 @@ print("Return False [Lock] [Cmd]")
 
 else  
 --     Source DevProx     --
-if text:match("^Ll]ink$") and Abbas_Abs(msg) or text:match("^الرابط$") and Abbas_Abs(msg) then
+if text:match("^الرابط$") and Abbas_Abs(msg) then
 if not DevAbs:get(DevProx.."bot:tt:link:"..msg.chat_id_) then 
 local link = DevAbs:get(DevProx.."bot:group:link"..msg.chat_id_)
 if link then
-Dev_Abs(msg.chat_id_, msg.id_, 1, "☬︙𝒈𝒓𝒐𝒖𝒑 𝒏𝒂𝒎𝒆 ↫ ⤈ \n❨ "..title_name(msg.chat_id_).." ❩\n☬︙𝒈𝒓𝒐𝒖𝒑 𝒍𝒊𝒏𝒌 ↫ ⤈ \n❨ " .. link.." ❩", 1, "md")
+Dev_Abs(msg.chat_id_, msg.id_, 1, "☬︙𝒈𝒓𝒐𝒖𝒑 𝒍𝒊𝒏𝒌 ↬ ⤈ \n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n"..link, 1, "html")
 else 
 Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙لم يتم تعيين رآبط ٱڵمجمۄعة \n☬︙ٱرسڵ (ضع رابط) ڵلتعيين', 1, 'md')
 end
@@ -4773,19 +4773,13 @@ if text == 'مسح سحكاتي' or text == 'مسح تعديلاتي' or text ==
 --     Source DevProx     --
 if text == "المطور" then
 local DevCh1 = DevAbs:get(DevProx.."DevAbs3")
-if DevCh1 then
-DevCh = ''
-else
-DevCh = '\n*☬ ︙ Dev Ch* ↬ ['..DevCh1..']'
-end
 local DevText = DevAbs:get(DevProx.."DevText")
+if DevCh1 then DevCh = '\n*☬ ︙ Dev Ch* ↬ ['..DevCh1..']' else DevCh = '' end
 if DevText then
-Dev_Text = DevText
+Dev_Abs(msg.chat_id_, msg.id_, 1, DevText, 1, "md")
 else
-Dev_Text = '*☬ ︙ Dev User* ↬ [@'..ExDevUser..']\n*☬ ︙ Dev Id* ↬ '..DevId..''..DevCh
-Dev_Abs(msg.chat_id_, msg.id_, 1, Dev_Text, 1, "md")
+Dev_Abs(msg.chat_id_, msg.id_, 1, '*☬ ︙ Dev User* ↬ [@'..ExDevUser..']\n*☬ ︙ Dev Id* ↬ '..DevId..''..DevCh, 1, "md")
 end
-return false
 end 
 --     Source DevProx     --
 if text and text:match('^هينه @(.*)') and Abbas_Abs(msg) then 
