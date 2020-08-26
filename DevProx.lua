@@ -5632,8 +5632,8 @@ return "ABS_PROX"
 end
 function ban_by_reply(extra, result, success)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. result.sender_user_id_)
-local absc9 = user_info_ if user_info_ then
 local abs = 'bot:banned:'..msg.chat_id_
+local absc9 = user_info_ if user_info_ then
 if not is_admin(result.sender_user_id_, result.chat_id_) then
 if DevAbs:sismember(DevProx..abs, result.sender_user_id_) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ ❨ ['..absc9..'] ❩\n☬︙هوَ بٱڵفعڵ محظور في ٱڵـمجموعة', 1, 'md')
@@ -5691,8 +5691,8 @@ if text:match("^الغاء الحظر$") and msg.reply_to_message_id_ ~= 0 and A
 function ABS_PROX(extra, result, success)
 function unban_by_reply(extra, result, success)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. result.sender_user_id_)
-local absc9 = user_info_ if user_info_ then
 local abs = 'bot:banned:'..msg.chat_id_
+local absc9 = user_info_ if user_info_ then
 if not DevAbs:sismember(DevProx..abs, result.sender_user_id_) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ ❨ ['..absc9..'] ❩\n☬︙هوَ ڵيس محظور ڵيتم حظرة', 1, 'md')
 else
@@ -5746,8 +5746,12 @@ if text:match("^حظر عام$") and is_sudo(msg) and msg.reply_to_message_id_ a
 function gban_by_reply(extra, result, success)
 local gps = DevAbs:scard(DevProx.."bot:groups")
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. result.sender_user_id_)
-local absc9 = user_info_ if user_info_ then
 local abs = 'bot:gban:'
+local absc9 = user_info_ if user_info_ then
+if is_leaderid(result.sender_user_id_) == true then
+Dev_Abs(msg.chat_id_, msg.id_, 1, "☬︙*لٱتستطيع حظر ٱڵمطور ٱلٱسٱسي*", 1, 'md')
+return false 
+end
 DevAbs:sadd(DevProx..abs, result.sender_user_id_)
 chat_kick(result.chat_id_, result.sender_user_id_)
 Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙*ٱڵـعضو* ↫ ❨ ['..absc9..'] ❩\n☬︙*تـۖم حظرة من* ❨ *'..gps..'* ❩ *مجموعة* \n ✓', 1, 'md')
@@ -5764,6 +5768,10 @@ local user_info_ = DevAbs:get(DevProx..'user:Name' .. result.id_)
 local absc9 = user_info_ if user_info_ then
 local abs = 'bot:gban:'
 if result.id_ then
+if is_leaderid(result.id_) == true then
+Dev_Abs(msg.chat_id_, msg.id_, 1, "☬︙*لٱتستطيع حظر ٱڵمطور ٱلٱسٱسي*", 1, 'md')
+return false 
+end
 text = '☬︙*ٱڵـعضو* ↫ ❨ ['..absc9..'] ❩\n☬︙*تـۖم حظرة من* ❨ *'..gps..'* ❩ *مجموعة* \n ✓'
 DevAbs:sadd(DevProx..abs, result.id_)
 else
@@ -5781,6 +5789,10 @@ local gps = DevAbs:scard(DevProx.."bot:groups")
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. ap[2])
 local absc9 = user_info_ if user_info_ then
 local abs = 'bot:gban:'
+if is_leaderid(ap[2]) == true then
+Dev_Abs(msg.chat_id_, msg.id_, 1, "☬︙*لٱتستطيع حظر ٱڵمطور ٱلٱسٱسي*", 1, 'md')
+return false 
+end
 Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙*ٱڵـعضو* ↫ ❨ ['..absc9..'] ❩\n☬︙*تـۖم حظرة من* ❨ *'..gps..'* ❩ *مجموعة* \n ✓', 1, 'md')
 end
 DevAbs:set(DevProx..'bot:gban:'..ap[2],true)
@@ -5792,8 +5804,8 @@ if text:match("^الغاء عام$") and is_sudo(msg) and msg.reply_to_message_i
 function ungban_by_reply(extra, result, success)
 local gps = DevAbs:scard(DevProx.."bot:groups")
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. result.sender_user_id_)
-local absc9 = user_info_ if user_info_ then
 local abs = 'bot:gban:'
+local absc9 = user_info_ if user_info_ then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙*ٱڵـعضو* ↫ ❨ ['..absc9..'] ❩\n☬︙*تـۖم ٱڵغٱء حظرة من* ❨ *'..gps..'* ❩ *مجموعة* \n ✓', 1, 'md')
 end
 DevAbs:srem(DevProx..abs, result.sender_user_id_)
@@ -6039,8 +6051,7 @@ local ABS_PROX = '☬︙ٱهلٱ عزيزي ↫ '..abs_rank(msg)..' \n☬︙تـ
 absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 15, string.len(msg.sender_user_id_))
 end
 --     Source DevProx     --
-text = msg.content_.text_:gsub('تقيد دقيقه','تقييد دقيقه')
-if text:match('^تقييد دقيقه (%d+)$') and Abbas_Abs(msg) then 
+if text and text:match('^تقييد دقيقه (%d+)$') and Abbas_Abs(msg) then 
 local function mut_time(extra, result,success)
 local mutept = {string.match(text, "^تقييد دقيقه (%d+)$")}
 local Minutes = string.gsub(mutept[1], 'm', '')
@@ -6058,7 +6069,6 @@ Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ ❨ ['..absc9..'] ❩\
 DevAbs:sadd(DevProx..'bot:mutet:'..msg.chat_id_,result.sender_user_id_) end end 
 if tonumber(msg.reply_to_message_id_) == 0 then else
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, mut_time,nil) end end
-local text = msg.content_.text_:gsub('تقيد ساعه','تقييد ساعه')
 if text and text:match('^تقييد ساعه (%d+)$') and Abbas_Abs(msg) then 
 local function mut_time(extra, result,success)
 local mutept = {string.match(text, "^تقييد ساعه (%d+)$")}
@@ -6077,7 +6087,6 @@ Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ ❨ ['..absc9..'] ❩\
 DevAbs:sadd(DevProx..'bot:mutet:'..msg.chat_id_,result.sender_user_id_) end end
 if tonumber(msg.reply_to_message_id_) == 0 then else
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, mut_time,nil) end end 
-local text = msg.content_.text_:gsub('تقيد يوم','تقييد يوم')
 if text and text:match('^تقييد يوم (%d+)$') and Abbas_Abs(msg) then 
 local function mut_time(extra, result,success)
 local mutept = {string.match(text, "^تقييد يوم (%d+)$")}
