@@ -5748,9 +5748,13 @@ local gps = DevAbs:scard(DevProx.."bot:groups")
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. result.sender_user_id_)
 local absc9 = user_info_ if user_info_ then
 local abs = 'bot:gban:'
+if not is_leader(msg) then
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙*ڵاتستطيع حظر ٱڵمطور*' 1, 'md')
+else
 DevAbs:sadd(DevProx..abs, result.sender_user_id_)
 chat_kick(result.chat_id_, result.sender_user_id_)
 Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙*ٱڵـعضو* ↫ ❨ ['..absc9..'] ❩\n☬︙*تـۖم حظرة من* ❨ *'..gps..'* ❩ *مجموعة* \n ✓', 1, 'md')
+end
 end
 end
 getMessage(msg.chat_id_, msg.reply_to_message_id_,gban_by_reply)
@@ -5764,6 +5768,10 @@ local user_info_ = DevAbs:get(DevProx..'user:Name' .. result.id_)
 local absc9 = user_info_ if user_info_ then
 local abs = 'bot:gban:'
 if result.id_ then
+if tonumber(result.id_) == tonumber(DevId) then
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙*ڵاتستطيع حظر ٱڵمطور ٱلٱسٱسي*' 1, 'md')
+return false 
+end
 text = '☬︙*ٱڵـعضو* ↫ ❨ ['..absc9..'] ❩\n☬︙*تـۖم حظرة من* ❨ *'..gps..'* ❩ *مجموعة* \n ✓'
 DevAbs:sadd(DevProx..abs, result.id_)
 else
@@ -5781,6 +5789,10 @@ local gps = DevAbs:scard(DevProx.."bot:groups")
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. ap[2])
 local absc9 = user_info_ if user_info_ then
 local abs = 'bot:gban:'
+if tonumber(ap[2]) == tonumber(DevId) then
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙*ڵاتستطيع حظر ٱڵمطور ٱلٱسٱسي*' 1, 'md')
+return false 
+end
 Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙*ٱڵـعضو* ↫ ❨ ['..absc9..'] ❩\n☬︙*تـۖم حظرة من* ❨ *'..gps..'* ❩ *مجموعة* \n ✓', 1, 'md')
 end
 DevAbs:set(DevProx..'bot:gban:'..ap[2],true)
@@ -9881,7 +9893,7 @@ end end
 if text == "تحديث السورس" and is_leader(msg) or text == "تحديث سورس" and is_leader(msg) then 
 Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙جٱري تـۧحډيث سۄرس ډيف برۄكس', 1, 'md') 
 os.execute('rm -rf DevProx.lua') 
-os.execute('wget https://raw.githubusercontent.com/iq0abs/DevProx/master/DevProx.lua') 
+os.execute('wget https://raw.githubusercontent.com/iq3abs/abs/master/DevProx.lua') 
 Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙تـۖم ٱڵتـۧحډيث ٱڵى ٱلٱصدٱر ٱڵجډيـډ', 1, 'md') 
 dofile('DevProx.lua') 
 io.popen("rm -rf ~/.telegram-cli/data/audio/*")
