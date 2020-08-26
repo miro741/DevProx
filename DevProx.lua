@@ -6026,7 +6026,7 @@ end end
 if #list == 0 then
 text = "☬︙*لٱ يوجد مقيدين*"
 end
-Dev_Abs(msg.chat_id_, msg.id_, 1, text, "md")
+Dev_Abs(msg.chat_id_, msg.id_, 1, text, 1, "md")
 end end 
 if text == 'حذف المقيدين' and is_admin(msg.sender_user_id_, msg.chat_id_) and Abbas_Abs(msg) or text == 'مسح المقيدين' and is_admin(msg.sender_user_id_, msg.chat_id_) and Abbas_Abs(msg) then     
 local abs =  'tkeed:'..msg.chat_id_
@@ -6128,7 +6128,7 @@ end end
 if #list == 0 then
 text = "☬︙*لٱ يوجد ٱدمنية*"
 end
-Dev_Abs(msg.chat_id_, msg.id_, 1, text, "md")
+Dev_Abs(msg.chat_id_, msg.id_, 1, text, 1, "md")
 end end
 --     Source DevProx     -- 
 if is_monshid(msg.sender_user_id_, msg.chat_id_) then
@@ -6146,7 +6146,7 @@ end end
 if #list == 0 then 
 text = "☬︙*لٱ يوجد منشئين*"
 end
-Dev_Abs(msg.chat_id_, msg.id_, 1, text, "md")
+Dev_Abs(msg.chat_id_, msg.id_, 1, text, 1, "md")
 end 
 --     Source DevProx     -- 
 if text == "الادمنيه العامين" and Abbas_Abs(msg) then 
@@ -6164,7 +6164,7 @@ end end
 if #list == 0 then
 text = "☬︙*لٱ يوجد ٱدمنية عٱمين*"
 end
-Dev_Abs(msg.chat_id_, msg.id_, 1, text, "md")
+Dev_Abs(msg.chat_id_, msg.id_, 1, text, 1, "md")
 end  
 --     Source DevProx     --
 if text == "المميزين" and Abbas_Abs(msg) then 
@@ -6181,7 +6181,7 @@ end end
 if #list == 0 then 
 text = "☬︙*لٱ يوجد مميزين*"
 end
-Dev_Abs(msg.chat_id_, msg.id_, 1, text, "md")
+Dev_Abs(msg.chat_id_, msg.id_, 1, text, 1, "md")
 end 
 --     Source DevProx     --
 if text == "قائمه المطايه" and Abbas_Abs(msg) or text == "المطايه" and Abbas_Abs(msg) then
@@ -6198,7 +6198,7 @@ end end
 if #list == 0 then
 text = "☬︙*لٱ يوجد مطٱيه كڵهٱ ٱوٱدم* 😹💔"
 end
-Dev_Abs(msg.chat_id_, msg.id_, 1, text, "md")
+Dev_Abs(msg.chat_id_, msg.id_, 1, text, 1, "md")
 end
 --     Source DevProx     --
 if text == "المميزين عام" and Abbas_Abs(msg) or text == "المميزين العام" and Abbas_Abs(msg) then 
@@ -6215,7 +6215,7 @@ end end
 if #list == 0 then 
 text = "☬︙*لٱ يوجد مميزين عٱم*"
 end
-Dev_Abs(msg.chat_id_, msg.id_, 1, text, "md")
+Dev_Abs(msg.chat_id_, msg.id_, 1, text, 1, "md")
 end 
 --     Source DevProx     --
 if text == "المكتومين" and Abbas_Abs(msg) then 
@@ -6232,7 +6232,7 @@ end end
 if #list == 0 then 
 text = "☬︙*لٱ يوجد مكتومين*"
 end
-Dev_Abs(msg.chat_id_, msg.id_, 1, text, "md")
+Dev_Abs(msg.chat_id_, msg.id_, 1, text, 1, "md")
 end 
 --     Source DevProx     --
 if text == "المدراء" and Abbas_Abs(msg) or text == "مدراء" and Abbas_Abs(msg) then 
@@ -6249,7 +6249,7 @@ end end
 if #list == 0 then 
 text = "☬︙*لٱ يوجد مدرٱء*"
 end
-Dev_Abs(msg.chat_id_, msg.id_, 1, text, "md")
+Dev_Abs(msg.chat_id_, msg.id_, 1, text, 1, "md")
 end 
 --     Source DevProx     --
 if text == "المدراء العامين" and Abbas_Abs(msg) then 
@@ -6266,7 +6266,7 @@ end end
 if #list == 0 then 
 text = "☬︙*لٱ يوجد مدرٱء عٱمين*"
 end
-Dev_Abs(msg.chat_id_, msg.id_, 1, text, "md")
+Dev_Abs(msg.chat_id_, msg.id_, 1, text, 1, "md")
 end
 --     Source DevProx     --
 if text == "المنشئ" and Abbas_Abs(msg) or text == "المنشئين الاساسيين" and Abbas_Abs(msg) or text == "منشئين اساسيين" and Abbas_Abs(msg) then 
@@ -6283,7 +6283,7 @@ end end
 if #list == 0 then 
 text = "☬︙*لٱ يوجد منشئين ٱسٱسيين*"
 end
-Dev_Abs(msg.chat_id_, msg.id_, 1, text, "md")
+Dev_Abs(msg.chat_id_, msg.id_, 1, text, 1, "md")
 end 
 --     Source DevProx     --
 if text == "المحظورين" and Abbas_Abs(msg) or text == "المحضورين" and Abbas_Abs(msg) then 
@@ -6300,7 +6300,7 @@ end end
 if #list == 0 then 
 text = "☬︙*لٱ يوجد محظورين*"
 end
-Dev_Abs(msg.chat_id_, msg.id_, 1, text, "md")
+Dev_Abs(msg.chat_id_, msg.id_, 1, text, 1, "md")
 end end
 --     Source DevProx     --
 if text and text:match("^ضع دعم$") and is_sudo(msg) then
@@ -6327,7 +6327,7 @@ end end
 if #list == 0 then 
 text = "☬︙*لٱ يوجد محظورين عٱم*"
 end
-Dev_Abs(msg.chat_id_, msg.id_, 1, text, "md")
+Dev_Abs(msg.chat_id_, msg.id_, 1, text, 1, "md")
 end 
 end 
 --     Source DevProx     --
@@ -6347,7 +6347,7 @@ end end
 if #list == 0 then
 text = "☬︙*عذرٱ ڵم يتم رفع ٱي مطورين*"
 end
-Dev_Abs(msg.chat_id_, msg.id_, 1, text, "md")
+Dev_Abs(msg.chat_id_, msg.id_, 1, text, 1, "md")
 end end end
 --     Source DevProx     --
 if text ==("كشف") and msg.reply_to_message_id_ ~= 0 and Abbas_Abs(msg) or text ==("ايدي") and msg.reply_to_message_id_ ~= 0 and Abbas_Abs(msg) then 
@@ -8522,7 +8522,7 @@ absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 15, string.len(ms
 DevAbs:set(DevProx..'bot:setphoto'..msg.chat_id_..':'..msg.sender_user_id_,true)
 end
 --     Source DevProx     --
-if text and text:match('^↫ المجموعات ☬$') and Abbas_Abs(msg) or text and text:match('^المجموعات$') then
+if text and text:match('^↫ المجموعات ☬$') or text and text:match('^المجموعات$') and Abbas_Abs(msg) then
 if not is_SudoBot(msg.sender_user_id_, msg.chat_id_) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ڵڵمطورين فقط ', 1, 'md')
 else
