@@ -6039,7 +6039,7 @@ local ABS_PROX = '☬︙ٱهلٱ عزيزي ↫ '..abs_rank(msg)..' \n☬︙تـ
 absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 15, string.len(msg.sender_user_id_))
 end
 --     Source DevProx     --
-local text = msg.content_.text_:gsub('تقيد دقيقه','تقييد دقيقه')
+text = msg.content_.text_:gsub('تقيد دقيقه','تقييد دقيقه')
 if text and text:match('^تقييد دقيقه (%d+)$') and Abbas_Abs(msg) then 
 local function mut_time(extra, result,success)
 local mutept = {string.match(text, "^تقييد دقيقه (%d+)$")}
