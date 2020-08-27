@@ -490,13 +490,13 @@ if File_Name:match('.json') then
 if File_Name:lower():match('(%d+)') ~= DevProx:lower() then 
 DevAbs13(chat,msg.id_,"☬︙عذراً هذا ٱڵملف ليس تابع لهذٱ ٱڵسورس")   
 return false 
-end      
+end
 local File = json:decode(https.request('https://api.telegram.org/bot' .. tokenbot .. '/getfile?file_id='..ID_FILE) ) 
 download_to_file('https://api.telegram.org/file/bot'..tokenbot..'/'..File.result.file_path, ''..File_Name) 
-DevAbs13(chat,msg.id_,"☬︙جٱري رفـع ٱڵـمڵف ... .")   
+DevAbs13(chat,msg.id_,"☬︙جٱري رفـع ٱڵـمڵف ... .")
 else
-DevAbs13(chat,msg.id_,"☬︙ڵقد حدث خطٱء \n☬︙يرجى ٱڵتحقق من صيغة ٱڵمڵف ")   
-end      
+DevAbs13(chat,msg.id_,"☬︙ڵقد حدث خطٱء \n☬︙يرجى ٱڵتحقق من صيغة ٱڵمڵف ")
+end
 local info_file = io.open('./'..DevProx..'.json', "r"):read('*a')
 local groups = JSON.decode(info_file)
 DevAbs13(chat,msg.id_,"☬︙تـۖم رفع ٱڵنسخه بنجٱح \n☬︙تـۖم تفعيڵ جميع ٱڵـمجموعٱت \n☬︙تـۖم ٱسترجٱع مشرفين ٱڵمجمۄعات \n☬︙تـۖم ٱسترجٱع ٱوٱمر ٱڵقفڵ وٱڵفتح في جميع مجموعٱت ٱڵبوت ")
@@ -1575,12 +1575,12 @@ if msg.chat_id_ then
 local id = tostring(msg.chat_id_)
 if id:match("-100(%d+)") then
 DevAbs:incr(DevProx..'msg'..msg.chat_id_..':'..msg.sender_user_id_) 
-Chat_Type = 'gg' 
+Chat_Type = 'sp' 
 elseif id:match("^(%d+)") then
 DevAbs:sadd(DevProx..'bot',msg.sender_user_id_)  
 Chat_Type = 'pv' 
 else
-Chat_Type = 'gg' 
+Chat_Type = 'gp' 
 end
 end 
 --     Source DevProx     --
@@ -1747,8 +1747,8 @@ DevAbs:set(DevProx..'Texting:In:Bv',true)
 end
 end
 --     Source DevProx     --
-DevAbs:sadd(DevProx.."groups:users" .. msg.chat_id_, msg.sender_user_id_)--save users gp
-DevAbs:incr(DevProx.."msgs:"..msg.sender_user_id_..":"..msg.chat_id_.."")--save msgs gp
+DevAbs:sadd(DevProx.."groups:users" .. msg.chat_id_, msg.sender_user_id_)
+DevAbs:incr(DevProx.."msgs:"..msg.sender_user_id_..":"..msg.chat_id_.."")
 if msg.content_.ID == "MessageChatDeleteMember" then
 if tonumber(msg.content_.user_.id_) == tonumber(bot_id) then
 DevAbs:del(DevProx.."bot:enable:" .. msg.chat_id_)
@@ -7321,11 +7321,11 @@ end
 --     Source DevProx     --
 if is_admin(msg.sender_user_id_, msg.chat_id_) then
 if text and text:match("^ضع تكرار (%d+)$") and Abbas_Abs(msg) then
-local floodmax = {string.match(text, "^([ضع تكرار) (%d+)$")}
+local floodmax = {string.match(text, "^(ضع تكرار) (%d+)$")}
 if tonumber(floodmax[2]) < 2 then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙قـُم بتحډيډ عډډ تكرٱر ٱكبر من 2 ', 1, 'md')
 else
-Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙تـۖم وضـع ٱڵـتـكـرٱر \n☬︙ڵڵعدد ( '..floodmax[2]..' ) في ٱڵـمجموعة', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙تـۖم وضـع عډډ ٱڵتكرٱر ↫ '..floodmax[2], 1, 'md')
 DevAbs:set(DevProx..'flood:max:'..msg.chat_id_,floodmax[2])
 end
 end
