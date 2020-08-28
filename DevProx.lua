@@ -6362,8 +6362,6 @@ local user_info = DevAbs:get(DevProx.."user:Name" .. v)
 if user_info then
 local username = user_info
 text = text..k.."⌯ ❨["..username.."]❩ • ❨"..v.."❩\n"
-else
-text = text..k.."⌯ ❨["..username.."]❩ • ❨"..v.."❩\n"
 end end
 if #list == 0 then
 text = "☬︙*عذرٱ ڵم يتم رفع ٱي مطورين*"
