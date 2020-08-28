@@ -6044,8 +6044,6 @@ local user_info = DevAbs:get(DevProx.."user:Name" .. v)
 if user_info then
 local username = user_info
 text = text..k.."⌯ ❨["..username.."]❩ • ❨"..v.."❩\n"
-else
-text = text..k.."⌯ ❨["..username.."]❩ • ❨"..v.."❩\n"
 end end
 if #list == 0 then
 text = "☬︙*لٱ يوجد مقيدين*"
@@ -6143,8 +6141,6 @@ local user_info = DevAbs:get(DevProx.."user:Name" .. v)
 if user_info then
 local username = user_info
 text = text..k.."⌯ ❨["..username.."]❩ • ❨"..v.."❩\n"
-else
-text = text..k.."⌯ ❨["..username.."]❩ • ❨"..v.."❩\n"
 end end
 if #list == 0 then
 text = "☬︙*لٱ يوجد ٱدمنية*"
@@ -6160,8 +6156,6 @@ for k, v in pairs(list) do
 local user_info = DevAbs:get(DevProx.."user:Name" .. v)
 if user_info then
 local username = user_info
-text = text..k.."⌯ ❨["..username.."]❩ • ❨"..v.."❩\n"
-else
 text = text..k.."⌯ ❨["..username.."]❩ • ❨"..v.."❩\n"
 end end
 if #list == 0 then 
@@ -6179,8 +6173,6 @@ local user_info = DevAbs:get(DevProx.."user:Name" .. v)
 if user_info then
 local username = user_info
 text = text..k.."⌯ ❨["..username.."]❩ • ❨"..v.."❩\n"
-else
-text = text..k.."⌯ ❨["..username.."]❩ • ❨"..v.."❩\n"
 end end
 if #list == 0 then
 text = "☬︙*لٱ يوجد ٱدمنية عٱمين*"
@@ -6195,8 +6187,6 @@ for k, v in pairs(list) do
 local user_info = DevAbs:get(DevProx.."user:Name" .. v)
 if user_info then
 local username = user_info
-text = text..k.."⌯ ❨["..username.."]❩ • ❨"..v.."❩\n"
-else
 text = text..k.."⌯ ❨["..username.."]❩ • ❨"..v.."❩\n"
 end end
 if #list == 0 then 
@@ -6213,8 +6203,6 @@ local user_info = DevAbs:get(DevProx.."user:Name" .. v)
 if user_info then
 local username = user_info
 text = text..k.."⌯ ❨["..username.."]❩ • ❨"..v.."❩\n"
-else
-text = text..k.."⌯ ❨["..username.."]❩ • ❨"..v.."❩\n"
 end end
 if #list == 0 then
 text = "☬︙*لٱ يوجد مطٱيه كڵهٱ ٱوٱدم* 😹💔"
@@ -6229,8 +6217,6 @@ for k, v in pairs(list) do
 local user_info = DevAbs:get(DevProx.."user:Name" .. v)
 if user_info then
 local username = user_info
-text = text..k.."⌯ ❨["..username.."]❩ • ❨"..v.."❩\n"
-else
 text = text..k.."⌯ ❨["..username.."]❩ • ❨"..v.."❩\n"
 end end
 if #list == 0 then 
@@ -6247,8 +6233,6 @@ local user_info = DevAbs:get(DevProx.."user:Name" .. v)
 if user_info then
 local username = user_info
 text = text..k.."⌯ ❨["..username.."]❩ • ❨"..v.."❩\n"
-else
-text = text..k.."⌯ ❨["..username.."]❩ • ❨"..v.."❩\n"
 end end
 if #list == 0 then 
 text = "☬︙*لٱ يوجد مكتومين*"
@@ -6263,8 +6247,6 @@ for k, v in pairs(list) do
 local user_info = DevAbs:get(DevProx.."user:Name" .. v)
 if user_info then
 local username = user_info
-text = text..k.."⌯ ❨["..username.."]❩ • ❨"..v.."❩\n"
-else
 text = text..k.."⌯ ❨["..username.."]❩ • ❨"..v.."❩\n"
 end end
 if #list == 0 then 
@@ -6281,8 +6263,6 @@ local user_info = DevAbs:get(DevProx.."user:Name" .. v)
 if user_info then
 local username = user_info
 text = text..k.."⌯ ❨["..username.."]❩ • ❨"..v.."❩\n"
-else
-text = text..k.."⌯ ❨["..username.."]❩ • ❨"..v.."❩\n"
 end end
 if #list == 0 then 
 text = "☬︙*لٱ يوجد مدرٱء عٱمين*"
@@ -6298,8 +6278,6 @@ local user_info = DevAbs:get(DevProx.."user:Name" .. v)
 if user_info then
 local username = user_info
 text = text..k.."⌯ ❨["..username.."]❩ • ❨"..v.."❩\n"
-else
-text = text..k.."⌯ ❨["..username.."]❩ • ❨"..v.."❩\n"
 end end
 if #list == 0 then 
 text = "☬︙*لٱ يوجد منشئين ٱسٱسيين*"
@@ -6314,8 +6292,6 @@ for k, v in pairs(list) do
 local user_info = DevAbs:get(DevProx.."user:Name" .. v)
 if user_info then
 local username = user_info
-text = text..k.."⌯ ❨["..username.."]❩ • ❨"..v.."❩\n"
-else
 text = text..k.."⌯ ❨["..username.."]❩ • ❨"..v.."❩\n"
 end end
 if #list == 0 then 
@@ -6341,8 +6317,6 @@ for k, v in pairs(list) do
 local user_info = DevAbs:get(DevProx.."user:Name" .. v)
 if user_info then
 local username = user_info
-text = text..k.."⌯ ❨["..username.."]❩ • ❨"..v.."❩\n"
-else
 text = text..k.."⌯ ❨["..username.."]❩ • ❨"..v.."❩\n"
 end end
 if #list == 0 then 
@@ -9748,7 +9722,7 @@ local text =  [[
 ☬︙تفعيل • تعطيل ↫ الطرد
 ☬︙تفعيل • تعطيل ↫ ضافني
 ☬︙تفعيل • تعطيل ↫ اطردني
-☬︙تفعيل • تعطيل ↫ ردود البوت
+☬︙تفعيل • تعطيل ↫ ردود المطور
 ☬︙تفعيل • تعطيل ↫ جلب الصوره
 ☬︙تفعيل • تعطيل ↫ تنبيه التغيرات
 ☬︙تفعيل • تعطيل ↫ الايدي بالصوره
