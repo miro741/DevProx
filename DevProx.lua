@@ -4627,6 +4627,22 @@ DevAbs:set(DevProx..'bot:viewget'..msg.sender_user_id_,true)
 Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙حسنٱ قم بٱعٱدة توجية ڵڵمنشور ٱڵذي تريدني حسٱب مشٱهدٱتة', 1, 'md')
 end
 --     Source DevProx     --
+if text:match("^source$") or text:match("^Source$") or text:match("^اصدار$") or text:match("^الاصدار$") or  text:match("^السورس$") or text:match("^سورس$") or text:match("^ياسورس$") then 
+local text =  [[
+☬︙𝗦𝗢𝗨𝗥𝗖𝗘 𝗗𝗘𝗩𝗣𝗥𝗢𝗫
+┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
+☬︙[𝗦𝗢𝗨𝗥𝗖𝗘 𝗖𝗛](t.me/Dev_Prox)
+
+☬︙[𝗘𝗫𝗣 𝗦𝗢𝗨𝗥𝗖𝗘](t.me/Exp_Dev)
+
+☬︙[𝗗𝗘𝗩𝗘𝗟𝗢𝗣𝗘𝗥](t.me/IQ_ABS)
+┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
+☬︙[𝗧𝗪𝗦 𝗣𝗥𝗢𝗫](t.me/IQA_bot)
+]]
+Dev_Abs(msg.chat_id_, msg.id_, 1, text, 1, 'md')
+end
+--     Source DevProx     --
+if Chat_Type == 'sp' or Chat_Type == 'gp'  then
 if text:match("^اطردني$") and Abbas_Abs(msg) or text:match("^ادفرني$") and Abbas_Abs(msg) then
 if not DevAbs:get(DevProx.."lock_kickme"..msg.chat_id_) then
 DevAbs:set(DevProx..'yes'..msg.sender_user_id_..'', 'kickyes')
@@ -4716,21 +4732,6 @@ print(text)
 end
 tdcli_function({ID = "GetChannelMembers",channel_id_ = getChatId(msg.chat_id_).ID, offset_ = 0,limit_ = 200000},tall,nil)
 end
-end
---     Source DevProx     --
-if text:match("^source$") or text:match("^Source$") or text:match("^اصدار$") or text:match("^الاصدار$") or  text:match("^السورس$") or text:match("^سورس$") or text:match("^ياسورس$") then 
-local text =  [[
-☬︙𝗦𝗢𝗨𝗥𝗖𝗘 𝗗𝗘𝗩𝗣𝗥𝗢𝗫
-┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
-☬︙[𝗦𝗢𝗨𝗥𝗖𝗘 𝗖𝗛](t.me/Dev_Prox)
-
-☬︙[𝗘𝗫𝗣 𝗦𝗢𝗨𝗥𝗖𝗘](t.me/Exp_Dev)
-
-☬︙[𝗗𝗘𝗩𝗘𝗟𝗢𝗣𝗘𝗥](t.me/IQ_ABS)
-┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
-☬︙[𝗧𝗪𝗦 𝗣𝗥𝗢𝗫](t.me/IQA_bot)
-]]
-Dev_Abs(msg.chat_id_, msg.id_, 1, text, 1, 'md')
 end
 --     Source DevProx     --
 if text:match("^الكروبات$") and is_SudoBot(msg.sender_user_id_, msg.chat_id_) and Abbas_Abs(msg) or text:match("^↫ الكروبات ☬$") and is_SudoBot(msg.sender_user_id_, msg.chat_id_) and Abbas_Abs(msg) then
@@ -5413,6 +5414,7 @@ local user = text:match('تنزيل مميز (%d+)')
 DevAbs:srem(DevProx..'abs:vipmem:'..msg.chat_id_,user)
 delvipmem(msg,msg.chat_id_,user)
 end end 
+end
 --     Source DevProx     --
 if text == ("تنزيل الكل") and msg.reply_to_message_id_ ~= 0 and is_owner(msg.sender_user_id_, msg.chat_id_) and Abbas_Abs(msg) then 
 function promote_by_reply(extra, result, success)
@@ -7197,6 +7199,7 @@ end end end
 tdcli_function ({ ID = "GetUserProfilePhotos", user_id_ = msg.sender_user_id_, offset_ = 0, limit_ = ABSendPhoto[2] }, gproen, nil)
 end
 --     Source DevProx     --
+if Chat_Type == 'sp' or Chat_Type == 'gp'  then
 if is_admin(msg.sender_user_id_, msg.chat_id_) then
 if text and text:match("^قفل (.*)$") and Abbas_Abs(msg) then
 local lockptf = {string.match(text, "^(قفل) (.*)$")}
@@ -7318,6 +7321,7 @@ DevAbs:sadd(DevProx.."bot:pin:mutepin",msg.chat_id_)
 else
 Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵتثبيت بٱڵفعـل مۘقفل فيۧ ٱڵمجـمۄعة', 1, 'md')
 end end end
+end
 end
 end
 --     Source DevProx     --
@@ -7632,6 +7636,7 @@ DevAbs:del(DevProx.."bot:allmsgs")
 Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙تـۖم تنظيف عدد رسٱئڵ ٱڵكروبٱت \n☬︙بوٱسـۧطة ↫ ❨ '..msg.sender_user_id_..' ❩ ', 'md')
 end
 --     Source DevProx     --
+if Chat_Type == 'sp' or Chat_Type == 'gp'  then
 if is_admin(msg.sender_user_id_, msg.chat_id_) then
 if text and text:match("^فتح (.*)$") and Abbas_Abs(msg) then
 local unlockpts = {string.match(text, "^(فتح) (.*)$")}
@@ -8164,6 +8169,59 @@ end
 end
 end
 --     Source DevProx     --
+if text and text:match("^قفل التفليش$") then
+if not is_monsh(msg.sender_user_id_, msg.chat_id_) then
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ڵڵمنشئ ٱلٱسٱسي فقط ', 1, 'md')
+else
+DevAbs:set(DevProx..'bot:links:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:forward:mute'..msg.chat_id_,true) DevAbs:del(DevProx..'lock:get:photo'..msg.chat_id_) DevAbs:set(DevProx..'bot:bots:ban'..msg.chat_id_,true) DevAbs:set(DevProx..'anti-flood:'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:video:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:gifs:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:strict'..msg.chat_id_,true)
+DevAbs:set(DevProx..'bot:sticker:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'farsiban'..msg.chat_id_,true) DevAbs:del(DevProx.."fshar"..msg.chat_id_) DevAbs:del(DevProx.."taf"..msg.chat_id_) DevAbs:del(DevProx.."kaf"..msg.chat_id_) DevAbs:set(DevProx..'floodstatus'..msg.chat_id_,'Kicked') DevAbs:set('DevProx:id:photo'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:spam:mute'..msg.chat_id_,true)
+local ABS_PROX = '☬︙ٱهلٱ عزيزي ↫ '..abs_rank(msg)..' \n☬︙تـۖم قفـڵ ٱڵتفڵيش بنجٱح \n ✓'
+absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 15, string.len(msg.sender_user_id_))
+end
+end
+if text and text:match("^فتح التفليش$") then
+if not is_monsh(msg.sender_user_id_, msg.chat_id_) then
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ڵڵمنشئ ٱلٱسٱسي فقط ', 1, 'md')
+else
+DevAbs:del(DevProx..'bot:links:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:forward:mute'..msg.chat_id_) DevAbs:set(DevProx..'lock:get:photo'..msg.chat_id_,true) DevAbs:del(DevProx..'bot:bots:ban'..msg.chat_id_) DevAbs:del(DevProx..'anti-flood:'..msg.chat_id_) DevAbs:del(DevProx..'bot:video:mute'..msg.chat_id_)
+DevAbs:del(DevProx..'bot:gifs:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:sticker:mute'..msg.chat_id_) DevAbs:del(DevProx..'farsiban'..msg.chat_id_) DevAbs:set(DevProx..'fshar'..msg.chat_id_,true) DevAbs:set(DevProx..'taf'..msg.chat_id_,true) DevAbs:set(DevProx..'kaf'..msg.chat_id_,true)
+DevAbs:del('DevProx:id:photo'..msg.chat_id_)
+local ABS_PROX = '☬︙ٱهلٱ عزيزي ↫ '..abs_rank(msg)..' \n☬︙تـۖم فـتـۧح ٱڵتفڵيش بنجٱح \n ✓'
+absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 15, string.len(msg.sender_user_id_))
+end
+end
+--     Source DevProx     --
+if text and text:match("^قفل الكل$") then
+if not is_admin(msg.sender_user_id_, msg.chat_id_) then
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ڵڵمشرفين فقط ', 1, 'md')
+else
+DevAbs:set(DevProx..'editmsg'..msg.chat_id_,true) DevAbs:set(DevProx..'farsi'..msg.chat_id_,true) DevAbs:del(DevProx..'fshar'..msg.chat_id_) DevAbs:del(DevProx..'taf'..msg.chat_id_) DevAbs:del(DevProx..'kaf'..msg.chat_id_) DevAbs:set(DevProx..'farsiban'..msg.chat_id_,true)
+DevAbs:set(DevProx..'bot:bots:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:bots:ban'..msg.chat_id_,true) DevAbs:set(DevProx..'anti-flood:'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:text:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:cmds'..msg.chat_id_,true) 
+DevAbs:set(DevProx..'bot:inline:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:photo:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:spam:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:video:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:gifs:mute'..msg.chat_id_,true)
+DevAbs:set(DevProx..'bot:music:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:voice:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:links:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:location:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'tags:lock'..msg.chat_id_,true)
+DevAbs:set(DevProx..'bot:sticker:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'markdown:lock'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:forward:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'floodstatus'..msg.chat_id_,'Kicked') DevAbs:set(DevProx..'bot:strict'..msg.chat_id_,true)
+DevAbs:set(DevProx..'bot:document:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:contact:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:abstag:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:webpage:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:tgservice:jk'..msg.chat_id_,true)
+local ABS_PROX = '☬︙ٱهلٱ عزيزي ↫ '..abs_rank(msg)..' \n☬︙تـۖم قفـڵ جميع ٱلٱوامر \n ✓'
+absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 15, string.len(msg.sender_user_id_))
+end
+end
+if text and text:match("^فتح الكل$") then
+if not is_admin(msg.sender_user_id_, msg.chat_id_) then
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ڵڵمشرفين فقط ', 1, 'md')
+else
+DevAbs:del(DevProx..'editmsg'..msg.chat_id_) DevAbs:del(DevProx..'farsi'..msg.chat_id_) DevAbs:set(DevProx..'fshar'..msg.chat_id_,true) DevAbs:set(DevProx..'taf'..msg.chat_id_,true) DevAbs:set(DevProx..'kaf'..msg.chat_id_,true) DevAbs:del(DevProx..'farsiban'..msg.chat_id_)
+DevAbs:del(DevProx..'bot:cmds'..msg.chat_id_) DevAbs:del(DevProx..'bot:bots:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:bots:ban'..msg.chat_id_) DevAbs:del(DevProx..'keed_bots'..msg.chat_id_) DevAbs:del(DevProx..'anti-flood:'..msg.chat_id_) DevAbs:del(DevProx..'bot:tgservice:jk'..msg.chat_id_)
+DevAbs:del(DevProx..'bot:text:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:photo:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:spam:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:video:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:sticker:mute'..msg.chat_id_)
+DevAbs:del(DevProx..'bot:document:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:inline:mute'..msg.chat_id_) DevAbs:del(DevProx..'markdown:lock'..msg.chat_id_) DevAbs:del(DevProx..'bot:gifs:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:music:mute'..msg.chat_id_)
+DevAbs:del(DevProx..'bot:voice:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:links:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:location:mute'..msg.chat_id_) DevAbs:del(DevProx..'tags:lock'..msg.chat_id_) DevAbs:del(DevProx..'bot:strict'..msg.chat_id_) DevAbs:del(DevProx..'bot:forward:mute'..msg.chat_id_)
+DevAbs:del(DevProx..'bot:abstag:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:contact:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:webpage:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:arabic:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:english:mute'..msg.chat_id_)
+local ABS_PROX = '☬︙ٱهلٱ عزيزي ↫ '..abs_rank(msg)..' \n☬︙تـۖم فـتـۧح جميع ٱلٱوامر \n ✓'
+absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 15, string.len(msg.sender_user_id_))
+end
+end
+--     Source DevProx     --
+end
+--     Source DevProx     --
 if is_admin(msg.sender_user_id_, msg.chat_id_) then
 if text and text:match("^ضع عدد الاحرف (%d+)$") and Abbas_Abs(msg) then
 local sensspam = {string.match(text, "^(ضع عدد الاحرف) (%d+)$")}
@@ -8326,55 +8384,6 @@ DevAbs:del(DevProx..'bot:muted:'..msg.chat_id_)
 local ABS_PROX = '☬︙ٱهلٱ عزيزي ↫ '..abs_rank(msg)..' \n☬︙تـۖم حذف ↫ ❨ قٱئمة ٱڵمنع • ٱڵمحظورين • ٱڵمكتومين • ٱلٱدمنية • ٱڵمميزين • ٱڵمطٱية ❩ بنجٱح \n ✓'
 absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 15, string.len(msg.sender_user_id_))
 end end
-if text and text:match("^قفل التفليش$") then
-if not is_monsh(msg.sender_user_id_, msg.chat_id_) then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ڵڵمنشئ ٱلٱسٱسي فقط ', 1, 'md')
-else
-DevAbs:set(DevProx..'bot:links:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:forward:mute'..msg.chat_id_,true) DevAbs:del(DevProx..'lock:get:photo'..msg.chat_id_) DevAbs:set(DevProx..'bot:bots:ban'..msg.chat_id_,true) DevAbs:set(DevProx..'anti-flood:'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:video:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:gifs:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:strict'..msg.chat_id_,true)
-DevAbs:set(DevProx..'bot:sticker:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'farsiban'..msg.chat_id_,true) DevAbs:del(DevProx.."fshar"..msg.chat_id_) DevAbs:del(DevProx.."taf"..msg.chat_id_) DevAbs:del(DevProx.."kaf"..msg.chat_id_) DevAbs:set(DevProx..'floodstatus'..msg.chat_id_,'Kicked') DevAbs:set('DevProx:id:photo'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:spam:mute'..msg.chat_id_,true)
-local ABS_PROX = '☬︙ٱهلٱ عزيزي ↫ '..abs_rank(msg)..' \n☬︙تـۖم قفـڵ ٱڵتفڵيش بنجٱح \n ✓'
-absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 15, string.len(msg.sender_user_id_))
-end
-end
-if text and text:match("^فتح التفليش$") then
-if not is_monsh(msg.sender_user_id_, msg.chat_id_) then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ڵڵمنشئ ٱلٱسٱسي فقط ', 1, 'md')
-else
-DevAbs:del(DevProx..'bot:links:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:forward:mute'..msg.chat_id_) DevAbs:set(DevProx..'lock:get:photo'..msg.chat_id_,true) DevAbs:del(DevProx..'bot:bots:ban'..msg.chat_id_) DevAbs:del(DevProx..'anti-flood:'..msg.chat_id_) DevAbs:del(DevProx..'bot:video:mute'..msg.chat_id_)
-DevAbs:del(DevProx..'bot:gifs:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:sticker:mute'..msg.chat_id_) DevAbs:del(DevProx..'farsiban'..msg.chat_id_) DevAbs:set(DevProx..'fshar'..msg.chat_id_,true) DevAbs:set(DevProx..'taf'..msg.chat_id_,true) DevAbs:set(DevProx..'kaf'..msg.chat_id_,true)
-DevAbs:del('DevProx:id:photo'..msg.chat_id_)
-local ABS_PROX = '☬︙ٱهلٱ عزيزي ↫ '..abs_rank(msg)..' \n☬︙تـۖم فـتـۧح ٱڵتفڵيش بنجٱح \n ✓'
-absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 15, string.len(msg.sender_user_id_))
-end
-end
-if text and text:match("^قفل الكل$") then
-if not is_admin(msg.sender_user_id_, msg.chat_id_) then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ڵڵمشرفين فقط ', 1, 'md')
-else
-DevAbs:set(DevProx..'editmsg'..msg.chat_id_,true) DevAbs:set(DevProx..'farsi'..msg.chat_id_,true) DevAbs:del(DevProx..'fshar'..msg.chat_id_) DevAbs:del(DevProx..'taf'..msg.chat_id_) DevAbs:del(DevProx..'kaf'..msg.chat_id_) DevAbs:set(DevProx..'farsiban'..msg.chat_id_,true)
-DevAbs:set(DevProx..'bot:bots:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:bots:ban'..msg.chat_id_,true) DevAbs:set(DevProx..'anti-flood:'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:text:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:cmds'..msg.chat_id_,true) 
-DevAbs:set(DevProx..'bot:inline:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:photo:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:spam:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:video:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:gifs:mute'..msg.chat_id_,true)
-DevAbs:set(DevProx..'bot:music:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:voice:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:links:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:location:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'tags:lock'..msg.chat_id_,true)
-DevAbs:set(DevProx..'bot:sticker:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'markdown:lock'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:forward:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'floodstatus'..msg.chat_id_,'Kicked') DevAbs:set(DevProx..'bot:strict'..msg.chat_id_,true)
-DevAbs:set(DevProx..'bot:document:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:contact:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:abstag:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:webpage:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:tgservice:jk'..msg.chat_id_,true)
-local ABS_PROX = '☬︙ٱهلٱ عزيزي ↫ '..abs_rank(msg)..' \n☬︙تـۖم قفـڵ جميع ٱلٱوامر \n ✓'
-absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 15, string.len(msg.sender_user_id_))
-end
-end
-if text and text:match("^فتح الكل$") then
-if not is_admin(msg.sender_user_id_, msg.chat_id_) then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ڵڵمشرفين فقط ', 1, 'md')
-else
-DevAbs:del(DevProx..'editmsg'..msg.chat_id_) DevAbs:del(DevProx..'farsi'..msg.chat_id_) DevAbs:set(DevProx..'fshar'..msg.chat_id_,true) DevAbs:set(DevProx..'taf'..msg.chat_id_,true) DevAbs:set(DevProx..'kaf'..msg.chat_id_,true) DevAbs:del(DevProx..'farsiban'..msg.chat_id_)
-DevAbs:del(DevProx..'bot:cmds'..msg.chat_id_) DevAbs:del(DevProx..'bot:bots:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:bots:ban'..msg.chat_id_) DevAbs:del(DevProx..'keed_bots'..msg.chat_id_) DevAbs:del(DevProx..'anti-flood:'..msg.chat_id_) DevAbs:del(DevProx..'bot:tgservice:jk'..msg.chat_id_)
-DevAbs:del(DevProx..'bot:text:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:photo:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:spam:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:video:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:sticker:mute'..msg.chat_id_)
-DevAbs:del(DevProx..'bot:document:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:inline:mute'..msg.chat_id_) DevAbs:del(DevProx..'markdown:lock'..msg.chat_id_) DevAbs:del(DevProx..'bot:gifs:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:music:mute'..msg.chat_id_)
-DevAbs:del(DevProx..'bot:voice:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:links:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:location:mute'..msg.chat_id_) DevAbs:del(DevProx..'tags:lock'..msg.chat_id_) DevAbs:del(DevProx..'bot:strict'..msg.chat_id_) DevAbs:del(DevProx..'bot:forward:mute'..msg.chat_id_)
-DevAbs:del(DevProx..'bot:abstag:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:contact:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:webpage:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:arabic:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:english:mute'..msg.chat_id_)
-local ABS_PROX = '☬︙ٱهلٱ عزيزي ↫ '..abs_rank(msg)..' \n☬︙تـۖم فـتـۧح جميع ٱلٱوامر \n ✓'
-absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 15, string.len(msg.sender_user_id_))
-end
-end
 --     Source DevProx     --
 if is_admin(msg.sender_user_id_, msg.chat_id_) then 
 if text and text:match("^[Ss]ettings$") or text and text:match("^الاعدادات$") and Abbas_Abs(msg) then
