@@ -3799,6 +3799,7 @@ end
 end
 end 
 --     Source DevProx     --
+if not Chat_Type == 'pv' then
 if text:match("^انجب$") or text:match("^نجب$") or text:match("^انجبي$") or text:match("^نجبي$") or text:match("^انجبو$") or text:match("^نجبو$") then
 if not DevAbs:get(DevProx..'bot:rep:mute'..msg.chat_id_) then
 function rd_anshb(extra,result,success)
@@ -3845,6 +3846,7 @@ if text == 'هلوباي' or text == 'هلو باي' then  if not DevAbs:get(Dev
 if text == 'اكلك' or text == 'اكلج' or text == 'اكلكم' then if not DevAbs:get(DevProx..'bot:rep:mute'..msg.chat_id_) then ABS_PROX =  "ڪوولُِ مآڪوولُِ لُِآحٍدِ 𖠙 😉♥️" else ABS_PROX = '' end Dev_Abs(msg.chat_id_, msg.id_, 1, ABS_PROX, 1, 'md') end
 if text == 'فرخ' then  if not DevAbs:get(DevProx..'bot:rep:mute'..msg.chat_id_) then ABS_PROX =  "ٰويۧنۨــہهۂَ خۡل ٱحۡصرهۂَ 𖠙 😹♥️" else  ABS_PROX = '' end  Dev_Abs(msg.chat_id_, msg.id_, 1, ABS_PROX, 1, 'md') end
 if text == 'سورس عبس' or text == 'سورس بروكس' or text == 'سورس ديف بروكس' or text == 'سورس زربه' or text == 'السورس زربه' or text == 'سورس عاوي' or text == 'السورس عاوي' then if not DevAbs:get(DevProx..'bot:rep:mute'..msg.chat_id_) then ABS_PROX =  "لُِآ سوورس خـآلُِتڪ دِي لُِڪ 𖠙 😒🔪" else ABS_PROX = '' end Dev_Abs(msg.chat_id_, msg.id_, 1, ABS_PROX, 1, 'md') end 
+end
 --     Source DevProx     --
 if text == 'بوت' or text == 'بوتت' then name_bot = (DevAbs:get('ABS_PROX:'..bot_id..'name_bot') or 'بروكس') local ABS_PROX = {  "ڵتكول بوت ٱسمي "..name_bot.." 😒🔪",  "عندي ٱسم تره 😒💔",  "صيحوڵي "..name_bot.." كٱفي بوت 😒🔪",  "ٱنت ٱڵبوت ڵك 😒💔", } DevAbs2 = math.random(#ABS_PROX) Dev_Abs(msg.chat_id_, msg.id_, 1, ABS_PROX[DevAbs2] , 1, 'md') end
 if text == 'اسم البوت' or text == 'البوت شنو اسمه' or text == 'شسمه البوت' or text == 'البوت شسمه'  then name_bot = (DevAbs:get('ABS_PROX:'..bot_id..'name_bot') or 'بروكس') local ABS_PROX = {  "مرحبٱ عزيزي 😻♥️ \nٱسمي "..name_bot.." 😚♥️",  "هلاا يروحيي وياكك "..name_bot.." 😻♥️", } DevAbs2 = math.random(#ABS_PROX) Dev_Abs(msg.chat_id_, msg.id_, 1, ABS_PROX[DevAbs2] , 1, 'md') end
@@ -9329,7 +9331,7 @@ local ABS_PROX = '☬︙ٱهلٱ عزيزي ↫ '..abs_rank(msg)..' \n☬︙تـ
 absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 15, string.len(msg.sender_user_id_))
 end end 
 --     Source DevProx     --
-if is_admin(msg.sender_user_id_, msg.chat_id_) then
+if is_admin(msg.sender_user_id_, msg.chat_id_) and not Chat_Type == 'pv' then
 if text and text:match('^تنظيف (%d+)$') and Abbas_Abs(msg) then    
 local Number = tonumber(text:match('^تنظيف (%d+)$')) 
 if Number > 1000 then 
