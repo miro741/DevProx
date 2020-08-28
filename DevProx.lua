@@ -4622,6 +4622,12 @@ DevAbs:setex(DevProx.."zr:word" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 10
 Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱرسل ڵي ٱڵكلمة ڵزخرفتهٱ \nيمكنك ٱڵزخرفة بٱڵلغة { en } ⌯ { ar } ', 1, 'md')
 end
 --     Source DevProx     --
+if text:match("^الكروبات$") and is_SudoBot(msg.sender_user_id_, msg.chat_id_) and Abbas_Abs(msg) or text:match("^↫ الكروبات ☬$") and is_SudoBot(msg.sender_user_id_, msg.chat_id_) and Abbas_Abs(msg) then
+local ABS_PROX = DevAbs:scard(DevProx.."bot:groups")
+local abbs = DevAbs:scard("ABS_PROX:addg"..bot_id) or 0
+local users = DevAbs:scard(DevProx.."bot:userss")
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙عدد ٱڵمشتركين ↫ ❨ *'..users..'* ❩\n☬︙عدد ٱڵمجموعٱت ↫ ❨ *'..ABS_PROX..'* ❩\n☬︙ٱڵكروبٱت ٱڵمفعڵة ↫ ❨ *'..abbs..'* ❩\n☬︙ٱڵغير مفعڵة ↫ ❨ *'..(ABS_PROX - abbs)..'* ❩\n ✓', 1, 'md')
+end  
 if text:match("^مشاهده المنشور$") and Abbas_Abs(msg) or text:match("^مشاهدات المنشور$") and Abbas_Abs(msg) or text:match("^عدد المشاهدات$") and Abbas_Abs(msg) then
 DevAbs:set(DevProx..'bot:viewget'..msg.sender_user_id_,true)
 Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙حسنٱ قم بٱعٱدة توجية ڵڵمنشور ٱڵذي تريدني حسٱب مشٱهدٱتة', 1, 'md')
@@ -4734,12 +4740,6 @@ tdcli_function({ID = "GetChannelMembers",channel_id_ = getChatId(msg.chat_id_).I
 end
 end
 --     Source DevProx     --
-if text:match("^الكروبات$") and is_SudoBot(msg.sender_user_id_, msg.chat_id_) and Abbas_Abs(msg) or text:match("^↫ الكروبات ☬$") and is_SudoBot(msg.sender_user_id_, msg.chat_id_) and Abbas_Abs(msg) then
-local ABS_PROX = DevAbs:scard(DevProx.."bot:groups")
-local abbs = DevAbs:scard("ABS_PROX:addg"..bot_id) or 0
-local users = DevAbs:scard(DevProx.."bot:userss")
-Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙عدد ٱڵمشتركين ↫ ❨ *'..users..'* ❩\n☬︙عدد ٱڵمجموعٱت ↫ ❨ *'..ABS_PROX..'* ❩\n☬︙ٱڵكروبٱت ٱڵمفعڵة ↫ ❨ *'..abbs..'* ❩\n☬︙ٱڵغير مفعڵة ↫ ❨ *'..(ABS_PROX - abbs)..'* ❩\n ✓', 1, 'md')
-end  
 if text:match("^رسائلي$") and msg.reply_to_message_id_ == 0 and Abbas_Abs(msg) then
 local user_msgs = DevAbs:get(DevProx..'user:msgs'..msg.chat_id_..':'..msg.sender_user_id_)
 local ABS_PROX = DevAbs:get(DevProx..'user:msgs'..bot_id..os.date('%d')..':'..msg.chat_id_..':'..msg.sender_user_id_) or 0
@@ -4918,6 +4918,7 @@ Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو غير موجود في ٱ�
 end 
 end 
 resolve_username(username,ABS_PROX)
+end
 end
 --     Source DevProx     --
 --       Set SudoBot        --
@@ -5141,6 +5142,7 @@ delvipall(msg,msg.chat_id_,user)
 end end
 --     Source DevProx     --
 --       Set Monsh        --
+if Chat_Type == 'sp' or Chat_Type == 'gp'  then
 if is_SudoBot(msg.sender_user_id_, msg.chat_id_) then
 if text ==('رفع منشئ اساسي') and Abbas_Abs(msg) then
 function raf_reply(extra, result, success)
