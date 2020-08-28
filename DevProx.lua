@@ -3799,7 +3799,7 @@ end
 end
 end 
 --     Source DevProx     --
-if not Chat_Type == 'pv' then
+if Chat_Type == 'sp' then
 if text:match("^انجب$") or text:match("^نجب$") or text:match("^انجبي$") or text:match("^نجبي$") or text:match("^انجبو$") or text:match("^نجبو$") then
 if not DevAbs:get(DevProx..'bot:rep:mute'..msg.chat_id_) then
 function rd_anshb(extra,result,success)
@@ -9331,7 +9331,7 @@ local ABS_PROX = '☬︙ٱهلٱ عزيزي ↫ '..abs_rank(msg)..' \n☬︙تـ
 absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 15, string.len(msg.sender_user_id_))
 end end 
 --     Source DevProx     --
-if is_admin(msg.sender_user_id_, msg.chat_id_) and not Chat_Type == 'pv' then
+if is_admin(msg.sender_user_id_, msg.chat_id_) and Chat_Type == 'sp' then
 if text and text:match('^تنظيف (%d+)$') and Abbas_Abs(msg) then    
 local Number = tonumber(text:match('^تنظيف (%d+)$')) 
 if Number > 1000 then 
