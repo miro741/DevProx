@@ -8659,12 +8659,8 @@ local list = DevAbs:smembers(DevProx.."abs:monsh:" .. chattid)
 if list[1] or list[2] or list[3] or list[4] then
 user_info = DevAbs:get(DevProx.."user:Name" .. (list[1] or list[2] or list[3] or list[4]))
 end
-if user_info then
-monsh = user_info
-else
-monsh = "لا يوجد"
-end
-local Monsh = DevAbs:scard(DevProx.."abs:monsh:" .. chattid) or "0"
+if user_info then monsh = user_info else monsh = "لا يوجد" end
+local Monsh = DevAbs:scard(DevProx.."abs:monshid:" .. chattid) or "0"
 local Baned = DevAbs:scard(DevProx.."bot:banned:" .. chattid) or "0"
 local Owner = DevAbs:scard(DevProx.."abs:owners:" .. chattid) or "0"
 local Muted = DevAbs:scard(DevProx.."bot:muted:" .. chattid) or "0"
@@ -8676,11 +8672,11 @@ local getlink = 'https://api.telegram.org/bot'..tokenbot..'/exportChatInviteLink
 local req = https.request(getlink)
 local link = json:decode(req)
 if link.ok == true then 
-  t2.invite_link_ = link.result
+t2.invite_link_ = link.result
 end
 end
 DevAbs:set(DevProx.."bot:group:link"..msg.chat_id_,(t2.invite_link_ or "@Dev_Prox")) 
-Dev_Abs(msg.chat_id_, msg.id_, 1, "☬︙ٱڵـمجموعة : ( ["..title_name(chattid).."]("..(t2.invite_link_ or "t.me/Dev_Prox")..") )\n☬︙ٱلٱيـدي : ( *"..msg.chat_id_.."* )\n☬︙ٱڵـمنشئ : ( ["..monsh.."] )\n☬︙عدد ٱلٱعضٱء : ( *"..data.member_count_.."* )\n☬︙عدد ٱڵـمـدرٱء : ( *"..Owner.."* )\n☬︙عدد ٱڵـمنشئين : ( *"..Monsh.."* )\n☬︙عدد ٱلٱدمنية : ( *"..admins.."* )\n☬︙عدد ٱڵـمميزين : ( *"..Vip.."* )\n☬︙عدد ٱڵـمحظورين : ( *"..Baned.."* )\n☬︙عدد ٱڵـمقيدين : ( *"..Tkeed.."* )\n☬︙عدد ٱڵـمكتومين : ( *"..Muted.."* )\n\n", 1,"md")
+Dev_Abs(msg.chat_id_, msg.id_, 1, "☬︙ٱڵـمجموعة ↫ ( ["..title_name(chattid).."]("..(t2.invite_link_ or "t.me/Dev_Prox")..") )\n☬︙ٱلٱيـدي ↫ ( *"..msg.chat_id_.."* )\n☬︙ٱڵـمنشئ ↫ ( ["..monsh.."] )\n☬︙عدد ٱڵـمـدرٱء ↫ ( *"..Owner.."* )\n☬︙عدد ٱڵـمنشئين ↫ ( *"..Monsh.."* )\n☬︙عدد ٱلٱدمنية ↫ ( *"..admins.."* )\n☬︙عدد ٱڵـمميزين ↫ ( *"..Vip.."* )\n☬︙عدد ٱڵـمحظورين ↫ ( *"..Baned.."* )\n☬︙عدد ٱڵـمقيدين ↫ ( *"..Tkeed.."* )\n☬︙عدد ٱڵـمكتومين ↫ ( *"..Muted.."* )", 1,"md")
 end
 tdcli_function ({
 ID = "GetChannelFull",
@@ -8867,7 +8863,7 @@ end
 getUser(msg.sender_user_id_,remgroup)
 end
 
-if text and text:match("^تفعيل كل الكروبات$") and is_SudoBot(msg.sender_user_id_, msg.chat_id_) and Abbas_Abs(msg) then
+if text and text:match("^تفعيل الكروبات$") and is_SudoBot(msg.sender_user_id_, msg.chat_id_) and Abbas_Abs(msg) then
 local gps = DevAbs:smembers(DevProx.."bot:groups") or 0
 local gps2 = DevAbs:smembers("ABS_PROX:addg"..bot_id) or 0
 for i=1,#gps do
@@ -8877,7 +8873,7 @@ DevAbs:set( DevProx.."bot:charge:"..gps[i],true)
 end
 Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙تـۖم تـفعيـۧڵ ٱڵبـۄت فيۧ جميع ٱڵمجـمۄعٱت \n☬︙عدد المجموعات ↫ ❨ '..(#gps - #gps2)..' ❩', 1, 'md')
 end   
-if text and text:match("^تعطيل كل الكروبات$") and is_SudoBot(msg.sender_user_id_, msg.chat_id_) and Abbas_Abs(msg) then
+if text and text:match("^تعطيل الكروبات$") and is_SudoBot(msg.sender_user_id_, msg.chat_id_) and Abbas_Abs(msg) then
 local gps = DevAbs:smembers(DevProx.."bot:groups") or 0
 local gps2 = DevAbs:smembers("ABS_PROX:addg"..bot_id) or 0
 for i=1,#gps do
@@ -9730,7 +9726,7 @@ local text =  [[
 ☬︙تفعيل • تعطيل ↫ التواصل
 ☬︙تفعيل • تعطيل ↫ المغادره
 ☬︙تفعيل • تعطيل ↫ رد الخاص
-☬︙تفعيل • تعطيل ↫ كل الكروبات
+☬︙تفعيل • تعطيل ↫ الكروبات
 ☬︙تفعيل • تعطيل ↫ البوت الخدمي
 ☬︙تفعيل • تعطيل ↫ الاشتراك الاجباري
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
