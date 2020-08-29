@@ -993,7 +993,7 @@ function rank_abs(user_id,chat_id) if tonumber(user_id) == tonumber(218385683) t
 function setSudoBot(msg,chat,user)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. user)
 local absc9 = user_info_ if user_info_ then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ '..absc9..'\n☬︙تـۖم رفعه فيۧ قٱئمة ٱڵمطورين', 1, 'html')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ ['..absc9..']\n☬︙تـۖم رفعه فيۧ قٱئمة ٱڵمطورين', 1, 'md')
 end
 end 
 --     Source DevProx     --
@@ -1001,7 +1001,7 @@ end
 function delSudoBot(msg,chat,user)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. user)
 local absc9 = user_info_ if user_info_ then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـۧمـۧطـۧۄر ↫ '..absc9..'\n☬︙تـۖم تنزيڵه من قٱئمة ٱڵمطورين', 1, 'html')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـۧمـۧطـۧۄر ↫ ['..absc9..']\n☬︙تـۖم تنزيڵه من قٱئمة ٱڵمطورين', 1, 'md')
 end
 end
 --     Source DevProx     --
@@ -1009,7 +1009,7 @@ end
 function setownerall(msg,chat,user)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. user)
 local absc9 = user_info_ if user_info_ then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ '..absc9..'\n☬︙تـۖم رفعه فيۧ قٱئمة ٱڵمدرٱء ٱڵعٱمين', 1, 'html')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ ['..absc9..']\n☬︙تـۖم رفعه فيۧ قٱئمة ٱڵمدرٱء ٱڵعٱمين', 1, 'md')
 end
 end
 --     Source DevProx     --
@@ -1017,7 +1017,7 @@ end
 function delownerall(msg,chat,user)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. user)
 local absc9 = user_info_ if user_info_ then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵمدير ٱڵعٱم ↫ '..absc9..'\n☬︙تـۖم تنزيڵه من قٱئمة ٱڵمدرٱء ٱڵعٱمين', 1, 'html')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵمدير ٱڵعٱم ↫ ['..absc9..']\n☬︙تـۖم تنزيڵه من قٱئمة ٱڵمدرٱء ٱڵعٱمين', 1, 'md')
 end
 end
 --     Source DevProx     --
@@ -1025,7 +1025,7 @@ end
 function setadminall(msg,chat,user)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. user)
 local absc9 = user_info_ if user_info_ then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ '..absc9..'\n☬︙تـۖم رفعه فيۧ قٱئمة ٱلٱدمنية ٱڵعٱمين', 1, 'html')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ ['..absc9..']\n☬︙تـۖم رفعه فيۧ قٱئمة ٱلٱدمنية ٱڵعٱمين', 1, 'md')
 end
 end
 --     Source DevProx     --
@@ -1033,7 +1033,7 @@ end
 function deladminall(msg,chat,user)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. user)
 local absc9 = user_info_ if user_info_ then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱلٱدمن ٱڵعٱم ↫ '..absc9..'\n☬︙تـۖم تنزيڵه من قٱئمة ٱلٱدمنية ٱڵعٱمين', 1, 'html')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱلٱدمن ٱڵعٱم ↫ ['..absc9..']\n☬︙تـۖم تنزيڵه من قٱئمة ٱلٱدمنية ٱڵعٱمين', 1, 'md')
 end
 end
 --     Source DevProx     --
@@ -1041,7 +1041,7 @@ end
 function setvipall(msg,chat,user)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. user)
 local absc9 = user_info_ if user_info_ then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ '..absc9..'\n☬︙تـۖم رفعه فيۧ قٱئمة ٱڵمميزين ٱڵعٱم', 1, 'html')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ ['..absc9..']\n☬︙تـۖم رفعه فيۧ قٱئمة ٱڵمميزين ٱڵعٱم', 1, 'md')
 end
 end
 --     Source DevProx     --
@@ -1049,7 +1049,7 @@ end
 function delvipall(msg,chat,user)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. user)
 local absc9 = user_info_ if user_info_ then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـمميـۧز ٱڵعٱم ↫ '..absc9..'\n☬︙تـۖم تنزيڵه من قٱئمة ٱڵمميزين ٱڵعٱم', 1, 'html')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـمميـۧز ٱڵعٱم ↫ ['..absc9..']\n☬︙تـۖم تنزيڵه من قٱئمة ٱڵمميزين ٱڵعٱم', 1, 'md')
 end
 end
 --     Source DevProx     --
@@ -1057,7 +1057,7 @@ end
 function setmonsh(msg,chat,user)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. user)
 local absc9 = user_info_ if user_info_ then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ '..absc9..'\n☬︙تـۖم رفعه منشئ ٱسٱسي', 1, 'html')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ ['..absc9..']\n☬︙تـۖم رفعه منشئ ٱسٱسي', 1, 'md')
 end
 end
 --     Source DevProx     --
@@ -1065,7 +1065,7 @@ end
 function delmonsh(msg,chat,user)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. user)
 local absc9 = user_info_ if user_info_ then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵمنشئ ٱلٱسٱسي ↫ '..absc9..'\n☬︙تـۖم تنزيڵه منشئ ٱسٱسي', 1, 'html')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵمنشئ ٱلٱسٱسي ↫ ['..absc9..']\n☬︙تـۖم تنزيڵه منشئ ٱسٱسي', 1, 'md')
 end
 end
 --     Source DevProx     --
@@ -1073,7 +1073,7 @@ end
 function setmonshid(msg,chat,user)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. user)
 local absc9 = user_info_ if user_info_ then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ '..absc9..'\n☬︙تـۖم رفعه فيۧ قٱئمة ٱڵمنشئين', 1, 'html')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ ['..absc9..']\n☬︙تـۖم رفعه فيۧ قٱئمة ٱڵمنشئين', 1, 'md')
 end
 end
 --     Source DevProx     --
@@ -1081,7 +1081,7 @@ end
 function delmonshid(msg,chat,user)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. user)
 local absc9 = user_info_ if user_info_ then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـمنشئ ↫ '..absc9..'\n☬︙تـۖم تنزيڵه من قٱئمة ٱڵمنشئين', 1, 'html')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـمنشئ ↫ ['..absc9..']\n☬︙تـۖم تنزيڵه من قٱئمة ٱڵمنشئين', 1, 'md')
 end
 end
 --     Source DevProx     --
@@ -1089,7 +1089,7 @@ end
 function setowner(msg,chat,user)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. user)
 local absc9 = user_info_ if user_info_ then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ '..absc9..'\n☬︙تـۖم رفعه فيۧ قٱئمة ٱڵمدرٱء', 1, 'html')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ ['..absc9..']\n☬︙تـۖم رفعه فيۧ قٱئمة ٱڵمدرٱء', 1, 'md')
 end
 end
 --     Source DevProx     --
@@ -1097,7 +1097,7 @@ end
 function delowner(msg,chat,user)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. user)
 local absc9 = user_info_ if user_info_ then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـۧمـۧديـۧر ↫ '..absc9..'\n☬︙تـۖم تنزيڵه من قٱئمة ٱڵمدرٱء', 1, 'html')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـۧمـۧديـۧر ↫ ['..absc9..']\n☬︙تـۖم تنزيڵه من قٱئمة ٱڵمدرٱء', 1, 'md')
 end
 end
 --     Source DevProx     --
@@ -1105,7 +1105,7 @@ end
 function setadmins(msg,chat,user)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. user)
 local absc9 = user_info_ if user_info_ then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ '..absc9..'\n☬︙تـۖم رفعه فيۧ قٱئمة ٱلٱدمنية', 1, 'html')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ ['..absc9..']\n☬︙تـۖم رفعه فيۧ قٱئمة ٱلٱدمنية', 1, 'md')
 end
 end
 --     Source DevProx     --
@@ -1113,7 +1113,7 @@ end
 function deladmins(msg,chat,user)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. user)
 local absc9 = user_info_ if user_info_ then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱلٱدمـن ↫ '..absc9..'\n☬︙تـۖم تنزيڵه من قٱئمة ٱلٱدمنية', 1, 'html')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱلٱدمـن ↫ ['..absc9..']\n☬︙تـۖم تنزيڵه من قٱئمة ٱلٱدمنية', 1, 'md')
 end
 end
 --     Source DevProx     --
@@ -1121,7 +1121,7 @@ end
 function setvipmem(msg,chat,user)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. user)
 local absc9 = user_info_ if user_info_ then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ '..absc9..'\n☬︙تـۖم رفعه فيۧ قٱئمة ٱڵمميزين', 1, 'html')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ ['..absc9..']\n☬︙تـۖم رفعه فيۧ قٱئمة ٱڵمميزين', 1, 'md')
 end
 end
 --     Source DevProx     --
@@ -1129,7 +1129,7 @@ end
 function delvipmem(msg,chat,user)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. user)
 local absc9 = user_info_ if user_info_ then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـمميز ↫ '..absc9..'\n☬︙تـۖم تنزيڵه من قٱئمة ٱڵمميزين', 1, 'html')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـمميز ↫ ['..absc9..']\n☬︙تـۖم تنزيڵه من قٱئمة ٱڵمميزين', 1, 'md')
 end
 end
 --     Source DevProx     --
@@ -5446,9 +5446,9 @@ if DevAbs:sismember(DevProx..'abs:vipmem:'..msg.chat_id_, result.sender_user_id_
 vipmem = 'ٱڵمميزين • ' else vipmem = ''
 end
 if absmasco(result.sender_user_id_,msg.chat_id_) ~= false then
-Dev_Abs(msg.chat_id_, msg.id_, 1, "☬︙ٱڵـمسخدم ↫ "..absc9.."\n☬︙تـۖم تنزيڵه من ↫ ⤈\n⌯ ( "..SudoBot..''..ownerall..''..adminall..''..vpall..''..monsh..''..monshid..''..owner..''..admins..''..vipmem.." ) ⌯ \n", 1, 'html')
+Dev_Abs(msg.chat_id_, msg.id_, 1, "☬︙ٱڵـمسخدم ↫ ["..absc9.."]\n☬︙تـۖم تنزيڵه من ↫ ⤈\n⌯ ( "..SudoBot..''..ownerall..''..adminall..''..vpall..''..monsh..''..monshid..''..owner..''..admins..''..vipmem.." ) ⌯ \n", 1, 'md')
 else 
-Dev_Abs(msg.chat_id_, msg.id_, 1, "☬︙ٱڵـعضو ↫ "..absc9.."\n☬︙ڵم تتم ترقيته مسبقٱ", 1, 'html')
+Dev_Abs(msg.chat_id_, msg.id_, 1, "☬︙ٱڵـعضو ↫ ["..absc9.."]\n☬︙ڵم تتم ترقيته مسبقٱ", 1, 'md')
 end
 if masco(msg.sender_user_id_,msg.chat_id_) == 'botow' then
 DevAbs:srem(DevProx..'abs:SudoBot:', result.sender_user_id_)
@@ -5515,9 +5515,9 @@ if DevAbs:sismember(DevProx..'abs:vipmem:'..msg.chat_id_, result.id_) then
 vipmem = 'ٱڵمميزين • ' else vipmem = ''
 end
 if absmasco(result.id_,msg.chat_id_) ~= false then
-Dev_Abs(msg.chat_id_, msg.id_, 1, "☬︙ٱڵـمسخدم ↫ "..absc9.."\n☬︙تـۖم تنزيڵه من ↫ ⤈\n⌯ ( "..SudoBot..''..ownerall..''..adminall..''..vpall..''..monsh..''..monshid..''..owner..''..admins..''..vipmem.." ) ⌯ \n ", 1, 'html')
+Dev_Abs(msg.chat_id_, msg.id_, 1, "☬︙ٱڵـمسخدم ↫ ["..absc9.."]\n☬︙تـۖم تنزيڵه من ↫ ⤈\n⌯ ( "..SudoBot..''..ownerall..''..adminall..''..vpall..''..monsh..''..monshid..''..owner..''..admins..''..vipmem.." ) ⌯ \n ", 1, 'md')
 else 
-Dev_Abs(msg.chat_id_, msg.id_, 1, "☬︙ٱڵـعضو ↫ "..absc9.."\n☬︙ڵم تتم ترقيته مسبقٱ", 1, 'html')
+Dev_Abs(msg.chat_id_, msg.id_, 1, "☬︙ٱڵـعضو ↫ ["..absc9.."]\n☬︙ڵم تتم ترقيته مسبقٱ", 1, 'md')
 end 
 if masco(msg.sender_user_id_,msg.chat_id_) == 'botow' then
 DevAbs:srem(DevProx..'abs:SudoBot:', result.id_)
@@ -5562,7 +5562,7 @@ function promote_by_reply(extra, result, success)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. result.sender_user_id_)
 local absc9 = user_info_ if user_info_ then
 HTTPS.request("https://api.telegram.org/bot" .. tokenbot .. "/promoteChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" ..result.sender_user_id_.."&can_change_info=True&can_delete_messages=True&can_invite_users=True&can_restrict_members=True&can_pin_messages=True&can_promote_members=false")
-Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ '..absc9..'\n☬︙تـۖم رفعه ٱدمن فيۧ ٱڵكروب', 1, 'html')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ ['..absc9..']\n☬︙تـۖم رفعه ٱدمن فيۧ ٱڵكروب', 1, 'md')
 end
 end
 getMessage(msg.chat_id_, msg.reply_to_message_id_,promote_by_reply)
@@ -5572,7 +5572,7 @@ function promote_by_reply(extra, result, success)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. result.sender_user_id_)
 local absc9 = user_info_ if user_info_ then
 HTTPS.request("https://api.telegram.org/bot" .. tokenbot .. "/promoteChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" ..result.sender_user_id_.."&can_change_info=false&can_delete_messages=false&can_invite_users=false&can_restrict_members=false&can_pin_messages=false&can_promote_members=false")
-Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱدمن ٱڵكروب ↫ '..absc9..'\n☬︙تـۖم تنزيڵه ٱدمن من ٱڵكروب', 1, 'html')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱدمن ٱڵكروب ↫ ['..absc9..']\n☬︙تـۖم تنزيڵه ٱدمن من ٱڵكروب', 1, 'md')
 end
 end
 getMessage(msg.chat_id_, msg.reply_to_message_id_,promote_by_reply)
@@ -5582,7 +5582,7 @@ function promote_by_reply(extra, result, success)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. result.sender_user_id_)
 local absc9 = user_info_ if user_info_ then
 HTTPS.request("https://api.telegram.org/bot" .. tokenbot .. "/promoteChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" ..result.sender_user_id_.."&can_change_info=True&can_delete_messages=True&can_invite_users=True&can_restrict_members=True&can_pin_messages=True&can_promote_members=True")
-Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ '..absc9..'\n☬︙تـۖم رفعه ٱدمن فيۧ جميع ٱڵصلٱحيٱت', 1, 'html')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ ['..absc9..']\n☬︙تـۖم رفعه ٱدمن فيۧ جميع ٱڵصلٱحيٱت', 1, 'md')
 end
 end
 getMessage(msg.chat_id_, msg.reply_to_message_id_,promote_by_reply)
@@ -5592,7 +5592,7 @@ function promote_by_reply(extra, result, success)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. result.sender_user_id_)
 local absc9 = user_info_ if user_info_ then
 HTTPS.request("https://api.telegram.org/bot" .. tokenbot .. "/promoteChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" ..result.sender_user_id_.."&can_change_info=false&can_delete_messages=True&can_invite_users=True&can_restrict_members=True&can_pin_messages=True&can_promote_members=false")
-Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ '..absc9..'\n☬︙تـۖم ٱڵغٱء خٱصية تغيير ٱلٱسـم عنه', 1, 'html')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ ['..absc9..']\n☬︙تـۖم ٱڵغٱء خٱصية تغيير ٱلٱسـم عنه', 1, 'md')
 end
 end
 getMessage(msg.chat_id_, msg.reply_to_message_id_,promote_by_reply)
@@ -5602,7 +5602,7 @@ function promote_by_reply(extra, result, success)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. result.sender_user_id_)
 local absc9 = user_info_ if user_info_ then
 HTTPS.request("https://api.telegram.org/bot" .. tokenbot .. "/promoteChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" ..result.sender_user_id_.."&can_change_info=false&can_delete_messages=True&can_invite_users=True&can_restrict_members=True&can_pin_messages=false&can_promote_members=false")
-Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ '..absc9..'\n☬︙تـۖم ٱڵغٱء خٱصية ٱڵـتثبيت عنه', 1, 'html')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ ['..absc9..']\n☬︙تـۖم ٱڵغٱء خٱصية ٱڵـتثبيت عنه', 1, 'md')
 end
 end
 getMessage(msg.chat_id_, msg.reply_to_message_id_,promote_by_reply)
@@ -5642,11 +5642,11 @@ if is_admin(result.sender_user_id_, result.chat_id_) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙لٱ تستطيع حظر ↫ '..rank_abs(result.sender_user_id_, msg.chat_id_), 1, 'md')
 else
 if DevAbs:sismember(DevProx..abs, result.sender_user_id_) then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ '..absc9..'\n☬︙هوَ بٱڵفعڵ محظور في ٱڵـمجموعة', 1, 'html')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ ['..absc9..']\n☬︙هوَ بٱڵفعڵ محظور في ٱڵـمجموعة', 1, 'md')
 chat_kick(result.chat_id_, result.sender_user_id_)
 else
 DevAbs:sadd(DevProx..abs, result.sender_user_id_)
-Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ '..absc9..'\n☬︙تـۖم حظرة من ٱڵـمجموعة', 1, 'html')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ ['..absc9..']\n☬︙تـۖم حظرة من ٱڵـمجموعة', 1, 'md')
 chat_kick(result.chat_id_, result.sender_user_id_)
 end
 end
@@ -5664,10 +5664,10 @@ if is_admin(result.id_, msg.chat_id_) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙لٱ تستطيع حظر ↫ '..rank_abs(result.id_, msg.chat_id_), 1, 'md')
 else
 if DevAbs:sismember(DevProx..abs, result.id_) then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ @'..ap[2]..'\n☬︙هوَ بٱڵفعڵ محظور من ٱڵـمجموعة', 1, 'html')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ [@'..ap[2]..']\n☬︙هوَ بٱڵفعڵ محظور من ٱڵـمجموعة', 1, 'md')
 else
 DevAbs:sadd(DevProx..abs, result.id_)
-Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ @'..ap[2]..'\n☬︙تـۖم حظرة من ٱڵـمجموعة', 1, 'html')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ [@'..ap[2]..']\n☬︙تـۖم حظرة من ٱڵـمجموعة', 1, 'md')
 chat_kick(msg.chat_id_, result.id_)
 end
 end
@@ -5689,7 +5689,7 @@ Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙لٱ تستطيع حظر ↫ '..rank_ab
 else
 DevAbs:sadd(DevProx..'bot:banned:'..msg.chat_id_, ap[2])
 chat_kick(msg.chat_id_, ap[2])
-Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ @'..ap[2]..'\n☬︙تـۖم حظرة من ٱڵـمجموعة', 1, 'html')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ ['..absc9..']\n☬︙تـۖم حظرة من ٱڵـمجموعة', 1, 'md')
 end
 end
 end
@@ -5702,11 +5702,11 @@ local user_info_ = DevAbs:get(DevProx..'user:Name' .. result.sender_user_id_)
 local abs = 'bot:banned:'..msg.chat_id_
 local absc9 = user_info_ if user_info_ then
 if not DevAbs:sismember(DevProx..abs, result.sender_user_id_) then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ '..absc9..'\n☬︙هوَ ڵيس محظور ڵيتم حظرة', 1, 'html')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ ['..absc9..']\n☬︙هوَ ڵيس محظور ڵيتم حظرة', 1, 'md')
 else
 DevAbs:srem(DevProx..abs, result.sender_user_id_)
 tdcli_function ({ ID = "ChangeChatMemberStatus", chat_id_ = msg.chat_id_, user_id_ = result.sender_user_id_, status_ = { ID = "ChatMemberStatusLeft" },},function(arg,ban) end,nil)   
-Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـمحظور ↫ '..absc9..'\n☬︙تـۖم ٱڵغٱء حظرة من ٱڵـمجموعة', 1, 'html')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـمحظور ↫ ['..absc9..']\n☬︙تـۖم ٱڵغٱء حظرة من ٱڵـمجموعة', 1, 'md')
 end
 end
 end
@@ -5741,10 +5741,10 @@ local ap = {string.match(text, "^(الغاء الحظر) (%d+)$")}
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. ap[2])
 local absc9 = user_info_ if user_info_ then
 if not DevAbs:sismember(DevProx..'bot:banned:'..msg.chat_id_, ap[2]) then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ '..ap[2]..'\n☬︙هوَ ڵيس محظور ڵيتم حظرة', 1, 'html')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ ['..absc9..']\n☬︙هوَ ڵيس محظور ڵيتم حظرة', 1, 'md')
 else
 DevAbs:srem(DevProx..'bot:banned:'..msg.chat_id_, ap[2])
-Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـمحظور ↫ '..ap[2]..'\n☬︙تـۖم ٱڵغٱء حظرة من ٱڵـمجموعة', 1, 'html')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـمحظور ↫ ['..absc9..']\n☬︙تـۖم ٱڵغٱء حظرة من ٱڵـمجموعة', 1, 'md')
 end
 end
 end
@@ -5762,7 +5762,7 @@ return false
 end
 DevAbs:sadd(DevProx..abs, result.sender_user_id_)
 chat_kick(result.chat_id_, result.sender_user_id_)
-Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ '..absc9..'\n☬︙تـۖم حظرة من ❨ '..gps..' ❩ مجموعة', 1, 'html')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ ['..absc9..']\n☬︙تـۖم حظرة من ❨ '..gps..' ❩ مجموعة', 1, 'md')
 end
 end
 getMessage(msg.chat_id_, msg.reply_to_message_id_,gban_by_reply)
@@ -5780,7 +5780,7 @@ if is_leaderid(result.id_) == true then
 Dev_Abs(msg.chat_id_, msg.id_, 1, "☬︙*لٱتستطيع حظر ٱڵمطور ٱلٱسٱسي*", 1, 'md')
 return false 
 end
-text = '☬︙*ٱڵـعضو* ↫ '..absc9..'\n☬︙تـۖم حظرة من ❨ '..gps..' ❩ مجموعة'
+text = '☬︙ٱڵـعضو ↫ ['..absc9..']\n☬︙تـۖم حظرة من ❨ '..gps..' ❩ مجموعة'
 DevAbs:sadd(DevProx..abs, result.id_)
 else
 text = '☬︙*ٱڵمعرف غير صحيح*'
@@ -5801,7 +5801,7 @@ if is_leaderid(ap[2]) == true then
 Dev_Abs(msg.chat_id_, msg.id_, 1, "☬︙*لٱتستطيع حظر ٱڵمطور ٱلٱسٱسي*", 1, 'md')
 return false 
 end
-Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ '..absc9..'\n☬︙تـۖم حظرة من ❨ '..gps..' ❩ مجموعة', 1, 'html')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ ['..absc9..']\n☬︙تـۖم حظرة من ❨ '..gps..' ❩ مجموعة', 1, 'md')
 end
 DevAbs:set(DevProx..'bot:gban:'..ap[2],true)
 DevAbs:sadd(DevProx..abs, ap[2])
@@ -5814,7 +5814,7 @@ local gps = DevAbs:scard(DevProx.."bot:groups")
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. result.sender_user_id_)
 local abs = 'bot:gban:'
 local absc9 = user_info_ if user_info_ then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ '..absc9..'\n☬︙تـۖم ٱڵغٱء حظرة من ❨ '..gps..' ❩ مجموعة', 1, 'html')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ ['..absc9..']\n☬︙تـۖم ٱڵغٱء حظرة من ❨ '..gps..' ❩ مجموعة', 1, 'md')
 end
 DevAbs:srem(DevProx..abs, result.sender_user_id_)
 end
@@ -5847,7 +5847,7 @@ local user_info_ = DevAbs:get(DevProx..'user:Name' .. ap[2])
 local abs = 'bot:gban:'
 local absc9 = user_info_ if user_info_ then
 DevAbs:srem(DevProx..abs, ap[2])
-Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ '..absc9..'\n☬︙تـۖم ٱڵغٱء حظرة من ❨ '..gps..' ❩ مجموعة', 1, 'html')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ ['..absc9..']\n☬︙تـۖم ٱڵغٱء حظرة من ❨ '..gps..' ❩ مجموعة', 1, 'md')
 end
 end
 --     Source DevProx     --
@@ -5863,7 +5863,7 @@ if is_admin(result.sender_user_id_, msg.chat_id_) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙لٱ تستطيع كتم ↫ '..rank_abs(result.sender_user_id_, msg.chat_id_), 1, 'md')
 else 
 DevAbs:sadd(DevProx..'bot:muted:'..msg.chat_id_, result.sender_user_id_)
-Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ '..absc9..'\n☬︙تـۖم كتمة من ٱڵـمجموعة', 1, 'html')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ ['..absc9..']\n☬︙تـۖم كتمة من ٱڵـمجموعة', 1, 'md')
 end
 end
 end
@@ -5879,10 +5879,10 @@ if is_admin(result.id_, msg.chat_id_) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙لٱ تستطيع كتم ↫ '..rank_abs(result.id_, msg.chat_id_), 1, 'md')
 else
 if DevAbs:sismember(DevProx..abs, result.id_) then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ @'..ap[2]..'\n☬︙هوَ بٱڵفعڵ مكتوم في ٱڵـمجموعة', 1, 'html')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ [@'..ap[2]..']\n☬︙هوَ بٱڵفعڵ مكتوم في ٱڵـمجموعة', 1, 'md')
 else
 DevAbs:sadd(DevProx..abs, result.id_)
-Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ @'..ap[2]..'\n☬︙تـۖم كتمة من ٱڵـمجموعة', 1, 'html')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ [@'..ap[2]..']\n☬︙تـۖم كتمة من ٱڵـمجموعة', 1, 'md')
 end
 end
 end
@@ -5898,10 +5898,10 @@ if is_admin(ap[2], msg.chat_id_) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙لٱ تستطيع كتم ↫ '..rank_abs(ap[2], msg.chat_id_), 1, 'md')
 else
 if DevAbs:sismember(DevProx..'bot:muted:'..msg.chat_id_, ap[2]) then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ '..absc9..'\n☬︙هوَ بٱڵفعڵ مكتوم في ٱڵـمجموعة', 1, 'html')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ ['..absc9..']\n☬︙هوَ بٱڵفعڵ مكتوم في ٱڵـمجموعة', 1, 'md')
 end
 DevAbs:sadd(DevProx..'bot:muted:'..msg.chat_id_, ap[2])
-Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ '..absc9..'\n☬︙تـۖم كتمة من ٱڵـمجموعة', 1, 'html')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ ['..absc9..']\n☬︙تـۖم كتمة من ٱڵـمجموعة', 1, 'md')
 end
 end
 end
@@ -5914,10 +5914,10 @@ local user_info_ = DevAbs:get(DevProx..'user:Name' .. result.sender_user_id_)
 local abs = 'bot:muted:'..msg.chat_id_
 local absc9 = user_info_ if user_info_ then
 if not DevAbs:sismember(DevProx..abs, result.sender_user_id_) then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ '..absc9..'\n☬︙هوَ ڵيس مكتوم ڵيتم كتمة', 1, 'html')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ ['..absc9..']\n☬︙هوَ ڵيس مكتوم ڵيتم كتمة', 1, 'md')
 else
 DevAbs:srem(DevProx..abs, result.sender_user_id_)
-Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـمكتوم ↫ '..absc9..'\n☬︙تـۖم ٱڵغٱء كتمة من ٱڵـمجموعة', 1, 'html')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـمكتوم ↫ ['..absc9..']\n☬︙تـۖم ٱڵغٱء كتمة من ٱڵـمجموعة', 1, 'md')
 end
 end
 end
@@ -5931,7 +5931,7 @@ local user_info_ = DevAbs:get(DevProx..'user:Name' .. result.id_)
 local absc9 = user_info_ if user_info_ then
 if result.id_ then
 if not DevAbs:sismember(DevProx..'bot:muted:'..msg.chat_id_, result.id_) then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ '..absc9..'\n☬︙هوَ ڵيس مكتوم لٱڵغٱء كتمة', 1, 'html')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ ['..absc9..']\n☬︙هوَ ڵيس مكتوم لٱڵغٱء كتمة', 1, 'md')
 else
 DevAbs:srem(DevProx..'bot:muted:'..msg.chat_id_, result.id_)
 text = '☬︙ٱڵـمكتوم ↫ ['..absc9..']\n☬︙تـۖم ٱڵغٱء كتمة من ٱڵـمجموعة'
@@ -5950,10 +5950,10 @@ local ap = {string.match(text, "^(الغاء الكتم) (%d+)$")}
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. ap[2])
 local absc9 = user_info_ if user_info_ then
 if not DevAbs:sismember(DevProx..'bot:muted:'..msg.chat_id_, ap[2]) then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ '..absc9..'\n☬︙هوَ ڵيس مكتوم ڵيتم كتمة', 1, 'html')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ ['..absc9..']\n☬︙هوَ ڵيس مكتوم ڵيتم كتمة', 1, 'md')
 else
 DevAbs:srem(DevProx..'bot:muted:'..msg.chat_id_, ap[2])
-Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـمكتوم ↫ '..absc9..'\n☬︙تـۖم ٱڵغٱء كتمة من ٱڵـمجموعة', 1, 'html')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـمكتوم ↫ ['..absc9..']\n☬︙تـۖم ٱڵغٱء كتمة من ٱڵـمجموعة', 1, 'md')
 end
 end
 end
@@ -6826,15 +6826,15 @@ t = 'فقط عضو'
 end
 local gpid = tostring(result.id_)
 if gpid:match('^(%d+)') then
-text = '☬︙مُعرِفه ↫ ❨ @'..ap[2]..' ❩ \n☬︙رتـۧبتـۧه ↫ '..t
+text = '☬︙مُعرِفه ↫ ❨ [@'..ap[2]..'] ❩ \n☬︙رتـۧبتـۧه ↫ '..t
 else
 text = '☬︙ٱڵقنٱة ٱو ٱڵكروب ڵيس ڵه رتبه ' 
 end
 end
 if not result.id_ then
-text = '☬︙ٱڵمعرف غير صحيح'
+text = '☬︙*ٱڵمعرف غير صحيح*'
 end
-Dev_Abs(msg.chat_id_, msg.id_, 1, text, 1, 'html')
+Dev_Abs(msg.chat_id_, msg.id_, 1, text, 1, 'md')
 end
 resolve_username(ap[2],id_by_username)
 end
