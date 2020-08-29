@@ -8939,7 +8939,7 @@ local GroupsMonsh = DevAbs:scard(DevProx.."abs:monsh:"..v) or 0
 local GroupsOwner = DevAbs:scard(DevProx.."abs:owners:"..v) or 0
 local GroupsMod = DevAbs:scard(DevProx.."abs:admins:"..v) or 0
 local Groupslink = DevAbs:get(DevProx.."bot:group:link" ..v)
-text = text..k.." ↫ ⤈ \n☬︙Group ID  : [ "..v.." ]\n☬︙Group Link : [ "..(Groupslink or "Not Found").." ]\n☬︙Group Monsh  : [ "..GroupsMonsh.." ]\n☬︙Group Owners  : [ "..GroupsOwner.." ]\n☬︙Group Admins : [ "..GroupsMod.." ] \n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n"
+text = text..k.." ↬ ⤈ \n☬︙Group ID  : [ "..v.." ]\n☬︙Group Link : [ "..(Groupslink or "Not Found").." ]\n☬︙Group Monsh  : [ "..GroupsMonsh.." ]\n☬︙Group Owners  : [ "..GroupsOwner.." ]\n☬︙Group Admins : [ "..GroupsMod.." ] \n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n"
 end
 local file = io.open('GroupsBot.txt', 'w')
 file:write(text)
