@@ -5907,8 +5907,8 @@ end
 end
 end
 --     Source DevProx     --
-local text = msg.content_.text_:gsub('الغاء كتم','الغاءالكتم')
-if text:match("^الغاءالكتم$") and msg.reply_to_message_id_ ~= 0 and Abbas_Abs(msg) then
+local text = msg.content_.text_:gsub('الغاء كتم','الغاء الكتم')
+if text:match("^الغاء الكتم$") and msg.reply_to_message_id_ ~= 0 and Abbas_Abs(msg) then
 function unmute_by_reply(extra, result, success)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. result.sender_user_id_)
 local abs = 'bot:muted:'..msg.chat_id_
@@ -5924,8 +5924,8 @@ end
 getMessage(msg.chat_id_, msg.reply_to_message_id_,unmute_by_reply)
 end
 --     Source DevProx     --
-if text:match("^الغاءالكتم @(.*)$") and Abbas_Abs(msg) then
-local ap = {string.match(text, "^(الغاءالكتم) @(.*)$")}
+if text:match("^الغاء الكتم @(.*)$") and Abbas_Abs(msg) then
+local ap = {string.match(text, "^(الغاء الكتم) @(.*)$")}
 function unmute_by_username(extra, result, success)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. result.id_)
 local absc9 = user_info_ if user_info_ then
@@ -5945,8 +5945,8 @@ end
 resolve_username(ap[2],unmute_by_username)
 end
 --     Source DevProx     --
-if text:match("^الغاءالكتم (%d+)$") and Abbas_Abs(msg) then
-local ap = {string.match(text, "^(الغاءالكتم) (%d+)$")}
+if text:match("^الغاء الكتم (%d+)$") and Abbas_Abs(msg) then
+local ap = {string.match(text, "^(الغاء الكتم) (%d+)$")}
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. ap[2])
 local absc9 = user_info_ if user_info_ then
 if not DevAbs:sismember(DevProx..'bot:muted:'..msg.chat_id_, ap[2]) then
@@ -5970,12 +5970,9 @@ Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ ['..absc9..']\n☬︙�
 else
 Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ ['..absc9..']\n☬︙تـۖم رفعه فيۧ قٱئمة ٱڵمطٱية', 1, 'md')
 DevAbs:sadd(DevProx..abs, result.sender_user_id_)
-end
-end
-end
+end end end
 getMessage(msg.chat_id_, msg.reply_to_message_id_,donky_by_reply)
-end
-end
+end end
 --     Source DevProx     --
 if msg.reply_to_message_id_ ~= 0  then
 if text and text:match("^تنزيل مطي$") then
@@ -5988,12 +5985,9 @@ Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ ['..absc9..']\n☬︙�
 else
 DevAbs:srem(DevProx..abs, result.sender_user_id_)
 Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـمطي ↫ ['..absc9..']\n☬︙تـۖم تنزيڵه من قٱئمة ٱڵمطٱية', 1, 'md')
-end
-end
-end
+end end end
 getMessage(msg.chat_id_, msg.reply_to_message_id_,donky_by_reply)
-end
-end
+end end
 --     Source DevProx     --
 if is_admin(msg.sender_user_id_, msg.chat_id_) and msg.reply_to_message_id_ ~= 0 then  
 if text and text:match("^تقييد$") and Abbas_Abs(msg) or text and text:match("^تقيد$") and Abbas_Abs(msg) then  
@@ -6018,7 +6012,7 @@ end
 --     Source DevProx     --
 if msg.reply_to_message_id_ ~= 0 then  
 if text and text:match("^الغاء تقييد$") and Abbas_Abs(msg) or text and text:match("^الغاء تقيد$") and Abbas_Abs(msg) then
-function mute_by_reply(extra, result, success)
+function unmute_by_reply(extra, result, success)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. result.sender_user_id_)
 local absc9 = user_info_ if user_info_ then
 if tonumber(result.sender_user_id_) == tonumber(bot_id) then  
@@ -6030,7 +6024,7 @@ DevAbs:srem(DevProx..'tkeed:'..msg.chat_id_, result.sender_user_id_)
 Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـمقيد ↫ ['..absc9..']\n☬︙تـۖم ٱڵغٱء تقييده بنجٱح', 1, 'md')
 end
 end
-getMessage(msg.chat_id_, msg.reply_to_message_id_,mute_by_reply)
+getMessage(msg.chat_id_, msg.reply_to_message_id_,unmute_by_reply)
 end
 end 
 end
@@ -6415,7 +6409,7 @@ else
 Renk = 'عضو'
 end
 if data.first_name_ == false then 
-Dev_Abs(msg.chat_id_, msg.id_, 1,'☬︙ٱڵحسٱب محذوف\n', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1,'☬︙ٱڵحسٱب محذوف', 1, 'md')
 return false  end
 if data.username_ == false then
 Dev_Abs(msg.chat_id_, msg.id_, 1,'☬︙ٱسمه ↫ ❨ '..CatchName(data.first_name_,20)..' ❩\n☬︙ٱيـډيه ↫ ❨ '..result.sender_user_id_..' ❩'..photouser1..'\n☬︙رسٱئڵه ↫ ❨ '..user_msgs..' ❩\n☬︙تفٱعڵه ↫ ❨ '..formsgg(msguser)..' ❩\n☬︙ٱڵقيود ↫ ❨ '..Tkeed..' ❩\n☬︙ٱڵتوٱجد ↫ ❨ '..tt..' ❩\n☬︙ رتبته بٱڵكروب ↫ ❨ '..Renk..' ❩\n☬︙رتبته بٱڵبوت ↫ ❨ '..t..' ❩\n☬︙نوع حسٱبه ↫ ❨ '..noh..' ❩', 1, 'md')
@@ -6588,6 +6582,7 @@ else
 photouser1 = '\n☬︙صوره ↫ ❨ '..pho.total_count_
 end
 local user_msgs = DevAbs:get(DevProx..'user:msgs'..msg.chat_id_..':'..data.id_) or 0
+local msguser = tonumber(DevAbs:get(DevProx..'user:msgs'..msg.chat_id_..':'..data.id_))
 if DevAbs:sismember(DevProx..'bot:gban:',iduser) then
 Tkeed = 'محظور عام'
 elseif DevAbs:sismember(DevProx..'bot:banned:'..msg.chat_id_,iduser) then
