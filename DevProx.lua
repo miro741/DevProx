@@ -4704,13 +4704,12 @@ i = i + 1
 if DevAbs:get(DevProx..'user:Name'..v.user_id_) then
 text = text..""..i.." ⌯ ❨ ["..DevAbs:get(DevProx..'user:Name'..v.user_id_).."] ❩\n"
 else
-text = text..""..i.." ⌯ ❨ ["..v.user_id_.."](tg://user?id="..v.user_id_..") ❩\n"
+text = text..""..i.." ⌯ ❨ "..v.user_id_.." ❩\n"
 end
 end 
 Dev_Abs(msg.chat_id_, msg.id_, 1, text, 1, 'md')
-print(text)
 end
-tdcli_function({ID = "GetChannelMembers",channel_id_ = getChatId(msg.chat_id_).ID, offset_ = 0,limit_ = 200000},tall,nil)
+tdcli_function({ID = "GetChannelMembers",channel_id_ = getChatId(msg.chat_id_).ID, offset_ = 0,limit_ = 200},tall,nil)
 end
 --     Source DevProx     --
 if text:match("^كللهم (.*)$") and Abbas_Abs(msg) then
@@ -4726,13 +4725,12 @@ i = i + 1
 if DevAbs:get(DevProx..'user:Name'..v.user_id_) then
 text = text..""..i.." ⌯ ❨ ["..DevAbs:get(DevProx..'user:Name'..v.user_id_).."] ❩\n"
 else
-text = text..""..i.." ⌯ ❨ ["..v.user_id_.."](tg://user?id="..v.user_id_..") ❩\n"
+text = text..""..i.." ⌯ ❨ "..v.user_id_.." ❩\n"
 end
 end 
 Dev_Abs(msg.chat_id_, msg.id_, 1, text, 1, 'md')
-print(text)
 end
-tdcli_function({ID = "GetChannelMembers",channel_id_ = getChatId(msg.chat_id_).ID, offset_ = 0,limit_ = 200000},tall,nil)
+tdcli_function({ID = "GetChannelMembers",channel_id_ = getChatId(msg.chat_id_).ID, offset_ = 0,limit_ = 200},tall,nil)
 end
 end
 --     Source DevProx     --
