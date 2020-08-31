@@ -5490,7 +5490,7 @@ if result.id_ then
 if is_leaderid(result.id_) == true then
 Dev_Abs(msg.chat_id_, msg.id_, 1, "☬︙لٱتستطيع تنزيڵ ٱڵمطور ٱلٱسٱسي", 1, 'md')
 return false 
-end end
+end
 if DevAbs:sismember(DevProx..'abs:SudoBot:',result.id_) then
 SudoBot = 'ٱڵمطورين • ' else SudoBot = '' end
 if DevAbs:sismember(DevProx..'abs:ownerall:',result.id_) then
@@ -5548,8 +5548,7 @@ DevAbs:srem(DevProx..'abs:admins:'..msg.chat_id_, result.id_)
 DevAbs:srem(DevProx..'abs:vipmem:'..msg.chat_id_, result.id_)
 end
 Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙*ٱڵمعرف غير صحيح*', 1, 'md')
-end
-end
+end end end
 resolve_username(rem[2],remm)
 end
 --     Source DevProx     --
@@ -8573,7 +8572,7 @@ for k,v in pairs(list) do
 t = t..k.." ⌯ ❨`"..v.."`❩\n" 
 end
 if #list == 0 then
-t = '☬︙لٱ يوجد مجموعٱت مفعڵة'
+t = '☬︙*لٱ يوجد مجموعٱت مفعڵة*'
 end
 Dev_Abs(msg.chat_id_, msg.id_, 1,t, 1, 'md')
 end end
