@@ -4540,7 +4540,7 @@ end
 --     Source DevProx     --
 if is_SudoBot(msg.sender_user_id_, msg.chat_id_) then
 if text ==  ""..name_bot..' غادر' or text == 'غادر' then
-if DevAbs:sismember(DevProx.."Left:Bot",msg.chat_id_) and not is_leader(msg) then
+if DevAbs:get(DevProx.."Left:Bot") and not is_leader(msg) then
 Dev_Abs(msg.chat_id_,msg.id_, 1, "☬︙ٱڵمغٱدره معطڵه من قبڵ ٱڵمطور ٱلٱسٱسي", 1, 'md')
 return false  
 end
@@ -8546,12 +8546,12 @@ if is_leader(msg) then
 if text == 'تفعيل المغادره' or text == '↫ تفعيل المغادره ☬' then   
 local ABS_PROX = '☬︙ٱهلٱ عزيزي ↫ '..abs_rank(msg)..' \n☬︙تـۖم تـفعيـۧڵ ٱڵمغٱدرة بنجٱح'
 absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 15, string.len(msg.sender_user_id_))
-DevAbs:srem(DevProx.."Left:Bot",msg.chat_id_)
+DevAbs:del(DevProx.."Left:Bot")
 end
 if text == 'تعطيل المغادره' or text == '↫ تعطيل المغادره ☬' then  
 local ABS_PROX = '☬︙ٱهلٱ عزيزي ↫ '..abs_rank(msg)..' \n☬︙تـۖم تـعطيـۧڵ ٱڵمغٱدرة بنجٱح'
 absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 15, string.len(msg.sender_user_id_))
-DevAbs:sadd(DevProx.."Left:Bot",msg.chat_id_) 
+DevAbs:set(DevProx.."Left:Bot") 
 end end
 --     Source DevProx     --
 if text and text:match("^ضع اسم (.*)$") and is_owner(msg.sender_user_id_, msg.chat_id_) and Abbas_Abs(msg) then
@@ -8702,7 +8702,7 @@ chat_leave(result.id_, bot_id)
 DevAbs:srem(DevProx.."bot:groups", result.id_)
 else
 Dev_Abs(msg.chat_id_, msg.id_, 1, "☬︙ڵم تتم ٱضٱفتي فيهٱ لٱقوم بمغٱدرتهٱ ", 1, "md")
-end  end
+end end
 getChat(txt[2], leavegp) 
 end end
 --     Source DevProx     --
