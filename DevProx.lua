@@ -8547,7 +8547,7 @@ end
 if text == 'تعطيل المغادره' or text == '↫ تعطيل المغادره ☬' then  
 local ABS_PROX = '☬︙ٱهلٱ عزيزي ↫ '..abs_rank(msg)..' \n☬︙تـۖم تـعطيـۧڵ ٱڵمغٱدرة بنجٱح'
 absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 15, string.len(msg.sender_user_id_))
-DevAbs:set(DevProx.."Left:Bot"..bot_id) 
+DevAbs:set(DevProx.."Left:Bot"..bot_id,true) 
 end end
 --     Source DevProx     --
 if text and text:match("^ضع اسم (.*)$") and is_owner(msg.sender_user_id_, msg.chat_id_) and Abbas_Abs(msg) then
