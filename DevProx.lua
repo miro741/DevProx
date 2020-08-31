@@ -8570,10 +8570,10 @@ else
 local list = DevAbs:smembers(DevProx.."bot:groups")
 local t = '☬︙مجموعٱت ٱڵـبوت ↫ ⤈ \n'
 for k,v in pairs(list) do
-t = t..k.." • {`"..v.."`}\n" 
+t = t..k.." ⌯ ❨`"..v.."`❩\n" 
 end
 if #list == 0 then
-t = '☬︙لٱ يوجد مجموعٱت مفعڵة '
+t = '☬︙لٱ يوجد مجموعٱت مفعڵة'
 end
 Dev_Abs(msg.chat_id_, msg.id_, 1,t, 1, 'md')
 end end
