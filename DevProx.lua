@@ -4701,8 +4701,8 @@ local text = "☬︙وينكم يٱڵربع \n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ �
 i = 0
 for k, v in pairs(f2.members_) do
 i = i + 1
-if DevAbs:get(DevProx..'user:'..v.user_id_) then
-text = text..""..i.." ⌯ ❨ ["..DevAbs:get(DevProx..'user:'..v.user_id_).."] ❩\n"
+if DevAbs:hgetall('user:'..v.user_id_) then
+text = text..""..i.." ⌯ ❨ ["..DevAbs:hgetall('user:'..v.user_id_).."] ❩\n"
 else
 text = text..""..i.." ⌯ ❨ "..v.user_id_.." ❩\n"
 end
