@@ -4727,8 +4727,8 @@ local chat = msg.chat_id_
 i = 0
 for k, v in pairs(f2.members_) do
 i = i + 1
-if DevAbs:get(DevProx..'user:Name'..v.user_id_) then
-text = text..""..i.." ⌯ ❨ ["..DevAbs:get(DevProx..'user:Name'..v.user_id_).."] ❩\n"
+if DevAbs:get(DevProx..'Save:UserName'..v.user_id_) then
+text = text..""..i.." ⌯ ❨ [@"..DevAbs:get(DevProx..'Save:UserName'..v.user_id_).."] ❩\n"
 else
 text = text..""..i.." ⌯ ❨ "..v.user_id_.." ❩\n"
 end
