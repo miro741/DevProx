@@ -4704,7 +4704,9 @@ i = i + 1
 local user_info = DevAbs:hgetall('user:'..v.user_id_)  
 local username = user_info.username
 if user_info and user_info.username then
-text = text.."<b>"..i.." </b> @"..username.."\n"
+text = text.."<b>"..i.."⌯ ❨</b> @"..username.." ❩\n"
+else
+text = text.."<b>"..i.."⌯ ❨</b> "..v.user_id_.." ❩\n"
 end
 end 
 Dev_Abs(msg.chat_id_, msg.id_, 1, text, 1, 'html')
