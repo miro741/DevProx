@@ -4702,9 +4702,9 @@ i = 0
 for k, v in pairs(f2.members_) do
 i = i + 1
 if DevAbs:get(DevProx..'user:Name'..v.user_id_) then
-text = text..""..i.." ⌯ ❨ ["..DevAbs:get(DevProx..'user:Name'..v.user_id_).."] ❩\n"
+text = text..""..i.." ⌯ ❨ [@"..DevAbs:get(DevProx..'user:Name'..v.user_id_).."] ❩\n"
 else
-text = text..""..i.." ⌯ ❨ ["..v.user_id_.."](tg://user?id="..v.user_id_..") ❩\n"
+text = text..""..i.." ⌯ ❨ "..v.user_id_.." ❩\n"
 end
 end 
 Dev_Abs(msg.chat_id_, msg.id_, 1, text, 1, 'md')
