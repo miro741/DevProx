@@ -6488,7 +6488,6 @@ else
 photouser1 = '\n☬︙صوره ↫ ❨ '..pho.total_count_
 end
 local user_msgs = DevAbs:get(DevProx..'user:msgs'..msg.chat_id_..':'..data.id_) or 0
-local msguser = DevAbs:get(DevProx..'user:msgs'..msg.chat_id_..':'..data.id_)
 if DevAbs:sismember(DevProx..'bot:gban:',res.id_) then
 Tkeed = 'محظور عام'
 elseif DevAbs:sismember(DevProx..'bot:banned:'..msg.chat_id_,res.id_) then
@@ -6524,7 +6523,6 @@ text = '☬︙ٱسمه ↫ ❨ '..CatchName(data.first_name_,20)..
 ' ❩\n☬︙ٱيـډيه ↫ ❨ '..res.id_..
 ' ❩'..photouser1..
 ' ❩\n☬︙رسٱئڵه ↫ ❨ '..user_msgs..
-' ❩\n☬︙تفٱعڵه ↫ ❨ '..formsgg(msguser)..
 ' ❩\n☬︙ٱڵقيود ↫ ❨ '..Tkeed..
 ' ❩\n☬︙ٱڵتوٱجد ↫ ❨ '..tt..
 ' ❩\n☬︙رتبته بٱڵكروب ↫ ❨ '..Renk..
@@ -6583,7 +6581,6 @@ else
 photouser1 = '\n☬︙صوره ↫ ❨ '..pho.total_count_
 end
 local user_msgs = DevAbs:get(DevProx..'user:msgs'..msg.chat_id_..':'..data.id_) or 0
-local msguser = tonumber(DevAbs:get(DevProx..'user:msgs'..msg.chat_id_..':'..data.id_))
 if DevAbs:sismember(DevProx..'bot:gban:',iduser) then
 Tkeed = 'محظور عام'
 elseif DevAbs:sismember(DevProx..'bot:banned:'..msg.chat_id_,iduser) then
@@ -6615,14 +6612,13 @@ if data.first_name_ == false then
 Dev_Abs(msg.chat_id_, msg.id_, 1,'☬︙ٱڵحسٱب محذوف\n', 1, 'md')
 return false  end
 if data.username_ == false then
-Dev_Abs(msg.chat_id_, msg.id_, 1,'☬︙ٱسمه ↫ ❨ '..CatchName(data.first_name_,20)..' ❩\n☬︙ٱيـډيه ↫ ❨ '..iduser..' ❩'..photouser1..'\n☬︙رسٱئڵه ↫ ❨ '..user_msgs..' ❩\n☬︙تفٱعڵه ↫ ❨ '..formsgg(msguser)..' ❩\n☬︙ٱڵقيود ↫ ❨ '..Tkeed..' ❩\n☬︙ٱڵتوٱجد ↫ ❨ '..tt..' ❩\n☬︙ رتبته بٱڵكروب ↫ ❨ '..Renk..' ❩\n☬︙رتبته بٱڵبوت ↫ ❨ '..t..' ❩', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1,'☬︙ٱسمه ↫ ❨ '..CatchName(data.first_name_,20)..' ❩\n☬︙ٱيـډيه ↫ ❨ '..iduser..' ❩'..photouser1..'\n☬︙رسٱئڵه ↫ ❨ '..user_msgs..' ❩\n☬︙ٱڵقيود ↫ ❨ '..Tkeed..' ❩\n☬︙ٱڵتوٱجد ↫ ❨ '..tt..' ❩\n☬︙ رتبته بٱڵكروب ↫ ❨ '..Renk..' ❩\n☬︙رتبته بٱڵبوت ↫ ❨ '..t..' ❩', 1, 'md')
 else
 text = '☬︙ٱسمه ↫ ❨ '..CatchName(data.first_name_,20)..
 ' ❩\n☬︙معرفه ↫ ❨ [@'..data.username_..']'..
 ' ❩\n☬︙ٱيـډيه ↫ ❨ '..iduser..
 ' ❩'..photouser1..
 ' ❩\n☬︙رسٱئڵه ↫ ❨ '..user_msgs..
-' ❩\n☬︙تفٱعڵه ↫ ❨ '..formsgg(msguser)..
 ' ❩\n☬︙ٱڵقيود ↫ ❨ '..Tkeed..
 ' ❩\n☬︙ٱڵتوٱجد ↫ ❨ '..tt..
 ' ❩\n☬︙رتبته بٱڵكروب ↫ ❨ '..Renk..
