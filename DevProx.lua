@@ -9868,7 +9868,7 @@ DevAbs:set(DevProx.."DevProx:brj_Bots"..msg.chat_id_,"close")
 end 
 if text == "تفعيل الابراج" and is_owner(msg.sender_user_id_, msg.chat_id_) then 
 Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙تم تفعيل الابراج', 1, 'md')
-DevAbs:set(DevProx.."DevProx:brj_Bots"..msg.chat_id_,"open", 1, 'md')
+DevAbs:set(DevProx.."DevProx:brj_Bots"..msg.chat_id_,"open")
 end 
 if text and text:match("^برج (.*)$") and DevAbs:get(DevProx.."DevProx:brj_Bots"..msg.chat_id_) == "open" then 
 local Textbrj = text:match("^برج (.*)$") 
