@@ -9862,6 +9862,63 @@ local text =  [[
 Dev_Abs(msg.chat_id_, msg.id_, 1, (help or text), 1, 'md')
 end end
 --     Source DevProx     --
+if text == "تعطيل الابراج" and is_owner(msg.sender_user_id_, msg.chat_id_) then 
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙تم تعطيل الابراج', 1, 'md')
+DevAbs:set(DevProx.."DevProx:brj_Bots"..msg.chat_id_,"close") 
+end 
+if text == "تفعيل الابراج" and is_owner(msg.sender_user_id_, msg.chat_id_) then 
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙تم تفعيل الابراج', 1, 'md')
+DevAbs:set(DevProx.."DevProx:brj_Bots"..msg.chat_id_,"open", 1, 'md')
+end 
+if text and text:match("^برج (.*)$") and DevAbs:get(DevProx.."DevProx:brj_Bots"..msg.chat_id_) == "open" then 
+local Textbrj = text:match("^برج (.*)$") 
+gk = https.request('https://forhassan.ml/Black/br.php?br='..URL.escape(Textbrj)..'') 
+br = JSON.decode(gk) 
+i = 0 
+for k,v in pairs(br.ok) do 
+i = i + 1 
+t = v.."\n" 
+end 
+Dev_Abs(msg.chat_id_, msg.id_, 1, t, 1, 'md')
+end 
+if text == "تعطيل حساب العمر" and is_owner(msg.sender_user_id_, msg.chat_id_) then 
+Dev_Abs(msg.chat_id_, msg.id_,  1, '☬︙تم تعطيل حساب العمر', 1, 'md')
+DevAbs:set(DevProx.."DevProx:age_Bots"..msg.chat_id_,"close") 
+end 
+if text == "تفعيل حساب العمر" and is_owner(msg.sender_user_id_, msg.chat_id_) then 
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙تم تفعيل حساب العمر', 1, 'md')
+DevAbs:set(DevProx.."DevProx:age_Bots"..msg.chat_id_,"open") 
+end 
+if text and text:match("^احسب (.*)$") and DevAbs:get(DevProx.."DevProx:age_Bots"..msg.chat_id_) == "open" then 
+local Textage = text:match("^احسب (.*)$") 
+ge = https.request('https://forhassan.ml/Black/age.php?age='..URL.escape(Textage)..'') 
+ag = JSON.decode(ge) 
+i = 0 
+for k,v in pairs(ag.ok) do 
+i = i + 1 
+t = v.."\n" 
+end 
+Dev_Abs(msg.chat_id_, msg.id_, 1, t, 1, 'md')
+end 
+if text == "تعطيل الانستا" and is_owner(msg.sender_user_id_, msg.chat_id_) then 
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙تم تعطيل الانستا', 1, 'md')
+DevAbs:set(DevProx.."DevProx:insta_bot"..msg.chat_id_,"close") 
+end 
+if text == "تفعيل الانستا" and is_owner(msg.sender_user_id_, msg.chat_id_) then 
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙تم تفعيل الانستا', 1, 'md')
+DevAbs:set(DevProx.."DevProx:insta_bot"..msg.chat_id_,"open") 
+end 
+if text and text:match("^معلومات (.*)$") and DevAbs:get(DevProx.."DevProx:insta_bot"..msg.chat_id_) == "open" then 
+local Textni = text:match("^معلومات (.*)$") 
+innn = https.request('https://forhassan.ml/Black/insta.php?user='..URL.escape(Textni)..'') 
+fff = JSON.decode(innn) 
+i = 0 
+for k,v in pairs(fff.ok) do 
+i = i + 1 
+t = "*"..v.."* \n" 
+end 
+Dev_Abs(msg.chat_id_, msg.id_, 1, t..'', 1, 'md')
+end
 if text == "تحديث السورس" and is_leader(msg) or text == "تحديث سورس" and is_leader(msg) then 
 Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙جٱري تـۧحډيث سۄرس ډيف برۄكس', 1, 'md') 
 os.execute('rm -rf DevProx.lua') 
