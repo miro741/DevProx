@@ -9862,39 +9862,6 @@ local text =  [[
 Dev_Abs(msg.chat_id_, msg.id_, 1, (help or text), 1, 'md')
 end end
 --     Source DevProx     --
-if text and text:match("^برج (.*)$") or text and text:match("^برجي (.*)$") then 
-local Textbrj = text:match("^برج (.*)$") or text:match("^برجي (.*)$") 
-gk = https.request('https://forhassan.ml/Black/br.php?br='..URL.escape(Textbrj)..'') 
-br = JSON.decode(gk) 
-i = 0 
-for k,v in pairs(br.ok) do 
-i = i + 1 
-t = v.."\n" 
-end 
-Dev_Abs(msg.chat_id_, msg.id_, 1, t, 1, 'md')
-end 
-if text and text:match("^احسب (.*)$") or text and text:match("^عمري (.*)$") then 
-local Textage = text:match("^احسب (.*)$") or text:match("^عمري (.*)$") 
-ge = https.request('https://forhassan.ml/Black/age.php?age='..URL.escape(Textage)..'') 
-ag = JSON.decode(ge) 
-i = 0 
-for k,v in pairs(ag.ok) do 
-i = i + 1 
-t = v.."\n" 
-end 
-Dev_Abs(msg.chat_id_, msg.id_, 1, t, 1, 'md')
-end 
-if text and text:match("^معلومات (.*)$") or text and text:match("^انستا (.*)$") then 
-local Textni = text:match("^معلومات (.*)$") or text:match("^انستا (.*)$") 
-innn = https.request('https://forhassan.ml/Black/insta.php?user='..URL.escape(Textni)..'') 
-fff = JSON.decode(innn) 
-i = 0 
-for k,v in pairs(fff.ok) do 
-i = i + 1 
-t = "*"..v.."* \n" 
-end 
-Dev_Abs(msg.chat_id_, msg.id_, 1, t..'', 1, 'md')
-end
 if text == "تحديث السورس" and is_leader(msg) or text == "تحديث سورس" and is_leader(msg) then 
 Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙جٱري تـۧحډيث سۄرس ډيف برۄكس', 1, 'md') 
 os.execute('rm -rf DevProx.lua') 
