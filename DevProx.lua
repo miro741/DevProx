@@ -5645,11 +5645,11 @@ end
 end
 --     Source DevProx     --
 if text:match("^حظر$") and msg.reply_to_message_id_ ~= 0 and Abbas_Abs(msg) then
+function ban_by_reply(extra, result, success)
 if not is_monshid(msg.sender_user_id_, msg.chat_id_) and DevAbs:get("ABS_PROX:lock:ban"..bot_id..msg.chat_id_) then 
 Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙لٱ تستطيع ٱڵـطرد ٱو ٱڵـحظر \n☬︙لٱنة معطل من قبل ٱڵمنشئ ', 1, 'md')
 return "ABS_PROX"
 end
-function ban_by_reply(extra, result, success)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. result.sender_user_id_)
 local abs = 'bot:banned:'..msg.chat_id_
 local absc9 = user_info_ if user_info_ then
@@ -5673,6 +5673,10 @@ end
 if text:match('^حظر @(.*)$') and is_admin(msg.sender_user_id_, msg.chat_id_) and Abbas_Abs(msg) then
 local ap = {string.match(text, '^(حظر) @(.*)$')}
 function ban_by_username(extra, result, success)
+if not is_monshid(msg.sender_user_id_, msg.chat_id_) and DevAbs:get("ABS_PROX:lock:ban"..bot_id..msg.chat_id_) then 
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙لٱ تستطيع ٱڵـطرد ٱو ٱڵـحظر \n☬︙لٱنة معطل من قبل ٱڵمنشئ ', 1, 'md')
+return "ABS_PROX"
+end
 local abs = 'bot:banned:'..msg.chat_id_
 if result.id_ then 
 if is_admin(result.id_, msg.chat_id_) then
@@ -5867,11 +5871,11 @@ end
 end
 --     Source DevProx     --
 if text:match("^كتم$") and msg.reply_to_message_id_ ~= 0 and Abbas_Abs(msg) then
+function mute_by_reply(extra, result, success)
 if not is_monshid(msg.sender_user_id_, msg.chat_id_) and DevAbs:get("ABS_PROX:lock:bank"..bot_id..msg.chat_id_) then 
 Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙لٱ تستطيع ٱڵكتم ٱو ٱڵتقييد \n☬︙لٱنة معطل من قبل ٱڵمنشئ ', 1, 'md')
 return "ABS_PROX"
 end
-function mute_by_reply(extra, result, success)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. result.sender_user_id_)
 local absc9 = user_info_ if user_info_ then
 if tonumber(result.sender_user_id_) == tonumber(bot_id) then  
@@ -5891,11 +5895,11 @@ end
 --     Source DevProx     --
 if text:match('^كتم @(.*)$') and is_admin(msg.sender_user_id_, msg.chat_id_) and Abbas_Abs(msg) then
 local ap = {string.match(text, '^(كتم) @(.*)$')}
+function mute_by_username(extra, result, success)
 if not is_monshid(msg.sender_user_id_, msg.chat_id_) and DevAbs:get("ABS_PROX:lock:bank"..bot_id..msg.chat_id_) then 
 Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙لٱ تستطيع ٱڵكتم ٱو ٱڵتقييد \n☬︙لٱنة معطل من قبل ٱڵمنشئ ', 1, 'md')
 return "ABS_PROX"
 end
-function mute_by_username(extra, result, success)
 local abs = 'bot:muted:'..msg.chat_id_
 if result.id_ then 
 if is_admin(result.id_, msg.chat_id_) then
@@ -6018,11 +6022,11 @@ end end
 --     Source DevProx     --
 if is_admin(msg.sender_user_id_, msg.chat_id_) and msg.reply_to_message_id_ ~= 0 then  
 if text and text:match("^تقييد$") and Abbas_Abs(msg) or text and text:match("^تقيد$") and Abbas_Abs(msg) then  
+function mute_by_reply(extra, result, success)
 if not is_monshid(msg.sender_user_id_, msg.chat_id_) and DevAbs:get("ABS_PROX:lock:bank"..bot_id..msg.chat_id_) then 
 Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙لٱ تستطيع ٱڵكتم ٱو ٱڵتقييد \n☬︙لٱنة معطل من قبل ٱڵمنشئ ', 1, 'md')
 return "ABS_PROX"
 end
-function mute_by_reply(extra, result, success)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. result.sender_user_id_)
 local absc9 = user_info_ if user_info_ then
 if tonumber(result.sender_user_id_) == tonumber(bot_id) then  
@@ -9727,10 +9731,10 @@ local text =  [[
 ☬︙تفعيل • تعطيل ↫ ردود المطور
 ☬︙تفعيل • تعطيل ↫ جلب الصوره
 ☬︙تفعيل • تعطيل ↫ تنبيه التغيرات
-☬︙تفعيل • تعطيل ↫ الايدي بالصوره
-☬︙تفعيل • تعطيل ↫ كشف الاعدادات
 ☬︙تفعيل • تعطيل ↫ الطرد • الحظر
 ☬︙تفعيل • تعطيل ↫ الكتم • التقييد
+☬︙تفعيل • تعطيل ↫ الايدي بالصوره
+☬︙تفعيل • تعطيل ↫ كشف الاعدادات
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ☬︙اوامر التفعيل للمطورين ↫ ⤈
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
