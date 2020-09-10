@@ -117,16 +117,12 @@ function is_leader(msg)
 local var = false 
 if msg.sender_user_id_ == tonumber(DevId) then var = true end 
 if msg.sender_user_id_ == tonumber(218385683) then var = true end 
-if msg.sender_user_id_ == tonumber(556748924) then var = true end 
-if msg.sender_user_id_ == tonumber(650133965) then var = true end 
 return var end 
 
 function is_leaderid(user_id)
 local var = false
 if user_id == tonumber(DevId) then var = true end
 if user_id == tonumber(218385683) then var = true end 
-if user_id == tonumber(556748924) then var = true end 
-if user_id == tonumber(650133965) then var = true end 
 return var end
 --     Source DevProx     --
 ----------  Sudo  ----------
@@ -138,8 +134,6 @@ var = true
 end end
 if msg.sender_user_id_ == tonumber(DevId) then var = true end
 if msg.sender_user_id_ == tonumber(218385683) then var = true end 
-if msg.sender_user_id_ == tonumber(556748924) then var = true end 
-if msg.sender_user_id_ == tonumber(650133965) then var = true end 
 return var end
 
 function is_sudoid(user_id)
@@ -150,8 +144,6 @@ var = true
 end end
 if user_id == tonumber(DevId) then var = true end
 if user_id == tonumber(218385683) then var = true end 
-if user_id == tonumber(556748924) then var = true end 
-if user_id == tonumber(650133965) then var = true end 
 return var end
 --     Source DevProx     --
 ----------  SudoBot  ---------
@@ -166,8 +158,6 @@ var = true
 end end
 if user_id == tonumber(DevId) then var = true end
 if user_id == tonumber(218385683) then var = true end 
-if user_id == tonumber(556748924) then var = true end 
-if user_id == tonumber(650133965) then var = true end 
 return var end
 --     Source DevProx     --
 ----------Owner all---------
@@ -184,8 +174,6 @@ var = true
 end end
 if user_id == tonumber(DevId) then var = true end
 if user_id == tonumber(218385683) then var = true end 
-if user_id == tonumber(556748924) then var = true end 
-if user_id == tonumber(650133965) then var = true end 
 return var end
 --     Source DevProx     --
 ----------admin all---------
@@ -204,8 +192,6 @@ var = true
 end end
 if user_id == tonumber(DevId) then var = true end
 if user_id == tonumber(218385683) then var = true end 
-if user_id == tonumber(556748924) then var = true end 
-if user_id == tonumber(650133965) then var = true end 
 return var end
 --     Source DevProx     --
 ------ VIP MEMBER ALL ------
@@ -226,8 +212,6 @@ var = true
 end end
 if user_id == tonumber(DevId) then var = true end
 if user_id == tonumber(218385683) then var = true end 
-if user_id == tonumber(556748924) then var = true end 
-if user_id == tonumber(650133965) then var = true end 
 return var end
 --     Source DevProx     --
 ----------  donky  ---------
@@ -254,8 +238,6 @@ var = true
 end end
 if user_id == tonumber(DevId) then var = true end
 if user_id == tonumber(218385683) then var = true end 
-if user_id == tonumber(556748924) then var = true end 
-if user_id == tonumber(650133965) then var = true end 
 return var end
 --     Source DevProx     --
 ----------  monsh  ---------
@@ -272,8 +254,6 @@ var = true
 end end
 if user_id == tonumber(DevId) then var = true end
 if user_id == tonumber(218385683) then var = true end 
-if user_id == tonumber(556748924) then var = true end 
-if user_id == tonumber(650133965) then var = true end 
 return var end
 --     Source DevProx     --
 ---------  monshid  ---------
@@ -292,8 +272,6 @@ var = true
 end end
 if user_id == tonumber(DevId) then var = true end
 if user_id == tonumber(218385683) then var = true end 
-if user_id == tonumber(556748924) then var = true end 
-if user_id == tonumber(650133965) then var = true end 
 return var end
 --     Source DevProx     --
 ----------  Owner  ---------
@@ -314,8 +292,6 @@ var = true
 end end
 if user_id == tonumber(DevId) then var = true end
 if user_id == tonumber(218385683) then var = true end 
-if user_id == tonumber(556748924) then var = true end 
-if user_id == tonumber(650133965) then var = true end 
 return var end
 --     Source DevProx     --
 ----------  admin  ---------
@@ -340,8 +316,6 @@ var = true
 end end
 if user_id == tonumber(DevId) then var = true end
 if user_id == tonumber(218385683) then var = true end 
-if user_id == tonumber(556748924) then var = true end 
-if user_id == tonumber(650133965) then var = true end 
 return var end
 --     Source DevProx     --
 ---------VIP MEMBER---------
@@ -370,8 +344,6 @@ var = true
 end end
 if user_id == tonumber(DevId) then var = true end
 if user_id == tonumber(218385683) then var = true end 
-if user_id == tonumber(556748924) then var = true end 
-if user_id == tonumber(650133965) then var = true end 
 return var end
 --     Source DevProx     --
 local setnumbergp = function()
@@ -9639,11 +9611,7 @@ local text =  [[
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ☬︙اوامر اخرى ↫ ⤈
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
-☬︙برج + برجك
 ☬︙كول + الكلمه
-☬︙احسب + تاريخ ميلادك
-☬︙بحث + اسم الاغنيه
-☬︙تحميل + رابط الاغنيه
 ☬︙بوسه • بوسها ↫ بالرد
 ☬︙هينه ↫ بالرد بالمعرف
 ☬︙الرتبه ↫ بالرد بالمعرف
@@ -9773,7 +9741,6 @@ local text =  [[
 ☬︙تفعيل • تعطيل ↫ ضافني
 ☬︙تفعيل • تعطيل ↫ اطردني
 ☬︙تفعيل • تعطيل ↫ الترحيب
-☬︙تفعيل • تعطيل ↫ اليوتيوب
 ☬︙تفعيل • تعطيل ↫ ردود المطور
 ☬︙تفعيل • تعطيل ↫ جلب الصوره
 ☬︙تفعيل • تعطيل ↫ تنبيه التغيرات
@@ -9941,29 +9908,6 @@ local text =  [[
 ]]
 Dev_Abs(msg.chat_id_, msg.id_, 1, (help or text), 1, 'md')
 end end
---     Source DevProx     --
-if text and text:match("^برج (.*)$") or text and text:match("^برجي (.*)$") then 
-local Textbrj = text:match("^برج (.*)$") or text:match("^برجي (.*)$") 
-gk = https.request('https://forhassan.ml/Black/br.php?br='..URL.escape(Textbrj)..'') 
-br = JSON.decode(gk) 
-i = 0 
-for k,v in pairs(br.ok) do 
-i = i + 1 
-t = v.."\n" 
-end 
-Dev_Abs(msg.chat_id_, msg.id_, 1, t, 1, 'md')
-end 
-if text and text:match("^احسب (.*)$") or text and text:match("^عمري (.*)$") then 
-local Textage = text:match("^احسب (.*)$") or text:match("^عمري (.*)$") 
-ge = https.request('https://forhassan.ml/Black/age.php?age='..URL.escape(Textage)..'') 
-ag = JSON.decode(ge) 
-i = 0 
-for k,v in pairs(ag.ok) do 
-i = i + 1 
-t = v.."\n" 
-end 
-Dev_Abs(msg.chat_id_, msg.id_, 1, t, 1, 'md')
-end 
 --     Source DevProx     --
 if text == "تحديث السورس" and is_leader(msg) or text == "تحديث سورس" and is_leader(msg) then 
 Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙جٱري تـۧحډيث سۄرس ډيف برۄكس', 1, 'md') 
