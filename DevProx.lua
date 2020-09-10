@@ -2271,6 +2271,12 @@ text = msg.content_.text_
 if msg.content_.text_ or msg.content_.video_ or msg.content_.sticker_ or msg.content_.voice_ or msg.content_.audio_ or msg.content_.photo_ or msg.content_.animation_ then
 local content_text = DevAbs:get(DevProx.."add:repallt"..msg.sender_user_id_)
 if content_text == 'save_rep' then
+if text == 'الغاء' then   
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙تـۖم ٱڵغاء حفظ ٱڵـرد', 1, 'md')
+DevAbs:del(DevProx.."addreply2:"..msg.sender_user_id_)
+DevAbs:del(DevProx.."add:repallt"..msg.sender_user_id_)
+return false
+end
 DevAbs:del(DevProx.."add:repallt"..msg.sender_user_id_)
 local content_text = DevAbs:get(DevProx.."addreply2:"..msg.sender_user_id_)
 if msg.content_.video_ then
@@ -2337,6 +2343,12 @@ end
 if msg.content_.video_ or msg.content_.voice_ or msg.content_.audio_ then
 local content_text = DevAbs:get(DevProx.."add:repmusic"..msg.sender_user_id_)
 if content_text == 'save_repmusic' then
+if text == 'الغاء' then   
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙تـۖم ٱڵغاء حفظ ٱلٱغنيه', 1, 'md')
+DevAbs:del(DevProx.."addreply3:"..msg.sender_user_id_)
+DevAbs:del(DevProx.."add:repmusic"..msg.sender_user_id_)
+return false
+end
 DevAbs:del(DevProx.."add:repmusic"..msg.sender_user_id_)
 local content_text = DevAbs:get(DevProx.."addreply3:"..msg.sender_user_id_)
 if msg.content_.video_ then
