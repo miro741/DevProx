@@ -4781,7 +4781,7 @@ end
 getUser(msg.sender_user_id_,get_firstname)
 end   
 --     Source DevProx     --
-if text:match("^رابط حذف$") or text:match("^رابط الحذف$") or text:match("^اريد رابط الحذف$") or  text:match("^شمرلي رابط الحذف$") or text:match("^اريد رابط حذف$") or text:match("^بوت الحذف$") then Dev_Abs(msg.chat_id_, msg.id_, 1, "☬︙[ اضغط هنا لحذف الحساب ](https://telegram.org/deactivate) \n☬︙[ اضغط هنا لديك مفاجئه ](https://t.me/Dev_Prox)", 1, 'md') end
+if text:match("^رابط حذف$") or text:match("^رابط الحذف$") or text:match("^اريد رابط الحذف$") or  text:match("^شمرلي رابط الحذف$") or text:match("^اريد رابط حذف$") or text:match("^بوت الحذف$") or text:match("^اريد بوت الحذف$") or text:match("^اريد بوت حذف$") or text:match("^بوت حذف$") or text:match("^بوت حذف حسابات$") or text:match("^راح احذف$") then Dev_Abs(msg.chat_id_, msg.id_, 1, "☬︙[ اضغط هنا لحذف الحساب ](https://t.me/DYFBOT) \n☬︙[ اضغط هنا لديك مفاجئه ](https://t.me/Dev_Prox)", 1, 'md') end
 if text:match("^جهاتي$") and Abbas_Abs(msg) or text:match("^اضافاتي$") and Abbas_Abs(msg) then add = (tonumber(DevAbs:get(DevProx..'bot:user:add'..msg.chat_id_..':'..msg.sender_user_id_)) or 0) Dev_Abs(msg.chat_id_, msg.id_, 1, "☬︙عدد جهٱتك ٱڵمضٱفة ↫ *❨ "..add.." ❩* ", 1, 'md') end
 if text:match("^تعديلاتي$") or text:match("^سحكاتي$") and Abbas_Abs(msg) then local edit_msg = DevAbs:get(DevProx..'bot:editmsg'..msg.chat_id_..msg.sender_user_id_) or 0  Dev_Abs(msg.chat_id_, msg.id_, 1, "☬︙عدد تعديلٱتك ↫ *❨ "..edit_msg.." ❩* ", 1, 'md') end
 if text:match("^رسائلي اليوم$") and Abbas_Abs(msg) then local ABS_PROX = DevAbs:get(DevProx..'user:msgs'..bot_id..os.date('%d')..':'..msg.chat_id_..':'..msg.sender_user_id_) or 0 Dev_Abs(msg.chat_id_, msg.id_, 1, "☬︙رسٱئڵك ٱڵيوم ↫ *❨ "..(ABS_PROX).." ❩* ", 1, 'md') end
