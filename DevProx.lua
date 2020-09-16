@@ -27,7 +27,8 @@ local AutoSet = function()
 io.write("\27[31;47m Ξ • الان ارسل ايدي المطور •\n Ξ   • Now send your id • \27[0;34;49m\n")  
 local SUDO = tonumber(io.read())   
 if not tostring(SUDO):match('%d+') then  
-local SUDO = 218385683
+io.write("\27[31;47m Ξ • اعد ارسل ايدي المطور •\n Ξ   • return send your id • \27[0;34;49m\n")  
+local SUDO = tonumber(io.read()) 
 end
 io.write("\27[31;47m Ξ • الان ارسل معرف المطور •\n Ξ • Now send your username • \27[0;34;49m\n")  
 local username = io.read()
