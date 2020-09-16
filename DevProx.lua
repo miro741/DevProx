@@ -4258,7 +4258,7 @@ Dev_Abs(msg.chat_id_, msg.id_, 1,'☬︙تـۖم بيع نقٱطك \n☬︙كڵ 
 end
 end
 --     Source DevProx     --
-if text == "تعيين قناة الاشتراك" or text == "تغيير قناة الاشتراك" or text == "تعيين الاشتراك الاجباري" then
+if text == "تعيين قناة الاشتراك" or text == "تغيير قناة الاشتراك" or text == "تعيين الاشتراك الاجباري" or text == "وضع قناة الاشتراك" then
 if not is_leader(msg) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ڵڵمطور ٱلٱسٱسي فقط ', 1, 'md')
 else
@@ -4267,6 +4267,7 @@ Dev_Abs(msg.chat_id_,msg.id_, 1, "☬︙*ٱرسڵ ڵي معرف قنٱة ٱلٱ�
 end end
 if text == "حذف قناة الاشتراك" and is_leader(msg) or text == "حذف قناه الاشتراك" and is_leader(msg) then  
 DevAbs:del(DevProx..'DevAbs3')
+DevAbs:del(DevProx.."DevAbs2")
 text = "☬︙تـۖم حذف قنٱة ٱلٱشترٱك ٱلٱجبٱري"
 Dev_Abs(msg.chat_id_, msg.id_, 1,text, 1, 'md') 
 end
