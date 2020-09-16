@@ -4258,7 +4258,7 @@ Dev_Abs(msg.chat_id_, msg.id_, 1,'☬︙تـۖم بيع نقٱطك \n☬︙كڵ 
 end
 end
 --     Source DevProx     --
-if text == "تعيين قناة الاشتراك" or text == "تغيير قناة الاشتراك" or text == "تعيين الاشتراك الاجباري" and Abbas_Abs(msg) then
+if text == "تعيين قناة الاشتراك" or text == "تغيير قناة الاشتراك" or text == "تعيين الاشتراك الاجباري" then
 if not is_leader(msg) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ڵڵمطور ٱلٱسٱسي فقط ', 1, 'md')
 else
@@ -4305,7 +4305,7 @@ end end end
 --     Source DevProx     --
 local msg = data.message_
 text = msg.content_.text_ 
-if not DevAbs:get(DevProx..'TFF'..msg.chat_id_) then
+if not DevAbs:get(DevProx..'hMs'..msg.chat_id_) then
 if text and text:match("^اهمس (.*) (.*)") then 
 text = text:gsub('@',"")
 for_abs = {string.match(text, "اهمس (.*) (.*)")}
