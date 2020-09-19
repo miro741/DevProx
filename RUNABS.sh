@@ -12,6 +12,7 @@ echo -e "\e[38;5;77m      • Welcome to source DevProx - اهلا بك في س�
 echo -e "\e[38;5;77m           •{ Setting up offices - جاري رفع المكاتب } •\e[0m"
 echo -e "\e[38;5;77m      • Installing source DevProx - جاري تحميل سورس ديف بروكس •\e[0m"
 echo -e "\e[38;5;77m                                  {0%}\e[0m"
+
 sudo apt-get update
 sudo apt-get upgrade -y
 
@@ -37,8 +38,8 @@ sudo apt-get upgrade -y
 echo -e "\e[38;5;77m      • Installing source DevProx - جاري تحميل سورس ديف بروكس •\e[0m"
 echo -e "\e[38;5;77m                                  {40%}\e[0m"
 
-sudo luarocks install luasocket
-sudo luarocks install luasecreset
+wget http://luarocks.org/releases/luarocks-2.2.2.tar.gz;tar zxpf luarocks-2.2.2.tar.gz;rm luarocks-2.2.2.tar.gz;sudo luarocks install luasec -y;cd luarocks-2.2.2;sudo luarocks install luasocket -y && ./configure
+sudo make bootstrap
 
 echo -e "\e[38;5;77m      • Installing source DevProx - جاري تحميل سورس ديف بروكس •\e[0m"
 echo -e "\e[38;5;77m                                  {50%}\e[0m"
@@ -52,6 +53,7 @@ echo -e "\e[38;5;77m                                  {60%}\e[0m"
 
 sudo luarocks install dkjson
 sudo luarocks install Lua-cURL
+sudo luarocks install luautf8
 
 echo -e "\e[38;5;77m      • Installing source DevProx - جاري تحميل سورس ديف بروكس •\e[0m"
 echo -e "\e[38;5;77m                                  {70%}\e[0m"
@@ -63,17 +65,16 @@ sudo apt-get install g++-4.7 -y c++-4.7
 echo -e "\e[38;5;77m      • Installing source DevProx - جاري تحميل سورس ديف بروكس •\e[0m"
 echo -e "\e[38;5;77m                                  {80%}\e[0m"
 
-sudo apt-get install libreadline-dev -y libconfig-dev -y libssl-dev -y lua5.2 -y liblua5.2-dev -y lua-socket -y lua-sec -y lua-expat -y libevent-dev -y make unzip git redis-server autoconf g++ -y libjansson-dev -y libpython-dev -y expat libexpat1-dev -y
+sudo apt-get install libreadline-dev libconfig-dev libssl-dev lua5.2 liblua5.2-dev lua-socket lua-sec lua-expat libevent-dev make unzip git redis-server autoconf g++ libjansson-dev libpython-dev expat libexpat1-dev -y
 sudo apt-get install screen -y
 sudo apt-get install tmux -y
 
 echo -e "\e[38;5;77m      • Installing source DevProx - جاري تحميل سورس ديف بروكس •\e[0m"
 echo -e "\e[38;5;77m                                  {90%}\e[0m"
 
-sudo apt-get install libstdc++6 -y
 sudo apt-get install lua-space -y
 sudo apt-get install libnotify-dev -y
- 
+
 echo -e "\e[38;5;77m      • Installing source DevProx - جاري تحميل سورس ديف بروكس •\e[0m"
 echo -e "\e[38;5;77m                                  {100%}\e[0m"
 echo -e "\e[38;5;77m    • The download has finished successfully -  انتهى التحميل بنجاح  •\e[0m"
