@@ -37,7 +37,7 @@ sudo apt-get upgrade -y
 echo -e "\e[38;5;77m      • Installing source DevProx - جاري تحميل سورس ديف بروكس •\e[0m"
 echo -e "\e[38;5;77m                                  {40%}\e[0m"
 
-wget http://luarocks.org/releases/luarocks-2.2.2.tar.gz;tar zxpf luarocks-2.2.2.tar.gz;rm luarocks-2.2.2.tar.gz;sudo luarocks install luasec -y;cd luarocks-2.2.2;sudo luarocks install luasocket -y && ./configure
+wget http://luarocks.org/releases/luarocks-2.2.2.tar.gz;tar zxpf luarocks-2.2.2.tar.gz;rm luarocks-2.2.2.tar.gz;cd luarocks-2.2.2;sudo luarocks install luasocket -y && ./configure
 sudo make bootstrap
 
 echo -e "\e[38;5;77m      • Installing source DevProx - جاري تحميل سورس ديف بروكس •\e[0m"
