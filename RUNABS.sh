@@ -100,7 +100,15 @@ echo -e "\e[38;5;77m             This Source Was Developed By (ABS) @IQ_ABS.  \e
 echo -e "\e[38;5;77m               This Is The Source Channel @Dev_Prox .  \e[0m"
 echo -e "\e[38;5;77m                            - DevProx -  \e[0m"
 echo -e "\e[38;5;77m            ---------------------------------------------- \e[0m"
+if [ "$1" = "install" ]; then
+install
+else
+if [ ! -f ./tg ]; then
+echo "Tg Is Not Found"
+exit 1
+fi
 ./tg -s DevProx.lua
+fi
 }
 
 if [ "$1" = "install" ]; then
