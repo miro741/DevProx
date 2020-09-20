@@ -1,4 +1,4 @@
-!/bin/bash
+#!/usr/bin/env bash
 #----------------------------------------------
 # This Source Was Developed By (ABS) @IQ_ABS. 
 # This Is The Source Channel @Dev_Prox . 
@@ -66,7 +66,7 @@ echo -e "\e[38;5;77m                                  {100%}\e[0m"
 sudo apt-get install libnotify-dev -y
 reset
 echo -e "\e[38;5;77m      |-------------------------------------------| \e[0m"
-‌‌‎echo -e "\e[38;5;77m      |    ____             ____                  | \e[0m"
+echo -e "\e[38;5;77m      |    ____             ____                  | \e[0m"
 echo -e "\e[38;5;77m      |   |  _ \  _____   _|  _ \ _ __ _____  __  | \e[0m"
 echo -e "\e[38;5;77m      |   | | | |/ _ \ \ / / |_) | '__/ _ \ \/ /  | \e[0m"
 echo -e "\e[38;5;77m      |   | |_| |  __/\ V /|  __/| | | (_) >  <   | \e[0m"
