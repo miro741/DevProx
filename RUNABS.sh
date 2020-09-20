@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+!/bin/bash
 #----------------------------------------------
 # This Source Was Developed By (ABS) @IQ_ABS. 
 # This Is The Source Channel @Dev_Prox . 
