@@ -34,6 +34,13 @@ io.write("\27[31;47m Ξ • الان ارسل معرف المطور •\n Ξ •
 local username = io.read()
 io.write("\27[31;47m Ξ   • الان ارسل توكن البوت •\n Ξ • Now Send Your Bots Token • \27[0;34;49m\n")  
 local token = io.read() 
+ local url , res = https.request('https://api.telegram.org/bot'..token..'/getMe')
+if res ~= 200 then
+io.write('\n\27[1;31m🔄┇Token Is Communication Error\n التوكن خطا جرب مره اخره \n\27[0;39;49m')
+else
+io.write('\n\27[1;31m☑┇Done Save Token : تم حفظ التوكن \n\27[0;39;49m')
+local token = io.read() 
+end 
 botid = token:match("(%d+)")
 local create = function(data, file, uglify)  
 file = io.open(file, "w+")   
