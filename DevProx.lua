@@ -8870,7 +8870,7 @@ end
 getUser(msg.sender_user_id_,adding)
 end
 ---
-if text and text:match('^تعطيل$') and is_SudoBot(msg.sender_user_id_, msg.chat_id_) and Abbas_Abs(msg) then
+if text == 'تعطيل' and is_SudoBot(msg.sender_user_id_, msg.chat_id_) and Abbas_Abs(msg) or text ==  ""..name_bot..' تعطيل' and is_SudoBot(msg.sender_user_id_, msg.chat_id_) and Abbas_Abs(msg) then
 function remgroup(extra, result, success)
 if not DevAbs:get(DevProx.."bot:enable:"..msg.chat_id_) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵمجـمۄعة ،بٱڵتاكيد ،مۧعطڵـة', 1, 'md')
