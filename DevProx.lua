@@ -108,7 +108,7 @@ bot_id = sudos.bot_id
 DevProx = sudos.bot_id
 SudoUser = sudos.username
 tokenbot = sudos.token
-name_bot = (DevAbs:get(DevProx..'name_bot') or 'بروكس')
+name_bot = (DevAbs:get('ABS_PROX:'..bot_id..'name_bot') or 'بروكس')
 DevUser = SudoUser:gsub('@','') 
 DevUser = DevUser:gsub([[\_]],'_')
 --     Source DevProx     --
@@ -8788,8 +8788,9 @@ end
 end
 getUser(msg.sender_user_id_,adding)
 end
----
-if text and text:match('^تعطيل$') and is_SudoBot(msg.sender_user_id_, msg.chat_id_) and Abbas_Abs(msg) then
+--     Source DevProx     --
+if is_SudoBot(msg.sender_user_id_, msg.chat_id_) then
+if text ==  ""..name_bot..' تعطيل' or text == 'تعطيل' then
 function remgroup(extra, result, success)
 if not DevAbs:get(DevProx.."bot:enable:"..msg.chat_id_) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵمجـمۄعة ،بٱڵتاكيد ،مۧعطڵـة', 1, 'md')
@@ -8804,7 +8805,8 @@ end
 end
 getUser(msg.sender_user_id_,remgroup)
 end
-
+end
+--     Source DevProx     --
 if text and text:match("^تفعيل الكروبات$") and is_SudoBot(msg.sender_user_id_, msg.chat_id_) and Abbas_Abs(msg) then
 local gps = DevAbs:smembers(DevProx.."bot:groups") or 0
 local gps2 = DevAbs:smembers("ABS_PROX:addg"..bot_id) or 0
@@ -9757,6 +9759,7 @@ local text =  [[
 ☬︙روابط الكروبات
 ☬︙تحديث السورس
 ☬︙اسم البوت + غادر
+☬︙اسم البوت + تعطيل
 ☬︙ضع كليشه المطور
 ☬︙نسخه ملف السورس
 ☬︙معلومات المجموعه
