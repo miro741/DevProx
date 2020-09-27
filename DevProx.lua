@@ -333,6 +333,7 @@ DevAbs13(chat,msg.id_,"☬︙تـۖم رفع ٱڵنسخه بنجٱح \n☬︙ت�
 vardump(groups)
 for idg,v in pairs(groups.GP_BOT) do
 DevAbs:sadd(DevProx.."bot:groups",idg)
+DevAbs:sadd(DevProx.."bot:userss",idg)
 DevAbs:set(DevProx.."bot:enable:"..idg,true)
 DevAbs:setex(DevProx.."bot:charge:"..idg,86400,true)
 DevAbs:sadd("ABS_PROX:addg"..bot_id, idg)
@@ -362,7 +363,7 @@ DevAbs:set(DevProx..'bot:forward:mute'..idg,true)
 if v.ABSMNSH then
 for k,idabsmsh in pairs(v.ABSMNSH) do
 DevAbs:sadd(DevProx..'abs:monsh:'..idg,idabsmsh)  
-print('تم رفع منشئ المجموعه')
+print('تم رفع منشئين المجموعات')
 end
 end
 if v.MNSH then
