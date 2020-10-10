@@ -5276,6 +5276,10 @@ end end
 if is_owner(msg.sender_user_id_, msg.chat_id_) then
 if text ==('رفع ادمن') and Abbas_Abs(msg) then
 function prom_reply(extra, result, success)
+if not is_monsh(msg.sender_user_id_, msg.chat_id_) and DevAbs:get(DevProx.."ABS_PROX:lock:set"..msg.chat_id_) then 
+Dev_Abs(msg.chat_id_, msg.id_, 1,'☬︙لٱتستطيع رفع احد وذالك بسبب تعطيڵ ٱڵرفع من قبڵ ٱڵمنشئيين', 1, 'md')
+return false
+end
 DevAbs:sadd(DevProx..'abs:admins:'..msg.chat_id_,result.sender_user_id_)
 setadmins(msg,msg.chat_id_,result.sender_user_id_)
 end 
@@ -5286,6 +5290,10 @@ end end
 if text and text:match('^رفع ادمن @(.*)') and Abbas_Abs(msg) then
 local username = text:match('^رفع ادمن @(.*)')
 function promreply(extra,result,success)
+if not is_monsh(msg.id_, msg.chat_id_) and DevAbs:get(DevProx.."ABS_PROX:lock:set"..msg.chat_id_) then 
+Dev_Abs(msg.chat_id_, msg.id_, 1,'☬︙لٱتستطيع رفع احد وذالك بسبب تعطيڵ ٱڵرفع من قبڵ ٱڵمنشئيين', 1, 'md')
+return false
+end
 if result.id_ then
 DevAbs:sadd(DevProx..'abs:admins:'..msg.chat_id_,result.id_)
 setadmins(msg,msg.chat_id_,result.id_)
@@ -5296,6 +5304,10 @@ resolve_username(username,promreply)
 end
 if text and text:match('^رفع ادمن (%d+)') and Abbas_Abs(msg) then
 local user = text:match('رفع ادمن (%d+)')
+if not is_monsh(user, msg.chat_id_) and DevAbs:get(DevProx.."ABS_PROX:lock:set"..msg.chat_id_) then 
+Dev_Abs(msg.chat_id_, msg.id_, 1,'☬︙لٱتستطيع رفع احد وذالك بسبب تعطيڵ ٱڵرفع من قبڵ ٱڵمنشئيين', 1, 'md')
+return false
+end
 DevAbs:sadd(DevProx..'abs:admins:'..msg.chat_id_,user)
 setadmins(msg,msg.chat_id_,user)
 end
@@ -5331,6 +5343,10 @@ end end
 if is_admin(msg.sender_user_id_, msg.chat_id_) then
 if text ==('رفع مميز') and Abbas_Abs(msg) then
 function prom_reply(extra, result, success)
+if not is_monsh(msg.sender_user_id_, msg.chat_id_) and DevAbs:get(DevProx.."ABS_PROX:lock:set"..msg.chat_id_) then 
+Dev_Abs(msg.chat_id_, msg.id_, 1,'☬︙لٱتستطيع رفع احد وذالك بسبب تعطيڵ ٱڵرفع من قبڵ ٱڵمنشئيين', 1, 'md')
+return false
+end
 DevAbs:sadd(DevProx..'abs:vipmem:'..msg.chat_id_,result.sender_user_id_)
 setvipmem(msg,msg.chat_id_,result.sender_user_id_)
 end 
@@ -5341,6 +5357,10 @@ end end
 if text and text:match('^رفع مميز @(.*)') and Abbas_Abs(msg) then
 local username = text:match('^رفع مميز @(.*)')
 function promreply(extra,result,success)
+if not is_monsh(msg.id_, msg.chat_id_) and DevAbs:get(DevProx.."ABS_PROX:lock:set"..msg.chat_id_) then 
+Dev_Abs(msg.chat_id_, msg.id_, 1,'☬︙لٱتستطيع رفع احد وذالك بسبب تعطيڵ ٱڵرفع من قبڵ ٱڵمنشئيين', 1, 'md')
+return false
+end
 if result.id_ then
 DevAbs:sadd(DevProx..'abs:vipmem:'..msg.chat_id_,result.id_)
 setvipmem(msg,msg.chat_id_,result.id_)
@@ -5351,6 +5371,10 @@ resolve_username(username,promreply)
 end
 if text and text:match('^رفع مميز (%d+)') and Abbas_Abs(msg) then
 local user = text:match('رفع مميز (%d+)')
+if not is_monsh(user, msg.chat_id_) and DevAbs:get(DevProx.."ABS_PROX:lock:set"..msg.chat_id_) then 
+Dev_Abs(msg.chat_id_, msg.id_, 1,'☬︙لٱتستطيع رفع احد وذالك بسبب تعطيڵ ٱڵرفع من قبڵ ٱڵمنشئيين', 1, 'md')
+return false
+end
 DevAbs:sadd(DevProx..'abs:vipmem:'..msg.chat_id_,user)
 setvipmem(msg,msg.chat_id_,user)
 end
@@ -5552,26 +5576,6 @@ end
 end
 getMessage(msg.chat_id_, msg.reply_to_message_id_,promote_by_reply)
 end
-if text:match("^الغاء خاصيه تغيير الاسم$") and is_monshid(msg.sender_user_id_, msg.chat_id_) and msg.reply_to_message_id_  and Abbas_Abs(msg) then
-function promote_by_reply(extra, result, success)
-local user_info_ = DevAbs:get(DevProx..'user:Name' .. result.sender_user_id_)
-local absc9 = user_info_ if user_info_ then
-HTTPS.request("https://api.telegram.org/bot" .. tokenbot .. "/promoteChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" ..result.sender_user_id_.."&can_change_info=false&can_delete_messages=True&can_invite_users=True&can_restrict_members=True&can_pin_messages=True&can_promote_members=false")
-Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ ['..absc9..']\n☬︙تـۖم ٱڵغٱء خٱصية تغيير ٱلٱسـم عنه', 1, 'md')
-end
-end
-getMessage(msg.chat_id_, msg.reply_to_message_id_,promote_by_reply)
-end
-if text:match("^الغاء خاصيه التثبيت$") and is_monshid(msg.sender_user_id_, msg.chat_id_) and msg.reply_to_message_id_ and Abbas_Abs(msg) then
-function promote_by_reply(extra, result, success)
-local user_info_ = DevAbs:get(DevProx..'user:Name' .. result.sender_user_id_)
-local absc9 = user_info_ if user_info_ then
-HTTPS.request("https://api.telegram.org/bot" .. tokenbot .. "/promoteChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" ..result.sender_user_id_.."&can_change_info=false&can_delete_messages=True&can_invite_users=True&can_restrict_members=True&can_pin_messages=false&can_promote_members=false")
-Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙ٱڵـعضو ↫ ['..absc9..']\n☬︙تـۖم ٱڵغٱء خٱصية ٱڵـتثبيت عنه', 1, 'md')
-end
-end
-getMessage(msg.chat_id_, msg.reply_to_message_id_,promote_by_reply)
-end
 --     Source DevProx     --
 if is_admin(msg.sender_user_id_, msg.chat_id_) then
 if text:match("^مسح$") or text:match("^حذف$") and msg.reply_to_message_id_ ~= 0 and Abbas_Abs(msg) then
@@ -5592,8 +5596,6 @@ DevAbs:set("ABS_PROX:lock:ban"..bot_id..msg.chat_id_,"ABS_PROX")
 local ABS_PROX = '☬︙ٱهلٱ عزيزي ↫ '..abs_rank(msg)..' \n☬︙تـۖم تـعطيـۧڵ ٱڵـطرد وٱڵـحظر'
 absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 15, string.len(msg.sender_user_id_))
 end
-end
-if is_monshid(msg.sender_user_id_, msg.chat_id_) then
 if text:match("^تفعيل الكتم$") and Abbas_Abs(msg) or text:match("^تفعيل التقييد$") and Abbas_Abs(msg) then
 DevAbs:del("ABS_PROX:lock:bank"..bot_id..msg.chat_id_)
 local ABS_PROX = '☬︙ٱهلٱ عزيزي ↫ '..abs_rank(msg)..' \n☬︙تـۖم تـفعيـۧڵ ٱڵكتم وٱڵتقييد'
@@ -5603,6 +5605,16 @@ if text:match("^تعطيل الكتم$") and Abbas_Abs(msg) or text:match("^تع
 DevAbs:set("ABS_PROX:lock:bank"..bot_id..msg.chat_id_,"ABS_PROX")
 local ABS_PROX = '☬︙ٱهلٱ عزيزي ↫ '..abs_rank(msg)..' \n☬︙تـۖم تـعطيـۧڵ ٱڵكتم وٱڵتقييد'
 absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 15, string.len(msg.sender_user_id_))
+end
+end
+if is_monsh(msg.sender_user_id_, msg.chat_id_) then
+if text:match("^تفعيل الرفع$") and Abbas_Abs(msg) or text:match("^تفعيل الترقيه$") and Abbas_Abs(msg) then
+DevAbs:del(DevProx.."ABS_PROX:lock:set"..msg.chat_id_)
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙تـۖم تـفعيـۧڵ رفع ↫ الادمن • المميز', 1, 'md')
+end
+if text:match("^تعطيل الرفع$") and Abbas_Abs(msg) or text:match("^تعطيل الترقيه$") and Abbas_Abs(msg) then
+DevAbs:set(DevProx.."ABS_PROX:lock:set"..msg.chat_id_,"true")
+Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙تـۖم تـعطيـۧڵ رفع ↫ الادمن • المميز', 1, 'md')
 end
 end
 --     Source DevProx     --
@@ -9690,7 +9702,7 @@ local text =  [[
 ☬︙الاوامر الخاصه بالمشرفين ↫ ⤈
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ☬︙تنزيل الكل
-☬︙رفع المشرفين
+☬︙رفع الادمنيه
 ☬︙رفع • تنزيل ↫ منشئ
 ☬︙رفع • تنزيل ↫ مدير
 ☬︙رفع • تنزيل ↫ ادمن
@@ -9698,8 +9710,6 @@ local text =  [[
 ☬︙رفع • تنزيل ↫ منشئ اساسي
 ☬︙رفع • تنزيل ↫ ادمن بالكروب
 ☬︙رفع بكل الصلاحيات
-☬︙الغاء خاصيه التثبيت
-☬︙الغاء خاصيه تغيير الاسم
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ☬︙الاوامر الخاصه بالمطورين ↫ ⤈
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
@@ -9736,6 +9746,7 @@ local text =  [[
 ☬︙تفعيل • تعطيل ↫ الالعاب
 ☬︙تفعيل • تعطيل ↫ الايدي
 ☬︙تفعيل • تعطيل ↫ الرابط
+☬︙تفعيل • تعطيل ↫ الرفع
 ☬︙تفعيل • تعطيل ↫ ضافني
 ☬︙تفعيل • تعطيل ↫ نزلني
 ☬︙تفعيل • تعطيل ↫ اطردني
@@ -10046,7 +10057,7 @@ if DevAbs:get(DevProx..'bot:links:mute'..result.chat_id_) then
 local msgs = {[0] = data.message_id_}
 delete_msg(msg.chat_id_,msgs)
 end end
-if text:match("[Hh][Tt][Tt][Pp][Ss]://") or text:match("[Hh][Tt][Tt][Pp]://") or text:match(".[Ii][Rr]") or text:match(".[Cc][Oo][Mm]") or text:match(".[Oo][Rr][Gg]") or text:match(".[Ii][Nn][Ff][Oo]") or text:match("[Ww][Ww][Ww].") or text:match(".[Tt][Kk]") then
+if text:match("[Hh][Tt][Tt][Pp][Ss]://") or text:match("[Hh][Tt][Tt][Pp]://") or text:match(".[Cc][Oo][Mm]") or text:match(".[Oo][Rr][Gg]") or text:match("[Ww][Ww][Ww].") or text:match(".[Xx][Yy][Zz]") then
 if DevAbs:get(DevProx..'bot:webpage:mute'..result.chat_id_) then
 local msgs = {[0] = data.message_id_}
 delete_msg(msg.chat_id_,msgs)
