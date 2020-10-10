@@ -1880,7 +1880,9 @@ end end
 getUser(msg.sender_user_id_,adding) 
 else
 Dev_Abs(msg.chat_id_, msg.id_, 1, '☬︙لٱ تستطيع تفعيڵ هذه ٱڵمجـمۄعة بسبب تعطيڵ ٱڵبوت الخدمي من قبڵ ٱڵمطور ٱلٱسٱسي', 1, 'md') 
-end end end end 
+end end 
+end 
+end 
 --     Source DevProx     --
 if (data.ID == "UpdateNewMessage") then
 local msg = data.message_
