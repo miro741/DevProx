@@ -8219,6 +8219,12 @@ local ABS_PROX = '☬︙ٱهلٱ عزيزي ↫ '..abs_rank(msg)..' \n☬︙تـ
 absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 15, string.len(msg.sender_user_id_))
 DevAbs:del(DevProx..'abs:monshid:'..msg.chat_id_)
 end end
+if is_monshid(msg.sender_user_id_, msg.chat_id_) then
+if txts[2] == 'المدراء' or txtss[2] == 'المدراء' then
+local ABS_PROX = '☬︙ٱهلٱ عزيزي ↫ '..abs_rank(msg)..' \n☬︙تـۖم حـذف ٱڵمدرٱء \n ✓'
+absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 15, string.len(msg.sender_user_id_))
+DevAbs:del(DevProx..'abs:owners:'..msg.chat_id_)
+end end
 if txts[2] == 'الادمنيه' or txtss[2] == 'الادمنيه' then
 local ABS_PROX = '☬︙ٱهلٱ عزيزي ↫ '..abs_rank(msg)..' \n☬︙تـۖم حـذف ٱلٱدمنية \n ✓'
 absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 15, string.len(msg.sender_user_id_))
@@ -8259,11 +8265,6 @@ if txts[2] == 'قائمه المنع العام'or txtss[2] == 'قائمه ال�
 local ABS_PROX = '☬︙ٱهلٱ عزيزي ↫ '..abs_rank(msg)..' \n☬︙تـۖم حـذف قٱئمة ٱڵمنع ٱڵعٱم \n ✓'
 absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 15, string.len(msg.sender_user_id_))
 DevAbs:del(DevProx..'bot:freewords:')
-end
-if txtss[2] == 'المدراء' or txts[2] == 'المدراء' then
-local ABS_PROX = '☬︙ٱهلٱ عزيزي ↫ '..abs_rank(msg)..' \n☬︙تـۖم حـذف ٱڵمدرٱء \n ✓'
-absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 15, string.len(msg.sender_user_id_))
-DevAbs:del(DevProx..'abs:owners:'..msg.chat_id_)
 end
 if txtss[2] == 'المنشئين الاساسيين' or txts[2] == 'المنشئين الاساسيين' then
 local ABS_PROX = '☬︙ٱهلٱ عزيزي ↫ '..abs_rank(msg)..' \n☬︙تـۖم حـذف ٱڵمنشئين ٱلٱسٱسيين \n ✓'
