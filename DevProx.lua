@@ -8553,27 +8553,19 @@ end
 --     Source DevProx     --
 if text and text:match("^برج (.*)$") or text and text:match("^برجي (.*)$") then 
 local TextBrg = text:match("^برج (.*)$") or text:match("^برجي (.*)$") 
-URL = https.request('https://apiabs.ml/brg.php?brg='..URL.escape(TextBrg)..'') 
-Brg = JSON.decode(URL) 
-i = 0 
-for k,v in pairs(Brg.ok) do 
-i = i + 1 
-t = v.."\n" 
-end 
+UrlBrg = https.request('https://apiabs.ml/brg.php?brg='..URL.escape(TextBrg)..'') 
+Brg = JSON.decode(UrlBrg) 
+t = Brg.ok.abs  
 Dev_Abs(msg.chat_id_, msg.id_, 1, t, 1, 'html')
-end 
+end
 --     Source DevProx     --
 if text and text:match("^احسب (.*)$") or text and text:match("^عمري (.*)$") then 
 local TextAge = text:match("^احسب (.*)$") or text:match("^عمري (.*)$") 
-URL = https.request('https://apiabs.ml/age.php?age='..URL.escape(TextAge)..'') 
-Age = JSON.decode(URL) 
-i = 0 
-for k,v in pairs(Age.ok) do 
-i = i + 1 
-t = v.."\n" 
-end 
+UrlAge = https.request('https://apiabs.ml/age.php?age='..URL.escape(TextAge)..'') 
+Age = JSON.decode(UrlAge) 
+t = Age.ok.abs
 Dev_Abs(msg.chat_id_, msg.id_, 1, t, 1, 'html')
-end 
+end
 --     Source DevProx     --
 if is_admin(msg.sender_user_id_, msg.chat_id_) then
 if text and text:match("^الروابط$") then if not DevAbs:get(DevProx..'bot:lock_Settings'..msg.chat_id_) then if DevAbs:get(DevProx..'bot:links:mute'..msg.chat_id_) then mute_links = 'مقفله' else mute_links = 'مفتوحه' end local ABS_PROX = "\n" .."⌁︙الروابط ↫ "..mute_links.."\n" Dev_Abs(msg.chat_id_, msg.id_, 1, ABS_PROX, 1, 'md') end end
