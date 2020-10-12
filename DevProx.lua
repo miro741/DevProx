@@ -8560,7 +8560,7 @@ for k,v in pairs(Brg.ok) do
 i = i + 1 
 t = v.."\n" 
 end 
-Dev_Abs(msg.chat_id_, msg.id_, 1, t, 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, t, 1, 'html')
 end 
 --     Source DevProx     --
 if text and text:match("^احسب (.*)$") or text and text:match("^عمري (.*)$") then 
@@ -8572,7 +8572,7 @@ for k,v in pairs(Age.ok) do
 i = i + 1 
 t = v.."\n" 
 end 
-Dev_Abs(msg.chat_id_, msg.id_, 1, t, 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, t, 1, 'html')
 end 
 --     Source DevProx     --
 if is_admin(msg.sender_user_id_, msg.chat_id_) then
@@ -9633,7 +9633,9 @@ local text =  [[
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ⌁︙اوامر اخرى ↫ ⤈
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
+⌁︙برج + برجك
 ⌁︙كول + الكلمه
+⌁︙احسب + تاريخ ميلادك
 ⌁︙بوسه • بوسها ↫ بالرد
 ⌁︙الرتبه ↫ بالرد بالمعرف
 ⌁︙هينه • هينها ↫ بالرد بالمعرف
