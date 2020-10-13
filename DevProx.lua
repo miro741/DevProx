@@ -1158,7 +1158,7 @@ if DevAbs:get(DevProx..'bot:textch:user') then
 local textchuser = DevAbs:get(DevProx..'bot:textch:user')
 Dev_Abs(msg.chat_id_, msg.id_, 1, '['..textchuser..']', 1, 'md')
 else
-Dev_Abs(msg.chat_id_,msg.id_, 1, "⌁︙عذرا لايمكنك استخدام البوت \n⌁︙رجائا اشترك في قناة البوت \n⌁︙لتتمكن من استخدامه \n⌁︙القناة ↫ "..channel, 1 , "html")
+Dev_Abs(msg.chat_id_,msg.id_, 1, "⌁︙عليك الاشتراك في قناة البوت \n⌁︙قناة البوت ↫ "..channel, 1 , "html")
 end
 elseif data.ok then
 return var
@@ -10008,7 +10008,7 @@ Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙كليشة الاشتراك ↫ ⤈ \n�
 else
 local DevAbs6 = DevAbs:get(DevProx.."DevAbs3")
 if DevAbs6 then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙عذرا لايمكنك استخدام البوت \n⌁︙رجائا اشترك في قناة البوت \n⌁︙لتتمكن من استخدامه \n⌁︙القناة ↫ { ['..DevAbs6..'] }', 1, "md")
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙عليك الاشتراك في قناة البوت \n⌁︙قناة البوت ↫ '..DevAbs6, 1, "html")
 else
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙لم يتم تعيين قناة الاشتراك الاجباري \n⌁︙ارسل (تعيين قناة الاشتراك) للتعيين ', 1, 'md')
 end end end end
