@@ -4456,6 +4456,10 @@ if tonumber(result.id_) == tonumber(218385683) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, 'دي لكك تريد اهينن تاج راسكك؟😏🖕🏿', 1, 'md') 
 return false  
 end  
+if is_absmonsh(result.id_, msg.chat_id_) then  
+Dev_Abs(msg.chat_id_, msg.id_, 1, 'دي لكك تريد اهينن تاج راسكك؟😏🖕🏿', 1, 'md')
+return false
+end 
 local ABS_PROX = "صارر ستاذيي 🏃🏻‍♂️♥️" 
 Dev_Abs(msg.chat_id_, msg.id_, 1,ABS_PROX, 1, 'md') 
 local ABS_PROX = { "لكك جرجف @"..username.." احترم اسيادكك لا اكتلكك وازربب على كبركك،💩🖐🏿","هشش لكك فاشل @"..username.." لتضل تمسلت لا اخربط تضاريس وجهك جنه ابط عبده، 😖👌🏿","حبيبي @"..username.." راح احاول احترمكك هالمره بلكي تبطل حيونه، 🤔🔪","دمشي لك @"..username.." ينبوع الفشل مو زين ملفيك ونحجي وياك هي منبوذ 😏🖕🏿","ها الغليض التفس ابو راس المربع @"..username.." متعلملك جم حجايه وجاي تطكطكهن علينه دبطل😒🔪",}
@@ -4478,6 +4482,10 @@ Dev_Abs(msg.chat_id_, msg.id_, 1, 'دي لكك تريد اهينن تاج راس
 return false
 end 
 if tonumber(result.sender_user_id_) == tonumber(218385683) then  
+Dev_Abs(msg.chat_id_, msg.id_, 1, 'دي لكك تريد اهينن تاج راسكك؟😏🖕🏿', 1, 'md')
+return false
+end 
+if is_absmonsh(result.sender_user_id_, msg.chat_id_) then  
 Dev_Abs(msg.chat_id_, msg.id_, 1, 'دي لكك تريد اهينن تاج راسكك؟😏🖕🏿', 1, 'md')
 return false
 end 
@@ -5420,16 +5428,15 @@ local user_info_ = DevAbs:get(DevProx..'user:Name' .. result.id_)
 local absc9 = user_info_ if user_info_ then
 if result.id_ then
 if not DevAbs:sismember(DevProx..'bot:banned:'..msg.chat_id_, result.id_) then
-text = '⌁︙العضو ↫ ['..absc9..']\n⌁︙هو ليس محظور لالغاء حظرة'
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙العضو ↫ ['..absc9..']\n⌁︙هو ليس محظور لالغاء حظرة', 1, 'md')
 else
 DevAbs:srem(DevProx..'bot:banned:'..msg.chat_id_, result.id_)
-text = '⌁︙المحظور ↫ ['..absc9..']\n⌁︙تم الغاء حظرة من المجموعة'
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙المحظور ↫ ['..absc9..']\n⌁︙تم الغاء حظرة من المجموعة', 1, 'md')
 end
 else
-text = '⌁︙*المعرف غير صحيح*'
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙*المعرف غير صحيح*', 1, 'md')
 end
 end
-Dev_Abs(msg.chat_id_, msg.id_, 1, text, 1, 'md')
 end
 resolve_username(ap[2],unban_by_username)
 end
@@ -5458,9 +5465,9 @@ if is_leaderid(result.sender_user_id_) == true then
 Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙*لاتستطيع حظر المطور الاساسي*", 1, 'md')
 return false 
 end
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙العضو ↫ ['..absc9..']\n⌁︙تم حظرة من ❨ '..gps..' ❩ مجموعة', 1, 'md')
 DevAbs:sadd(DevProx..abs, result.sender_user_id_)
 chat_kick(result.chat_id_, result.sender_user_id_)
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙العضو ↫ ['..absc9..']\n⌁︙تم حظرة من ❨ '..gps..' ❩ مجموعة', 1, 'md')
 end
 end
 getMessage(msg.chat_id_, msg.reply_to_message_id_,gban_by_reply)
@@ -5473,18 +5480,14 @@ local gps = DevAbs:scard(DevProx.."bot:groups")
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. result.id_)
 local abs = 'bot:gban:'
 local absc9 = user_info_ if user_info_ then
-if result.id_ then
 if is_leaderid(result.id_) == true then
 Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙*لاتستطيع حظر المطور الاساسي*", 1, 'md')
 return false 
 end
-text = '⌁︙العضو ↫ ['..absc9..']\n⌁︙تم حظرة من ❨ '..gps..' ❩ مجموعة'
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙العضو ↫ ['..absc9..']\n⌁︙تم حظرة من ❨ '..gps..' ❩ مجموعة', 1, 'md')
 DevAbs:sadd(DevProx..abs, result.id_)
-else
-text = '⌁︙*المعرف غير صحيح*'
+chat_kick(msg.chat_id_, result.id_)
 end
-end
-Dev_Abs(msg.chat_id_, msg.id_, 1, text, 1, 'md')
 end
 resolve_username(aps[2],gban_by_username)
 end
@@ -5501,8 +5504,8 @@ return false
 end
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙العضو ↫ ['..absc9..']\n⌁︙تم حظرة من ❨ '..gps..' ❩ مجموعة', 1, 'md')
 end
-DevAbs:set(DevProx..'bot:gban:'..ap[2],true)
 DevAbs:sadd(DevProx..abs, ap[2])
+chat_kick(msg.chat_id_, ap[2])
 end
 --     Source DevProx     --
 local text = msg.content_.text_:gsub('الغاء العام','الغاء عام')
@@ -5526,14 +5529,9 @@ local gps = DevAbs:scard(DevProx.."bot:groups")
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. result.id_)
 local abs = 'bot:gban:'
 local absc9 = user_info_ if user_info_ then
-if result.id_ then
-text = '⌁︙العضو ↫ ['..absc9..']\n⌁︙تم الغاء حظرة من ❨ '..gps..' ❩ مجموعة'
-end
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙العضو ↫ ['..absc9..']\n⌁︙تم الغاء حظرة من ❨ '..gps..' ❩ مجموعة', 1, 'md')
 DevAbs:srem(DevProx..abs, result.id_)
-else
-text = '⌁︙*المعرف غير صحيح*'
 end
-Dev_Abs(msg.chat_id_, msg.id_, 1, text, 1, 'md')
 end
 resolve_username(apid[2],ungban_by_username)
 end
@@ -5544,8 +5542,8 @@ local gps = DevAbs:scard(DevProx.."bot:groups")
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. ap[2])
 local abs = 'bot:gban:'
 local absc9 = user_info_ if user_info_ then
-DevAbs:srem(DevProx..abs, ap[2])
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙العضو ↫ ['..absc9..']\n⌁︙تم الغاء حظرة من ❨ '..gps..' ❩ مجموعة', 1, 'md')
+DevAbs:srem(DevProx..abs, ap[2])
 end
 end
 --     Source DevProx     --
