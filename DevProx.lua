@@ -1719,6 +1719,7 @@ end
 if msg.content_.ID == "MessageChatDeleteMember" and tonumber(msg.content_.user_.id_) == tonumber(DevProx) then 
 DevAbs:srem("ABS_PROX:addg"..bot_id, msg.chat_id_) 
 DevAbs:del(DevProx.."bot:charge:"..msg.chat_id_)
+DevAbs:del(DevProx.."bot:enable:"..msg.chat_id_)
 function ABS_PROX(extra,result,success) 
 function  reslit(f1,f2)
 function DevProx3(t1,t2)
