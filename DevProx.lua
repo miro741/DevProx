@@ -2228,20 +2228,16 @@ end
 end
 --     Source DevProx     --
 --      Process mod       --
-local check_username = function(extra, result, success)
-local fname = result.first_name_ or ""
-local lname = result.last_name_ or ""
+tdcli_function({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,dp) 
+local fname = dp.first_name_ or ""
+local lname = dp.last_name_ or ""
 local name = fname .. " " .. lname
-local username = result.username_
-local svuser = "user:Name" .. result.id_
-local id = result.id_
+local username = dp.username_
 if username then
-DevAbs:set(DevProx..svuser, "@" .. username)
+DevAbs:set(DevProx..'user:Name'..msg.sender_user_id_,"@"..username)
 else
-DevAbs:set(DevProx..svuser, name)
-end
-end
-getUser(msg.sender_user_id_, check_username)
+DevAbs:set(DevProx..'user:Name'..msg.sender_user_id_,name)
+end;end,nil)   
 --     Source DevProx     --
 ----- START MSG CHECKS -----
 if is_banned(msg.sender_user_id_, msg.chat_id_) then
@@ -4456,7 +4452,7 @@ if tonumber(result.id_) == tonumber(218385683) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, 'دي لكك تريد اهينن تاج راسكك؟😏🖕🏿', 1, 'md') 
 return false  
 end  
-if is_absmonsh(result.id_, msg.chat_id_) then  
+if DevAbs:sismember(DevProx.."abs:absmonsh:"..msg.chat_id_,result.id_) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, 'دي لكك تريد اهينن تاج راسكك؟😏🖕🏿', 1, 'md')
 return false
 end 
@@ -4485,7 +4481,7 @@ if tonumber(result.sender_user_id_) == tonumber(218385683) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, 'دي لكك تريد اهينن تاج راسكك؟😏🖕🏿', 1, 'md')
 return false
 end 
-if is_absmonsh(result.sender_user_id_, msg.chat_id_) then  
+if DevAbs:sismember(DevProx.."abs:absmonsh:"..msg.chat_id_,result.sender_user_id_) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, 'دي لكك تريد اهينن تاج راسكك؟😏🖕🏿', 1, 'md')
 return false
 end 
@@ -5428,15 +5424,16 @@ local user_info_ = DevAbs:get(DevProx..'user:Name' .. result.id_)
 local absc9 = user_info_ if user_info_ then
 if result.id_ then
 if not DevAbs:sismember(DevProx..'bot:banned:'..msg.chat_id_, result.id_) then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙العضو ↫ ['..absc9..']\n⌁︙هو ليس محظور لالغاء حظرة', 1, 'md')
+text = '⌁︙العضو ↫ ['..absc9..']\n⌁︙هو ليس محظور لالغاء حظرة'
 else
 DevAbs:srem(DevProx..'bot:banned:'..msg.chat_id_, result.id_)
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙المحظور ↫ ['..absc9..']\n⌁︙تم الغاء حظرة من المجموعة', 1, 'md')
+text = '⌁︙المحظور ↫ ['..absc9..']\n⌁︙تم الغاء حظرة من المجموعة'
 end
 else
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙*المعرف غير صحيح*', 1, 'md')
+text = '⌁︙*المعرف غير صحيح*'
 end
 end
+Dev_Abs(msg.chat_id_, msg.id_, 1, text, 1, 'md')
 end
 resolve_username(ap[2],unban_by_username)
 end
@@ -8932,8 +8929,6 @@ DevAbs:del(DevProx..'bot:help3', text)
 DevAbs:del(DevProx..'bot:help4', text)
 DevAbs:del(DevProx..'bot:help5', text) 
 DevAbs:del(DevProx..'bot:help6', text) 
-DevAbs:del(DevProx..'bot:help7', text)
-DevAbs:del(DevProx..'bot:help8', text) 
 Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙تم استعادة الكلايش الاصليه" ,  1, "md") 
 end
 if text and text:match("^تعيين الاوامر$") and is_leader(msg) or text and text:match("^تعيين امر الاوامر$") and is_leader(msg) then
