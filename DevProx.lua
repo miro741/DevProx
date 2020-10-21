@@ -8113,7 +8113,7 @@ DevAbs:del(DevProx..'Zrf:Abs'..msg.chat_id_..''..msg.sender_user_id_)
 return false   
 end
 if not DevAbs:get(DevProx..'bot:Zrf:Abs'..msg.chat_id_) then
-if text:match("^زخرفه$") and Abbas_Abs(msg) or text:match("^الزخرفه$") and Abbas_Abs(msg)  then  
+if text == 'زخرفه' and Abbas_Abs(msg) or text == 'الزخرفه' and Abbas_Abs(msg)  then  
 DevAbs:setex(DevProx.."Zrf:Abs"..msg.chat_id_..""..msg.sender_user_id_,10000,true)
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙ارسل لي الكلمة لزخرفتها \nيمكنك الزخرفة باللغة { en } ⌯ { ar } ', 1, 'md')
 end
@@ -8929,6 +8929,8 @@ DevAbs:del(DevProx..'bot:help3', text)
 DevAbs:del(DevProx..'bot:help4', text)
 DevAbs:del(DevProx..'bot:help5', text) 
 DevAbs:del(DevProx..'bot:help6', text) 
+DevAbs:del(DevProx..'bot:help7', text)
+DevAbs:del(DevProx..'bot:help8', text) 
 Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙تم استعادة الكلايش الاصليه" ,  1, "md") 
 end
 if text and text:match("^تعيين الاوامر$") and is_leader(msg) or text and text:match("^تعيين امر الاوامر$") and is_leader(msg) then
