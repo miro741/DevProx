@@ -2316,6 +2316,7 @@ local chat = msg.chat_id_
 delete_msg(chat,msgs)
 print("Deleted [Lock] [Link] [Photo]")
 end
+end
 if DevAbs:get(DevProx..'tags:lock'..msg.chat_id_) then
 if msg.content_.caption_:match("@") then
 local id = msg.id_
