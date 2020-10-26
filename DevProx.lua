@@ -353,7 +353,6 @@ DevAbs:set(DevProx..'bot:voice:mute'..idg,true)
 DevAbs:set(DevProx..'bot:links:mute'..idg,true)
 DevAbs:set(DevProx..'bot:location:mute'..idg,true)
 DevAbs:set(DevProx..'tags:lock'..idg,true)
-DevAbs:set(DevProx..'bot:strict'..idg,true)
 DevAbs:set(DevProx..'bot:document:mute'..idg,true)
 DevAbs:set(DevProx..'bot:abstag:mute'..idg,true)
 DevAbs:set(DevProx..'bot:contact:mute'..idg,true)
@@ -1855,7 +1854,8 @@ getChannelMembers(msg.chat_id_, 0, 'Administrators', 200, promote_admin)
 if DevAbs:get(DevProx.."bot:enable:"..msg.chat_id_) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙المجموعة ،بالتاكيد ،مفعلة', 1, 'md')
 else
-sendText(msg.chat_id_, '⌁︙اهلا عزيزي ↫ ['..CatchName(result.first_name_,15)..'](tg://user?id='..result.id_..') \nلقد تم تفعيل المجموعة بنجاح \nتم رفع الادمنيه والمنشئ الاساسي \n ✓',msg.id_,'md') 
+Text = '⌁︙اهلا عزيزي ↫ ['..CatchName(result.first_name_,15)..'](tg://user?id='..result.id_..') \nلقد تم تفعيل المجموعة بنجاح \nتم رفع الادمنيه ومنشئ المجموعه \n ✓'
+sendText(msg.chat_id_,Text,msg.id_/2097152/0.5,'md')
 openChat(msg.chat_id_,ABS_PROX)
 DevAbs:sadd("ABS_PROX:addg"..bot_id, msg.chat_id_)
 function ABS_PROX(f1,f2)
@@ -2218,7 +2218,8 @@ if DevAbs:get(DevProx..'floodstatus'..msg.chat_id_) == 'Kicked' then
 del_all_msgs(msg.chat_id_, msg.sender_user_id_)
 chat_kick(msg.chat_id_, msg.sender_user_id_)
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,dp) 
-sendText(msg.chat_id_, '⌁︙العضو ↫ ['..CatchName(dp.first_name_,15)..'](tg://user?id='..dp.id_..') \n⌁︙قام بالتكرار المحدد تم طرده ',msg.id_,'md') 
+Text = '⌁︙العضو ↫ ['..CatchName(dp.first_name_,15)..'](tg://user?id='..dp.id_..') \n⌁︙قام بالتكرار المحدد تم طرده '
+sendText(msg.chat_id_,Text,msg.id_/2097152/0.5,'md')
 end,nil)
 elseif DevAbs:get(DevProx..'floodstatus'..msg.chat_id_) == 'DelMsg' then
 del_all_msgs(msg.chat_id_, msg.sender_user_id_)
@@ -2314,10 +2315,6 @@ local msgs = {[0] = id}
 local chat = msg.chat_id_
 delete_msg(chat,msgs)
 print("Deleted [Lock] [Link] [Photo]")
-if DevAbs:get(DevProx..'bot:strict'..msg.chat_id_) then
-chat_kick(msg.chat_id_, msg.sender_user_id_)
-end
-end
 end
 if DevAbs:get(DevProx..'tags:lock'..msg.chat_id_) then
 if msg.content_.caption_:match("@") then
@@ -2411,9 +2408,6 @@ local msgs = {[0] = id}
 local chat = msg.chat_id_
 delete_msg(chat,msgs)
 print("Deleted [Lock] [Link] [Document]")
-if DevAbs:get(DevProx..'bot:strict'..msg.chat_id_) then
-chat_kick(msg.chat_id_, msg.sender_user_id_)
-end
 end
 end
 if DevAbs:get(DevProx..'tags:lock'..msg.chat_id_) then
@@ -3040,10 +3034,7 @@ local id = msg.id_
 local msgs = {[0] = id}
 local chat = msg.chat_id_
 delete_msg(chat,msgs)
-print("Deleted [Lock] [Link] [By] [Kick]")
-if DevAbs:get(DevProx..'bot:strict'..msg.chat_id_) then
-chat_kick(msg.chat_id_, msg.sender_user_id_)
-end
+print("Deleted [Lock] [Link]")
 end
 end
 if DevAbs:get(DevProx..'bot:text:mute'..msg.chat_id_) then
@@ -3335,7 +3326,7 @@ if Added_Me then
 tdcli_function ({ID = "GetUser",user_id_ = Added_Me},function(extra,result,success)
 local Name = '['..result.first_name_..'](tg://user?id='..result.id_..')'
 Text = '⌁︙*الشخص الذي قام باضافتك هو* ↫ '..Name
-sendText(msg.chat_id_, Text, msg.id_, 0, 'md') 
+sendText(msg.chat_id_,Text,msg.id_/2097152/0.5,'md')
 end,nil)
 else
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙*انت دخلت عبر الرابط*', 1, 'md') 
@@ -6125,9 +6116,10 @@ if data.first_name_ == false then
 Dev_Abs(msg.chat_id_, msg.id_, 1,'⌁︙الحساب محذوف', 1, 'md')
 return false  end
 if data.username_ == false then
-sendText(msg.chat_id_, '⌁︙اسمه ↫ ['..CatchName(data.first_name_,15)..'](tg://user?id='..result.sender_user_id_..')\n⌁︙ايديه ↫ ❨ `'..result.sender_user_id_..'` ❩\n⌁︙رتبته ↫ '..t..'\n⌁︙رسائله ↫ ❨ '..user_msgs..' ❩\n⌁︙تفاعله ↫ '..formsgg(msguser)..'\n⌁︙نقاطه ↫ ❨ '..user_nkt..' ❩\n⌁︙القيود ↫ '..Tkeed,msg.id_,'md') 
+Text = '⌁︙اسمه ↫ ['..CatchName(data.first_name_,20)..'](tg://user?id='..result.sender_user_id_..')\n⌁︙ايديه ↫ ❨ `'..result.sender_user_id_..'` ❩\n⌁︙رتبته ↫ '..t..'\n⌁︙رسائله ↫ ❨ '..user_msgs..' ❩\n⌁︙تفاعله ↫ '..formsgg(msguser)..'\n⌁︙نقاطه ↫ ❨ '..user_nkt..' ❩\n⌁︙القيود ↫ '..Tkeed
+sendText(msg.chat_id_,Text,msg.id_/2097152/0.5,'md')
 else
-sendText(msg.chat_id_, '⌁︙معرفه ↫ [@'..data.username_..']\n⌁︙ايديه ↫ ❨ `'..result.sender_user_id_..'` ❩\n⌁︙رتبته ↫ '..t..'\n⌁︙رسائله ↫ ❨ '..user_msgs..' ❩\n⌁︙تفاعله ↫ '..formsgg(msguser)..'\n⌁︙نقاطه ↫ ❨ '..user_nkt..' ❩\n⌁︙القيود ↫ '..Tkeed,msg.id_,'md') 
+Dev_Abs(msg.chat_id_, msg.id_, 1,'⌁︙معرفه ↫ [@'..data.username_..']\n⌁︙ايديه ↫ ❨ `'..result.sender_user_id_..'` ❩\n⌁︙رتبته ↫ '..t..'\n⌁︙رسائله ↫ ❨ '..user_msgs..' ❩\n⌁︙تفاعله ↫ '..formsgg(msguser)..'\n⌁︙نقاطه ↫ ❨ '..user_nkt..' ❩\n⌁︙القيود ↫ '..Tkeed, 1, 'md')
 end
 end,nil)
 end 
@@ -6199,7 +6191,7 @@ end
 if data.first_name_ == false then
 Dev_Abs(msg.chat_id_, msg.id_, 1,'⌁︙الحساب محذوف', 1, 'md')
 return false  end
-sendText(msg.chat_id_, '⌁︙معرفه ↫ [@'..data.username_..']\n⌁︙ايديه ↫ ❨ `'..res.id_..'` ❩\n⌁︙رتبته ↫ '..t..'\n⌁︙رسائله ↫ ❨ '..user_msgs..' ❩\n⌁︙تفاعله ↫ '..formsgg(msguser)..'\n⌁︙نقاطه ↫ ❨ '..user_nkt..' ❩\n⌁︙القيود ↫ '..Tkeed,msg.id_,'md') 
+Dev_Abs(msg.chat_id_, msg.id_, 1,'⌁︙معرفه ↫ [@'..data.username_..']\n⌁︙ايديه ↫ ❨ `'..res.id_..'` ❩\n⌁︙رتبته ↫ '..t..'\n⌁︙رسائله ↫ ❨ '..user_msgs..' ❩\n⌁︙تفاعله ↫ '..formsgg(msguser)..'\n⌁︙نقاطه ↫ ❨ '..user_nkt..' ❩\n⌁︙القيود ↫ '..Tkeed, 1, 'md')
 end,nil)
 end 
 end,nil)
@@ -6258,9 +6250,10 @@ if data.first_name_ == false then
 Dev_Abs(msg.chat_id_, msg.id_, 1,'⌁︙الحساب محذوف', 1, 'md')
 return false  end
 if data.username_ == false then
-sendText(msg.chat_id_, '⌁︙اسمه ↫ ['..CatchName(data.first_name_,15)..'](tg://user?id='..iduser..')\n⌁︙ايديه ↫ ❨ `'..iduser..'` ❩\n⌁︙رتبته ↫ '..t..'\n⌁︙رسائله ↫ ❨ '..user_msgs..' ❩\n⌁︙تفاعله ↫ '..formsgg(msguser)..'\n⌁︙نقاطه ↫ ❨ '..user_nkt..' ❩\n⌁︙القيود ↫ '..Tkeed,msg.id_,'md') 
+Text = '⌁︙اسمه ↫ ['..CatchName(data.first_name_,20)..'](tg://user?id='..iduser..')\n⌁︙ايديه ↫ ❨ `'..iduser..'` ❩\n⌁︙رتبته ↫ '..t..'\n⌁︙رسائله ↫ ❨ '..user_msgs..' ❩\n⌁︙تفاعله ↫ '..formsgg(msguser)..'\n⌁︙نقاطه ↫ ❨ '..user_nkt..' ❩\n⌁︙القيود ↫ '..Tkeed
+sendText(msg.chat_id_,Text,msg.id_/2097152/0.5,'md')
 else
-sendText(msg.chat_id_, '⌁︙معرفه ↫ [@'..data.username_..']\n⌁︙ايديه ↫ ❨ `'..iduser..'` ❩\n⌁︙رتبته ↫ '..t..'\n⌁︙رسائله ↫ ❨ '..user_msgs..' ❩\n⌁︙تفاعله ↫ '..formsgg(msguser)..'\n⌁︙نقاطه ↫ ❨ '..user_nkt..' ❩\n⌁︙القيود ↫ '..Tkeed,msg.id_,'md') 
+Dev_Abs(msg.chat_id_, msg.id_, 1,'⌁︙معرفه ↫ [@'..data.username_..']\n⌁︙ايديه ↫ ❨ `'..iduser..'` ❩\n⌁︙رتبته ↫ '..t..'\n⌁︙رسائله ↫ ❨ '..user_msgs..' ❩\n⌁︙تفاعله ↫ '..formsgg(msguser)..'\n⌁︙نقاطه ↫ ❨ '..user_nkt..' ❩\n⌁︙القيود ↫ '..Tkeed, 1, 'md')
 end
 end,nil)
 return false 
@@ -6302,13 +6295,14 @@ user_id_ = result.sender_user_id_
 },function(arg,data) 
 if DevAbs:sismember(DevProx..'tkeed:'..msg.chat_id_,result.sender_user_id_) or DevAbs:sismember(DevProx..'bot:muted:'..msg.chat_id_,result.sender_user_id_) or DevAbs:sismember(DevProx..'bot:banned:'..msg.chat_id_,result.sender_user_id_) then
 if data.username_ == false then 
-sendText(msg.chat_id_, '⌁︙العضو ↫ ['..CatchName(data.first_name_,15)..'](tg://user?id='..result.sender_user_id_..') \n⌁︙تم رفع قيوده بنجاح \n ✓',msg.id_,'md') 
+Text = '⌁︙العضو ↫ ['..CatchName(data.first_name_,15)..'](tg://user?id='..result.sender_user_id_..') \n⌁︙تم رفع قيوده بنجاح \n ✓'
+sendText(msg.chat_id_,Text,msg.id_/2097152/0.5,'md')
 HTTPS.request("https://api.telegram.org/bot" .. tokenbot .. "/restrictChatMember?chat_id=" ..msg.chat_id_.. "&user_id=" ..result.sender_user_id_.. "&can_send_messages=True&can_send_media_messages=True&can_send_other_messages=True&can_add_web_page_previews=True")  
 DevAbs:srem(DevProx..'tkeed:'..msg.chat_id_,result.sender_user_id_) 
 DevAbs:srem(DevProx..'bot:banned:'..msg.chat_id_,result.sender_user_id_)   
 DevAbs:srem(DevProx..'bot:muted:'..msg.chat_id_,result.sender_user_id_)   
 else
-sendText(msg.chat_id_, '⌁︙العضو ↫ ['..CatchName(data.first_name_,15)..'](tg://user?id='..result.sender_user_id_..') \n⌁︙تم رفع قيوده بنجاح \n ✓',msg.id_,'md') 
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙العضو ↫ [@'..data.username_..'] \n⌁︙تم رفع قيوده بنجاح \n ✓'  , 1, 'md') 
 HTTPS.request("https://api.telegram.org/bot" .. tokenbot .. "/restrictChatMember?chat_id=" ..msg.chat_id_.. "&user_id=" ..result.sender_user_id_.. "&can_send_messages=True&can_send_media_messages=True&can_send_other_messages=True&can_add_web_page_previews=True")  
 DevAbs:srem(DevProx..'tkeed:'..msg.chat_id_,result.sender_user_id_) 
 DevAbs:srem(DevProx..'bot:banned:'..msg.chat_id_,result.sender_user_id_)   
@@ -6316,9 +6310,10 @@ DevAbs:srem(DevProx..'bot:muted:'..msg.chat_id_,result.sender_user_id_)
 end
 else
 if data.username_ == false then
-sendText(msg.chat_id_, '⌁︙العضو ↫ ['..CatchName(data.first_name_,15)..'](tg://user?id='..result.sender_user_id_..') \n⌁︙ليس لديه قيود ليتم رفعها \n ✓',msg.id_,'md')  
+Text = '⌁︙العضو ↫ ['..CatchName(data.first_name_,15)..'](tg://user?id='..result.sender_user_id_..') \n⌁︙ليس لديه قيود ليتم رفعها \n ✓'
+sendText(msg.chat_id_,Text,msg.id_/2097152/0.5,'md')
 else
-sendText(msg.chat_id_, '⌁︙العضو ↫ ['..CatchName(data.first_name_,15)..'](tg://user?id='..result.sender_user_id_..') \n⌁︙ليس لديه قيود ليتم رفعها \n ✓',msg.id_,'md') 
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙العضو ↫ [@'..data.username_..'] \n⌁︙ليس لديه قيود ليتم رفعها \n ✓'  , 1, 'md') 
 end
 end
 end,nil)   
@@ -6339,13 +6334,14 @@ Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙*لم استطع استخراج الم�
 return false  end
 if DevAbs:sismember(DevProx..'tkeed:'..msg.chat_id_,user) or DevAbs:sismember(DevProx..'bot:muted:'..msg.chat_id_,user) or DevAbs:sismember(DevProx..'bot:banned:'..msg.chat_id_,user) then
 if data.username_ == false then
-sendText(msg.chat_id_, '⌁︙العضو ↫ ['..CatchName(data.first_name_,15)..'](tg://user?id='..user..') \n⌁︙تم رفع قيوده بنجاح \n ✓',msg.id_,'md') 
+Text = '⌁︙العضو ↫ ['..CatchName(data.first_name_,15)..'](tg://user?id='..user..') \n⌁︙تم رفع قيوده بنجاح \n ✓'
+sendText(msg.chat_id_,Text,msg.id_/2097152/0.5,'md')
 HTTPS.request("https://api.telegram.org/bot" .. tokenbot .. "/restrictChatMember?chat_id=" ..msg.chat_id_.. "&user_id=" ..user.. "&can_send_messages=True&can_send_media_messages=True&can_send_other_messages=True&can_add_web_page_previews=True")  
 DevAbs:srem(DevProx..'tkeed:'..msg.chat_id_,user) 
 DevAbs:srem(DevProx..'bot:banned:'..msg.chat_id_,user)   
 DevAbs:srem(DevProx..'bot:muted:'..msg.chat_id_,user)   
 else
-sendText(msg.chat_id_, '⌁︙العضو ↫ ['..CatchName(data.first_name_,15)..'](tg://user?id='..user..') \n⌁︙تم رفع قيوده بنجاح \n ✓',msg.id_,'md') 
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙العضو ↫ [@'..data.username_..'] \n⌁︙تم رفع قيوده بنجاح \n ✓'  , 1, 'md') 
 HTTPS.request("https://api.telegram.org/bot" .. tokenbot .. "/restrictChatMember?chat_id=" ..msg.chat_id_.. "&user_id=" ..user.. "&can_send_messages=True&can_send_media_messages=True&can_send_other_messages=True&can_add_web_page_previews=True")  
 DevAbs:srem(DevProx..'tkeed:'..msg.chat_id_,user) 
 DevAbs:srem(DevProx..'bot:banned:'..msg.chat_id_,user)   
@@ -6353,9 +6349,10 @@ DevAbs:srem(DevProx..'bot:muted:'..msg.chat_id_,user)
 end
 else
 if data.username_ == false then
-sendText(msg.chat_id_, '⌁︙العضو ↫ ['..CatchName(data.first_name_,15)..'](tg://user?id='..user..') \n⌁︙ليس لديه قيود ليتم رفعها \n ✓',msg.id_,'md') 
+Text = '⌁︙العضو ↫ ['..CatchName(data.first_name_,15)..'](tg://user?id='..user..') \n⌁︙ليس لديه قيود ليتم رفعها \n ✓'
+sendText(msg.chat_id_,Text,msg.id_/2097152/0.5,'md')
 else
-sendText(msg.chat_id_, '⌁︙العضو ↫ ['..CatchName(data.first_name_,15)..'](tg://user?id='..user..') \n⌁︙ليس لديه قيود ليتم رفعها \n ✓',msg.id_,'md') 
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙العضو ↫ [@'..data.username_..'] \n⌁︙ليس لديه قيود ليتم رفعها \n ✓'  , 1, 'md') 
 end
 end
 end,nil)  
@@ -6380,13 +6377,13 @@ if data and data.code_ and data.code_ == 6 then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙*لم استطع استخراج المعلومات* \n', 1, 'md') 
 return false  end
 if DevAbs:sismember(DevProx..'tkeed:'..msg.chat_id_,result.id_) or DevAbs:sismember(DevProx..'bot:muted:'..msg.chat_id_,result.id_) or DevAbs:sismember(DevProx..'bot:banned:'..msg.chat_id_,result.id_) then
-sendText(msg.chat_id_, '⌁︙العضو ↫ ['..CatchName(data.first_name_,15)..'](tg://user?id='..result.id_..') \n⌁︙تم رفع قيوده بنجاح \n ✓',msg.id_,'md') 
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙العضو ↫ [@'..data.username_..'] \n⌁︙تم رفع قيوده بنجاح \n ✓'  , 1, 'md') 
 HTTPS.request("https://api.telegram.org/bot" .. tokenbot .. "/restrictChatMember?chat_id=" ..msg.chat_id_.. "&user_id=" ..result.id_.. "&can_send_messages=True&can_send_media_messages=True&can_send_other_messages=True&can_add_web_page_previews=True")  
 DevAbs:srem(DevProx..'tkeed:'..msg.chat_id_,result.id_) 
 DevAbs:srem(DevProx..'bot:banned:'..msg.chat_id_,result.id_)   
 DevAbs:srem(DevProx..'bot:muted:'..msg.chat_id_,result.id_)   
 else
-sendText(msg.chat_id_, '⌁︙العضو ↫ ['..CatchName(data.first_name_,15)..'](tg://user?id='..result.id_..') \n⌁︙ليس لديه قيود ليتم رفعها \n ✓',msg.id_,'md') 
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙العضو ↫ [@'..data.username_..'] \n⌁︙ليس لديه قيود ليتم رفعها \n ✓'  , 1, 'md') 
 end
 end,nil)   
 end  
@@ -7384,15 +7381,6 @@ else
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙المعرف بالفعل مقفلة في المجموعة', 1, 'md')
 end
 end
-if mutepts[2] == "الحمايه" then
-if not DevAbs:get(DevProx..'bot:strict'..msg.chat_id_) then
-local ABS_PROX = '⌁︙اهلا عزيزي ↫ '..abs_rank(msg)..'\n⌁︙تم قفل الحماية بنجاح \n ✓'
-absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 15, string.len(msg.sender_user_id_))
-DevAbs:set(DevProx..'bot:strict'..msg.chat_id_,true)
-else
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙الحماية بالفعل مقفلة في المجموعة', 1, 'md')
-end
-end
 if mutepts[2] == "الملفات" then
 if not DevAbs:get(DevProx..'bot:document:mute'..msg.chat_id_) then
 local ABS_PROX = '⌁︙اهلا عزيزي ↫ '..abs_rank(msg)..'\n⌁︙تم قفل الملفات بنجاح \n ✓'
@@ -7606,15 +7594,6 @@ else
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙المعرف بالفعل مفتوحة في المجموعة', 1, 'md')
 end
 end
-if unmutepts[2] == "الحمايه" then
-if DevAbs:get(DevProx..'bot:strict'..msg.chat_id_) then
-local ABS_PROX = '⌁︙اهلا عزيزي ↫ '..abs_rank(msg)..'\n⌁︙تم فتح الحماية بنجاح \n ✓'
-absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 15, string.len(msg.sender_user_id_))
-DevAbs:del(DevProx..'bot:strict'..msg.chat_id_)
-else
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙الحماية بالفعل مفتوحة في المجموعة', 1, 'md')
-end
-end
 if unmutepts[2] == "الهاشتاك" then
 if DevAbs:get(DevProx..'bot:abstag:mute'..msg.chat_id_) then
 local ABS_PROX = '⌁︙اهلا عزيزي ↫ '..abs_rank(msg)..'\n⌁︙تم فتح الهاشتاك بنجاح \n ✓'
@@ -7694,7 +7673,7 @@ if text and text:match("^قفل التفليش$") then
 if not is_monshid(msg.sender_user_id_, msg.chat_id_) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙للمنشئ الاساسي فقط ', 1, 'md')
 else
-DevAbs:set(DevProx..'bot:links:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:forward:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:bots:ban'..msg.chat_id_,true) DevAbs:set(DevProx..'anti-flood:'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:video:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:gifs:mute'..msg.chat_id_,true)
+DevAbs:set(DevProx..'bot:links:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:forward:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:bots:ban'..msg.chat_id_,true) DevAbs:set(DevProx..'anti-flood:'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:video:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:gifs:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'editmsg'..msg.chat_id_,true)
 DevAbs:set(DevProx..'bot:sticker:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'farsiban'..msg.chat_id_,true) DevAbs:del(DevProx.."fshar"..msg.chat_id_) DevAbs:del(DevProx.."taf"..msg.chat_id_) DevAbs:del(DevProx.."kaf"..msg.chat_id_) DevAbs:set(DevProx..'floodstatus'..msg.chat_id_,'Kicked') DevAbs:set('DevProx:id:photo'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:spam:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:webpage:mute'..msg.chat_id_,true)
 local ABS_PROX = '⌁︙اهلا عزيزي ↫ '..abs_rank(msg)..' \n⌁︙تم قفل التفليش بنجاح \n ✓'
 absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 15, string.len(msg.sender_user_id_))
@@ -7734,7 +7713,7 @@ DevAbs:del(DevProx..'editmsg'..msg.chat_id_) DevAbs:del(DevProx..'farsi'..msg.ch
 DevAbs:del(DevProx..'bot:bots:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:bots:ban'..msg.chat_id_) DevAbs:del(DevProx..'keed_bots'..msg.chat_id_) DevAbs:del(DevProx..'anti-flood:'..msg.chat_id_) DevAbs:del(DevProx..'bot:tgservice:jk'..msg.chat_id_)
 DevAbs:del(DevProx..'bot:text:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:photo:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:spam:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:video:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:sticker:mute'..msg.chat_id_)
 DevAbs:del(DevProx..'bot:document:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:inline:mute'..msg.chat_id_) DevAbs:del(DevProx..'markdown:lock'..msg.chat_id_) DevAbs:del(DevProx..'bot:gifs:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:music:mute'..msg.chat_id_)
-DevAbs:del(DevProx..'bot:voice:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:links:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:location:mute'..msg.chat_id_) DevAbs:del(DevProx..'tags:lock'..msg.chat_id_) DevAbs:del(DevProx..'bot:strict'..msg.chat_id_) DevAbs:del(DevProx..'bot:forward:mute'..msg.chat_id_)
+DevAbs:del(DevProx..'bot:voice:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:links:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:location:mute'..msg.chat_id_) DevAbs:del(DevProx..'tags:lock'..msg.chat_id_) DevAbs:del(DevProx..'bot:forward:mute'..msg.chat_id_)
 DevAbs:del(DevProx..'bot:abstag:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:contact:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:webpage:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:arabic:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:english:mute'..msg.chat_id_)
 local ABS_PROX = '⌁︙اهلا عزيزي ↫ '..abs_rank(msg)..' \n⌁︙تم فتح جميع الاوامر \n ✓'
 absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 15, string.len(msg.sender_user_id_))
@@ -7979,7 +7958,6 @@ if DevAbs:get(DevProx..'bot:pin:mute'..msg.chat_id_) then lock_pin = 'مقفله
 if DevAbs:get(DevProx..'bot:sticker:mute'..msg.chat_id_) then lock_sticker = 'مقفله' else lock_sticker = 'مفتوحه' end
 if DevAbs:get(DevProx..'bot:tgservice:jk'..msg.chat_id_) then lock_tgservice = 'مقفله' else lock_tgservice = 'مفتوحه' end
 if DevAbs:get(DevProx..'bot:webpage:mute'..msg.chat_id_) then lock_wp = 'مقفله' else lock_wp = 'مفتوحه' end
-if DevAbs:get(DevProx..'bot:strict'..msg.chat_id_) then strict = 'مقفله' else strict = 'مفتوحه' end
 if DevAbs:get(DevProx..'bot:abstag:mute'..msg.chat_id_) then lock_htag = 'مقفله' else lock_htag = 'مفتوحه' end
 if DevAbs:get(DevProx..'tags:lock'..msg.chat_id_) then lock_tag = 'مقفله' else lock_tag = 'مفتوحه' end
 if DevAbs:get(DevProx..'bot:location:mute'..msg.chat_id_) then lock_location = 'مقفله' else lock_location = 'مفتوحه' end
@@ -8011,7 +7989,6 @@ local TXTE = "⌁︙اعدادات المجموعة ↫ ⤈\n┉ ≈ ┉ ≈ ┉
 .."⌁︙الصوت ↫ "..mute_voice.."\n"
 .."⌁︙الجهات ↫ "..lock_contact.."\n"
 .."⌁︙الماركداون ↫ "..markdown.."\n"
-.."⌁︙الحمايه ↫ "..strict.."\n"
 .."⌁︙الهاشتاك ↫ "..lock_htag.."\n"
 .."⌁︙التعديل ↫ "..mute_edit.."\n"
 .."⌁︙التثبيت ↫ "..lock_pin.."\n"
@@ -8192,7 +8169,6 @@ if text and text:match("^الاغاني$") then if not DevAbs:get(DevProx..'bot:
 if text and text:match("^الصوت$") or text and text:match("^الصوتيات$") then if not DevAbs:get(DevProx..'bot:lock_Settings'..msg.chat_id_) then if DevAbs:get(DevProx..'bot:voice:mute'..msg.chat_id_) then mute_voice = 'مقفول' else mute_voice = 'مفتوح' end local ABS_PROX = "\n" .."⌁︙الصوت ↫ "..mute_voice.."\n" Dev_Abs(msg.chat_id_, msg.id_, 1, ABS_PROX, 1, 'md') end end
 if text and text:match("^الجهات$") or text and text:match("^جهات الاتصال$") then if not DevAbs:get(DevProx..'bot:lock_Settings'..msg.chat_id_) then if DevAbs:get(DevProx..'bot:contact:mute'..msg.chat_id_) then lock_contact = 'مقفولة' else lock_contact = 'مفتوحة' end local ABS_PROX = "\n" .."⌁︙الجهات ↫ "..lock_contact.."\n" Dev_Abs(msg.chat_id_, msg.id_, 1, ABS_PROX, 1, 'md') end end
 if text and text:match("^الماركداون$") then if not DevAbs:get(DevProx..'bot:lock_Settings'..msg.chat_id_) then if DevAbs:get(DevProx..'markdown:lock'..msg.chat_id_) then markdown = 'مقفل' else markdown = 'مفتوح' end local ABS_PROX = "\n" .."⌁︙الماركداون ↫ "..markdown.."\n" Dev_Abs(msg.chat_id_, msg.id_, 1, ABS_PROX, 1, 'md') end end
-if text and text:match("^الحمايه$") then if not DevAbs:get(DevProx..'bot:lock_Settings'..msg.chat_id_) then if DevAbs:get(DevProx..'bot:strict'..msg.chat_id_) then strict = 'مقفولة' else strict = 'مفتوحة' end local ABS_PROX = "\n" .."⌁︙الحمايه ↫ "..strict.."\n" Dev_Abs(msg.chat_id_, msg.id_, 1, ABS_PROX, 1, 'md') end end
 if text and text:match("^الهاشتاك$") then if not DevAbs:get(DevProx..'bot:lock_Settings'..msg.chat_id_) then if DevAbs:get(DevProx..'bot:abstag:mute'..msg.chat_id_) then lock_htag = 'مقفل' else lock_htag = 'مفتوح' end local ABS_PROX = "\n" .."⌁︙الهاشتاك ↫ "..lock_htag.."\n"Dev_Abs(msg.chat_id_, msg.id_, 1, ABS_PROX, 1, 'md') end end
 if text and text:match("^التعديل$") then if not DevAbs:get(DevProx..'bot:lock_Settings'..msg.chat_id_) then if DevAbs:get(DevProx..'editmsg'..msg.chat_id_) then mute_edit = 'مقفل' else mute_edit = 'مفتوح' end local ABS_PROX = "\n" .."⌁︙التعديل ↫ "..mute_edit.."\n" Dev_Abs(msg.chat_id_, msg.id_, 1, ABS_PROX, 1, 'md') end end
 if text and text:match("^التثبيت$") then if not DevAbs:get(DevProx..'bot:lock_Settings'..msg.chat_id_) then if DevAbs:get(DevProx..'bot:pin:mute'..msg.chat_id_) then lock_pin = 'مقفل' else lock_pin = 'مفتوح' end local ABS_PROX = "\n" .."⌁︙التثبيت ↫ "..lock_pin.."\n" Dev_Abs(msg.chat_id_, msg.id_, 1, ABS_PROX, 1, 'md') end end
@@ -8344,7 +8320,7 @@ end
 if text and text:match("^معلومات المجموعه$") and Abbas_Abs(msg) or text and text:match("^عدد الاعضاء$") and Abbas_Abs(msg) or text and text:match("^عدد الكروب$") and Abbas_Abs(msg) or text and text:match("^عدد الادمنيه$") and Abbas_Abs(msg) or text and text:match("^عدد المحظورين$") and Abbas_Abs(msg) then
 function gpinfo(arg,data)
 local Muted = DevAbs:scard(DevProx.."bot:muted:"..msg.chat_id_) or "0"
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙المجموعة ↫ ❨ '..title_name(msg.chat_id_)..' ❩\n⌁︙الايدي ↫ ❨ '..msg.chat_id_..' ❩\n⌁︙عدد الاعضاء ↫ ❨ *'..data.member_count_..'* ❩\n⌁︙عدد الادمنية ↫ ❨ *'..data.administrator_count_..'* ❩\n⌁︙عدد المحظورين ↫ ❨ *'..data.kicked_count_..'* ❩\n⌁︙عدد المكتومين ↫ ❨ *'..Muted..'* ❩\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n', 1, 'md') 
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙المجموعة ↫ ❨ '..title_name(msg.chat_id_)..' ❩\n⌁︙الايدي ↫ ❨ '..msg.chat_id_..' ❩\n⌁︙عدد الاعضاء ↫ ❨ *'..data.member_count_..'* ❩\n⌁︙عدد الادمنية ↫ ❨ *'..data.administrator_count_..'* ❩\n⌁︙عدد المحظورين ↫ ❨ *'..data.kicked_count_..'* ❩\n⌁︙عدد المكتومين ↫ ❨ *'..Muted..'* ❩\n⌁︙عدد رسائل المجموعه ↫ ❨ *'..(msg.id_/2097152/0.5)..'* ❩\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n', 1, 'md') 
 end 
 getChannelFull(msg.chat_id_, gpinfo, nil) 
 end
@@ -8497,7 +8473,8 @@ getChannelMembers(msg.chat_id_, 0, 'Administrators', 200, promote_admin)
 if DevAbs:get(DevProx.."bot:enable:"..msg.chat_id_) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙المجموعة ،بالتاكيد ،مفعلة', 1, 'md')
 else
-sendText(msg.chat_id_, '⌁︙اهلا عزيزي ↫ ['..CatchName(result.first_name_,15)..'](tg://user?id='..result.id_..') \nلقد تم تفعيل المجموعة بنجاح \nتم رفع الادمنيه والمنشئ الاساسي \n ✓',msg.id_,'md') 
+Text = '⌁︙اهلا عزيزي ↫ ['..CatchName(result.first_name_,15)..'](tg://user?id='..result.id_..') \nلقد تم تفعيل المجموعة بنجاح \nتم رفع الادمنيه ومنشئ المجموعه \n ✓'
+sendText(msg.chat_id_,Text,msg.id_/2097152/0.5,'md')
 openChat(msg.chat_id_,ABS_PROX)
 DevAbs:sadd("ABS_PROX:addg"..bot_id, msg.chat_id_)
 function ABS_PROX(f1,f2)
@@ -8533,7 +8510,8 @@ function remgroup(extra, result, success)
 if not DevAbs:get(DevProx.."bot:enable:"..msg.chat_id_) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙المجموعة ،بالتاكيد ،معطلة', 1, 'md')
 else
-sendText(msg.chat_id_, '⌁︙اهلا عزيزي ↫ ['..CatchName(result.first_name_,15)..'](tg://user?id='..result.id_..') \nلقد تم تعطيل المجموعة بنجاح \n ✓',msg.id_,'md') 
+Text = '⌁︙اهلا عزيزي ↫ ['..CatchName(result.first_name_,15)..'](tg://user?id='..result.id_..') \nلقد تم تعطيل المجموعة بنجاح \n ✓'
+sendText(msg.chat_id_,Text,msg.id_/2097152/0.5,'md')
 DevAbs:del(DevProx.."bot:charge:"..msg.chat_id_)
 DevAbs:del(DevProx.."bot:enable:"..msg.chat_id_)
 DevAbs:srem("ABS_PROX:addg"..bot_id, msg.chat_id_)
@@ -8929,8 +8907,6 @@ DevAbs:del(DevProx..'bot:help3', text)
 DevAbs:del(DevProx..'bot:help4', text)
 DevAbs:del(DevProx..'bot:help5', text) 
 DevAbs:del(DevProx..'bot:help6', text) 
-DevAbs:del(DevProx..'bot:help7', text)
-DevAbs:del(DevProx..'bot:help8', text) 
 Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙تم استعادة الكلايش الاصليه" ,  1, "md") 
 end
 if text and text:match("^تعيين الاوامر$") and is_leader(msg) or text and text:match("^تعيين امر الاوامر$") and is_leader(msg) then
@@ -8995,7 +8971,6 @@ local text =  [[
 ⌁︙قفل • فتح ↫ الصوت
 ⌁︙قفل • فتح ↫ الجهات
 ⌁︙قفل • فتح ↫ الماركداون
-⌁︙قفل • فتح ↫ الحمايه
 ⌁︙قفل • فتح ↫ التكرار
 ⌁︙قفل • فتح ↫ الهاشتاك
 ⌁︙قفل • فتح ↫ التعديل
