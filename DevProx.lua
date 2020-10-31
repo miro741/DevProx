@@ -5388,6 +5388,61 @@ end
 end
 end
 --     Source DevProx     --
+if text:match("^طرد$") and msg.reply_to_message_id_ ~= 0 and Abbas_Abs(msg) then
+function kick_reply(extra, result, success)
+if not is_monshid(msg.sender_user_id_, msg.chat_id_) and DevAbs:get("ABS_PROX:lock:ban"..bot_id..msg.chat_id_) then 
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙لا تستطيع الطرد او الحظر \n⌁︙لانة معطل من قبل المنشئ ', 1, 'md')
+return "ABS_PROX"
+end
+local user_info_ = DevAbs:get(DevProx..'user:Name' .. result.sender_user_id_)
+local absc9 = user_info_ if user_info_ then
+if is_admin(result.sender_user_id_, result.chat_id_) then
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙لا تستطيع طرد ↫ '..rank_abs(result.sender_user_id_, msg.chat_id_), 1, 'md')
+else
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙العضو ↫ ['..absc9..']\n⌁︙تم طردة من المجموعة', 1, 'md')
+chat_kick(result.chat_id_, result.sender_user_id_)
+end
+end
+end
+getMessage(msg.chat_id_,msg.reply_to_message_id_,kick_reply)
+end
+--     Source DevProx     --
+if text and text:match("^طرد @(.*)$") and Abbas_Abs(msg) then
+local ap = {string.match(text, "^(طرد) @(.*)$")}
+function ban_by_username(extra, result, success)
+if not is_monshid(msg.sender_user_id_, msg.chat_id_) and DevAbs:get("ABS_PROX:lock:ban"..bot_id..msg.chat_id_) then 
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙لا تستطيع الطرد او الحظر \n⌁︙لانة معطل من قبل المنشئ ', 1, 'md')
+return "ABS_PROX"
+end
+if result.id_ then
+if is_admin(result.id_, msg.chat_id_) then
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙لا تستطيع طرد ↫ '..rank_abs(result.id_, msg.chat_id_), 1, 'md')
+else
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙العضو ↫ [@'..ap[2]..']\n⌁︙تم طردة من المجموعة', 1, 'md')
+chat_kick(msg.chat_id_, result.id_)
+end
+end
+end
+resolve_username(ap[2],ban_by_username)
+end
+--     Source DevProx     --
+if text:match("^طرد (%d+)$") and Abbas_Abs(msg) then
+local ap = {string.match(text, "^(طرد) (%d+)$")}
+if not is_monshid(msg.sender_user_id_, msg.chat_id_) and DevAbs:get("ABS_PROX:lock:ban"..bot_id..msg.chat_id_) then 
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙لا تستطيع الطرد او الحظر \n⌁︙لانة معطل من قبل المنشئ ', 1, 'md')
+return "ABS_PROX"
+end
+local user_info_ = DevAbs:get(DevProx..'user:Name' .. ap[2])
+local absc9 = user_info_ if user_info_ then
+if is_admin(ap[2], msg.chat_id_) then
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙لا تستطيع طرد ↫ '..rank_abs(ap[2], msg.chat_id_), 1, 'md')
+else
+chat_kick(msg.chat_id_, ap[2])
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙العضو ↫ ['..absc9..']\n⌁︙تم طردة من المجموعة', 1, 'md')
+end 
+end 
+end
+--     Source DevProx     --
 local text = msg.content_.text_:gsub('الغاء حظر','الغاء الحظر')
 if text:match("^الغاء الحظر$") and msg.reply_to_message_id_ ~= 0 and Abbas_Abs(msg) then
 function ABS_PROX(extra, result, success)
@@ -5462,19 +5517,17 @@ end
 getMessage(msg.chat_id_, msg.reply_to_message_id_,gban_by_reply)
 end
 --     Source DevProx     --
-if text:match("^حظر عام @(.*)$") and is_sudo(msg) then
+if text and text:match("^حظر عام @(.*)$") and is_sudo(msg) then
 local aps = {string.match(text, "^(حظر عام) @(.*)$")}
 function gban_by_username(extra, result, success)
 local gps = DevAbs:scard(DevProx.."bot:groups")
-local user_info_ = DevAbs:get(DevProx..'user:Name' .. result.id_)
-local abs = 'bot:gban:'
-local absc9 = user_info_ if user_info_ then
+if result.id_ then
 if is_leaderid(result.id_) == true then
 Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙*لاتستطيع حظر المطور الاساسي*", 1, 'md')
 return false 
 end
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙العضو ↫ ['..absc9..']\n⌁︙تم حظرة من ❨ '..gps..' ❩ مجموعة', 1, 'md')
-DevAbs:sadd(DevProx..abs, result.id_)
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙العضو ↫ [@'..aps[2]..']\n⌁︙تم حظرة من ❨ '..gps..' ❩ مجموعة', 1, 'md')
+DevAbs:sadd(DevProx..'bot:gban:', result.id_)
 chat_kick(msg.chat_id_, result.id_)
 end
 end
@@ -5515,11 +5568,9 @@ if text:match("^الغاء عام @(.*)$") and is_sudo(msg) then
 local apid = {string.match(text, "^(الغاء عام) @(.*)$")}
 function ungban_by_username(extra, result, success)
 local gps = DevAbs:scard(DevProx.."bot:groups")
-local user_info_ = DevAbs:get(DevProx..'user:Name' .. result.id_)
-local abs = 'bot:gban:'
-local absc9 = user_info_ if user_info_ then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙العضو ↫ ['..absc9..']\n⌁︙تم الغاء حظرة من ❨ '..gps..' ❩ مجموعة', 1, 'md')
-DevAbs:srem(DevProx..abs, result.id_)
+if result.id_ then
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙العضو ↫ [@'..apid[2]..']\n⌁︙تم الغاء حظرة من ❨ '..gps..' ❩ مجموعة', 1, 'md')
+DevAbs:srem(DevProx..'bot:gban:', result.id_)
 end
 end
 resolve_username(apid[2],ungban_by_username)
@@ -5624,19 +5675,15 @@ if text:match("^الغاء الكتم @(.*)$") and Abbas_Abs(msg) then
 local ap = {string.match(text, "^(الغاء الكتم) @(.*)$")}
 function unmute_by_username(extra, result, success)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. result.id_)
-local absc9 = user_info_ if user_info_ then
+local absc9 = user_info_ 
 if result.id_ then
 if not DevAbs:sismember(DevProx..'bot:muted:'..msg.chat_id_, result.id_) then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙العضو ↫ ['..absc9..']\n⌁︙هو ليس مكتوم لالغاء كتمة', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙العضو ↫ [@'..ap[2]..']\n⌁︙هو ليس مكتوم لالغاء كتمة', 1, 'md')
 else
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙المكتوم ↫ [@'..ap[2]..']\n⌁︙تم الغاء كتمة من المجموعة', 1, 'md')
 DevAbs:srem(DevProx..'bot:muted:'..msg.chat_id_, result.id_)
-text = '⌁︙المكتوم ↫ ['..absc9..']\n⌁︙تم الغاء كتمة من المجموعة'
 end
 end
-else
-text = '⌁︙*المعرف غير صحيح*'
-end
-Dev_Abs(msg.chat_id_, msg.id_, 1, text, 1, 'md')
 end
 resolve_username(ap[2],unmute_by_username)
 end
@@ -6444,61 +6491,6 @@ resolve_username(ap[2],id_by_username)
 end
 --     Source DevProx     --
 if is_admin(msg.sender_user_id_, msg.chat_id_) then
-if text and text:match("^طرد$") and msg.reply_to_message_id_ ~= 0 and Abbas_Abs(msg) then
-function kick_reply(extra, result, success)
-if not is_monshid(msg.sender_user_id_, msg.chat_id_) and DevAbs:get("ABS_PROX:lock:ban"..bot_id..msg.chat_id_) then 
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙لا تستطيع الطرد او الحظر \n⌁︙لانة معطل من قبل المنشئ ', 1, 'md')
-return "ABS_PROX"
-end
-local user_info_ = DevAbs:get(DevProx..'user:Name' .. result.sender_user_id_)
-local absc9 = user_info_ if user_info_ then
-if is_admin(result.sender_user_id_, result.chat_id_) then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙لا تستطيع طرد ↫ '..rank_abs(result.sender_user_id_, msg.chat_id_), 1, 'md')
-else
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙العضو ↫ ['..absc9..']\n⌁︙تم طردة من المجموعة', 1, 'md')
-chat_kick(result.chat_id_, result.sender_user_id_)
-end
-end
-end
-getMessage(msg.chat_id_,msg.reply_to_message_id_,kick_reply)
-end
---     Source DevProx     --
-if text and text:match("^طرد @(.*)$") and Abbas_Abs(msg) then
-local ap = {string.match(text, "^(طرد) @(.*)$")}
-function ban_by_username(extra, result, success)
-if not is_monshid(msg.sender_user_id_, msg.chat_id_) and DevAbs:get("ABS_PROX:lock:ban"..bot_id..msg.chat_id_) then 
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙لا تستطيع الطرد او الحظر \n⌁︙لانة معطل من قبل المنشئ ', 1, 'md')
-return "ABS_PROX"
-end
-local user_info_ = DevAbs:get(DevProx..'user:Name' .. result.id_)
-local absc9 = user_info_ if user_info_ then
-if result.id_ then
-if is_admin(result.id_, msg.chat_id_) then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙لا تستطيع طرد ↫ '..rank_abs(result.id_, msg.chat_id_), 1, 'md')
-else
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙العضو ↫ ['..absc9..']\n⌁︙تم طردة من المجموعة', 1, 'md')
-chat_kick(msg.chat_id_, result.id_)
-end
-end
-end
-end
-resolve_username(ap[2],ban_by_username)
-end
---     Source DevProx     --
-if text and text:match("^طرد (%d+)$") and Abbas_Abs(msg) then
-local ap = {string.match(text, "^(طرد) (%d+)$")}
-if not is_monshid(msg.sender_user_id_, msg.chat_id_) and DevAbs:get("ABS_PROX:lock:ban"..bot_id..msg.chat_id_) then 
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙لا تستطيع الطرد او الحظر \n⌁︙لانة معطل من قبل المنشئ ', 1, 'md')
-return "ABS_PROX"
-end
-local user_info_ = DevAbs:get(DevProx..'user:Name' .. ap[2])
-local absc9 = user_info_ if user_info_ then
-if is_admin(ap[2], msg.chat_id_) then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙لا تستطيع طرد ↫ '..rank_abs(ap[2], msg.chat_id_), 1, 'md')
-else
-chat_kick(msg.chat_id_, ap[2])
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙العضو ↫ ['..absc9..']\n⌁︙تم طردة من المجموعة', 1, 'md')
-end end end
 --     Source DevProx     --
 if text and text:match("^قائمه المنع$") and Abbas_Abs(msg) then
 local abs = (DevProx..'bot:filters:'..msg.chat_id_)
