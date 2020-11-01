@@ -1451,7 +1451,7 @@ end
 if ChatType == 'pv' then 
 if text == '/start' or text == 'رجوع ،🔙‘' then 
 if is_leader(msg) then 
-local Sudo_Welcome = '*⌁ ︙ مرحبا عزيزي المطور \n⌁ ︙ انت المطور الاساسي هنا \n⌁ ︙ اليك ازرار سورس ديف بروكس \n⌁ ︙ تستطيع التحكم بكل الاوامر فقط اضغط على الامر الذي تريد تنفيذه*'
+local Sudo_Welcome = '⌁︙مرحبا عزيزي المطور \n⌁︙انت المطور الاساسي هنا \n⌁︙اليك ازرار سورس ديف بروكس \n⌁︙تستطيع التحكم بكل الاوامر فقط اضغط على الامر الذي تريد تنفيذه'
 local key = {
 {'وضع اسم البوت','↫ تحديث ⌁','ضع كليشه المطور'},
 {'↫ الكروبات ⌁','↫ المطورين ⌁','↫ الاحصائيات ⌁'},
@@ -1475,8 +1475,9 @@ end end end
 if ChatType == 'pv' then 
 if text == '⌯ ❨ تعيين كلايش الاوامر ❩ ⌯' then 
 if is_leader(msg) then 
-local Sudo_Welcome = '*⌁ ︙ اهلا بك مجددا عزيزي المطور *\n*⌁ ︙ اليك الازرار الخاصه بتعديل وتغيير كلايش سورس ديف بروكس فقط اضغط على الامر الذي تريد تنفيذه*'
+local Sudo_Welcome = '⌁︙اهلا بك مجددا عزيزي المطور \n⌁︙اليك الازرار الخاصه بتعديل وتغيير كلايش سورس ديف بروكس فقط اضغط على الامر الذي تريد تنفيذه'
 local key = {
+{'حذف كليشة الايدي','تعيين كليشة الايدي'},
 {'تعيين امر الاوامر'},
 {'تعيين امر م3','تعيين امر م2','تعيين امر م1'},
 {'تعيين امر م6','تعيين امر م5','تعيين امر م4'},
@@ -6604,6 +6605,30 @@ local ABS_PROX = '⌁︙اهلا عزيزي ↫ '..abs_rank(msg)..' \n⌁︙تم
 absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 15, string.len(msg.sender_user_id_))
 end
 --     Source DevProx     --
+if is_leader(msg) then
+if text and text:match("^تعيين الايدي العام$") or text and text:match("^تعين الايدي العام$") or text and text:match("^تعيين كليشة الايدي$") then
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙رجائا اتبع التعليمات للتعيين \n⌁︙لطبع كليشة الايدي ارسل كليشة تحتوي على النصوص التي باللغة الانجليزية ادناه ↫ ⤈\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n #username ↬ لطبع المعرف\n #id ↬ لطبع الايدي \n #photos ↬ لطبع عدد الصور \n #stast ↬ لطبع الرتب \n #msgs ↬ لطبع عدد الرسائل \n #msgday ↬ لطبع الرسائل اليوميه \n #formsg ↬ لطبع التفاعل \n #game ↬ لطبع عدد النقاط \n #cont ↬ لطبع عدد الجهات \n #sticker ↬ لطبع عدد الملصقات \n #edit ↬ لطبع عدد التعديلات \n #Description ↬ لطبع تعليق الصور\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉', 1, 'md')
+DevAbs:set("DevProx:New:id:"..bot_id..msg.sender_user_id_,'ABS_PROX')
+return "ABS_PROX"
+end
+if text and DevAbs:get("DevProx:New:id:"..bot_id..msg.sender_user_id_) then 
+if text == 'الغاء' then   
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تم الغاء حفظ كليشة الايدي', 1, 'md')
+DevAbs:del("DevProx:New:id:"..bot_id..msg.sender_user_id_)
+return false
+end
+DevAbs:del("DevProx:New:id:"..bot_id..msg.sender_user_id_)
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تم حفظ كليشة الايدي العامه', 1, 'md')
+DevAbs:set("DevProx:ABS_PROX:id:text:"..bot_id,text)
+return false
+end
+if text and text:match("^حذف الايدي العام$") or text and text:match("^مسح الايدي العام$") or text and text:match("^حذف كليشة الايدي$") then
+local ABS_PROX = '⌁︙اهلا عزيزي ↫ '..abs_rank(msg)..' \n⌁︙تم حذف كليشة الايدي العامه'
+absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 15, string.len(msg.sender_user_id_))
+DevAbs:del("DevProx:ABS_PROX:id:text:"..bot_id)
+end
+end
+--     Source DevProx     --
 if text and text:match("^تعيين الايدي$") and Abbas_Abs(msg) or text and text:match("^تعين الايدي$") and Abbas_Abs(msg) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙رجائا اتبع التعليمات للتعيين \n⌁︙لطبع كليشة الايدي ارسل كليشة تحتوي على النصوص التي باللغة الانجليزية ادناه ↫ ⤈\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n #username ↬ لطبع المعرف\n #id ↬ لطبع الايدي \n #photos ↬ لطبع عدد الصور \n #stast ↬ لطبع الرتب \n #msgs ↬ لطبع عدد الرسائل \n #msgday ↬ لطبع الرسائل اليوميه \n #formsg ↬ لطبع التفاعل \n #game ↬ لطبع عدد النقاط \n #cont ↬ لطبع عدد الجهات \n #sticker ↬ لطبع عدد الملصقات \n #edit ↬ لطبع عدد التعديلات \n #Description ↬ لطبع تعليق الصور\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉', 1, 'md')
 DevAbs:set("DevProx:New:id:"..bot_id..msg.chat_id_..msg.sender_user_id_,'ABS_PROX')
@@ -6642,20 +6667,30 @@ local sticker = (tonumber(DevAbs:get(DevProx.."sticker:"..msg.sender_user_id_.."
 local user_nkt = tonumber(DevAbs:get(DevProx..'bot:add:num'..msg.chat_id_..msg.sender_user_id_) or 0)
 local cont = (tonumber(DevAbs:get(DevProx..'bot:user:add'..msg.chat_id_..':'..msg.sender_user_id_)) or 0)
 local msguser = tonumber(DevAbs:get(DevProx..'user:msgs'..msg.chat_id_..':'..msg.sender_user_id_))
-local Texting = {
-'صورتك فدشي 😘😔❤️',
-"صارلك شكد مخليه ",
-"وفالله 😔💘",
-"كشخه برب 😉💘",
-"دغيره شبي هذ 😒",
-"عمري الحلوين 💘",
-}
+local Texting = {'صورتك فدشي 😘😔❤️',"صارلك شكد مخليه ","وفالله 😔💘","كشخه برب 😉💘","دغيره شبي هذ 😒","عمري الحلوين 💘",}
 local Description = Texting[math.random(#Texting)]
 if result.photos_[0] then
 if not DevAbs:get('DevProx:id:mute'..msg.chat_id_) then 
 if not DevAbs:get('DevProx:id:photo'..msg.chat_id_) then 
+if DevAbs:get("DevProx:ABS_PROX:id:text:"..bot_id) then
+newpicid = DevAbs:get("DevProx:ABS_PROX:id:text:"..bot_id)
+newpicid = newpicid:gsub('#username',(username or 'لا يوجد'))
+newpicid = newpicid:gsub('#photos',(result.total_count_ or 'لا يوجد')) 
+newpicid = newpicid:gsub('#game',(user_nkt or 'لا يوجد'))
+newpicid = newpicid:gsub('#edit',(edit_msg or 'لا يوجد'))
+newpicid = newpicid:gsub('#cont',(cont or 'لا يوجد'))
+newpicid = newpicid:gsub('#sticker',(sticker or 'لا يوجد'))
+newpicid = newpicid:gsub('#msgs',(user_msgs + Dev_Abss or 'لا يوجد'))
+newpicid = newpicid:gsub('#msgday',(ABS_PROX or 'لا يوجد'))
+newpicid = newpicid:gsub('#id',(msg.sender_user_id_ or 'لا يوجد'))
+newpicid = newpicid:gsub('#formsg',(formsgg(msguser) or 'لا يوجد'))
+newpicid = newpicid:gsub('#stast',(id_rank(msg) or 'لا يوجد'))
+newpicid = newpicid:gsub('#Description',(Description or 'لا يوجد'))
+else
+newpicid = "⌁︙معرفك ↫ ❨ "..username.." ❩\n⌁︙ايديك ↫ ❨ "..msg.sender_user_id_.." ❩\n⌁︙رتبتك ↫ "..id_rank(msg).."\n⌁︙صورك ↫ ❨ "..result.total_count_.." ❩\n⌁︙رسائلك ↫ ❨ "..(user_msgs + Dev_Abss).." • "..(ABS_PROX).." ❩\n⌁︙تفاعلك ↫ "..formsgg(msguser).."\n⌁︙نقاطك ↫ ❨ "..user_nkt.." ❩\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n"
+end 
 if not DevAbs:get("DevProx:ABS_PROX:id:text:"..bot_id..msg.chat_id_) then 
-sendPhoto(msg.chat_id_, msg.id_, 0, 1, nil, result.photos_[0].sizes_[1].photo_.persistent_id_,"\n⌁︙معرفك ↫ ❨ "..username.." ❩\n⌁︙ايديك ↫ ❨ "..msg.sender_user_id_.." ❩\n⌁︙رتبتك ↫ "..id_rank(msg).."\n⌁︙صورك ↫ ❨ "..result.total_count_.." ❩\n⌁︙رسائلك ↫ ❨ "..(user_msgs + Dev_Abss).." • "..(ABS_PROX).." ❩\n⌁︙تفاعلك ↫ "..formsgg(msguser).."\n⌁︙نقاطك ↫ ❨ "..user_nkt.." ❩\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n",msg.id_,msg.id_.."")
+sendPhoto(msg.chat_id_, msg.id_, 0, 1, nil, result.photos_[0].sizes_[1].photo_.persistent_id_,newpicid,msg.id_,msg.id_.."")
 else 
 local new_id = DevAbs:get("DevProx:ABS_PROX:id:text:"..bot_id..msg.chat_id_)
 local new_id = new_id:gsub('#username',(username or 'لا يوجد'))
@@ -6673,8 +6708,25 @@ local new_id = new_id:gsub('#Description',(Description or 'لا يوجد'))
 sendPhoto(msg.chat_id_, msg.id_, 0, 1, nil, result.photos_[0].sizes_[1].photo_.persistent_id_,new_id,msg.id_,msg.id_.."")
 end
 else
+if DevAbs:get("DevProx:ABS_PROX:id:text:"..bot_id) then
+newallid = DevAbs:get("DevProx:ABS_PROX:id:text:"..bot_id)
+newallid = newallid:gsub('#username',(username or 'لا يوجد'))
+newallid = newallid:gsub('#photos',(result.total_count_ or 'لا يوجد')) 
+newallid = newallid:gsub('#game',(user_nkt or 'لا يوجد'))
+newallid = newallid:gsub('#edit',(edit_msg or 'لا يوجد'))
+newallid = newallid:gsub('#cont',(cont or 'لا يوجد'))
+newallid = newallid:gsub('#sticker',(sticker or 'لا يوجد'))
+newallid = newallid:gsub('#msgs',(user_msgs + Dev_Abss or 'لا يوجد'))
+newallid = newallid:gsub('#msgday',(ABS_PROX or 'لا يوجد'))
+newallid = newallid:gsub('#id',(msg.sender_user_id_ or 'لا يوجد'))
+newallid = newallid:gsub('#formsg',(formsgg(msguser) or 'لا يوجد'))
+newallid = newallid:gsub('#stast',(id_rank(msg) or 'لا يوجد'))
+newallid = newallid:gsub('#Description',(Description or 'لا يوجد'))
+else
+newallid = "⌁︙معرفك ↫ ❨ "..username.." ❩\n⌁︙ايديك ↫ ❨ "..msg.sender_user_id_.." ❩\n⌁︙رتبتك ↫ "..id_rank(msg).."\n⌁︙صورك ↫ ❨ "..result.total_count_.." ❩\n⌁︙رسائلك ↫ ❨ "..(user_msgs + Dev_Abss).." • "..(ABS_PROX).." ❩\n⌁︙تفاعلك ↫ "..formsgg(msguser).."\n⌁︙نقاطك ↫ ❨ "..user_nkt.." ❩\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n"
+end 
 if not DevAbs:get("DevProx:ABS_PROX:id:text:"..bot_id..msg.chat_id_) then
-Dev_Abs(msg.chat_id_, msg.id_, 1, "\n⌁︙معرفك ↫ ❨ ["..username.."] ❩\n⌁︙ايديك ↫ ❨ `"..msg.sender_user_id_.."` ❩\n⌁︙رتبتك ↫ "..id_rank(msg).."\n⌁︙صورك ↫ ❨ "..result.total_count_.." ❩\n⌁︙رسائلك ↫ ❨ "..(user_msgs + Dev_Abss).." • "..(ABS_PROX).." ❩\n⌁︙تفاعلك ↫ "..formsgg(msguser).."\n⌁︙جهاتك ↫ ❨ "..cont.." ❩\n⌁︙نقاطك ↫ ❨ "..user_nkt.." ❩\n⌁︙ملصقاتك ↫ ❨ "..sticker.." ❩\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n", 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, newallid, 1, 'html')
 else
 local new_id = DevAbs:get("DevProx:ABS_PROX:id:text:"..bot_id..msg.chat_id_)
 local new_id = new_id:gsub('#username',(username or 'لا يوجد'))
@@ -6696,11 +6748,28 @@ else
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙عذرا الايدي معطل ', 1, 'md')
 end
 else
+if DevAbs:get("DevProx:ABS_PROX:id:text:"..bot_id) then
+notpicid = DevAbs:get("DevProx:ABS_PROX:id:text:"..bot_id)
+notpicid = notpicid:gsub('#username',(username or 'لا يوجد'))
+notpicid = notpicid:gsub('#photos',(result.total_count_ or 'لا يوجد')) 
+notpicid = notpicid:gsub('#game',(user_nkt or 'لا يوجد'))
+notpicid = notpicid:gsub('#edit',(edit_msg or 'لا يوجد'))
+notpicid = notpicid:gsub('#cont',(cont or 'لا يوجد'))
+notpicid = notpicid:gsub('#sticker',(sticker or 'لا يوجد'))
+notpicid = notpicid:gsub('#msgs',(user_msgs + Dev_Abss or 'لا يوجد'))
+notpicid = notpicid:gsub('#msgday',(ABS_PROX or 'لا يوجد'))
+notpicid = notpicid:gsub('#id',(msg.sender_user_id_ or 'لا يوجد'))
+notpicid = notpicid:gsub('#formsg',(formsgg(msguser) or 'لا يوجد'))
+notpicid = notpicid:gsub('#stast',(id_rank(msg) or 'لا يوجد'))
+notpicid = notpicid:gsub('#Description',(Description or 'لا يوجد'))
+else
+notpicid = "⌁︙لا استطيع عرض صورتك لانك قمت بحظر البوت او انك لاتمتلك صوره في بروفايلك\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n⌁︙معرفك ↫ ❨ "..username.." ❩\n⌁︙ايديك ↫ ❨ "..msg.sender_user_id_.." ❩\n⌁︙رتبتك ↫ "..id_rank(msg).."\n⌁︙رسائلك ↫ ❨ "..(user_msgs + Dev_Abss).." • "..(ABS_PROX).." ❩\n⌁︙تفاعلك ↫ "..formsgg(msguser).."\n⌁︙نقاطك ↫ ❨ "..user_nkt.." ❩\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n"
+end 
 if not DevAbs:get('DevProx:id:mute'..msg.chat_id_) then
 if not DevAbs:get('DevProx:id:photo'..msg.chat_id_) then
-Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙لا استطيع عرض صورتك لانك قمت بحظر البوت او انك لاتمتلك صوره في بروفايلك\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n⌁︙معرفك ↫ ❨ ["..username.."] ❩\n⌁︙ايديك ↫ ❨ `"..msg.sender_user_id_.."` ❩\n⌁︙رتبتك ↫ "..id_rank(msg).."\n⌁︙رسائلك ↫ ❨ "..(user_msgs + Dev_Abss).." • "..(ABS_PROX).." ❩\n⌁︙تفاعلك ↫ "..formsgg(msguser).."\n⌁︙جهاتك ↫ ❨ "..cont.." ❩\n⌁︙نقاطك ↫ ❨ "..user_nkt.." ❩\n⌁︙ملصقاتك ↫ ❨ "..sticker.." ❩\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n", 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, notpicid, 1, 'html')
 else
-Dev_Abs(msg.chat_id_, msg.id_, 1, "\n⌁︙معرفك ↫ ❨ ["..username.."] ❩\n⌁︙ايديك ↫ ❨ `"..msg.sender_user_id_.."` ❩\n⌁︙رتبتك ↫ "..id_rank(msg).."\n⌁︙صورك ↫ ❨ "..result.total_count_.." ❩\n⌁︙رسائلك ↫ ❨ "..(user_msgs + Dev_Abss).." • "..(ABS_PROX).." ❩\n⌁︙تفاعلك ↫ "..formsgg(msguser).."\n⌁︙نقاطك ↫ ❨ "..user_nkt.." ❩\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n", 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙معرفك ↫ ❨ ["..username.."] ❩\n⌁︙ايديك ↫ ❨ `"..msg.sender_user_id_.."` ❩\n⌁︙رتبتك ↫ "..id_rank(msg).."\n⌁︙صورك ↫ ❨ "..result.total_count_.." ❩\n⌁︙رسائلك ↫ ❨ "..(user_msgs + Dev_Abss).." • "..(ABS_PROX).." ❩\n⌁︙تفاعلك ↫ "..formsgg(msguser).."\n⌁︙نقاطك ↫ ❨ "..user_nkt.." ❩\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n", 1, 'md')
 end
 else
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙عذرا الايدي معطل', 1, 'md')
@@ -9230,6 +9299,7 @@ local text =  [[
 ⌁︙تغيير • حذف ↫ كليشه الاشتراك
 ⌁︙رفع • تنزيل ↫ مطور
 ⌁︙المطورين • حذف المطورين
+⌁︙تعيين • حذف ↫ كليشة الايدي
 ⌁︙اذاعه للكل بالتوجيه ↫ بالرد
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ⌁︙تفعيل • تعطيل ↫ التنبيه
