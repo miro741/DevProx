@@ -843,7 +843,7 @@ ChekName = utf8.sub(Name,0,Num) Name = ChekName return Name..''
 end
 --     Source DevProx     --
 local abs_rank = function(msg) if is_leaderid(msg.sender_user_id_) then ABS_PROX  = "المطور" elseif is_sudoid(msg.sender_user_id_) then ABS_PROX = "المطور" elseif is_SudoBot(msg.sender_user_id_) then ABS_PROX = "المطور" elseif is_ownerall(msg.sender_user_id_) then ABS_PROX = "المدير" elseif is_adminall(msg.sender_user_id_) then ABS_PROX = "الادمن" elseif is_absmonsh(msg.sender_user_id_, msg.chat_id_) then ABS_PROX = "المنشئ" elseif is_monsh(msg.sender_user_id_, msg.chat_id_) then ABS_PROX = "المنشئ" elseif is_monshid(msg.sender_user_id_, msg.chat_id_) then ABS_PROX = "المنشئ" elseif is_owner(msg.sender_user_id_, msg.chat_id_) then ABS_PROX = "المدير" elseif is_admin(msg.sender_user_id_, msg.chat_id_) then ABS_PROX = "الادمن" else ABS_PROX = "العضو" end return ABS_PROX end
-local id_rank = function(msg) if tonumber(msg.sender_user_id_) == tonumber(218385683) then ABS_PROX = 'مبرمج السورس' elseif is_leader(msg) then ABS_PROX = 'المطور الاساسي' elseif is_SudoBot(msg.sender_user_id_) then ABS_PROX = 'مطور البوت' elseif is_ownerall(msg.sender_user_id_) then ABS_PROX = 'المدير العام' elseif is_adminall(msg.sender_user_id_) then ABS_PROX = 'الادمن العام' elseif is_vipall(msg.sender_user_id_) then ABS_PROX = 'المميز العام' elseif is_absmonsh(msg.sender_user_id_, msg.chat_id_) then ABS_PROX = 'منشئ المجموعة' elseif is_monsh(msg.sender_user_id_, msg.chat_id_) then ABS_PROX = 'المنشئ الاساسي' elseif is_monshid(msg.sender_user_id_, msg.chat_id_) then ABS_PROX = 'المنشئ' elseif is_owner(msg.sender_user_id_, msg.chat_id_) then ABS_PROX = 'المدير' elseif is_admin(msg.sender_user_id_, msg.chat_id_) then ABS_PROX = 'الادمن' elseif is_vipmem(msg.sender_user_id_, msg.chat_id_) then ABS_PROX = 'عضو مميز' elseif is_donky(msg.sender_user_id_, msg.chat_id_) then ABS_PROX = 'مطي مرتب 😹💔' else ABS_PROX = 'فقط عضو' end return ABS_PROX end
+local id_rank = function(msg) if tonumber(msg.sender_user_id_) == tonumber(218385683) then ABS_PROX = 'مبرمج السورس' elseif is_leader(msg) then ABS_PROX = 'المطور الاساسي' elseif is_SudoBot(msg.sender_user_id_) then ABS_PROX = DevAbs:get(DevProx.."abs:SudoBot:Rd"..msg.chat_id_) or 'مطور البوت' elseif is_ownerall(msg.sender_user_id_) then ABS_PROX = DevAbs:get(DevProx.."abs:owners:Rd"..msg.chat_id_) or 'المدير العام' elseif is_adminall(msg.sender_user_id_) then ABS_PROX = DevAbs:get(DevProx.."abs:admins:Rd"..msg.chat_id_) or 'الادمن العام' elseif is_vipall(msg.sender_user_id_) then ABS_PROX = DevAbs:get(DevProx.."abs:vipmem:Rd"..msg.chat_id_) or 'المميز العام' elseif is_absmonsh(msg.sender_user_id_, msg.chat_id_) then ABS_PROX = 'منشئ المجموعة' elseif is_monsh(msg.sender_user_id_, msg.chat_id_) then ABS_PROX = DevAbs:get(DevProx.."abs:monsh:Rd"..msg.chat_id_) or 'المنشئ الاساسي' elseif is_monshid(msg.sender_user_id_, msg.chat_id_) then ABS_PROX = DevAbs:get(DevProx.."abs:monshid:Rd"..msg.chat_id_) or 'المنشئ' elseif is_owner(msg.sender_user_id_, msg.chat_id_) then ABS_PROX = DevAbs:get(DevProx.."abs:owners:Rd"..msg.chat_id_) or 'المدير' elseif is_admin(msg.sender_user_id_, msg.chat_id_) then ABS_PROX = DevAbs:get(DevProx.."abs:admins:Rd"..msg.chat_id_) or 'الادمن' elseif is_vipmem(msg.sender_user_id_, msg.chat_id_) then ABS_PROX = DevAbs:get(DevProx.."abs:vipmem:Rd"..msg.chat_id_) or 'عضو مميز' elseif is_donky(msg.sender_user_id_, msg.chat_id_) then ABS_PROX = 'مطي مرتب 😹💔' else ABS_PROX = DevAbs:get(DevProx.."abs:mem:Rd"..msg.chat_id_) or 'فقط عضو' end return ABS_PROX end
 function rank_abs(user_id,chat_id) if tonumber(user_id) == tonumber(218385683) then ABS_PROX  = "المبرمج" elseif is_leaderid(user_id) then ABS_PROX  = "المطور" elseif is_sudoid(user_id) then ABS_PROX = "المطور" elseif is_SudoBot(user_id) then ABS_PROX = "المطور" elseif is_ownerall(user_id) then ABS_PROX = "المدير" elseif is_adminall(user_id) then ABS_PROX = "الادمن" elseif is_absmonsh(user_id, chat_id) then ABS_PROX = "المنشئ" elseif is_monsh(user_id, chat_id) then ABS_PROX = "المنشئ" elseif is_monshid(user_id, chat_id) then ABS_PROX = "المنشئ" elseif is_owner(user_id, chat_id) then ABS_PROX = "المدير" elseif is_admin(user_id, chat_id) then ABS_PROX = "الادمن" else ABS_PROX = "العضو" end return ABS_PROX end
 --     Source DevProx     --
 --       Set SudoBot        --
@@ -4148,17 +4148,6 @@ end
 getUser(msg.sender_user_id_,get_me)
 end
 --     Source DevProx     --
-if text:match("^الرتبه$") and msg.reply_to_message_id_ ~= 0 and Abbas_Abs(msg) or text:match("^رتبته$") and msg.reply_to_message_id_ ~= 0 and Abbas_Abs(msg) then
-function rt_by_reply(extra, result, success) 
-tdcli_function ({ID = "GetChatMember",chat_id_ = msg.chat_id_,user_id_ = result.sender_user_id_},function(arg,da) 
-if da.status_.ID == "ChatMemberStatusCreator" then rank_gps = 'المنشئ' elseif da.status_.ID == "ChatMemberStatusEditor" then rank_gps = 'الادمن' elseif da.status_.ID == "ChatMemberStatusMember" then rank_gps = 'عضو' end
-if result.id_ then if tonumber(result.sender_user_id_) == tonumber(218385683) then DeveAbs = 'مبرمج السورس' elseif tonumber(result.sender_user_id_) == tonumber(DevId) then DeveAbs = 'المطور الاساسي' elseif is_sudoid(result.sender_user_id_) then DeveAbs = "المطور الثانوي" elseif is_SudoBot(result.sender_user_id_, msg.chat_id_) then DeveAbs = "مطور البوت" elseif is_ownerall(result.sender_user_id_) then DeveAbs = "المدير العام" elseif is_adminall(result.sender_user_id_) then DeveAbs = "الادمن العام" elseif is_vipall(result.sender_user_id_) then DeveAbs = "المميز العام" elseif is_absmonsh(result.sender_user_id_, msg.chat_id_) then DeveAbs = "منشئ المجموعة" elseif is_monsh(result.sender_user_id_, msg.chat_id_) then DeveAbs = "المنشئ الاساسي" elseif is_monshid(result.sender_user_id_, msg.chat_id_) then DeveAbs = "المنشئ" elseif is_owner(result.sender_user_id_, msg.chat_id_) then DeveAbs = "المدير" elseif is_admin(result.sender_user_id_, msg.chat_id_) then DeveAbs = "الادمن" elseif is_vipmem(result.sender_user_id_, msg.chat_id_) then DeveAbs = "عضو مميز" elseif is_donky(result.sender_user_id_, msg.chat_id_) then DeveAbs = "مطي مرتب 😹💔" else DeveAbs = "فقط عضو" end end
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙رتبته بالبوت ↫ '..DeveAbs..'\n⌁︙موقعه بالكروب ↫ '..rank_gps , 1, 'md') 
-end,nil)
-end
-getMessage(msg.chat_id_, msg.reply_to_message_id_,rt_by_reply)
-end
---     Source DevProx     --
 if is_sudo(msg) then
 if text == 'اذاعه للكل بالتوجيه' and tonumber(msg.reply_to_message_id_) > 0 then
 function ABS_PROX(extra,result,success)
@@ -4418,7 +4407,7 @@ if text:match("^رتبتي$") and Abbas_Abs(msg) then Dev_Abs(msg.chat_id_, msg.
 if text:match("^ايدي المجموعه$") and Abbas_Abs(msg) then Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙ايدي المجموعة ↫ `"..msg.chat_id_.."`", 1, 'md') end
 if text == 'مسح سحكاتي' or text == 'مسح تعديلاتي' or text == 'حذف سحكاتي' or text == 'حذف تعديلاتي' then DevAbs:del(DevProx..'bot:editmsg'..msg.chat_id_..msg.sender_user_id_) Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تم حذف جميع تعديلاتك بنجاح' , 1, 'md') end
 --     Source DevProx     --
-if text == "المطور" then
+if text == "المطور" then 
 local DevCh1 = DevAbs:get(DevProx.."DevAbs3")
 local DevText = DevAbs:get(DevProx.."DevText")
 if DevCh1 then DevCh = '\n⌁︙*Dev Ch* ↬ ['..DevCh1..']' else DevCh = '' end
@@ -5705,7 +5694,7 @@ end
 end
 --     Source DevProx     --
 if msg.reply_to_message_id_ ~= 0 then
-if text and text:match("^رفع مطي$") then
+if text and text:match("^رفع مطي$") and Abbas_Abs(msg) then
 function donky_by_reply(extra, result, success)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. result.sender_user_id_)
 local abs = 'bot:donky:'..msg.chat_id_
@@ -5720,7 +5709,7 @@ getMessage(msg.chat_id_, msg.reply_to_message_id_,donky_by_reply)
 end end
 --     Source DevProx     --
 if msg.reply_to_message_id_ ~= 0  then
-if text and text:match("^تنزيل مطي$") then
+if text and text:match("^تنزيل مطي$") and Abbas_Abs(msg) then
 function donky_by_reply(extra, result, success)
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. result.sender_user_id_)
 local abs = 'bot:donky:'..msg.chat_id_
@@ -6124,27 +6113,27 @@ t = 'هذا البوت'
 elseif tonumber(result.sender_user_id_) == tonumber(DevId) then
 t = 'مطور اساسي'
 elseif DevAbs:sismember(DevProx..'abs:SudoBot:',result.sender_user_id_) then
-t = 'مطور البوت'
+t = DevAbs:get(DevProx.."abs:SudoBot:Rd"..msg.chat_id_) or 'مطور البوت'
 elseif DevAbs:sismember(DevProx..'abs:absmonsh:'..msg.chat_id_,result.sender_user_id_) then
 t = 'منشئ المجموعة'
 elseif DevAbs:sismember(DevProx..'abs:monsh:'..msg.chat_id_,result.sender_user_id_) then
-t = 'منشئ اساسي'
+t = DevAbs:get(DevProx.."abs:monsh:Rd"..msg.chat_id_) or 'منشئ اساسي'
 elseif DevAbs:sismember(DevProx..'abs:monshid:'..msg.chat_id_,result.sender_user_id_) then
-t = 'منشئ'
+t = DevAbs:get(DevProx.."abs:monshid:Rd"..msg.chat_id_) or 'منشئ'
 elseif DevAbs:sismember(DevProx..'abs:owners:'..msg.chat_id_,result.sender_user_id_) then
-t = 'مدير'
+t = DevAbs:get(DevProx.."abs:owners:Rd"..msg.chat_id_) or 'مدير'
 elseif DevAbs:sismember(DevProx..'abs:admins:'..msg.chat_id_,result.sender_user_id_) then
-t = 'ادمن'
+t = DevAbs:get(DevProx.."abs:admins:Rd"..msg.chat_id_) or 'ادمن'
 elseif DevAbs:sismember(DevProx..'abs:vipall:',result.sender_user_id_) then
-t = 'مميز عام'
+t = DevAbs:get(DevProx.."abs:vipmem:Rd"..msg.chat_id_) or 'مميز عام'
 elseif DevAbs:sismember(DevProx..'abs:ownerall:',result.sender_user_id_) then
-t = 'مدير عام'
+t = DevAbs:get(DevProx.."abs:owners:Rd"..msg.chat_id_) or 'مدير عام'
 elseif DevAbs:sismember(DevProx..'abs:adminall:',result.sender_user_id_) then
-t = 'ادمن عام'
+t = DevAbs:get(DevProx.."abs:admins:Rd"..msg.chat_id_) or 'ادمن عام'
 elseif DevAbs:sismember(DevProx..'abs:vipmem:'..msg.chat_id_,result.sender_user_id_) then
-t = 'عضو مميز'
+t = DevAbs:get(DevProx.."abs:vipmem:Rd"..msg.chat_id_) or 'عضو مميز'
 else
-t = 'مجرد عضو'
+t = DevAbs:get(DevProx.."abs:mem:Rd"..msg.chat_id_) or 'مجرد عضو'
 end
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
 local user_msgs = DevAbs:get(DevProx..'user:msgs'..msg.chat_id_..':'..data.id_) or 0
@@ -6200,27 +6189,27 @@ t = 'هذا البوت'
 elseif tonumber(res.id_) == tonumber(DevId) then
 t = 'مطور اساسي'
 elseif DevAbs:sismember(DevProx..'abs:SudoBot:',res.id_) then
-t = 'مطور البوت'
+t = DevAbs:get(DevProx.."abs:SudoBot:Rd"..msg.chat_id_) or 'مطور البوت'
 elseif DevAbs:sismember(DevProx..'abs:absmonsh:'..msg.chat_id_,res.id_) then
 t = 'منشئ المجموعة'
 elseif DevAbs:sismember(DevProx..'abs:monsh:'..msg.chat_id_,res.id_) then
-t = 'منشئ اساسي'
+t = DevAbs:get(DevProx.."abs:monsh:Rd"..msg.chat_id_) or 'منشئ اساسي'
 elseif DevAbs:sismember(DevProx..'abs:monshid:'..msg.chat_id_,res.id_) then
-t = 'منشئ'
+t = DevAbs:get(DevProx.."abs:monshid:Rd"..msg.chat_id_) or 'منشئ'
 elseif DevAbs:sismember(DevProx..'abs:owners:'..msg.chat_id_,res.id_) then
-t = 'مدير'
+t = DevAbs:get(DevProx.."abs:owners:Rd"..msg.chat_id_) or 'مدير'
 elseif DevAbs:sismember(DevProx..'abs:admins:'..msg.chat_id_,res.id_) then
-t = 'ادمن'
+t = DevAbs:get(DevProx.."abs:admins:Rd"..msg.chat_id_) or 'ادمن'
 elseif DevAbs:sismember(DevProx..'abs:vipall:',res.id_) then
-t = 'مميز عام'
-elseif DevAbs:sismember(DevProx..'abs:adminall:',res.id_) then
-t = 'ادمن عام'
+t = DevAbs:get(DevProx.."abs:vipmem:Rd"..msg.chat_id_) or 'مميز عام'
 elseif DevAbs:sismember(DevProx..'abs:ownerall:',res.id_) then
-t = 'مدير عام'
+t = DevAbs:get(DevProx.."abs:owners:Rd"..msg.chat_id_) or 'مدير عام'
+elseif DevAbs:sismember(DevProx..'abs:adminall:',res.id_) then
+t = DevAbs:get(DevProx.."abs:admins:Rd"..msg.chat_id_) or 'ادمن عام'
 elseif DevAbs:sismember(DevProx..'abs:vipmem:'..msg.chat_id_,res.id_) then
-t = 'عضو مميز'
+t = DevAbs:get(DevProx.."abs:vipmem:Rd"..msg.chat_id_) or 'عضو مميز'
 else
-t = 'مجرد عضو'
+t = DevAbs:get(DevProx.."abs:mem:Rd"..msg.chat_id_) or 'مجرد عضو'
 end
 tdcli_function ({ID = "GetUser",user_id_ = res.id_},function(arg,data) 
 local user_msgs = DevAbs:get(DevProx..'user:msgs'..msg.chat_id_..':'..res.id_) or 0
@@ -6255,27 +6244,27 @@ t = 'هذا البوت'
 elseif tonumber(iduser) == tonumber(DevId) then
 t = 'مطور اساسي'
 elseif DevAbs:sismember(DevProx..'abs:SudoBot:',iduser) then
-t = 'مطور البوت'
+t = DevAbs:get(DevProx.."abs:SudoBot:Rd"..msg.chat_id_) or 'مطور البوت'
 elseif DevAbs:sismember(DevProx..'abs:absmonsh:'..msg.chat_id_,iduser) then
 t = 'منشئ المجموعة'
 elseif DevAbs:sismember(DevProx..'abs:monsh:'..msg.chat_id_,iduser) then
-t = 'منشئ اساسي'
+t = DevAbs:get(DevProx.."abs:monsh:Rd"..msg.chat_id_) or 'منشئ اساسي'
 elseif DevAbs:sismember(DevProx..'abs:monshid:'..msg.chat_id_,iduser) then
-t = 'منشئ'
+t = DevAbs:get(DevProx.."abs:monshid:Rd"..msg.chat_id_) or 'منشئ'
 elseif DevAbs:sismember(DevProx..'abs:owners:'..msg.chat_id_,iduser) then
-t = 'مدير'
+t = DevAbs:get(DevProx.."abs:owners:Rd"..msg.chat_id_) or 'مدير'
 elseif DevAbs:sismember(DevProx..'abs:admins:'..msg.chat_id_,iduser) then
-t = 'ادمن'
+t = DevAbs:get(DevProx.."abs:admins:Rd"..msg.chat_id_) or 'ادمن'
 elseif DevAbs:sismember(DevProx..'abs:vipall:',iduser) then
-t = 'مميز عام'
-elseif DevAbs:sismember(DevProx..'abs:adminall:',iduser) then
-t = 'ادمن عام'
+t = DevAbs:get(DevProx.."abs:vipmem:Rd"..msg.chat_id_) or 'مميز عام'
 elseif DevAbs:sismember(DevProx..'abs:ownerall:',iduser) then
-t = 'مدير عام'
+t = DevAbs:get(DevProx.."abs:owners:Rd"..msg.chat_id_) or 'مدير عام'
+elseif DevAbs:sismember(DevProx..'abs:adminall:',iduser) then
+t = DevAbs:get(DevProx.."abs:admins:Rd"..msg.chat_id_) or 'ادمن عام'
 elseif DevAbs:sismember(DevProx..'abs:vipmem:'..msg.chat_id_,iduser) then
-t = 'عضو مميز'
+t = DevAbs:get(DevProx.."abs:vipmem:Rd"..msg.chat_id_) or 'عضو مميز'
 else
-t = 'مجرد عضو'
+t = DevAbs:get(DevProx.."abs:mem:Rd"..msg.chat_id_) or 'مجرد عضو'
 end
 tdcli_function ({ID = "GetUser",user_id_ = iduser},function(arg,data) 
 if data.message_ == "User not found" then
@@ -6438,58 +6427,6 @@ end,nil)
 end  
 resolve_username(username,unbanusername) 
 end 
---     Source DevProx     --
-if text and text:match("^الرتبه @(.*)$") and Abbas_Abs(msg) then
-local ap = {string.match(text, "^(الرتبه) @(.*)$")}
-function id_by_username(extra, result, success)
-if result.id_ then
-if tonumber(result.id_) == tonumber(218385683) then
-t = 'مبرمج السورس'
-elseif tonumber(result.id_) == tonumber(DevId) then
-t = 'المطور الاساسي'
-elseif is_sudoid(result.id_) then
-t = 'المطور الثانوي'
-elseif is_SudoBot(result.id_) then
-t = 'مطور البوت'
-elseif is_ownerall(result.id_) then
-t = 'المدير العام'
-elseif is_adminall(result.id_) then
-t = 'الادمن العام'
-elseif is_vipall(result.id_) then
-t = 'المميز العام'
-elseif is_absmonsh(result.id_, msg.chat_id_) then
-t = 'منشئ المجموعه'
-elseif is_monsh(result.id_, msg.chat_id_) then
-t = 'المنشئ الاساسي'
-elseif is_monshid(result.id_, msg.chat_id_) then
-t = 'المنشئ'
-elseif is_owner(result.id_, msg.chat_id_) then
-t = 'المدير'
-elseif is_admin(result.id_, msg.chat_id_) then
-t = 'الادمن'
-elseif is_vipmem(result.id_, msg.chat_id_) then
-t = 'عضو مميز'
-elseif is_donky(result.id_, msg.chat_id_) then
-t = 'مطي مرتب 😹💔'
-elseif result.id_ == bot_id then
-t = 'هذا انا البوت'
-else
-t = 'فقط عضو'
-end
-local gpid = tostring(result.id_)
-if gpid:match('^(%d+)') then
-text = '⌁︙معرفه ↫ ❨ [@'..ap[2]..'] ❩ \n⌁︙رتبته ↫ '..t
-else
-text = '⌁︙القناة او الكروب ليس له رتبه ' 
-end
-end
-if not result.id_ then
-text = '⌁︙*المعرف غير صحيح*'
-end
-Dev_Abs(msg.chat_id_, msg.id_, 1, text, 1, 'md')
-end
-resolve_username(ap[2],id_by_username)
-end
 --     Source DevProx     --
 if is_admin(msg.sender_user_id_, msg.chat_id_) then
 --     Source DevProx     --
@@ -7793,6 +7730,44 @@ else
 DevAbs:set(DevProx..'bot:sens:spam'..msg.chat_id_,sensspam[2])
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تم وضع عدد الاحرف : ( '..sensspam[2]..' )\n⌁︙اذا كانت الرسالة تحتوي على اكثر من ( '..sensspam[2]..' ) حرف سيتم حذفها تلقائيا بواسطة البوت ', 1, 'md')
 end
+end
+end
+--     Source DevProx     --
+if is_owner(msg.sender_user_id_, msg.chat_id_) then
+if text and text:match("^تغير رد المطور (.*)$") then
+local Text = text:match("^تغير رد المطور (.*)$") 
+DevAbs:set(DevProx.."abs:SudoBot:Rd"..msg.chat_id_,Text)
+Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙تم تغير رد المطور الى ↫ "..Text, 1, 'md')
+end
+if text and text:match("^تغير رد المنشئ الاساسي (.*)$") then
+local Text = text:match("^تغير رد المنشئ الاساسي (.*)$") 
+DevAbs:set(DevProx.."abs:monsh:Rd"..msg.chat_id_,Text)
+Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙تم تغير رد المنشئ الاساسي الى ↫ "..Text, 1, 'md')
+end
+if text and text:match("^تغير رد المنشئ (.*)$") then
+local Text = text:match("^تغير رد المنشئ (.*)$") 
+DevAbs:set(DevProx.."abs:monshid:Rd"..msg.chat_id_,Text)
+Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙تم تغير رد المنشئ الى ↫ "..Text, 1, 'md')
+end
+if text and text:match("^تغير رد المدير (.*)$") then
+local Text = text:match("^تغير رد المدير (.*)$") 
+DevAbs:set(DevProx.."abs:owners:Rd"..msg.chat_id_,Text) 
+Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙تم تغير رد المدير الى ↫ "..Text, 1, 'md')
+end
+if text and text:match("^تغير رد الادمن (.*)$") then
+local Text = text:match("^تغير رد الادمن (.*)$") 
+DevAbs:set(DevProx.."abs:admins:Rd"..msg.chat_id_,Text)
+Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙تم تغير رد الادمن الى ↫ "..Text, 1, 'md')
+end
+if text and text:match("^تغير رد المميز (.*)$") then
+local Text = text:match("^تغير رد المميز (.*)$") 
+DevAbs:set(DevProx.."abs:vipmem:Rd"..msg.chat_id_,Text)
+Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙تم تغير رد المميز الى ↫ "..Text, 1, 'md')
+end
+if text and text:match("^تغير رد العضو (.*)$") then
+local Text = text:match("^تغير رد العضو (.*)$") 
+DevAbs:set(DevProx.."abs:mem:Rd"..msg.chat_id_,Text)
+Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙تم تغير رد العضو الى ↫ "..Text, 1, 'md')
 end
 end
 --     Source DevProx     --
@@ -9168,6 +9143,11 @@ local text =  [[
 ⌁︙الغاء التثبيت
 ⌁︙اعاده التثبيت
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
+⌁︙تغير رد + اسم الرتبه + النص ↫ ⤈
+⌁︙المطور • المنشئ الاساسي
+⌁︙المنشئ • المدير • الادمن
+⌁︙المميز • العضو
+┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ⌁︙تغيير الايدي ↫ لتغيير الكليشه
 ⌁︙تعيين الايدي ↫ لتعيين الكليشه
 ⌁︙حذف الايدي ↫ لحذف الكليشه
@@ -9347,7 +9327,6 @@ local text =  [[
 ⌁︙برج + نوع البرج
 ⌁︙احسب + تاريخ ميلادك
 ⌁︙بوسه • بوسها ↫ بالرد
-⌁︙الرتبه ↫ بالرد • بالمعرف
 ⌁︙هينه • هينها ↫ بالرد بالمعرف
 ⌁︙صيحه • صيحها ↫ بالرد • بالمعرف
 ⌁︙ايدي • كشف  ↫ بالرد • بالمعرف • بالايدي
