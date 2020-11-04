@@ -7734,6 +7734,18 @@ end
 end
 --     Source DevProx     --
 if is_owner(msg.sender_user_id_, msg.chat_id_) then
+if text == "فحص" or text == "فحص البوت" then
+local check = https.request('https://api.telegram.org/bot'..tokenbot..'/getChatMember?chat_id='..msg.chat_id_..'&user_id='..DevProx)
+local GetInfo = JSON.decode(check)
+if GetInfo.ok == true then
+if GetInfo.result.can_change_info == true then EDT = '✔️' else EDT = '✖️' end
+if GetInfo.result.can_delete_messages == true then DEL = '✔️' else DEL = '✖️' end
+if GetInfo.result.can_invite_users == true then INV = '✔️' else INV = '✖️' end
+if GetInfo.result.can_pin_messages == true then PIN = '✔️' else PIN = '✖️' end
+if GetInfo.result.can_restrict_members == true then BAN = '✔️' else BAN = '✖️' end
+if GetInfo.result.can_promote_members == true then VIP = '✔️' else VIP = '✖️' end 
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙صلاحيات البوت هي ↫ ⤈\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n⌁︙حذف الرسائل ↫ '..DEL..'\n⌁︙دعوة المستخدمين ↫ '..INV..'\n⌁︙حظر المستخدمين ↫ '..BAN..'\n⌁︙تثبيت الرسائل ↫ '..PIN..'\n⌁︙تغيير المعلومات ↫ '..EDT..'\n⌁︙اضافة مشرفين ↫ '..VIP..'\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉', 1, 'md')
+end end
 if text and text:match("^تغير رد المطور (.*)$") then
 local Text = text:match("^تغير رد المطور (.*)$") 
 DevAbs:set(DevProx.."abs:SudoBot:Rd"..msg.chat_id_,Text)
