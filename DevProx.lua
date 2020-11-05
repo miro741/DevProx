@@ -336,7 +336,6 @@ for idg,v in pairs(groups.GP_BOT) do
 DevAbs:sadd(DevProx.."bot:groups",idg)
 DevAbs:sadd(DevProx.."bot:userss",idg)
 DevAbs:set(DevProx.."bot:enable:"..idg,true)
-DevAbs:setex(DevProx.."bot:charge:"..idg,86400,true)
 DevAbs:sadd("ABS_PROX:addg"..bot_id, idg)
 DevAbs:set(DevProx..'editmsg'..idg,true)
 DevAbs:set(DevProx..'bot:bots:mute'..idg,true)
@@ -1718,7 +1717,6 @@ end
 end
 if msg.content_.ID == "MessageChatDeleteMember" and tonumber(msg.content_.user_.id_) == tonumber(DevProx) then 
 DevAbs:srem("ABS_PROX:addg"..bot_id, msg.chat_id_) 
-DevAbs:del(DevProx.."bot:charge:"..msg.chat_id_)
 DevAbs:del(DevProx.."bot:enable:"..msg.chat_id_)
 function ABS_PROX(extra,result,success) 
 function  reslit(f1,f2)
@@ -1879,7 +1877,6 @@ channel_id_ = getChatId(msg.chat_id_).ID
 end
 openChat(msg.chat_id_,ABS_PROX) 
 DevAbs:set(DevProx.."bot:enable:"..msg.chat_id_,true)
-DevAbs:setex(DevProx.."bot:charge:"..msg.chat_id_,86400,true)
 DevAbs:sadd("ABS_PROX:addg"..bot_id, msg.chat_id_)
 end end
 getUser(msg.sender_user_id_,adding) 
@@ -2051,18 +2048,23 @@ end
 end
 --     Source DevProx     --
 text = msg.content_.text_ 
-if msg.content_.text_ or msg.content_.video_ or msg.content_.sticker_ or msg.content_.voice_ or msg.content_.audio_ or msg.content_.photo_ or msg.content_.animation_ then 
+if msg.content_.text_ or msg.content_.video_ or msg.content_.document_ or msg.content_.sticker_ or msg.content_.voice_ or msg.content_.audio_ or msg.content_.photo_ or msg.content_.animation_ then 
 local content_text = DevAbs:get(DevProx..'add:repgp'..msg.sender_user_id_..''..msg.chat_id_..'')
 if content_text == 'save_repgp' then 
-if text == 'الغاء' then   
+if text == 'الغاء' then
+local delrep_owner = DevAbs:get(DevProx..'delrep_owner'..msg.chat_id_..'')
+DevAbs:srem(DevProx..'rep_owner'..msg.chat_id_..'',delrep_owner)
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تم الغاء حفظ الرد', 1, 'md')
 DevAbs:del(DevProx..'addreplaygp:'..msg.sender_user_id_..''..msg.chat_id_..'')
-DevAbs:del(DevProx..'add:repgp'..msg.sender_user_id_..''..msg.chat_id_..'')
+DevAbs:del(DevProx..'add:repgp'..msg.sender_user_id_..''..msg.chat_id_)
+DevAbs:del(DevProx..'delrep_owner'..msg.chat_id_..'')
 return false
 end
 DevAbs:del(DevProx..'add:repgp'..msg.sender_user_id_..''..msg.chat_id_..'')
 local content_text = DevAbs:get(DevProx..'addreplaygp:'..msg.sender_user_id_..''..msg.chat_id_..'')
 if msg.content_.video_ then DevAbs:set(DevProx..'video_repgp'..content_text..''..msg.chat_id_..'', msg.content_.video_.video_.persistent_id_)
+end
+if msg.content_.document_ then DevAbs:set(DevProx..'file_repgp'..content_text..''..msg.chat_id_..'', msg.content_.document_.document_.persistent_id_)
 end
 if msg.content_.sticker_ then DevAbs:set(DevProx..'stecker_repgp'..content_text..''..msg.chat_id_..'', msg.content_.sticker_.sticker_.persistent_id_) 
 end 
@@ -2090,15 +2092,18 @@ end
 if msg.content_.text_ then
 DevAbs:set(DevProx..'text_repgp'..content_text..''..msg.chat_id_..'', msg.content_.text_)
 end 
-DevAbs:sadd('rep_owner'..msg.chat_id_..'',content_text) 
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تم حفظ الرد الجديد', 1, 'md') 
 DevAbs:del(DevProx..'addreplaygp:'..msg.sender_user_id_..''..msg.chat_id_..'')
+DevAbs:del(DevProx..'delrep_owner'..msg.chat_id_..'')
 return false 
 end 
 end
 if msg.content_.text_ and not DevAbs:get(DevProx..'lock_reeeep'..msg.chat_id_) then 
 if DevAbs:get(DevProx..'video_repgp'..msg.content_.text_..''..msg.chat_id_..'') then 
 sendVideo(msg.chat_id_, msg.id_, 0, 1,nil, DevAbs:get(DevProx..'video_repgp'..msg.content_.text_..''..msg.chat_id_..'')) 
+end 
+if DevAbs:get(DevProx..'file_repgp'..msg.content_.text_..''..msg.chat_id_..'') then 
+sendDocument(msg.chat_id_, msg.id_, 0, 1,nil, DevAbs:get(DevProx..'file_repgp'..msg.content_.text_..''..msg.chat_id_..'')) 
 end 
 if DevAbs:get(DevProx..'voice_repgp'..msg.content_.text_..''..msg.chat_id_..'') then 
 sendVoice(msg.chat_id_, msg.id_, 0, 1, nil, DevAbs:get(DevProx..'voice_repgp'..msg.content_.text_..''..msg.chat_id_..'')) 
@@ -2115,24 +2120,45 @@ end
 if DevAbs:get(DevProx..'stecker_repgp'..msg.content_.text_..''..msg.chat_id_..'') then 
 sendSticker(msg.chat_id_, msg.id_, 0, 1,nil, DevAbs:get(DevProx..'stecker_repgp'..msg.content_.text_..''..msg.chat_id_..''))
 end
-if DevAbs:get(DevProx..'text_repgp'..msg.content_.text_..''..msg.chat_id_..'') then 
-Dev_Abs(msg.chat_id_, msg.id_, 1, DevAbs:get(DevProx..'text_repgp'..msg.content_.text_..''..msg.chat_id_..'') , 1, 'md') 
-end end
+if DevAbs:get(DevProx..'text_repgp'..msg.content_.text_..''..msg.chat_id_..'') then
+function ABS_PROX(extra,result,success)
+if result.username_ then username = '[@'..result.username_..']' else username = 'لا يوجد' end
+local Dev_Abss = (DevAbs:get('ABS_PROX:'..bot_id..'nummsg'..msg.chat_id_..msg.sender_user_id_) or 0)
+local edit_msg = DevAbs:get(DevProx..'bot:editmsg'..msg.chat_id_..msg.sender_user_id_) or 0
+local user_msgs = DevAbs:get(DevProx..'user:msgs'..msg.chat_id_..':'..msg.sender_user_id_)
+local Text = DevAbs:get(DevProx..'text_repgp'..msg.content_.text_..''..msg.chat_id_..'')
+local Text = Text:gsub('#username',(username or 'لا يوجد')) 
+local Text = Text:gsub('#name','['..result.first_name_..']')
+local Text = Text:gsub('#id',msg.sender_user_id_)
+local Text = Text:gsub('#edit',edit_msg)
+local Text = Text:gsub('#msgs',(user_msgs + Dev_Abss or 'لا يوجد'))
+local Text = Text:gsub('#stast',(id_rank(msg) or 'لا يوجد'))
+Dev_Abs(msg.chat_id_, msg.id_, 1, Text ,  1, "md")
+end
+getUser(msg.sender_user_id_, ABS_PROX)
+end
+end
 --     Source DevProx     --
 text = msg.content_.text_
-if msg.content_.text_ or msg.content_.video_ or msg.content_.sticker_ or msg.content_.voice_ or msg.content_.audio_ or msg.content_.photo_ or msg.content_.animation_ then
+if msg.content_.text_ or msg.content_.video_ or msg.content_.document_ or msg.content_.sticker_ or msg.content_.voice_ or msg.content_.audio_ or msg.content_.photo_ or msg.content_.animation_ then
 local content_text = DevAbs:get(DevProx.."add:repallt"..msg.sender_user_id_)
 if content_text == 'save_rep' then
-if text == 'الغاء' then   
+if text == 'الغاء' then
+local delrep_sudo = DevAbs:get(DevProx..'delrep_sudo')
+DevAbs:del(DevProx.."rep_sudo",delrep_sudo)
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تم الغاء حفظ الرد', 1, 'md')
 DevAbs:del(DevProx.."addreply2:"..msg.sender_user_id_)
 DevAbs:del(DevProx.."add:repallt"..msg.sender_user_id_)
+DevAbs:del(DevProx.."delrep_sudo")
 return false
 end
 DevAbs:del(DevProx.."add:repallt"..msg.sender_user_id_)
 local content_text = DevAbs:get(DevProx.."addreply2:"..msg.sender_user_id_)
 if msg.content_.video_ then
 DevAbs:set(DevProx.."video_repall"..content_text, msg.content_.video_.video_.persistent_id_)
+end
+if msg.content_.document_ then
+DevAbs:set(DevProx.."file_repall"..content_text, msg.content_.document_.document_.persistent_id_)
 end
 if msg.content_.sticker_ then
 DevAbs:set(DevProx.."stecker_repall"..content_text, msg.content_.sticker_.sticker_.persistent_id_)
@@ -2164,13 +2190,16 @@ end
 if msg.content_.text_ then
 DevAbs:set(DevProx.."text_repall"..content_text, msg.content_.text_)
 end 
-DevAbs:sadd('rep_sudo',content_text)
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تم حفظ الرد الجديد', 1, 'md') 
 DevAbs:del(DevProx.."addreply2:"..msg.sender_user_id_)
+DevAbs:del(DevProx..'delrep_sudo')
 return false end end
 if msg.content_.text_ and not DevAbs:get(DevProx..'lock_reeeep'..msg.chat_id_) then
 if DevAbs:get(DevProx.."video_repall"..msg.content_.text_) then
 sendVideo(msg.chat_id_, msg.id_, 0, 1,nil, DevAbs:get(DevProx.."video_repall"..msg.content_.text_))
+end
+if DevAbs:get(DevProx.."file_repall"..msg.content_.text_) then
+sendDocument(msg.chat_id_, msg.id_, 0, 1,nil, DevAbs:get(DevProx.."file_repall"..msg.content_.text_))
 end
 if DevAbs:get(DevProx.."voice_repall"..msg.content_.text_)  then
 sendVoice(msg.chat_id_, msg.id_, 0, 1, nil, DevAbs:get(DevProx.."voice_repall"..msg.content_.text_))
@@ -2188,7 +2217,21 @@ if DevAbs:get(DevProx.."stecker_repall"..msg.content_.text_) then
 sendSticker(msg.chat_id_, msg.id_, 0, 1,nil, DevAbs:get(DevProx.."stecker_repall"..msg.content_.text_))
 end
 if DevAbs:get(DevProx.."text_repall"..msg.content_.text_) then
-Dev_Abs(msg.chat_id_, msg.id_, 1, DevAbs:get(DevProx.."text_repall"..msg.content_.text_) ,  1, "md")
+function ABS_PROX(extra,result,success)
+if result.username_ then username = '[@'..result.username_..']' else username = 'لا يوجد' end
+local Dev_Abss = (DevAbs:get('ABS_PROX:'..bot_id..'nummsg'..msg.chat_id_..msg.sender_user_id_) or 0)
+local edit_msg = DevAbs:get(DevProx..'bot:editmsg'..msg.chat_id_..msg.sender_user_id_) or 0
+local user_msgs = DevAbs:get(DevProx..'user:msgs'..msg.chat_id_..':'..msg.sender_user_id_)
+local Text = DevAbs:get(DevProx.."text_repall"..msg.content_.text_)
+local Text = Text:gsub('#username',(username or 'لا يوجد')) 
+local Text = Text:gsub('#name','['..result.first_name_..']')
+local Text = Text:gsub('#id',msg.sender_user_id_)
+local Text = Text:gsub('#edit',edit_msg)
+local Text = Text:gsub('#msgs',(user_msgs + Dev_Abss or 'لا يوجد'))
+local Text = Text:gsub('#stast',(id_rank(msg) or 'لا يوجد'))
+Dev_Abs(msg.chat_id_, msg.id_, 1, Text ,  1, "md")
+end
+getUser(msg.sender_user_id_, ABS_PROX)
 end
 end 
 -- end functions DevProx --
@@ -8342,7 +8385,7 @@ else
 end
 end       
 --     Source DevProx     --
-if text and text:match("^kick delete$") or text and text:match("^طرد الحسابات المحذوفه$") and Abbas_Abs(msg) or text and text:match("^طرد المحذوفين$") and Abbas_Abs(msg) or text and text:match("^حذف المحذوفين$") and Abbas_Abs(msg) or text and text:match("^مسح المحذوفين$") and Abbas_Abs(msg) then
+if text and text:match("^طرد الحسابات المحذوفه$") and Abbas_Abs(msg) or text and text:match("^طرد المحذوفين$") and Abbas_Abs(msg) or text and text:match("^حذف المحذوفين$") and Abbas_Abs(msg) or text and text:match("^مسح المحذوفين$") and Abbas_Abs(msg) then
 local function deleteaccounts(extra, result)
 for k,v in pairs(result.members_) do 
 local function cleanaccounts(extra, result)
@@ -8431,7 +8474,7 @@ Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙للمطور الاساسي فقط', 1,
 else 
 local leavegp = function(extra, result)
 if result.id_ then
-Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙المجموعة ( " .. result.title_ .. " )\n⌁︙تمت المغادرة منها بامر المطور ", 1, "md")
+Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙المجموعة ↫ ( [" .. result.title_ .. "] )\n⌁︙تمت المغادرة منها بنجاح", 1, "md")
 Dev_Abs(txt[2], 0, 1, "⌁︙بامر المطور تم مغادرة هذه المجموعة ", 1, "md")  
 chat_leave(result.id_, bot_id)
 DevAbs:srem(DevProx.."bot:groups", result.id_)
@@ -8554,7 +8597,6 @@ tdcli_function ({ ID = "GetChannelFull", channel_id_ = getChatId(msg.chat_id_).I
 end
 openChat(msg.chat_id_,ABS_PROX) 
 DevAbs:set(DevProx.."bot:enable:"..msg.chat_id_,true)
-DevAbs:setex(DevProx.."bot:charge:"..msg.chat_id_,86400,true)
 DevAbs:sadd("ABS_PROX:addg"..bot_id, msg.chat_id_)
 local send_to_DevId = function(extra, result)
 local v = tonumber(DevId)             
@@ -8572,7 +8614,6 @@ Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙المجموعة ،بالتاكيد ،�
 else
 Text = '⌁︙اهلا عزيزي ↫ ['..CatchName(result.first_name_,15)..'](tg://user?id='..result.id_..') \nلقد تم تعطيل المجموعة بنجاح \n ✓'
 sendText(msg.chat_id_,Text,msg.id_/2097152/0.5,'md')
-DevAbs:del(DevProx.."bot:charge:"..msg.chat_id_)
 DevAbs:del(DevProx.."bot:enable:"..msg.chat_id_)
 DevAbs:srem("ABS_PROX:addg"..bot_id, msg.chat_id_)
 local v = tonumber(DevId)          
@@ -8589,9 +8630,8 @@ local gps2 = DevAbs:smembers("ABS_PROX:addg"..bot_id) or 0
 for i=1,#gps do
 DevAbs:sadd("ABS_PROX:addg"..bot_id, gps[i])
 DevAbs:set(DevProx.."bot:enable:"..gps[i],true)
-DevAbs:set( DevProx.."bot:charge:"..gps[i],true)
 end
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تم تفعيل البوت في جميع المجموعات \n⌁︙عدد المجموعات ↫ ❨ '..(#gps - #gps2)..' ❩', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تم تفعيل البوت في '..(#gps - #gps2)..' مجموعه', 1, 'md')
 end   
 if text and text:match("^تعطيل الكروبات$") and is_leader(msg) then
 local gps = DevAbs:smembers(DevProx.."bot:groups") or 0
@@ -8599,9 +8639,8 @@ local gps2 = DevAbs:smembers("ABS_PROX:addg"..bot_id) or 0
 for i=1,#gps do
 DevAbs:del("ABS_PROX:addg"..bot_id, gps[i])
 DevAbs:del(DevProx.."bot:enable:"..gps[i],true)
-DevAbs:del( DevProx.."bot:charge:"..gps[i],true)
 end
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تم تعطيل البوت في جميع المجموعات \n⌁︙عدد المجموعات ↫ ❨ '..(#gps - #gps2)..' ❩', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تم تعطيل البوت في '..(#gps - #gps2)..' مجموعه', 1, 'md')
 end   
 --     Source DevProx     --
 if text and text:match("^الدعم$") or text and text:match("^المطور$") then
@@ -8655,7 +8694,7 @@ file:close()
 local abbss = 'https://api.telegram.org/bot' .. tokenbot .. '/sendDocument'
 local abbsss = 'curl "' .. abbss .. '" -F "chat_id=' .. msg.chat_id_ .. '" -F "document=@' .. 'GroupsBot.txt' .. '"'
 io.popen(abbsss)
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙جاري ارسال نسخة للمجموعات \n⌁︙تحتوي على ( *'..num..'* ) مجموعة \n ', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙جاري ارسال نسخة تحتوي على '..num..' مجموعه', 1, 'md')
 sleep(1.5)
 Dev_Abs(msg.chat_id_, msg.id_, 1, abbsss, 1, 'md')
 end
@@ -8808,6 +8847,7 @@ DevAbs:del(DevProx..'audio_repgp'..msg.content_.text_..''..msg.chat_id_..'')
 DevAbs:del(DevProx..'photo_repgp'..msg.content_.text_..''..msg.chat_id_..'')
 DevAbs:del(DevProx..'stecker_repgp'..msg.content_.text_..''..msg.chat_id_..'')
 DevAbs:del(DevProx..'video_repgp'..msg.content_.text_..''..msg.chat_id_..'')
+DevAbs:del(DevProx..'file_repgp'..msg.content_.text_..''..msg.chat_id_..'')
 DevAbs:del(DevProx..'text_repgp'..msg.content_.text_..''..msg.chat_id_..'')
 DevAbs:srem(DevProx..'rep_owner'..msg.chat_id_..'',msg.content_.text_)
 return false
@@ -8821,10 +8861,11 @@ return false    end
 if msg.content_.text_ then
 local content_DevAbs2 = DevAbs:get(DevProx..'add:repgp'..msg.sender_user_id_..''..msg.chat_id_..'')
 if content_DevAbs2 == 'set_repgp' then
-Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙ارسل لي الرد سواء كان ↫ ⤈\n❨ ملصق • متحركه • صوره • فيديو\n • بصمه • صوت • رساله ❩\n⌁︙للخروج ارسل ↫ ( الغاء )\n ✓" ,  1, "md")
+Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙ارسل لي الرد سواء كان ↫ ⤈\n❨ ملف • ملصق • متحركه • صوره\n • فيديو • بصمه • صوت • رساله ❩\n⌁︙ يمكنك اضافه الى النص ↫ ⤈\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n `#username` ↬ معرف المستخدم\n `#msgs` ↬ عدد الرسائل\n `#name` ↬ اسم المستخدم\n `#id` ↬ ايدي المستخدم\n `#stast` ↬ رتبة المستخدم\n `#edit` ↬ عدد السحكات\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n⌁︙للخروج ارسل ↫ ( الغاء )\n ✓" ,  1, "md")
 DevAbs:set(DevProx..'add:repgp'..msg.sender_user_id_..''..msg.chat_id_..'','save_repgp')
 DevAbs:set(DevProx..'addreplaygp:'..msg.sender_user_id_..''..msg.chat_id_..'',msg.content_.text_)
 DevAbs:sadd(DevProx..'rep_owner'..msg.chat_id_..'',msg.content_.text_)
+DevAbs:set(DevProx..'delrep_owner'..msg.chat_id_..'',msg.content_.text_)
 return false
 end
 end
@@ -8845,6 +8886,7 @@ DevAbs:del(DevProx.."audio_repall"..msg.content_.text_)
 DevAbs:del(DevProx.."photo_repall"..msg.content_.text_)
 DevAbs:del(DevProx.."stecker_repall"..msg.content_.text_)
 DevAbs:del(DevProx.."video_repall"..msg.content_.text_)
+DevAbs:del(DevProx.."file_repall"..msg.content_.text_)
 DevAbs:del(DevProx.."text_repall"..msg.content_.text_)
 DevAbs:del(DevProx.."rep_sudo",msg.content_.text_)
 return false
@@ -8858,21 +8900,39 @@ return false    end
 if msg.content_.text_ then
 local content_DevAbs2 = DevAbs:get(DevProx.."add:repallt"..msg.sender_user_id_)
 if content_DevAbs2 == 'set_rep' then
-Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙ارسل لي الرد سواء كان ↫ ⤈\n❨ ملصق • متحركه • صوره • فيديو\n • بصمه • صوت • رساله ❩\n⌁︙للخروج ارسل ↫ ( الغاء )\n ✓" ,  1, "md")
+Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙ارسل لي الرد سواء كان ↫ ⤈\n❨ ملف • ملصق • متحركه • صوره\n • فيديو • بصمه • صوت • رساله ❩\n⌁︙ يمكنك اضافه الى النص ↫ ⤈\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n `#username` ↬ معرف المستخدم\n `#msgs` ↬ عدد الرسائل\n `#name` ↬ اسم المستخدم\n `#id` ↬ ايدي المستخدم\n `#stast` ↬ رتبة المستخدم\n `#edit` ↬ عدد السحكات\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n⌁︙للخروج ارسل ↫ ( الغاء )\n ✓" ,  1, "md")
 DevAbs:set(DevProx.."add:repallt"..msg.sender_user_id_,'save_rep')
 DevAbs:set(DevProx.."addreply2:"..msg.sender_user_id_, msg.content_.text_)
 DevAbs:sadd(DevProx.."rep_sudo",msg.content_.text_)
+DevAbs:set(DevProx.."delrep_sudo",msg.content_.text_)
 return false 
-end    end
+end end
 --     Source DevProx     --
 if msg.content_.text_ == 'الردود' and is_owner(msg.sender_user_id_, msg.chat_id_) and Abbas_Abs(msg) or msg.content_.text_ == 'ردود المدير' and is_owner(msg.sender_user_id_, msg.chat_id_) and Abbas_Abs(msg) then
 local redod = DevAbs:smembers(DevProx..'rep_owner'..msg.chat_id_..'')
 if #redod == 0 then
 Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙لا توجد ردود مضافة" ,  1, "md")
 else
-msg_rep = '⌁︙ردود المجموعة ↫ ⤈ \n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n'
+msg_rep = '⌁︙ردود المدير ↫ ⤈ \n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n'
 for k,v in pairs(redod) do
-msg_rep = msg_rep ..k..' ⌯ *❨ '..v..' ❩* \n' 
+if DevAbs:get(DevProx.."gif_repgp"..v..msg.chat_id_) then
+dp = 'متحركه 🎭'
+elseif DevAbs:get(DevProx.."voice_repgp"..v..msg.chat_id_) then
+dp = 'بصمه 🎙'
+elseif DevAbs:get(DevProx.."stecker_repgp"..v..msg.chat_id_) then
+dp = 'ملصق 🃏'
+elseif DevAbs:get(DevProx.."text_repgp"..v..msg.chat_id_) then
+dp = 'رساله ✉'
+elseif DevAbs:get(DevProx.."photo_repgp"..v..msg.chat_id_) then
+dp = 'صوره 🎇'
+elseif DevAbs:get(DevProx.."video_repgp"..v..msg.chat_id_) then
+dp = 'فيديو 📽'
+elseif DevAbs:get(DevProx.."file_repgp"..v..msg.chat_id_) then
+dp = 'ملف 📁'
+elseif DevAbs:get(DevProx.."audio_repgp"..v..msg.chat_id_) then
+dp = 'اغنيه 🎶'
+end
+msg_rep = msg_rep ..k..'⌯ (*'..v..'*) ↫ {*'..dp..'*}\n' 
 end
 Dev_Abs(msg.chat_id_, msg.id_, 1, msg_rep,1, 'md')
 end
@@ -8892,6 +8952,7 @@ DevAbs:del(DevProx..'audio_repgp'..v..msg.chat_id_)
 DevAbs:del(DevProx..'photo_repgp'..v..msg.chat_id_)
 DevAbs:del(DevProx..'stecker_repgp'..v..msg.chat_id_)
 DevAbs:del(DevProx..'video_repgp'..v..msg.chat_id_)
+DevAbs:del(DevProx..'file_repgp'..v..msg.chat_id_)
 DevAbs:del(DevProx..'text_repgp'..v..msg.chat_id_)
 DevAbs:del(DevProx..'rep_owner'..msg.chat_id_..'',msg.content_.text_)
 end
@@ -8909,7 +8970,24 @@ else
 local i = 1
 msg_rep = '⌁︙ردود المطور ↫ ⤈ \n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n'
 for k,v in pairs(redod) do
-msg_rep = msg_rep ..k.." ⌯ *❨ "..v.." ❩* \n"
+if DevAbs:get(DevProx.."gif_repall"..v) then
+dp = 'متحركه 🎭'
+elseif DevAbs:get(DevProx.."voice_repall"..v) then
+dp = 'بصمه 🎙'
+elseif DevAbs:get(DevProx.."stecker_repall"..v) then
+dp = 'ملصق 🃏'
+elseif DevAbs:get(DevProx.."text_repall"..v) then
+dp = 'رساله ✉'
+elseif DevAbs:get(DevProx.."photo_repall"..v) then
+dp = 'صوره 🎇'
+elseif DevAbs:get(DevProx.."video_repall"..v) then
+dp = 'فيديو 📽'
+elseif DevAbs:get(DevProx.."file_repall"..v) then
+dp = 'ملف 📁'
+elseif DevAbs:get(DevProx.."audio_repall"..v) then
+dp = 'اغنيه 🎶'
+end
+msg_rep = msg_rep ..k..'⌯ (*'..v..'*) ↫ {*'..dp..'*}\n' 
 end
 Dev_Abs(msg.chat_id_, msg.id_, 1, msg_rep,1, "md")
 end
@@ -8929,6 +9007,7 @@ DevAbs:del(DevProx.."audio_repall"..v)
 DevAbs:del(DevProx.."photo_repall"..v)
 DevAbs:del(DevProx.."stecker_repall"..v)
 DevAbs:del(DevProx.."video_repall"..v)
+DevAbs:del(DevProx.."file_repall"..v)
 DevAbs:del(DevProx.."text_repall"..v)
 DevAbs:del(DevProx.."rep_sudo",msg.content_.text_)
 end
@@ -9405,12 +9484,16 @@ end
 end 
 end 
 --     Source DevProx     --
-if text and text:match("^اضف رسائل (%d+)$") and is_monshid(msg.sender_user_id_, msg.chat_id_) and Abbas_Abs(msg) then  
-DevAbs0 = text:match("^اضف رسائل (%d+)$")
-DevAbs:set('ABS_PROX:'..bot_id..'id:user'..msg.chat_id_,DevAbs0)  
+if text and text:match("^اضف رسائل (%d+)$") and Abbas_Abs(msg) then  
+if is_monshid(msg.sender_user_id_, msg.chat_id_) then
+TXT = text:match("^اضف رسائل (%d+)$")
+DevAbs:set('ABS_PROX:'..bot_id..'id:user'..msg.chat_id_,TXT)  
 DevAbs:setex('ABS_PROX:'..bot_id.."numadd:user" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 10000, true)  
 Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙ارسل عدد الرسائل الان \n⌁︙ارسل الغاء لالغاء الامر ", 1, "md")
 Dev_Abs(msg.chat_id_, msg.id_, 1,numd, 1, 'md') 
+else 
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙هذا الامر للمنشئين فقط', 1, 'md') 
+end 
 end 
 --     Source DevProx     --
 if text and text:match("^ضع كليشه المطور$") or text and text:match("^وضع كليشه المطور$") or text and text:match("^تغيير كليشه المطور$") then
