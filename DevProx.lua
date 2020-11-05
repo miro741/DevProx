@@ -2213,7 +2213,6 @@ end
 local TIME_CHECK = 2
 --     Source DevProx     --
 --      Flood Check       --
-local absflood = 'anti-flood:'..msg.chat_id_
 if msgs > (floodMax - 1) then
 if DevAbs:get(DevProx..'floodstatus'..msg.chat_id_) == 'Kicked' then
 del_all_msgs(msg.chat_id_, msg.sender_user_id_)
@@ -6439,7 +6438,7 @@ for i=1, #names do
 text = text..'⌯ ❨ '..names[i]..' ❩\n'
 end
 if #names == 0 then
-text = "⌁︙لا توجد كلمات ممنوعة "
+text = "⌁︙لا توجد كلمات ممنوعة"
 end
 Dev_Abs(msg.chat_id_, msg.id_, 1, text, 1, 'md')
 end
@@ -7673,7 +7672,7 @@ if not is_monshid(msg.sender_user_id_, msg.chat_id_) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙للمنشئ الاساسي فقط ', 1, 'md')
 else
 DevAbs:set(DevProx..'bot:links:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:forward:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:bots:ban'..msg.chat_id_,true) DevAbs:set(DevProx..'anti-flood:'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:video:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:gifs:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'editmsg'..msg.chat_id_,true)
-DevAbs:set(DevProx..'bot:sticker:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'farsiban'..msg.chat_id_,true) DevAbs:del(DevProx.."fshar"..msg.chat_id_) DevAbs:del(DevProx.."taf"..msg.chat_id_) DevAbs:del(DevProx.."kaf"..msg.chat_id_) DevAbs:set(DevProx..'floodstatus'..msg.chat_id_,'Kicked') DevAbs:set('DevProx:id:photo'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:spam:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:webpage:mute'..msg.chat_id_,true)
+DevAbs:set(DevProx..'bot:sticker:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'farsi'..msg.chat_id_,true) DevAbs:del(DevProx.."fshar"..msg.chat_id_) DevAbs:del(DevProx.."taf"..msg.chat_id_) DevAbs:del(DevProx.."kaf"..msg.chat_id_) DevAbs:set(DevProx..'floodstatus'..msg.chat_id_,'Kicked') DevAbs:set('DevProx:id:photo'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:spam:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:webpage:mute'..msg.chat_id_,true)
 local ABS_PROX = '⌁︙اهلا عزيزي ↫ '..abs_rank(msg)..' \n⌁︙تم قفل التفليش بنجاح \n ✓'
 absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 15, string.len(msg.sender_user_id_))
 end
@@ -7683,7 +7682,7 @@ if not is_monshid(msg.sender_user_id_, msg.chat_id_) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙للمنشئ الاساسي فقط ', 1, 'md')
 else
 DevAbs:del(DevProx..'bot:links:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:forward:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:bots:ban'..msg.chat_id_) DevAbs:del(DevProx..'anti-flood:'..msg.chat_id_) DevAbs:del(DevProx..'bot:video:mute'..msg.chat_id_)
-DevAbs:del(DevProx..'bot:gifs:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:sticker:mute'..msg.chat_id_) DevAbs:del(DevProx..'farsiban'..msg.chat_id_) DevAbs:set(DevProx..'fshar'..msg.chat_id_,true) DevAbs:set(DevProx..'taf'..msg.chat_id_,true) DevAbs:set(DevProx..'kaf'..msg.chat_id_,true)
+DevAbs:del(DevProx..'bot:gifs:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:sticker:mute'..msg.chat_id_) DevAbs:del(DevProx..'farsi'..msg.chat_id_) DevAbs:set(DevProx..'fshar'..msg.chat_id_,true) DevAbs:set(DevProx..'taf'..msg.chat_id_,true) DevAbs:set(DevProx..'kaf'..msg.chat_id_,true)
 DevAbs:del('DevProx:id:photo'..msg.chat_id_)
 local ABS_PROX = '⌁︙اهلا عزيزي ↫ '..abs_rank(msg)..' \n⌁︙تم فتح التفليش بنجاح \n ✓'
 absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 15, string.len(msg.sender_user_id_))
@@ -7780,6 +7779,16 @@ if text and text:match("^تغير رد العضو (.*)$") then
 local Text = text:match("^تغير رد العضو (.*)$") 
 DevAbs:set(DevProx.."abs:mem:Rd"..msg.chat_id_,Text)
 Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙تم تغير رد العضو الى ↫ "..Text, 1, 'md')
+end
+if text == "حذف ردود الرتب" then
+Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙تم حذف جميع ردود الرتب", 1, 'md')
+DevAbs:del(DevProx.."abs:mem:Rd"..msg.chat_id_)
+DevAbs:del(DevProx.."abs:vipmem:Rd"..msg.chat_id_)
+DevAbs:del(DevProx.."abs:admins:Rd"..msg.chat_id_)
+DevAbs:del(DevProx.."abs:owners:Rd"..msg.chat_id_)
+DevAbs:del(DevProx.."abs:monshid:Rd"..msg.chat_id_)
+DevAbs:del(DevProx.."abs:monsh:Rd"..msg.chat_id_)
+DevAbs:del(DevProx.."abs:SudoBot:Rd"..msg.chat_id_)
 end
 end
 --     Source DevProx     --
@@ -8021,6 +8030,7 @@ if DevAbs:get(DevProx.."bot:welcome"..msg.chat_id_) then send_welcome = 'مقف�
 if DevAbs:get(DevProx..'fshar'..msg.chat_id_) then lock_fshar = 'مفتوح' else lock_fshar = 'مقفل' end
 if DevAbs:get(DevProx..'kaf'..msg.chat_id_) then lock_kaf = 'مفتوح' else lock_kaf = 'مقفل' end
 if DevAbs:get(DevProx..'taf'..msg.chat_id_) then lock_taf = 'مفتوحه' else lock_taf = 'مقفله' end
+if DevAbs:get(DevProx..'farsi'..msg.chat_id_) then lock_farsi = 'مفتوحه' else lock_farsi = 'مقفله' end
 --     Source DevProx     --
 local TXTE = "⌁︙اعدادات المجموعة ↫ ⤈\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n"
 .."⌁︙الروابط ↫ "..mute_links.."\n"
@@ -8050,6 +8060,7 @@ local TXTE = "⌁︙اعدادات المجموعة ↫ ⤈\n┉ ≈ ┉ ≈ ┉
 .."⌁︙الطائفيه ↫ "..lock_taf.."\n"
 .."⌁︙العربيه ↫ "..lock_arabic.."\n"
 .."⌁︙الانكليزيه ↫ "..lock_english.."\n"
+.."⌁︙الفارسيه ↫ "..lock_farsi.."\n"
 .."⌁︙الكل↫ "..mute_all.."\n"
 .."⌁︙التكرار ↫ "..mute_flood.."\n"
 .."⌁︙خاصية التكرار ↫ "..floodstatus.."\n"
@@ -9160,6 +9171,7 @@ local text =  [[
 ⌁︙المطور • المنشئ الاساسي
 ⌁︙المنشئ • المدير • الادمن
 ⌁︙المميز • العضو
+⌁︙حذف ردود الرتب
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ⌁︙تغيير الايدي ↫ لتغيير الكليشه
 ⌁︙تعيين الايدي ↫ لتعيين الكليشه
@@ -9273,6 +9285,7 @@ local text =  [[
 ⌁︙تحديث
 ⌁︙السيرفر 
 ⌁︙روابط الكروبات
+⌁︙اسم البوت + رن
 ⌁︙تحديث السورس
 ⌁︙تنظيف الرسائل 
 ⌁︙تنظيف الكروبات
@@ -9380,6 +9393,15 @@ io.popen("rm -rf ~/.telegram-cli/data/voice/*")
 io.popen("rm -rf ~/.telegram-cli/data/profile_photo/*") 
 print("\27[31;47m\n        ( تم تحديث ملفات البوت )        \n\27[0;34;49m\n") 
 Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙تم تحديث ملفات البوت", 1, "md")
+end 
+if text == ""..name_bot..' رن' then 
+if not DevAbs:get(DevProx..'abs:run'..msg.sender_user_id_) then 
+DevAbs:setex(DevProx..'abs:run'..msg.sender_user_id_,86400,true) 
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تم ترسيت واعادة تشغيل البوت ', 1, 'md') 
+os.execute('killall screen;cd DevProx;./ABS') 
+else 
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تستطيع عمل رن كل 24 ساعه فقط', 1, 'md') 
+end 
 end 
 end 
 --     Source DevProx     --
