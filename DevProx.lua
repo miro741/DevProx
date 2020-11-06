@@ -255,6 +255,17 @@ end
 return var
 end
 --     Source DevProx     --
+---------  mutedall  ---------
+function is_mutedall(user_id)
+local var = false
+local abs = 'bot:mutedall:'
+local mutedall = DevAbs:sismember(DevProx..abs, user_id)
+if mutedall then
+var = true
+end
+return var
+end
+--     Source DevProx     --
 function delete_msg(chatid ,mid)
 tdcli_function ({
 ID = "DeleteMessages",
@@ -2303,6 +2314,13 @@ local id = msg.id_
 local msgs = {[0] = id}
 local chat = msg.chat_id_
 chat_kick(msg.chat_id_, msg.sender_user_id_)
+delete_msg(chat,msgs)
+return
+end
+if is_mutedall(msg.sender_user_id_) then
+local id = msg.id_
+local msgs = {[0] = id}
+local chat = msg.chat_id_
 delete_msg(chat,msgs)
 return
 end
@@ -5506,6 +5524,7 @@ if not DevAbs:sismember(DevProx..'bot:banned:'..msg.chat_id_, result.id_) then
 text = '⌁︙العضو ↫ ['..absc9..']\n⌁︙هو ليس محظور لالغاء حظرة'
 else
 DevAbs:srem(DevProx..'bot:banned:'..msg.chat_id_, result.id_)
+tdcli_function ({ ID = "ChangeChatMemberStatus", chat_id_ = msg.chat_id_, user_id_ = result.id_, status_ = { ID = "ChatMemberStatusLeft" },},function(arg,ban) end,nil)   
 text = '⌁︙المحظور ↫ ['..absc9..']\n⌁︙تم الغاء حظرة من المجموعة'
 end
 else
@@ -5525,15 +5544,15 @@ if not DevAbs:sismember(DevProx..'bot:banned:'..msg.chat_id_, ap[2]) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙العضو ↫ ['..absc9..']\n⌁︙هو ليس محظور لالغاء حظرة', 1, 'md')
 else
 DevAbs:srem(DevProx..'bot:banned:'..msg.chat_id_, ap[2])
+tdcli_function ({ ID = "ChangeChatMemberStatus", chat_id_ = msg.chat_id_, user_id_ = ap[2] , status_ = { ID = "ChatMemberStatusLeft" },},function(arg,ban) end,nil)   
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙المحظور ↫ ['..absc9..']\n⌁︙تم الغاء حظرة من المجموعة', 1, 'md')
 end
 end
 end
 --     Source DevProx     --
 local text = msg.content_.text_:gsub('حضر عام','حظر عام')
-if text:match("^حظر عام$") and is_sudo(msg) and msg.reply_to_message_id_ and Abbas_Abs(msg) then
+if text:match("^حظر عام$") and is_sudo(msg) and msg.reply_to_message_id_ then
 function gban_by_reply(extra, result, success)
-local gps = DevAbs:scard(DevProx.."bot:groups")
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. result.sender_user_id_)
 local abs = 'bot:gban:'
 local absc9 = user_info_ if user_info_ then
@@ -5541,7 +5560,7 @@ if is_leaderid(result.sender_user_id_) == true then
 Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙*لاتستطيع حظر المطور الاساسي*", 1, 'md')
 return false 
 end
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙العضو ↫ ['..absc9..']\n⌁︙تم حظرة من ❨ '..gps..' ❩ مجموعة', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙العضو ↫ ['..absc9..']\n⌁︙تم حظره عام من المجموعات', 1, 'md')
 DevAbs:sadd(DevProx..abs, result.sender_user_id_)
 chat_kick(result.chat_id_, result.sender_user_id_)
 end
@@ -5552,13 +5571,12 @@ end
 if text and text:match("^حظر عام @(.*)$") and is_sudo(msg) then
 local aps = {string.match(text, "^(حظر عام) @(.*)$")}
 function gban_by_username(extra, result, success)
-local gps = DevAbs:scard(DevProx.."bot:groups")
 if result.id_ then
 if is_leaderid(result.id_) == true then
 Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙*لاتستطيع حظر المطور الاساسي*", 1, 'md')
 return false 
 end
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙العضو ↫ [@'..aps[2]..']\n⌁︙تم حظرة من ❨ '..gps..' ❩ مجموعة', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙العضو ↫ [@'..aps[2]..']\n⌁︙تم حظره عام من المجموعات', 1, 'md')
 DevAbs:sadd(DevProx..'bot:gban:', result.id_)
 chat_kick(msg.chat_id_, result.id_)
 end
@@ -5568,7 +5586,6 @@ end
 --     Source DevProx     --
 if text:match("^حظر عام (%d+)$") and is_sudo(msg) then
 local ap = {string.match(text, "^(حظر عام) (%d+)$")}
-local gps = DevAbs:scard(DevProx.."bot:groups")
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. ap[2])
 local abs = 'bot:gban:'
 local absc9 = user_info_ if user_info_ then
@@ -5576,7 +5593,7 @@ if is_leaderid(ap[2]) == true then
 Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙*لاتستطيع حظر المطور الاساسي*", 1, 'md')
 return false 
 end
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙العضو ↫ ['..absc9..']\n⌁︙تم حظرة من ❨ '..gps..' ❩ مجموعة', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙العضو ↫ ['..absc9..']\n⌁︙تم حظره عام من المجموعات', 1, 'md')
 end
 DevAbs:sadd(DevProx..abs, ap[2])
 chat_kick(msg.chat_id_, ap[2])
@@ -5585,13 +5602,12 @@ end
 local text = msg.content_.text_:gsub('الغاء العام','الغاء عام')
 if text:match("^الغاء عام$") and is_sudo(msg) and msg.reply_to_message_id_ then
 function ungban_by_reply(extra, result, success)
-local gps = DevAbs:scard(DevProx.."bot:groups")
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. result.sender_user_id_)
-local abs = 'bot:gban:'
 local absc9 = user_info_ if user_info_ then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙العضو ↫ ['..absc9..']\n⌁︙تم الغاء حظرة من ❨ '..gps..' ❩ مجموعة', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙العضو ↫ ['..absc9..']\n⌁︙تم الغاء (الحظر • الكتم) عام من المجموعات', 1, 'md')
 end
-DevAbs:srem(DevProx..abs, result.sender_user_id_)
+DevAbs:srem(DevProx..'bot:gban:', result.sender_user_id_)
+DevAbs:srem(DevProx..'bot:mutedall:', result.sender_user_id_)
 end
 getMessage(msg.chat_id_, msg.reply_to_message_id_,ungban_by_reply)
 end
@@ -5599,10 +5615,10 @@ end
 if text:match("^الغاء عام @(.*)$") and is_sudo(msg) then
 local apid = {string.match(text, "^(الغاء عام) @(.*)$")}
 function ungban_by_username(extra, result, success)
-local gps = DevAbs:scard(DevProx.."bot:groups")
 if result.id_ then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙العضو ↫ [@'..apid[2]..']\n⌁︙تم الغاء حظرة من ❨ '..gps..' ❩ مجموعة', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙العضو ↫ [@'..apid[2]..']\n⌁︙تم الغاء (الحظر • الكتم) عام من المجموعات', 1, 'md')
 DevAbs:srem(DevProx..'bot:gban:', result.id_)
+DevAbs:srem(DevProx..'bot:mutedall:', result.id_)
 end
 end
 resolve_username(apid[2],ungban_by_username)
@@ -5610,12 +5626,58 @@ end
 --     Source DevProx     --
 if text:match("^الغاء عام (%d+)$") and is_sudo(msg) then
 local ap = {string.match(text, "^(الغاء عام) (%d+)$")}
-local gps = DevAbs:scard(DevProx.."bot:groups")
 local user_info_ = DevAbs:get(DevProx..'user:Name' .. ap[2])
-local abs = 'bot:gban:'
 local absc9 = user_info_ if user_info_ then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙العضو ↫ ['..absc9..']\n⌁︙تم الغاء حظرة من ❨ '..gps..' ❩ مجموعة', 1, 'md')
-DevAbs:srem(DevProx..abs, ap[2])
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙العضو ↫ ['..absc9..']\n⌁︙تم الغاء (الحظر • الكتم) عام من المجموعات', 1, 'md')
+DevAbs:srem(DevProx..'bot:gban:', ap[2])
+DevAbs:srem(DevProx..'bot:mutedall:', ap[2])
+end
+end
+--     Source DevProx     --
+if text:match("^كتم عام$") and is_sudo(msg) and msg.reply_to_message_id_ then
+function muteall_by_reply(extra, result, success)
+local user_info_ = DevAbs:get(DevProx..'user:Name' .. result.sender_user_id_)
+local absc9 = user_info_ if user_info_ then
+if tonumber(result.sender_user_id_) == tonumber(bot_id) then  
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙*لا تستطيع كتمي*', 1, 'md')
+return false 
+end 
+if is_leaderid(result.sender_user_id_) == true then
+Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙*لاتستطيع كتم المطور الاساسي*", 1, 'md')
+return false 
+end
+DevAbs:sadd(DevProx..'bot:mutedall:', result.sender_user_id_)
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙العضو ↫ ['..absc9..']\n⌁︙تم كتمه عام من المجموعات', 1, 'md')
+end
+end
+getMessage(msg.chat_id_, msg.reply_to_message_id_,muteall_by_reply)
+end
+--     Source DevProx     --
+if text:match('^كتم عام @(.*)$') and is_sudo(msg) then
+local ap = {string.match(text, '^(كتم عام) @(.*)$')}
+function muteall_by_username(extra, result, success)
+if result.id_ then 
+if is_leaderid(result.id_) == true then
+Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙*لاتستطيع كتم المطور الاساسي*", 1, 'md')
+return false 
+end
+DevAbs:sadd(DevProx..'bot:mutedall:', result.id_)
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙العضو ↫ [@'..ap[2]..']\n⌁︙تم كتمه عام من المجموعات', 1, 'md')
+end
+end
+resolve_username(ap[2],muteall_by_username)
+end
+--     Source DevProx     --
+if text:match("^كتم عام (%d+)$") and is_sudo(msg) then
+local ap = {string.match(text, "^(كتم عام) (%d+)$")}
+local user_info_ = DevAbs:get(DevProx..'user:Name' .. ap[2])
+local absc9 = user_info_ if user_info_ then
+if is_leaderid(ap[2]) == true then
+Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙*لاتستطيع كتم المطور الاساسي*", 1, 'md')
+return false 
+end
+DevAbs:sadd(DevProx..'bot:mutedall:', ap[2])
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙العضو ↫ ['..absc9..']\n⌁︙تم كتمه عام من المجموعات', 1, 'md')
 end
 end
 --     Source DevProx     --
@@ -6060,7 +6122,7 @@ end
 if is_SudoBot(msg.sender_user_id_, msg.chat_id_) then
 if text == "قائمه العام" and Abbas_Abs(msg) or text == "المحظورين عام" and Abbas_Abs(msg) or text == "↫ قائمه العام ⌁" and Abbas_Abs(msg) then 
 local list = DevAbs:smembers(DevProx..'bot:gban:')
-text = "⌁︙قائمة الحظر العام ↫ ⤈ \n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n"
+text = "⌁︙قائمة المحظورين عام ↫ ⤈ \n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n"
 for k, v in pairs(list) do
 local user_info = DevAbs:get(DevProx.."user:Name" .. v)
 if user_info then
@@ -6073,10 +6135,25 @@ end
 Dev_Abs(msg.chat_id_, msg.id_, 1, text, 1, "md")
 end 
 --     Source DevProx     --
+if text == "المكتومين عام" and Abbas_Abs(msg) then 
+local list = DevAbs:smembers(DevProx..'bot:mutedall:')
+text = "⌁︙قائمة المكتومين عام ↫ ⤈ \n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n"
+for k, v in pairs(list) do
+local user_info = DevAbs:get(DevProx.."user:Name" .. v)
+if user_info then
+local username = user_info
+text = text..k.."⌯ ❨["..username.."]❩ • ❨`"..v.."`❩\n"
+end end
+if #list == 0 then 
+text = "⌁︙*لا يوجد مكتومين عام*"
+end
+Dev_Abs(msg.chat_id_, msg.id_, 1, text, 1, "md")
+end 
+--     Source DevProx     --
 if text == "المطورين" and Abbas_Abs(msg) or text == "↫ المطورين ⌁" and Abbas_Abs(msg) then 
 local abs =  'abs:SudoBot:'
 local list = DevAbs:smembers(DevProx..abs)
-text = "⌁︙مطورين البوت ↫ ⤈ \n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n"
+text = "⌁︙قائمة المطورين ↫ ⤈ \n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n"
 for k, v in pairs(list) do
 local user_info = DevAbs:get(DevProx.."user:Name" .. v)
 if user_info then
@@ -6183,6 +6260,8 @@ local msguser = tonumber(DevAbs:get(DevProx..'user:msgs'..msg.chat_id_..':'..dat
 local user_nkt = tonumber(DevAbs:get(DevProx..'bot:add:num'..msg.chat_id_..data.id_) or 0)
 if DevAbs:sismember(DevProx..'bot:gban:',result.sender_user_id_) then
 Tkeed = 'محظور عام'
+elseif DevAbs:sismember(DevProx..'bot:mutedall:',result.sender_user_id_) then
+Tkeed = 'مكتوم عام'
 elseif DevAbs:sismember(DevProx..'bot:banned:'..msg.chat_id_,result.sender_user_id_) then
 Tkeed = 'محظور'
 elseif DevAbs:sismember(DevProx..'bot:muted:'..msg.chat_id_,result.sender_user_id_) then
@@ -6259,6 +6338,8 @@ local msguser = tonumber(DevAbs:get(DevProx..'user:msgs'..msg.chat_id_..':'..res
 local user_nkt = tonumber(DevAbs:get(DevProx..'bot:add:num'..msg.chat_id_..res.id_) or 0)
 if DevAbs:sismember(DevProx..'bot:gban:',res.id_) then
 Tkeed = 'محظور عام'
+elseif DevAbs:sismember(DevProx..'bot:mutedall:',res.id_) then
+Tkeed = 'مكتوم عام'
 elseif DevAbs:sismember(DevProx..'bot:banned:'..msg.chat_id_,res.id_) then
 Tkeed = 'محظور'
 elseif DevAbs:sismember(DevProx..'bot:muted:'..msg.chat_id_,res.id_) then
@@ -6317,6 +6398,8 @@ local msguser = tonumber(DevAbs:get(DevProx..'user:msgs'..msg.chat_id_..':'..idu
 local user_nkt = tonumber(DevAbs:get(DevProx..'bot:add:num'..msg.chat_id_..iduser) or 0)
 if DevAbs:sismember(DevProx..'bot:gban:',iduser) then
 Tkeed = 'محظور عام'
+elseif DevAbs:sismember(DevProx..'bot:mutedall:',iduser) then
+Tkeed = 'مكتوم عام'
 elseif DevAbs:sismember(DevProx..'bot:banned:'..msg.chat_id_,iduser) then
 Tkeed = 'محظور'
 elseif DevAbs:sismember(DevProx..'bot:muted:'..msg.chat_id_,iduser) then
@@ -6344,8 +6427,9 @@ function kshf_by_reply(extra, result, success)
 if DevAbs:sismember(DevProx..'bot:muted:'..msg.chat_id_,result.sender_user_id_) then muted = 'مكتوم' else muted = 'غير مكتوم' end
 if DevAbs:sismember(DevProx..'bot:banned:'..msg.chat_id_,result.sender_user_id_) then banned = 'محظور' else banned = 'غير محظور' end
 if DevAbs:sismember(DevProx..'bot:gban:',result.sender_user_id_) then gban = 'محظور عام' else gban = 'غير محظور عام' end
+if DevAbs:sismember(DevProx..'bot:mutedall:',result.sender_user_id_) then mutedall = 'مكتوم عام' else mutedall = 'غير مكتوم عام' end
 if DevAbs:sismember(DevProx..'tkeed:',result.sender_user_id_) then tkeed = 'مقيد' else tkeed = 'غير مقيد' end
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙الحظر العام ↫ '..gban..'\n⌁︙الحظر ↫ '..banned..'\n⌁︙الكتم ↫ '..muted..'\n⌁︙التقييد ↫ '..tkeed..'', 1, 'md')  
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙الحظر العام ↫ '..gban..'\n⌁︙الكتم العام ↫ '..mutedall..'\n⌁︙الحظر ↫ '..banned..'\n⌁︙الكتم ↫ '..muted..'\n⌁︙التقييد ↫ '..tkeed..'', 1, 'md')  
 end
 getMessage(msg.chat_id_, tonumber(msg.reply_to_message_id_),kshf_by_reply) 
 end
@@ -6356,8 +6440,9 @@ if result.id_ then
 if DevAbs:sismember(DevProx..'bot:muted:'..msg.chat_id_,result.id_) then muted = 'مكتوم' else muted = 'غير مكتوم' end
 if DevAbs:sismember(DevProx..'bot:banned:'..msg.chat_id_,result.id_) then banned = 'محظور' else banned = 'غير محظور' end
 if DevAbs:sismember(DevProx..'bot:gban:',result.id_) then gban = 'محظور عام' else gban = 'غير محظور عام' end
+if DevAbs:sismember(DevProx..'bot:mutedall:',result.id_) then mutedall = 'مكتوم عام' else mutedall = 'غير مكتوم عام' end
 if DevAbs:sismember(DevProx..'tkeed:',result.id_) then tkeed = 'مقيد' else tkeed = 'غير مقيد' end
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙الحظر العام ↫ '..gban..'\n⌁︙الحظر ↫ '..banned..'\n⌁︙الكتم ↫ '..muted..'\n⌁︙التقييد ↫ '..tkeed..'', 1, 'md')  
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙الحظر العام ↫ '..gban..'\n⌁︙الكتم العام ↫ '..mutedall..'\n⌁︙الحظر ↫ '..banned..'\n⌁︙الكتم ↫ '..muted..'\n⌁︙التقييد ↫ '..tkeed..'', 1, 'md')  
 else
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙*المعرف غير صحيح*', 1, 'md')  
 end
@@ -7871,17 +7956,20 @@ if text and text:match("^حذف (.*)$") and Abbas_Abs(msg) or text and text:matc
 local txts = {string.match(text, "^(حذف) (.*)$")}
 local txtss = {string.match(text, "^(مسح) (.*)$")}
 local kicbot = {string.match(text, "^(طرد) (.*)$")}
-if is_SudoBot(msg.sender_user_id_, msg.chat_id_) then 
+if is_leader(msg) then 
+if txts[2] == 'المطورين' or txtss[2] == 'المطورين' then
+DevAbs:del(DevProx..'abs:SudoBot:')
+local ABS_PROX = '⌁︙اهلا عزيزي ↫ '..abs_rank(msg)..' \n⌁︙تم حذف المطورين \n ✓'
+absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 15, string.len(msg.sender_user_id_))
+end
 if txts[2] == 'قائمه العام' or txtss[2] == 'قائمه العام' then
 DevAbs:del(DevProx..'bot:gban:')
 local ABS_PROX = '⌁︙اهلا عزيزي ↫ '..abs_rank(msg)..' \n⌁︙تم حذف قائمة العام \n ✓'
 absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 15, string.len(msg.sender_user_id_))
 end
-end
-if is_leader(msg) then 
-if txts[2] == 'المطورين' or txtss[2] == 'المطورين' then
-DevAbs:del(DevProx..'abs:SudoBot:')
-local ABS_PROX = '⌁︙اهلا عزيزي ↫ '..abs_rank(msg)..' \n⌁︙تم حذف المطورين \n ✓'
+if txts[2] == 'المكتومين عام' or txtss[2] == 'المكتومين العام' then
+DevAbs:del(DevProx..'bot:mutedall:')
+local ABS_PROX = '⌁︙اهلا عزيزي ↫ '..abs_rank(msg)..' \n⌁︙تم حذف المكتومين عام \n ✓'
 absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 15, string.len(msg.sender_user_id_))
 end
 end
@@ -9376,6 +9464,8 @@ local text =  [[
 ⌁︙ردود المطور • حذف ردود المطور
 ⌁︙حظر عام • الغاء العام
 ⌁︙قائمه العام • حذف قائمه العام
+⌁︙كتم عام • الغاء العام
+⌁︙المكتومين عام • حذف المكتومين عام
 ⌁︙تعيين • حذف • جلب ↫ رد الخاص
 ⌁︙جلب نسخه الكروبات
 ⌁︙رفع النسخه + بالرد على الملف
