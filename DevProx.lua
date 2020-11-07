@@ -9446,7 +9446,6 @@ local text =  [[
 ⌁︙تحديث
 ⌁︙السيرفر 
 ⌁︙روابط الكروبات
-⌁︙اسم البوت + رن
 ⌁︙تحديث السورس
 ⌁︙تنظيف الرسائل 
 ⌁︙تنظيف الكروبات
@@ -9558,15 +9557,6 @@ io.popen("rm -rf ~/.telegram-cli/data/voice/*")
 io.popen("rm -rf ~/.telegram-cli/data/profile_photo/*") 
 print("\27[31;47m\n        ( تم تحديث ملفات البوت )        \n\27[0;34;49m\n") 
 Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙تم تحديث ملفات البوت", 1, "md")
-end 
-if text == ""..name_bot..' رن' then 
-if not DevAbs:get(DevProx..'abs:run'..msg.sender_user_id_) then 
-DevAbs:setex(DevProx..'abs:run'..msg.sender_user_id_,86400,true) 
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تم ترسيت واعادة تشغيل البوت ', 1, 'md') 
-os.execute('killall screen;cd DevProx;./ABS') 
-else 
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تستطيع عمل رن كل 24 ساعه فقط', 1, 'md') 
-end 
 end 
 end 
 --     Source DevProx     --
