@@ -17,6 +17,7 @@ notify = lgi.require('Notify')
 utf8 = require ('lua-utf8') 
 notify.init ("Telegram updates")
 DevAbs = Redis.connect('127.0.0.1', 6379)
+ServerDevProx = io.popen("echo $SSH_CLIENT | awk '{ print $1}'"):read('*a')
 chats = {}
 day = 313456502
 --     Source DevProx     --
@@ -24,16 +25,47 @@ function vardump(value)
 print(serpent.block(value, {comment=false}))  
 end 
 local AutoSet = function()
-io.write("\27[31;47m Ξ • الان ارسل ايدي المطور •\n Ξ   • Now Send Your ID • \27[0;34;49m\n")  
-local SUDO = tonumber(io.read())
-if not tostring(SUDO):match('%d+') then
-io.write("\27[31;47m Ξ   • يجب عليك ارسال الايدي •\n Ξ • You Have To Send Your ID • \27[0;34;49m\n")  
-local SUDO = tonumber(io.read())
+if not DevAbs:get(ServerDevProx.."IdDevProx") then
+io.write('\27[1;35m\nالان ارسل ايدي المطور الاساسي ↫ ⤈\n\27[0;33;49m')
+local SUDO = io.read()
+if SUDO ~= '' then
+io.write('\27[1;36mتم حفظ ايدي المطور الاساسي\n27[0;39;49m')
+DevAbs:set(ServerDevProx.."IdDevProx",SUDO)
+else
+print('\27[1;31m┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\nلم يتم حفظ ايدي المطور الاساسي ارسله مره اخرى\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉')
+end 
+os.execute('lua DevProx.lua')
 end
-io.write("\27[31;47m Ξ • الان ارسل معرف المطور •\n Ξ • Now Send Your UserName • \27[0;34;49m\n")  
-local username = io.read()
-io.write("\27[31;47m Ξ   • الان ارسل توكن البوت •\n Ξ • Now Send Your Bots Token • \27[0;34;49m\n")  
-local token = io.read() 
+if not DevAbs:get(ServerDevProx.."UserDevProx") then
+io.write('\27[1;35m\nالان ارسل معرف المطور الاساسي ↫ ⤈\n\27[0;33;49m')
+local username = io.read():gsub('@','')
+if username ~= '' then
+io.write('\n\27[1;34mتم حفظ معرف المطور الاساسي\n\27[0;39;49m')
+DevAbs:set(ServerDevProx.."UserDevProx",'@'..username)
+else
+print('\n\27[1;34m┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\nلم يتم حفظ معرف المطور الاساسي ارسله مره اخرى\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉')
+end 
+os.execute('lua DevProx.lua')
+end
+if not DevAbs:get(ServerDevProx.."TokenDevProx") then
+io.write('\27[1;35m\nالان قم بارسال توكن البوت ↫ ⤈\n\27[0;33;49m')
+local token = io.read()
+if token ~= '' then
+local url , res = https.request('https://api.telegram.org/bot'..token..'/getMe')
+if res ~= 200 then
+print('\27[1;31m┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\nالتوكن غير صحيح تاكد منه ثم ارسله\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉')
+else
+io.write('\27[1;36mتم حفظ توكن البوت بنجاح\n27[0;39;49m')
+DevAbs:set(ServerDevProx.."TokenDevProx",token)
+end 
+else
+print('\27[1;31m┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\nلم يتم حفظ توكن البوت ارسله مره اخرى\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉')
+end 
+os.execute('lua DevProx.lua')
+end
+local SUDO = DevAbs:get(ServerDevProx.."IdDevProx")
+local username = DevAbs:get(ServerDevProx.."UserDevProx")
+local token = DevAbs:get(ServerDevProx.."TokenDevProx")
 botid = token:match("(%d+)")
 local create = function(data, file, uglify)  
 file = io.open(file, "w+")   
@@ -93,9 +125,11 @@ end
 end
 local load_DevAbs = function()  
 local f = io.open("./config.lua", "r")  
-if not f then   AutoSet()  
+if not f then 
+AutoSet()  
 else   
-f:close()  
+f:close() 
+DevAbs:del(ServerDevProx.."IdDevProx");DevAbs:del(ServerDevProx.."UserDevProx");DevAbs:del(ServerDevProx.."TokenDevProx")
 end  
 local config = loadfile("./config.lua")() 
 return config 
