@@ -134,7 +134,20 @@ end
 local config = loadfile("./config.lua")() 
 return config 
 end  
-_DevAbs = load_DevAbs()  
+_DevAbs = load_DevAbs() 
+print("\27[36m"..[[                                           
+---------------------------------------------
+|    ____             ____                  |
+|   |  _ \  _____   _|  _ \ _ __ _____  __  |
+|   | | | |/ _ \ \ / / |_) | '__/ _ \ \/ /  |
+|   | |_| |  __/\ V /|  __/| | | (_) >  <   |
+|   |____/ \___| \_/ |_|   |_|  \___/_/\_\  |
+|-------------------------------------------|
+|This Source Was Developed By (ABS) @IQ_ABS.|
+|  This Is The Source Channel @Dev_Prox .   |
+|               - DevProx -                 |
+---------------------------------------------
+]]..'\27[m')
 sudos = dofile("./config.lua") 
 DevId = sudos.SUDO 
 sudo_users = {sudos.sudo_users} 
