@@ -724,7 +724,7 @@ channel_id_ = getChatId(channel_id).ID
 end
 function unpinallmsg(channel_id)
 tdcli_function ({
-ID = "unpinAllChatMessages",
+ID = "unpinAllChannelMessages",
 channel_id_ = getChatId(channel_id).ID
 }, dl_cb, nil)
 end
