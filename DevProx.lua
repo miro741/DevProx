@@ -3111,7 +3111,22 @@ DevAbs:del('ABS_PROX:'..bot_id.."numadd:user" .. msg.chat_id_ .. "" .. msg.sende
 local numadded = string.match(text, "(%d+)") 
 local iduserr = DevAbs:get('ABS_PROX:'..bot_id..'id:user'..msg.chat_id_)  
 DevAbs:incrby('ABS_PROX:'..bot_id..'nummsg'..msg.chat_id_..iduserr,numadded)  
-Dev_Abs(msg.chat_id_, msg.id_,  1, "⌁︙تم اضافة  *{ "..numadded..' }* رسائل ', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_,  1, "⌁︙تم اضافة "..numadded..' رساله', 1, 'md')
+end
+end
+
+if text and is_monshid(msg.sender_user_id_, msg.chat_id_) then 
+if DevAbs:get('ABS_PROX:'..bot_id.."nmadd:user" .. msg.chat_id_ .. "" .. msg.sender_user_id_) then 
+if text and text:match("^الغاء$") then 
+DevAbs:del('ABS_PROX:'..bot_id..'ids:user'..msg.chat_id_)  
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تم الغاء الامر', 1, 'md')
+DevAbs:del('ABS_PROX:'..bot_id.."nmadd:user" .. msg.chat_id_ .. "" .. msg.sender_user_id_)  
+return false  end 
+DevAbs:del('ABS_PROX:'..bot_id.."nmadd:user" .. msg.chat_id_ .. "" .. msg.sender_user_id_)  
+local numadded = string.match(text, "(%d+)") 
+local iduserr = DevAbs:get('ABS_PROX:'..bot_id..'ids:user'..msg.chat_id_)  
+DevAbs:incrby(DevProx..'bot:add:num'..msg.chat_id_..msg.sender_user_id_,numadded)  
+Dev_Abs(msg.chat_id_, msg.id_,  1, "⌁︙تم اضافة "..numadded..' نقطه', 1, 'md')
 end
 end
 --     Source DevProx     --
@@ -3315,20 +3330,20 @@ Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙*امر منو ضافني تم تعطي
 end
 end
 --     Source DevProx     --
-if DevAbs:get(DevProx.."SET:GAME" .. msg.chat_id_ .. "" .. msg.sender_user_id_) then  
+if DevAbs:get(DevProx.."SET:GAME"..msg.chat_id_) then  
 if text and text:match("^(%d+)$") then
 local NUM = text:match("^(%d+)$")
 if tonumber(NUM) > 6 then
-Dev_Abs( msg.chat_id_, msg.id_, 1,"⌁︙*يوجد فقط ( 6 ) اختيارات*\n⌁︙*ارسل اختيارك مره اخرى*\n", 1, "md")    
+Dev_Abs( msg.chat_id_, msg.id_, 1,"⌁︙يوجد فقط ( 6 ) اختيارات\n⌁︙ارسل اختيارك مره اخرى", 1, "md")    
 return false  end 
 local GETNUM = DevAbs:get(DevProx.."GAMES"..msg.chat_id_)
 if tonumber(NUM) == tonumber(GETNUM) then
-DevAbs:del(DevProx.."SET:GAME" .. msg.chat_id_ .. "" .. msg.sender_user_id_)   
-Dev_Abs( msg.chat_id_, msg.id_, 1,'⌁︙*المحيبس باليد رقم* : { '..NUM..' } \n⌁︙*مبروك لقد ربحت وحصلت على ( 5 ) نقاط يمكنك استبدالها بالرسائل *', 1, "md") 
+DevAbs:del(DevProx.."SET:GAME"..msg.chat_id_)   
+Dev_Abs( msg.chat_id_, msg.id_, 1,'⌁︙*المحيبس باليد رقم* ↫ '..NUM..'\n⌁︙*مبروك لقد ربحت وحصلت على 5 نقاط يمكنك استبدالها بالرسائل*', 1, "md") 
 DevAbs:incrby(DevProx..'bot:add:num'..msg.chat_id_..msg.sender_user_id_,5)  
 elseif tonumber(NUM) ~= tonumber(GETNUM) then
-DevAbs:del(DevProx.."SET:GAME" .. msg.chat_id_ .. "" .. msg.sender_user_id_)   
-Dev_Abs( msg.chat_id_, msg.id_, 1,'⌁︙*المحيبس باليد رقم* : { '..GETNUM..' } \n⌁︙*للاسف لقد خسرت حاول مره اخرى للعثور على المحيبس *', 1, "md")
+DevAbs:del(DevProx.."SET:GAME"..msg.chat_id_)   
+Dev_Abs( msg.chat_id_, msg.id_, 1,'⌁︙*المحيبس باليد رقم* ↫ '..GETNUM..'\n⌁︙*للاسف لقد خسرت حاول مره اخرى للعثور على المحيبس*', 1, "md")
 end
 end
 end
@@ -3459,7 +3474,7 @@ if tonumber((DevAbs:get(DevProx..'bot:add:num'..msg.chat_id_..msg.sender_user_id
 DevAbs0 = '⌁︙ليس لديك نقاط العب اولا \n⌁︙ارسل ( الالعاب ) للعب'
 Dev_Abs(msg.chat_id_, msg.id_, 1,DevAbs0, 1, 'md')
 else 
-ABS_PROX = '⌁︙لديك { '..(DevAbs:get(DevProx..'bot:add:num'..msg.chat_id_..msg.sender_user_id_))..' } من نقاط العب '
+ABS_PROX = '⌁︙عدد النقاط التي ربحتها ↫ '..(DevAbs:get(DevProx..'bot:add:num'..msg.chat_id_..msg.sender_user_id_))
 Dev_Abs(msg.chat_id_, msg.id_, 1,ABS_PROX, 1, 'md')
 end
 end
@@ -3674,7 +3689,7 @@ TEST = [[
 ⌁︙الفائز يحصل على (5) نقاط
 ]]
 Dev_Abs( msg.chat_id_, msg.id_, 1, TEST, 1, "md") 
-DevAbs:setex(DevProx.."SET:GAME" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 100, true)  
+DevAbs:setex(DevProx.."SET:GAME"..msg.chat_id_, 100, true)  
 return false  
 end end
 if text == 'حزوره' and ChCheck(msg) or text == 'الحزوره' and ChCheck(msg) then
@@ -3939,7 +3954,7 @@ Dev_Abs(msg.chat_id_, msg.id_, 1,ABS_PROX, 1, 'md')
 end
 DevAbs:set(DevProx..'bot:l:id'..msg.chat_id_,true)
 end  
-if text == 'الانكليزي' or text == 'الانجليزيه' or text == 'انكليزيه' and ChCheck(msg) then
+if text == 'الانكليزي' and ChCheck(msg) or text == 'الانجليزيه' and ChCheck(msg) or text == 'انكليزيه' and ChCheck(msg) then
 if not DevAbs:get(DevProx..'bot:lock_geam'..msg.chat_id_) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '', 1, 'md')
 else
@@ -3972,6 +3987,47 @@ end
 DevAbs:set(DevProx..'bot:l:id'..msg.chat_id_,true)
 end  
 --     Source DevProx     --
+if DevAbs:get(DevProx.."GAME:TKMEN" .. msg.chat_id_ .. "" .. msg.sender_user_id_) then  
+if text and text:match("^(%d+)$") then
+local NUM = text:match("^(%d+)$")
+if tonumber(NUM) > 20 then
+Dev_Abs(msg.chat_id_, msg.id_, 1,"⌁︙عذرا لا يمكنك تخمين عدد اكبر من الـ20 خمن رقم ما بين الـ1 والـ20", 1, 'md')
+return false  end 
+local GETNUM = DevAbs:get(DevProx.."GAMES:NUM"..msg.chat_id_)
+if tonumber(NUM) == tonumber(GETNUM) then
+DevAbs:del(DevProx..'Set:Num'..msg.chat_id_..msg.sender_user_id_)
+DevAbs:del(DevProx.."GAME:TKMEN" .. msg.chat_id_ .. "" .. msg.sender_user_id_)   
+DevAbs:incrby(DevProx..'bot:add:num'..msg.chat_id_..msg.sender_user_id_,5)  
+Dev_Abs(msg.chat_id_, msg.id_, 1,'⌁︙*التخمين الصحيح هو* ↫ '..NUM..'\n⌁︙*مبروك لقد ربحت وحصلت على 5 نقاط يمكنك استبدالها بالرسائل*', 1, 'md')
+elseif tonumber(NUM) ~= tonumber(GETNUM) then
+DevAbs:incrby(DevProx..'Set:Num'..msg.chat_id_..msg.sender_user_id_,1)
+if tonumber(DevAbs:get(DevProx..'Set:Num'..msg.chat_id_..msg.sender_user_id_)) >= 3 then
+DevAbs:del(DevProx..'Set:Num'..msg.chat_id_..msg.sender_user_id_)
+DevAbs:del(DevProx.."GAME:TKMEN" .. msg.chat_id_ .. "" .. msg.sender_user_id_)   
+Dev_Abs(msg.chat_id_, msg.id_, 1,'⌁︙*التخمين الصحيح هو* ↫ '..GETNUM..'\n⌁︙*للاسف لقد خسرت حاول مره اخرى لتخمين الرقم الصحيح*', 1, 'md')
+else
+if tonumber(DevAbs:get(DevProx..'Set:Num'..msg.chat_id_..msg.sender_user_id_)) == 1 then
+SetNum = 'محاولتان فقط'
+elseif tonumber(DevAbs:get(DevProx..'Set:Num'..msg.chat_id_..msg.sender_user_id_)) == 2 then
+SetNum = 'محاوله واحده فقط'
+end
+Dev_Abs(msg.chat_id_, msg.id_, 1,'⌁︙لقد خمنت الرقم الخطا وتبقى لديك '..SetNum..' ارسل رقم تخمنه مره اخرى للفوز', 1, 'md')
+end
+end
+end
+end
+if text == 'خمن' and ChCheck(msg) or text == 'تخمين' and ChCheck(msg) then   
+if not DevAbs:get(DevProx..'bot:lock_geam'..msg.chat_id_) then
+Dev_Abs(msg.chat_id_, msg.id_, 1, '', 1, 'md')
+else
+Num = math.random(1,20)
+DevAbs:set(DevProx.."GAMES:NUM"..msg.chat_id_,Num) 
+Dev_Abs(msg.chat_id_, msg.id_, 1,'⌁︙اهلا بك عزيزي في لعبة التخمين ↫ ⤈\n ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n⌁︙سيتم تخمين عدد ما بين الـ1 والـ20 اذا تعتقد انك تستطيع الفوز جرب واللعب الان .\n⌁︙ملاحظه لديك ثلاث محاولات فقط فكر قبل ارسال تخمينك !', 1, 'md')
+DevAbs:setex(DevProx.."GAME:TKMEN" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 100, true)  
+return false  
+end
+end
+--     Source DevProx     --
 if text == 'الالعاب' and ChCheck(msg) or text == 'العاب' and ChCheck(msg) or text == 'اللعبه' and ChCheck(msg) then
 if not DevAbs:get(DevProx..'bot:lock_geam'..msg.chat_id_) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙عذرا الالعاب معطلة في المجموعة', 1, 'md')
@@ -3979,38 +4035,33 @@ else
 Dev_Abs(msg.chat_id_, msg.id_, 1,[[
 ⌁︙قائمة العاب المجموعة ↫ ⤈
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
-⌁︙ارسل ↫ ( حزوره ) للعب
-⌁︙ارسل ↫ ( امثله ) للعب
-⌁︙ارسل ↫ ( ترتيب ) للعب
-⌁︙ارسل ↫ ( العكس ) للعب
-⌁︙ارسل ↫ ( المعاني ) للعب
-⌁︙ارسل ↫ ( المختلف ) للعب
-⌁︙ارسل ↫ ( سمايلات ) للعب
-⌁︙ارسل ↫ ( المحيبس ) للعب
-⌁︙ارسل ↫ ( رياضيات ) للعب
-⌁︙ارسل ↫ ( انكليزيه ) للعب
+⌁︙لعبة التخمين ↫ خمن
+⌁︙لعبة الامثله ↫ امثله
+⌁︙لعبة العكس ↫ العكس
+⌁︙لعبة الحزوره ↫ حزوره
+⌁︙لعبة الترتيب ↫ ترتيب
+⌁︙لعبة المعاني ↫ معاني
+⌁︙لعبة المختلف ↫ المختلف
+⌁︙لعبة السمايلات ↫ سمايلات
+⌁︙لعبة المحيبس ↫ المحيبس
+⌁︙لعبة الرياضيات ↫ رياضيات
+⌁︙لعبة الانكليزيه ↫ انكليزيه
+┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
+⌁︙نقاطي • بيع نقاطي
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ⌁︙[Source Channel](https://t.me/Dev_Prox)
 ]], 1, 'md')
 end
 end
 --     Source DevProx     --
-if is_admin(msg.sender_user_id_, msg.chat_id_) and idf:match("-100(%d+)") and text:match("^ضع عدد النقاط (%d+)$")  then
-local abbs1 = { string.match(text, "^(ضع عدد النقاط) (%d+)$")}
-Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙تم وضع عدد نقاط البيع \n⌁︙يمكن للعضو بيع نقاط الالعاب \n⌁︙اذا كانت عدد نقاطه اكثر من *"..abbs1[2].."*",1, 'md')
-DevAbs:set(DevProx.."gamepoint" .. msg.chat_id_, abbs1[2])
-return false end
---     Source DevProx     --
 if text == 'بيع نقاطي' and ChCheck(msg) then
 if tonumber((DevAbs:get(DevProx..'bot:add:num'..msg.chat_id_..msg.sender_user_id_) or 0)) == 0 then
-DevAbs0 = '⌁︙ليس لديك نقاط العب اولا\n⌁︙ارسل ( الالعاب ) للعب'
-Dev_Abs(msg.chat_id_, msg.id_, 1,DevAbs0, 1, 'md') 
+Dev_Abs(msg.chat_id_, msg.id_, 1,'⌁︙ليس لديك نقاط العب اولا\n⌁︙ارسل ( الالعاب ) للعب', 1, 'md')
 else
-DevAbs0 = (DevAbs:get(DevProx..'bot:add:num'..msg.chat_id_..msg.sender_user_id_) * tonumber(DevAbs:get('ABS_PROX:'..bot_id..'gamepoint' .. msg.chat_id_)or 50))
+DevAbs0 = (DevAbs:get(DevProx..'bot:add:num'..msg.chat_id_..msg.sender_user_id_) * 50)
 DevAbs:incrby('ABS_PROX:'..bot_id..'nummsg'..msg.chat_id_..msg.sender_user_id_,DevAbs0)  
+Dev_Abs(msg.chat_id_, msg.id_, 1,'⌁︙تم بيع '..(DevAbs:get(DevProx..'bot:add:num'..msg.chat_id_..msg.sender_user_id_))..' من نقاطك\n⌁︙كل نقطه تساوي 50 رساله', 'md')
 DevAbs:del(DevProx..'bot:add:num'..msg.chat_id_..msg.sender_user_id_)
-DevAbs0 = tonumber((DevAbs:get('ABS_PROX:'..bot_id..'gamepoint' .. msg.chat_id_) or 50))
-Dev_Abs(msg.chat_id_, msg.id_, 1,'⌁︙تم بيع نقاطك \n⌁︙كل نقطه تساوي '..DevAbs0..' رسالة ', 'md')
 end
 end
 --     Source DevProx     --
@@ -9240,7 +9291,7 @@ local text =  [[
 ⌁︙ضع اسم + الاسم
 ⌁︙اضف • حذف ↫ رد
 ⌁︙ردود المدير
-⌁︙حذف • ردود المدير
+⌁︙حذف ردود المدير
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ⌁︙تنزيل الكل
 ⌁︙رفع ادمن • تنزيل ادمن
@@ -9296,6 +9347,7 @@ local text =  [[
 ⌁︙اضف • حذف ↫ امر
 ⌁︙حذف الاوامر المضافه
 ⌁︙الاوامر المضافه
+⌁︙اضف نقاط + الايدي
 ⌁︙اضف رسائل + الايدي
 ⌁︙رفع مدير • تنزيل مدير
 ⌁︙المدراء • حذف المدراء
@@ -9485,8 +9537,19 @@ if text and text:match("^اضف رسائل (%d+)$") and ChCheck(msg) then
 if is_monshid(msg.sender_user_id_, msg.chat_id_) then
 TXT = text:match("^اضف رسائل (%d+)$")
 DevAbs:set('ABS_PROX:'..bot_id..'id:user'..msg.chat_id_,TXT)  
-DevAbs:setex('ABS_PROX:'..bot_id.."numadd:user" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 10000, true)  
+DevAbs:setex('ABS_PROX:'..bot_id.."numadd:user" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 300, true)  
 Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙ارسل عدد الرسائل الان \n⌁︙ارسل الغاء لالغاء الامر ", 1, "md")
+Dev_Abs(msg.chat_id_, msg.id_, 1,numd, 1, 'md') 
+else 
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙هذا الامر للمنشئين فقط', 1, 'md') 
+end 
+end 
+if text and text:match("^اضف نقاط (%d+)$") and ChCheck(msg) then  
+if is_monshid(msg.sender_user_id_, msg.chat_id_) then
+TXT = text:match("^اضف نقاط (%d+)$")
+DevAbs:set('ABS_PROX:'..bot_id..'ids:user'..msg.chat_id_,TXT)  
+DevAbs:setex('ABS_PROX:'..bot_id.."nmadd:user" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 300, true)  
+Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙ارسل عدد النقاط الان \n⌁︙ارسل الغاء لالغاء الامر ", 1, "md")
 Dev_Abs(msg.chat_id_, msg.id_, 1,numd, 1, 'md') 
 else 
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙هذا الامر للمنشئين فقط', 1, 'md') 
