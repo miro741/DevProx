@@ -722,6 +722,12 @@ ID = "UnpinChannelMessage",
 channel_id_ = getChatId(channel_id).ID
 }, dl_cb, nil)
 end
+function unpinallmsg(channel_id)
+tdcli_function ({
+ID = "unpinAllChatMessages",
+channel_id_ = getChatId(channel_id).ID
+}, dl_cb, nil)
+end
 --     Source DevProx     --
 function blockUser(user_id)
 tdcli_function ({
@@ -8477,6 +8483,12 @@ end
 Dev_Abs(msg.chat_id_, msg.id_, 1,t, 1, 'md')
 end end
 --     Source DevProx     --
+if text and text:match("^حذف قائمه التثبيت$") and is_owner(msg.sender_user_id_, msg.chat_id_) and Abbas_Abs(msg) or text and text:match("^مسح قائمه التثبيت$") and is_owner(msg.sender_user_id_, msg.chat_id_) and Abbas_Abs(msg) then
+unpinallmsg(msg.chat_id_)
+local ABS_PROX = '⌁︙اهلا عزيزي ↫ '..abs_rank(msg)..' \n⌁︙تم حذف قائمه التثبيت بنجاح'
+absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 15, string.len(msg.sender_user_id_))
+end
+--     Source DevProx     --
 if text and text:match("^الغاء تثبيت$") and is_owner(msg.sender_user_id_, msg.chat_id_) and Abbas_Abs(msg) or text and text:match("^الغاء التثبيت$") and is_owner(msg.sender_user_id_, msg.chat_id_) and Abbas_Abs(msg) then
 if DevAbs:sismember(DevProx.."bot:pin:mutepin",msg.chat_id_) and not is_monsh(msg.sender_user_id_, msg.chat_id_) then
 Dev_Abs(msg.chat_id_,msg.id_, 1, "⌁︙التثبيت والغاء واعادة التثبيت تم قفله من قبل المنشئين الاساسيين", 1, 'md')
@@ -9361,6 +9373,7 @@ local text =  [[
 ⌁︙تثبيت
 ⌁︙الغاء التثبيت
 ⌁︙اعاده التثبيت
+⌁︙حذف قائمه التثبيت
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ⌁︙تغير رد + اسم الرتبه + النص ↫ ⤈
 ⌁︙المطور • المنشئ الاساسي
