@@ -334,7 +334,6 @@ DevAbs:set(DevProx..'editmsg'..idg,true)
 DevAbs:set(DevProx..'bot:bots:mute'..idg,true)
 DevAbs:set(DevProx..'bot:bots:ban'..idg,true)
 DevAbs:set(DevProx..'keed_bots'..idg,true)
-DevAbs:set(DevProx..'anti-flood:'..idg,true)
 DevAbs:set(DevProx..'bot:inline:mute'..idg,true)
 DevAbs:set(DevProx..'bot:photo:mute'..idg,true)
 DevAbs:set(DevProx..'bot:spam:mute'..idg,true)
@@ -2162,42 +2161,64 @@ end
 getUser(msg.sender_user_id_, ABS_PROX)
 end
 end 
--- end functions DevProx --
---      Anti FLood       -- 
---      Flood Max        --
-local flmax = 'flood:max:'..msg.chat_id_
-if not DevAbs:get(DevProx..flmax) then
-floodMax = 5
-else
-floodMax = tonumber(DevAbs:get(DevProx..flmax))
-end
 --     Source DevProx     --
---          Msg           --
-local pm = 'flood:'..msg.sender_user_id_..':'..msg.chat_id_..':msgs'
-if not DevAbs:get(DevProx..pm) then
-msgs = 0
-else
-msgs = tonumber(DevAbs:get(DevProx..pm))
-end
---     Source DevProx     --
---    Flood Check Time    --
-local TIME_CHECK = 2
---     Source DevProx     --
---      Flood Check       --
-if msgs > (floodMax - 1) then
-if DevAbs:get(DevProx..'floodstatus'..msg.chat_id_) == 'Kicked' then
-del_all_msgs(msg.chat_id_, msg.sender_user_id_)
-chat_kick(msg.chat_id_, msg.sender_user_id_)
+--      Spam Send       --
+function NotSpam(msg,Type)
+if Type == "kick" then 
+chat_kick(msg.chat_id_,msg.sender_user_id_) 
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,dp) 
 Text = '⌁︙العضو ↫ ['..CatchName(dp.first_name_,15)..'](tg://user?id='..dp.id_..') \n⌁︙قام بالتكرار المحدد تم طرده '
 sendText(msg.chat_id_,Text,msg.id_/2097152/0.5,'md')
 end,nil)
-elseif DevAbs:get(DevProx..'floodstatus'..msg.chat_id_) == 'DelMsg' then
-del_all_msgs(msg.chat_id_, msg.sender_user_id_)
-else
-del_all_msgs(msg.chat_id_, msg.sender_user_id_)
+return false  
+end 
+if Type == "del" then 
+delete_msg(msg.chat_id_,{[0] = msg.id_})    
+return false
+end 
+if Type == "keed" then
+https.request("https://api.telegram.org/bot" .. TokenBot .. "/restrictChatMember?chat_id=" ..msg.chat_id_.. "&user_id=" ..msg.sender_user_id_.."") 
+DevAbs:sadd(DevProx..'abs:Tkeed:'..msg.chat_id_, msg.sender_user_id_)
+tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,dp) 
+Text = '⌁︙العضو ↫ ['..CatchName(dp.first_name_,15)..'](tg://user?id='..dp.id_..') \n⌁︙قام بالتكرار المحدد تم تقييده '
+sendText(msg.chat_id_,Text,msg.id_/2097152/0.5,'md')
+end,nil)
+return false  
+end  
+if Type == "mute" then
+DevAbs:sadd(DevProx..'abs:Muted:'..msg.chat_id_,msg.sender_user_id_)
+tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,dp) 
+Text = '⌁︙العضو ↫ ['..CatchName(dp.first_name_,15)..'](tg://user?id='..dp.id_..') \n⌁︙قام بالتكرار المحدد تم كتمه '
+sendText(msg.chat_id_,Text,msg.id_/2097152/0.5,'md')
+end,nil)
+return false  
 end
+end  
+--  end functions DevProx --
+--     Source DevProx     --
+--       Spam Check       --
+if not is_vipmem(msg.sender_user_id_, msg.chat_id_) and msg.content_.ID ~= "MessageChatAddMembers" and DevAbs:hget(DevProx.."abs:Spam:Group:User"..msg.chat_id_,"Spam:User") then 
+if msg.sender_user_id_ ~= DevProx then
+floods = DevAbs:hget(DevProx.."abs:Spam:Group:User"..msg.chat_id_,"Spam:User") or "nil"
+Num_Msg_Max = DevAbs:hget(DevProx.."abs:Spam:Group:User"..msg.chat_id_,"Num:Spam") or 5
+Time_Spam = DevAbs:hget(DevProx.."abs:Spam:Group:User"..msg.chat_id_,"Num:Spam:Time") or 5
+local post_count = tonumber(DevAbs:get(DevProx.."abs:Spam:Cont"..msg.sender_user_id_..":"..msg.chat_id_) or 0)
+if post_count > tonumber(DevAbs:hget(DevProx.."abs:Spam:Group:User"..msg.chat_id_,"Num:Spam") or 5) then 
+local ch = msg.chat_id_
+local type = DevAbs:hget(DevProx.."abs:Spam:Group:User"..msg.chat_id_,"Spam:User") 
+NotSpam(msg,type)  
 end
+DevAbs:setex(DevProx.."abs:Spam:Cont"..msg.sender_user_id_..":"..msg.chat_id_, tonumber(DevAbs:hget(DevProx.."abs:Spam:Group:User"..msg.chat_id_,"Num:Spam:Time") or 3), post_count+1) 
+local edit_id = data.text_ or "nil"  
+Num_Msg_Max = 5
+if DevAbs:hget(DevProx.."abs:Spam:Group:User"..msg.chat_id_,"Num:Spam") then
+Num_Msg_Max = DevAbs:hget(DevProx.."abs:Spam:Group:User"..msg.chat_id_,"Num:Spam") 
+end
+if DevAbs:hget(DevProx.."abs:Spam:Group:User"..msg.chat_id_,"Num:Spam:Time") then
+Time_Spam = DevAbs:hget(DevProx.."abs:Spam:Group:User"..msg.chat_id_,"Num:Spam:Time") 
+end 
+end
+end 
 --     Source DevProx     --
 --      Process mod       --
 tdcli_function({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,dp) 
@@ -2262,9 +2283,6 @@ end
 --         Photo          --
 if msg_type == 'MSG:Photo' then
 if not is_vipmem(msg.sender_user_id_, msg.chat_id_) then
-if DevAbs:get(DevProx..'anti-flood:'..msg.chat_id_) then
-DevAbs:setex(DevProx..pm, TIME_CHECK, msgs+1)
-end
 if msg.forward_info_ then
 if DevAbs:get(DevProx..'bot:forward:mute'..msg.chat_id_) then
 if msg.forward_info_.ID == "MessageForwardedFromUser" or msg.forward_info_.ID == "MessageForwardedPost" then
@@ -2356,9 +2374,6 @@ end
 --        Document        --
 elseif msg_type == 'MSG:Document' then
 if not is_vipmem(msg.sender_user_id_, msg.chat_id_) then
-if DevAbs:get(DevProx..'anti-flood:'..msg.chat_id_) then
-DevAbs:setex(DevProx..pm, TIME_CHECK, msgs+1)
-end
 if msg.forward_info_ then
 if DevAbs:get(DevProx..'bot:forward:mute'..msg.chat_id_) then
 if msg.forward_info_.ID == "MessageForwardedFromUser" or msg.forward_info_.ID == "MessageForwardedPost" then
@@ -2439,9 +2454,6 @@ end
 --         Inline         --
 elseif msg.reply_markup_ and msg.reply_markup_.ID == "ReplyMarkupInlineKeyboard" and msg.via_bot_user_id_ ~= 0 then
 if not is_vipmem(msg.sender_user_id_, msg.chat_id_) then
-if DevAbs:get(DevProx..'anti-flood:'..msg.chat_id_) then
-DevAbs:setex(DevProx..pm, TIME_CHECK, msgs+1)
-end
 if DevAbs:get(DevProx..'bot:inline:mute'..msg.chat_id_) then
 local id = msg.id_
 local msgs = {[0] = id}
@@ -2454,9 +2466,6 @@ end
 --        Sticker         --
 elseif msg_type == 'MSG:Sticker' then
 if not is_vipmem(msg.sender_user_id_, msg.chat_id_) then
-if DevAbs:get(DevProx..'anti-flood:'..msg.chat_id_) then
-DevAbs:setex(DevProx..pm, TIME_CHECK, msgs+1)
-end
 if DevAbs:get(DevProx..'bot:sticker:mute'..msg.chat_id_) then
 local id = msg.id_
 local msgs = {[0] = id}
@@ -2526,9 +2535,6 @@ end
 --        Contact         --
 elseif msg_type == 'MSG:Contact' then
 if not is_vipmem(msg.sender_user_id_, msg.chat_id_) then
-if DevAbs:get(DevProx..'anti-flood:'..msg.chat_id_) then
-DevAbs:setex(DevProx..pm, TIME_CHECK, msgs+1)
-end
 if msg.forward_info_ then
 if DevAbs:get(DevProx..'bot:forward:mute'..msg.chat_id_) then
 if msg.forward_info_.ID == "MessageForwardedFromUser" or msg.forward_info_.ID == "MessageForwardedPost" then
@@ -2552,9 +2558,6 @@ end
 --         Audio          --
 elseif msg_type == 'MSG:Audio' then
 if not is_vipmem(msg.sender_user_id_, msg.chat_id_) then
-if DevAbs:get(DevProx..'anti-flood:'..msg.chat_id_) then
-DevAbs:setex(DevProx..pm, TIME_CHECK, msgs+1)
-end
 if msg.forward_info_ then
 if DevAbs:get(DevProx..'bot:forward:mute'..msg.chat_id_) then
 if msg.forward_info_.ID == "MessageForwardedFromUser" or msg.forward_info_.ID == "MessageForwardedPost" then
@@ -2635,9 +2638,6 @@ end
 --         Voice          --
 elseif msg_type == 'MSG:Voice' then
 if not is_vipmem(msg.sender_user_id_, msg.chat_id_) then
-if DevAbs:get(DevProx..'anti-flood:'..msg.chat_id_) then
-DevAbs:setex(DevProx..pm, TIME_CHECK, msgs+1)
-end
 if msg.forward_info_ then
 if DevAbs:get(DevProx..'bot:forward:mute'..msg.chat_id_) then
 if msg.forward_info_.ID == "MessageForwardedFromUser" or msg.forward_info_.ID == "MessageForwardedPost" then
@@ -2718,9 +2718,6 @@ end
 --        Location        --
 elseif msg_type == 'MSG:Location' then
 if not is_vipmem(msg.sender_user_id_, msg.chat_id_) then
-if DevAbs:get(DevProx..'anti-flood:'..msg.chat_id_) then
-DevAbs:setex(DevProx..pm, TIME_CHECK, msgs+1)
-end
 if msg.forward_info_ then
 if DevAbs:get(DevProx..'bot:forward:mute'..msg.chat_id_) then
 if msg.forward_info_.ID == "MessageForwardedFromUser" or msg.forward_info_.ID == "MessageForwardedPost" then
@@ -2802,9 +2799,6 @@ end
 --         Video          --
 elseif msg_type == 'MSG:Video' then
 if not is_vipmem(msg.sender_user_id_, msg.chat_id_) then
-if DevAbs:get(DevProx..'anti-flood:'..msg.chat_id_) then
-DevAbs:setex(DevProx..pm, TIME_CHECK, msgs+1)
-end
 if msg.forward_info_ then
 if DevAbs:get(DevProx..'bot:forward:mute'..msg.chat_id_) then
 if msg.forward_info_.ID == "MessageForwardedFromUser" or msg.forward_info_.ID == "MessageForwardedPost" then
@@ -2885,9 +2879,6 @@ end
 --          Gif           --
 elseif msg_type == 'MSG:Gif' then
 if not is_vipmem(msg.sender_user_id_, msg.chat_id_) then
-if DevAbs:get(DevProx..'anti-flood:'..msg.chat_id_) then
-DevAbs:setex(DevProx..pm, TIME_CHECK, msgs+1)
-end
 if msg.forward_info_ then
 if DevAbs:get(DevProx..'bot:forward:mute'..msg.chat_id_) then
 if msg.forward_info_.ID == "MessageForwardedFromUser" or msg.forward_info_.ID == "MessageForwardedPost" then
@@ -2968,9 +2959,6 @@ end
 --         Text           --
 elseif msg_type == 'MSG:Text' then
 if not is_vipmem(msg.sender_user_id_, msg.chat_id_) then
-if DevAbs:get(DevProx..'anti-flood:'..msg.chat_id_) then
-DevAbs:setex(DevProx..pm, TIME_CHECK, msgs+1)
-end
 end
 --vardump(msg)
 if DevAbs:get(DevProx.."bot:group:link"..msg.chat_id_) == 'waiting' then
@@ -6909,14 +6897,25 @@ else
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙البوتات بالتقييد بالفعل مقفلة ', 1, 'md')
 end
 end
-if lockptf[2] == "التكرار" then
-if not DevAbs:get(DevProx..'anti-flood:'..msg.chat_id_) then
-local ABS_PROX = '⌁︙اهلا عزيزي ↫ '..abs_rank(msg)..' \n⌁︙تم قفل التكرار بنجاح \n ✓'
+if lockptf[2] == "التكرار" then 
+DevAbs:hset(DevProx.."abs:Spam:Group:User"..msg.chat_id_ ,"Spam:User","del")  
+local ABS_PROX = '⌁︙اهلا عزيزي ↫ '..abs_rank(msg)..' \n⌁︙تم قفل التكرار بالحذف \n ✓'
 absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 14, string.len(msg.sender_user_id_))
-DevAbs:set(DevProx..'anti-flood:'..msg.chat_id_,true)
-else
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙التكرار بالفعل مقفل في المجموعة', 1, 'md')
 end
+if lockptf[2] == "التكرار بالطرد" then 
+DevAbs:hset(DevProx.."abs:Spam:Group:User"..msg.chat_id_ ,"Spam:User","kick")  
+local ABS_PROX = '⌁︙اهلا عزيزي ↫ '..abs_rank(msg)..' \n⌁︙تم قفل التكرار بالطرد \n ✓'
+absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 14, string.len(msg.sender_user_id_))
+end
+if lockptf[2] == "التكرار بالتقيد" or lockptf[2] == "التكرار بالتقييد" then 
+DevAbs:hset(DevProx.."abs:Spam:Group:User"..msg.chat_id_ ,"Spam:User","keed")  
+local ABS_PROX = '⌁︙اهلا عزيزي ↫ '..abs_rank(msg)..' \n⌁︙تم قفل التكرار بالتقييد \n ✓'
+absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 14, string.len(msg.sender_user_id_))
+end
+if lockptf[2] == "التكرار بالكتم" then 
+DevAbs:hset(DevProx.."abs:Spam:Group:User"..msg.chat_id_ ,"Spam:User","mute")  
+local ABS_PROX = '⌁︙اهلا عزيزي ↫ '..abs_rank(msg)..' \n⌁︙تم قفل التكرار بالكتم \n ✓'
+absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 14, string.len(msg.sender_user_id_))
 end
 if is_monsh(msg.sender_user_id_, msg.chat_id_) then
 if lockptf[2] == "التثبيت" then
@@ -6933,36 +6932,19 @@ end
 end
 --     Source DevProx     --
 if is_admin(msg.sender_user_id_, msg.chat_id_) then
-if text and text:match("^ضع تكرار (%d+)$") and ChCheck(msg) then
-local floodmax = {string.match(text, "^(ضع تكرار) (%d+)$")}
-if tonumber(floodmax[2]) < 2 then
+if text and text:match("^ضع تكرار (%d+)$") then   
+local TextSpam = {string.match(text, "^(ضع تكرار) (%d+)$")}
+if tonumber(TextSpam[2]) < 2 then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙قم بتحديد عدد تكرار اكبر من 2 ', 1, 'md')
 else
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تم وضع عدد التكرار ↫ '..floodmax[2], 1, 'md')
-DevAbs:set(DevProx..'flood:max:'..msg.chat_id_,floodmax[2])
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تم وضع عدد التكرار ↫ '..TextSpam[2], 1, 'md')
+DevAbs:hset(DevProx.."abs:Spam:Group:User"..msg.chat_id_ ,"Num:Spam" ,TextSpam[2]) 
 end
 end
---     Source DevProx     --
-if text and text:match("^ضع التكرار (.*)$") and ChCheck(msg) then
-local status = {string.match(text, "^(ضع التكرار) (.*)$")}
-if status[2] == "بالطرد" then
-if DevAbs:get(DevProx..'floodstatus'..msg.chat_id_) == "Kicked" then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙التكرار بالطرد بالتاكيد موضوع ', 1, 'md')
-else
-local ABS_PROX = '⌁︙اهلا عزيزي ↫ '..abs_rank(msg)..' \n⌁︙تم وضع التكرار بالطرد \n ✓'
-absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 14, string.len(msg.sender_user_id_))
-DevAbs:set(DevProx..'floodstatus'..msg.chat_id_,'Kicked')
-end
-end
-if status[2] == "del" or status[2] == "بالحذف" then
-if DevAbs:get(DevProx..'floodstatus'..msg.chat_id_) == "DelMsg" then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙التكرار بالحذف بالتاكيد موضوع ', 1, 'md')
-else
-local ABS_PROX = '⌁︙اهلا عزيزي ↫ '..abs_rank(msg)..' \n⌁︙تم وضع التكرار بالحذف \n ✓'
-absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 14, string.len(msg.sender_user_id_))
-DevAbs:set(DevProx..'floodstatus'..msg.chat_id_,'DelMsg')
-end
-end
+if text and text:match("^ضع زمن التكرار (%d+)$") then  
+local TextSpam = {string.match(text, "^(ضع زمن التكرار) (%d+)$")} 
+DevAbs:hset(DevProx.."abs:Spam:Group:User"..msg.chat_id_ ,"Num:Spam:Time" ,TextSpam[2]) 
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تم وضع زمن التكرار ↫ '..TextSpam[2], 1, 'md')
 end
 --     Source DevProx     --
 if is_owner(msg.sender_user_id_, msg.chat_id_) then
@@ -7354,14 +7336,10 @@ else
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙البوتات بالتقييد بالفعل مفتوحة ', 1, 'md')
 end
 end
-if unlockpts[2] == "التكرار" then
-if DevAbs:get(DevProx..'anti-flood:'..msg.chat_id_) then
+if unlockpts[2] == "التكرار" then 
+DevAbs:hdel(DevProx.."abs:Spam:Group:User"..msg.chat_id_ ,"Spam:User")  
 local ABS_PROX = '⌁︙اهلا عزيزي ↫ '..abs_rank(msg)..' \n⌁︙تم فتح التكرار بنجاح \n ✓'
 absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 14, string.len(msg.sender_user_id_))
-DevAbs:del(DevProx..'anti-flood:'..msg.chat_id_)
-else
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙التكرار بالفعل مفتوحة في المجموعة', 1, 'md')
-end
 end
 if is_monsh(msg.sender_user_id_, msg.chat_id_) then
 if unlockpts[2] == "التثبيت" then
@@ -7770,8 +7748,8 @@ if text and text:match("^قفل التفليش$") then
 if not is_monshid(msg.sender_user_id_, msg.chat_id_) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙للمنشئ الاساسي فقط ', 1, 'md')
 else
-DevAbs:set(DevProx..'bot:links:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:forward:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:bots:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:bots:ban'..msg.chat_id_,true) DevAbs:set(DevProx..'anti-flood:'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:video:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:gifs:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'editmsg'..msg.chat_id_,true)
-DevAbs:set(DevProx..'bot:sticker:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'farsi'..msg.chat_id_,true) DevAbs:del(DevProx.."fshar"..msg.chat_id_) DevAbs:del(DevProx.."taf"..msg.chat_id_) DevAbs:del(DevProx.."kaf"..msg.chat_id_) DevAbs:set(DevProx..'floodstatus'..msg.chat_id_,'Kicked') DevAbs:set('DevProx:id:photo'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:spam:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:webpage:mute'..msg.chat_id_,true)
+DevAbs:set(DevProx..'bot:links:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:forward:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:bots:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:bots:ban'..msg.chat_id_,true) DevAbs:hset(DevProx.."abs:Spam:Group:User"..msg.chat_id_ ,"Spam:User","del") DevAbs:set(DevProx..'bot:video:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:gifs:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'editmsg'..msg.chat_id_,true)
+DevAbs:set(DevProx..'bot:sticker:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'farsi'..msg.chat_id_,true) DevAbs:del(DevProx.."fshar"..msg.chat_id_) DevAbs:del(DevProx.."taf"..msg.chat_id_) DevAbs:del(DevProx.."kaf"..msg.chat_id_) DevAbs:set('DevProx:id:photo'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:spam:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:webpage:mute'..msg.chat_id_,true)
 local ABS_PROX = '⌁︙اهلا عزيزي ↫ '..abs_rank(msg)..' \n⌁︙تم قفل التفليش بنجاح \n ✓'
 absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 14, string.len(msg.sender_user_id_))
 end
@@ -7780,7 +7758,7 @@ if text and text:match("^فتح التفليش$") then
 if not is_monshid(msg.sender_user_id_, msg.chat_id_) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙للمنشئ الاساسي فقط ', 1, 'md')
 else
-DevAbs:del(DevProx..'bot:links:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:forward:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:bots:ban'..msg.chat_id_) DevAbs:del(DevProx..'anti-flood:'..msg.chat_id_) DevAbs:del(DevProx..'bot:video:mute'..msg.chat_id_)
+DevAbs:del(DevProx..'bot:links:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:forward:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:bots:ban'..msg.chat_id_) DevAbs:hdel(DevProx.."abs:Spam:Group:User"..msg.chat_id_ ,"Spam:User") DevAbs:del(DevProx..'bot:video:mute'..msg.chat_id_)
 DevAbs:del(DevProx..'bot:gifs:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:sticker:mute'..msg.chat_id_) DevAbs:del(DevProx..'farsi'..msg.chat_id_) DevAbs:set(DevProx..'fshar'..msg.chat_id_,true) DevAbs:set(DevProx..'taf'..msg.chat_id_,true) DevAbs:set(DevProx..'kaf'..msg.chat_id_,true)
 DevAbs:del('DevProx:id:photo'..msg.chat_id_)
 local ABS_PROX = '⌁︙اهلا عزيزي ↫ '..abs_rank(msg)..' \n⌁︙تم فتح التفليش بنجاح \n ✓'
@@ -7793,10 +7771,10 @@ if not is_admin(msg.sender_user_id_, msg.chat_id_) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙للمشرفين فقط ', 1, 'md')
 else
 DevAbs:set(DevProx..'editmsg'..msg.chat_id_,true) DevAbs:set(DevProx..'farsi'..msg.chat_id_,true) DevAbs:del(DevProx..'fshar'..msg.chat_id_) DevAbs:del(DevProx..'taf'..msg.chat_id_) DevAbs:del(DevProx..'kaf'..msg.chat_id_) DevAbs:set(DevProx..'farsiban'..msg.chat_id_,true)
-DevAbs:set(DevProx..'bot:bots:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:bots:ban'..msg.chat_id_,true) DevAbs:set(DevProx..'anti-flood:'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:text:mute'..msg.chat_id_,true) 
+DevAbs:set(DevProx..'bot:bots:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:bots:ban'..msg.chat_id_,true) DevAbs:hset(DevProx.."abs:Spam:Group:User"..msg.chat_id_ ,"Spam:User","del") DevAbs:set(DevProx..'bot:text:mute'..msg.chat_id_,true) 
 DevAbs:set(DevProx..'bot:inline:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:photo:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:spam:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:video:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:gifs:mute'..msg.chat_id_,true)
 DevAbs:set(DevProx..'bot:music:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:voice:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:links:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:location:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'tags:lock'..msg.chat_id_,true)
-DevAbs:set(DevProx..'bot:sticker:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'markdown:lock'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:forward:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'floodstatus'..msg.chat_id_,'Kicked')
+DevAbs:set(DevProx..'bot:sticker:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'markdown:lock'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:forward:mute'..msg.chat_id_,true) 
 DevAbs:set(DevProx..'bot:document:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:contact:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:abstag:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:webpage:mute'..msg.chat_id_,true) DevAbs:set(DevProx..'bot:tgservice:jk'..msg.chat_id_,true)
 local ABS_PROX = '⌁︙اهلا عزيزي ↫ '..abs_rank(msg)..' \n⌁︙تم قفل جميع الاوامر \n ✓'
 absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 14, string.len(msg.sender_user_id_))
@@ -7807,7 +7785,7 @@ if not is_admin(msg.sender_user_id_, msg.chat_id_) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙للمشرفين فقط ', 1, 'md')
 else
 DevAbs:del(DevProx..'editmsg'..msg.chat_id_) DevAbs:del(DevProx..'farsi'..msg.chat_id_) DevAbs:set(DevProx..'fshar'..msg.chat_id_,true) DevAbs:set(DevProx..'taf'..msg.chat_id_,true) DevAbs:set(DevProx..'kaf'..msg.chat_id_,true) DevAbs:del(DevProx..'farsiban'..msg.chat_id_)
-DevAbs:del(DevProx..'bot:bots:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:bots:ban'..msg.chat_id_) DevAbs:del(DevProx..'keed_bots'..msg.chat_id_) DevAbs:del(DevProx..'anti-flood:'..msg.chat_id_) DevAbs:del(DevProx..'bot:tgservice:jk'..msg.chat_id_)
+DevAbs:del(DevProx..'bot:bots:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:bots:ban'..msg.chat_id_) DevAbs:del(DevProx..'keed_bots'..msg.chat_id_) DevAbs:hdel(DevProx.."abs:Spam:Group:User"..msg.chat_id_ ,"Spam:User") DevAbs:del(DevProx..'bot:tgservice:jk'..msg.chat_id_)
 DevAbs:del(DevProx..'bot:text:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:photo:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:spam:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:video:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:sticker:mute'..msg.chat_id_)
 DevAbs:del(DevProx..'bot:document:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:inline:mute'..msg.chat_id_) DevAbs:del(DevProx..'markdown:lock'..msg.chat_id_) DevAbs:del(DevProx..'bot:gifs:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:music:mute'..msg.chat_id_)
 DevAbs:del(DevProx..'bot:voice:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:links:mute'..msg.chat_id_) DevAbs:del(DevProx..'bot:location:mute'..msg.chat_id_) DevAbs:del(DevProx..'tags:lock'..msg.chat_id_) DevAbs:del(DevProx..'bot:forward:mute'..msg.chat_id_)
@@ -7820,13 +7798,13 @@ end
 end
 --     Source DevProx     --
 if is_admin(msg.sender_user_id_, msg.chat_id_) then
-if text and text:match("^ضع عدد الاحرف (%d+)$") and ChCheck(msg) then
-local sensspam = {string.match(text, "^(ضع عدد الاحرف) (%d+)$")}
+if text and text:match("^ضع سبام (%d+)$") and ChCheck(msg) then
+local sensspam = {string.match(text, "^(ضع سبام) (%d+)$")}
 if tonumber(sensspam[2]) < 40 then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙اختر عدد اكبر من ( 40 ) حرف ', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙اختر عدد اكبر من 40 حرف ', 1, 'md')
 else
 DevAbs:set(DevProx..'bot:sens:spam'..msg.chat_id_,sensspam[2])
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تم وضع عدد الاحرف : ( '..sensspam[2]..' )\n⌁︙اذا كانت الرسالة تحتوي على اكثر من ( '..sensspam[2]..' ) حرف سيتم حذفها تلقائيا بواسطة البوت ', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تم وضع عدد السبام ↫'..sensspam[2], 1, 'md')
 end
 end
 end
@@ -7894,7 +7872,7 @@ end
 if text == "كشف البوتات" and is_admin(msg.sender_user_id_, msg.chat_id_) and ChCheck(msg) then 
 local function cb(extra,result,success)
 local admins = result.members_  
-text = '⌁︙*قائمة البوتات الحاليه* ↫ ⤈ \n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n'
+text = '⌁︙*قائمة البوتات* ↫ ⤈ \n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n'
 local n = 0
 local t = 0
 for i=0 , #admins do 
@@ -7905,15 +7883,15 @@ if result.members_[i].status_.ID == "ChatMemberStatusMember" then
 ab = ''
 elseif result.members_[i].status_.ID == "ChatMemberStatusEditor" then  
 t = t + 1
-ab = ' ❪✯❫'
+ab = ' ✯'
 end
 text = text.."⌯ [@"..data.username_..']'..ab.."\n"
 if #admins == 0 then
-Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙*لاتوجد بوتات هنا*\n ", 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙*لاتوجد بوتات هنا*", 1, 'md')
 return false end
 if #admins == i then 
-local a = '┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n⌁︙*عدد البوتات هنا* ↫ ❪'..n..'❫ \n'
-local f = '⌁︙*عدد البوتات المرفوعه* ↫ ❪'..t..'❫\n⌁︙*ملاحضه علامة ال ❪ ✯ ❫ تعني ان البوت ادمن في هذه المجموعه*'
+local a = '┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n⌁︙*عدد البوتات هنا* ↫ '..n..'\n'
+local f = '⌁︙*عدد البوتات المرفوعه* ↫ '..t..'\n⌁︙*ملاحضه علامة الـ*✯ *تعني ان البوت ادمن في هذه المجموعه*'
 Dev_Abs(msg.chat_id_, msg.id_, 1, text..a..f, 1, 'md')
 end
 end,nil)
@@ -7941,17 +7919,26 @@ absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 14, string.len(ms
 end
 end
 if txts[2] == 'البوتات' or txtss[2] == 'البوتات' or kicbot[2] == 'البوتات' then
-local botslist = function(extra, result)
-local list = result.members_
-for i = 0, #list do
-if tonumber(list[i].user_id_) ~= tonumber(bot_id) then chat_kick(msg.chat_id_,list[i].user_id_)
+tdcli_function ({ ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub("-100",""),filter_ = {ID = "ChannelMembersBots"},offset_ = 0,limit_ = 100 },function(arg,dp)  
+local admins = dp.members_  
+local x = 0
+local c = 0
+for i=0 , #admins do 
+if dp.members_[i].status_.ID == "ChatMemberStatusEditor" then  
+x = x + 1 
+end
+if tonumber(admins[i].user_id_) ~= tonumber(bot_id) then
+chat_kick(msg.chat_id_,admins[i].user_id_)
+end
+c = c + 1
+end     
+if (c - x) == 0 then
+Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙*لاتوجد بوتات هنا*", 1, 'md')
+else
+Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙*عدد البوتات هنا* ↫ "..c.."\n⌁︙*عدد البوتات المرفوعه* ↫ "..x.."\n⌁︙*تم طرد* ↫ "..(c - x).." *من البوتات*", 1, 'md')
 end 
-end
-end
-local ABS_PROX = '⌁︙اهلا عزيزي ↫ '..abs_rank(msg)..' \n⌁︙تم حذف البوتات \n ✓'
-absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 14, string.len(msg.sender_user_id_))
-getChannelMembers(msg.chat_id_, 0, "Bots", 100, botslist)
-end
+end,nil)  
+end 
 if is_absmonsh(msg.sender_user_id_, msg.chat_id_) then
 if txts[2] == 'المنشئين الاساسيين' or txtss[2] == 'المنشئين الاساسيين' then
 local ABS_PROX = '⌁︙اهلا عزيزي ↫ '..abs_rank(msg)..' \n⌁︙تم حذف المنشئين الاساسيين \n ✓'
@@ -8077,31 +8064,29 @@ end
 end
 --     Source DevProx     --
 if is_admin(msg.sender_user_id_, msg.chat_id_) then 
-if text and text:match("^[Ss]ettings$") or text and text:match("^الاعدادات$") and ChCheck(msg) then
+if text and text:match("^الاعدادات$") and ChCheck(msg) then
 if DevAbs:get(DevProx..'bot:muteall'..msg.chat_id_) then mute_all = 'مقفله' else mute_all = 'مفتوحه' end
 if DevAbs:get(DevProx..'bot:text:mute'..msg.chat_id_) then mute_text = 'مقفله' else mute_text = 'مفتوحه'end
 if DevAbs:get(DevProx..'bot:photo:mute'..msg.chat_id_) then mute_photo = 'مقفله' else mute_photo = 'مفتوحه' end
 if DevAbs:get(DevProx..'bot:video:mute'..msg.chat_id_) then mute_video = 'مقفله' else mute_video = 'مفتوحه' end
 if DevAbs:get(DevProx..'bot:gifs:mute'..msg.chat_id_) then mute_gifs = 'مقفله' else mute_gifs = 'مفتوحه' end
-if DevAbs:get(DevProx..'anti-flood:'..msg.chat_id_) then mute_flood = 'مقفله' else mute_flood = 'مفتوحه' end
 --     Source DevProx     --
-if not DevAbs:get(DevProx..'flood:max:'..msg.chat_id_) then
-flood_m = 5
-else
-flood_m = DevAbs:get(DevProx..'flood:max:'..msg.chat_id_)
-end
 if not DevAbs:get(DevProx..'bot:sens:spam'..msg.chat_id_) then
-spam_c = 250
+spam_c = 400
 else
 spam_c = DevAbs:get(DevProx..'bot:sens:spam'..msg.chat_id_)
 end
 --     Source DevProx     --
-if DevAbs:get(DevProx..'floodstatus'..msg.chat_id_) == "DelMsg" then
-floodstatus = "بالحذف"
-elseif DevAbs:get(DevProx..'floodstatus'..msg.chat_id_) == "Kicked" then
-floodstatus = "بالطرد"
-elseif not DevAbs:get(DevProx..'floodstatus'..msg.chat_id_) then
-floodstatus = "بالحذف"
+if DevAbs:hget(DevProx.."abs:Spam:Group:User"..msg.chat_id_, "Spam:User") == "kick" then     
+flood = "بالطرد"     
+elseif DevAbs:hget(DevProx.."abs:Spam:Group:User"..msg.chat_id_,"Spam:User") == "keed" then     
+flood = "بالتقييد"     
+elseif DevAbs:hget(DevProx.."abs:Spam:Group:User"..msg.chat_id_,"Spam:User") == "mute" then     
+flood = "بالكتم"           
+elseif DevAbs:hget(DevProx.."abs:Spam:Group:User"..msg.chat_id_,"Spam:User") == "del" then     
+flood = "بالحذف"
+else     
+flood = "مفتوح"     
 end
 --     Source DevProx     --
 if DevAbs:get(DevProx..'bot:music:mute'..msg.chat_id_) then mute_music = 'مقفله' else mute_music = 'مفتوحه' end
@@ -8129,6 +8114,7 @@ if DevAbs:get(DevProx..'fshar'..msg.chat_id_) then lock_fshar = 'مفتوح' els
 if DevAbs:get(DevProx..'kaf'..msg.chat_id_) then lock_kaf = 'مفتوح' else lock_kaf = 'مقفل' end
 if DevAbs:get(DevProx..'taf'..msg.chat_id_) then lock_taf = 'مفتوحه' else lock_taf = 'مقفله' end
 if DevAbs:get(DevProx..'farsi'..msg.chat_id_) then lock_farsi = 'مفتوحه' else lock_farsi = 'مقفله' end
+local Flood_Num = DevAbs:hget(DevProx.."abs:Spam:Group:User"..msg.chat_id_,"Num:Spam") or 5
 --     Source DevProx     --
 local TXTE = "⌁︙اعدادات المجموعة ↫ ⤈\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n"
 .."⌁︙الروابط ↫ "..mute_links.."\n"
@@ -8160,10 +8146,9 @@ local TXTE = "⌁︙اعدادات المجموعة ↫ ⤈\n┉ ≈ ┉ ≈ ┉
 .."⌁︙الانكليزيه ↫ "..lock_english.."\n"
 .."⌁︙الفارسيه ↫ "..lock_farsi.."\n"
 .."⌁︙الكل↫ "..mute_all.."\n"
-.."⌁︙التكرار ↫ "..mute_flood.."\n"
-.."⌁︙خاصية التكرار ↫ "..floodstatus.."\n"
-.."⌁︙عدد التكرار ↫ [ "..flood_m.." ]\n"
-.."⌁︙عدد السبام ↫ [ "..spam_c.." ]\n"
+.."⌁︙التكرار ↫ "..flood.."\n"
+.."⌁︙عدد التكرار ↫ "..Flood_Num.."\n"
+.."⌁︙عدد السبام ↫ "..spam_c.."\n"
 .."┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n⌁︙[𝗧𝗘𝗔𝗠 𝗗𝗘𝗩](https://t.me/Dev_Prox)\n"
 Dev_Abs(msg.chat_id_, msg.id_, 1, TXTE, 1, 'md')
 end
@@ -8336,7 +8321,6 @@ if text and text:match("^الشبكات$") then if not DevAbs:get(DevProx..'bot:
 if text and text:match("^المواقع$") then if not DevAbs:get(DevProx..'bot:lock_Settings'..msg.chat_id_) then if DevAbs:get(DevProx..'bot:location:mute'..msg.chat_id_) then lock_location = 'مقفولة' else lock_location = 'مفتوحة' end local ABS_PROX = "\n" .."⌁︙المواقع ↫ "..lock_location.."\n" Dev_Abs(msg.chat_id_, msg.id_, 1, ABS_PROX, 1, 'md') end end
 if text and text:match("^العربيه$") then if not DevAbs:get(DevProx..'bot:lock_Settings'..msg.chat_id_) then if DevAbs:get(DevProx..'bot:arabic:mute'..msg.chat_id_) then lock_arabic = 'مقفولة' else lock_arabic = 'مفتوحة' end local ABS_PROX = "\n" .."⌁︙العربيه ↫ "..lock_arabic.."\n" Dev_Abs(msg.chat_id_, msg.id_, 1, ABS_PROX, 1, 'md') end end
 if text and text:match("^الانكليزيه$") then if not DevAbs:get(DevProx..'bot:lock_Settings'..msg.chat_id_) then if DevAbs:get(DevProx..'bot:english:mute'..msg.chat_id_) then lock_english = 'مقفولة' else lock_english = 'مفتوحة' end local ABS_PROX = "\n" .."⌁︙الانكليزيه ↫ "..lock_english.."\n" Dev_Abs(msg.chat_id_, msg.id_, 1, ABS_PROX, 1, 'md') end end
-if text and text:match("^التكرار$") then if not DevAbs:get(DevProx..'bot:lock_Settings'..msg.chat_id_) then if DevAbs:get(DevProx..'anti-flood:'..msg.chat_id_) then mute_flood = 'مقفل' else mute_flood = 'مفتوح' end local ABS_PROX = "\n" .."⌁︙التكرار ↫ "..mute_flood.."\n" Dev_Abs(msg.chat_id_, msg.id_, 1, ABS_PROX, 1, 'md') end end
 if text and text:match("^الكفر$") then if not DevAbs:get(DevProx..'bot:lock_Settings'..msg.chat_id_) then if DevAbs:get(DevProx..'kaf'..msg.chat_id_) then lock_kaf = 'مفتوح' else lock_kaf = 'مقفل' end local ABS_PROX = "\n" .."⌁︙الكفر ↫ "..lock_kaf.."\n" Dev_Abs(msg.chat_id_, msg.id_, 1, ABS_PROX, 1, 'md') end end
 if text and text:match("^الفشار$") then if not DevAbs:get(DevProx..'bot:lock_Settings'..msg.chat_id_) then if DevAbs:get(DevProx..'fshar'..msg.chat_id_) then lock_fshar = 'مفتوح' else lock_fshar = 'مقفل' end local ABS_PROX = "\n" .."⌁︙الفشار ↫ "..lock_fshar.."\n" Dev_Abs(msg.chat_id_, msg.id_, 1, ABS_PROX, 1, 'md') end end
 if text and text:match("^الطائفيه$") then if not DevAbs:get(DevProx..'bot:lock_Settings'..msg.chat_id_) then if DevAbs:get(DevProx..'taf'..msg.chat_id_) then lock_taf = 'مفتوحة' else lock_taf = 'مقفله' end local ABS_PROX = "\n" .."⌁︙الطائفيه ↫ "..lock_taf.."\n" Dev_Abs(msg.chat_id_, msg.id_, 1, ABS_PROX, 1, 'md') end end
@@ -9185,6 +9169,9 @@ local text =  [[
 ⌁︙اوامر حمايه اخرى ↫ ⤈
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ⌁︙قفل • فتح + الامر ↫ ⤈
+⌁︙التكرار بالطرد
+⌁︙التكرار بالكتم
+⌁︙التكرار بالتقييد
 ⌁︙الفارسيه بالطرد
 ⌁︙البوتات بالطرد
 ⌁︙البوتات بالتقييد
@@ -9229,10 +9216,8 @@ local text =  [[
 ⌁︙الصلاحيات • حذف الصلاحيات
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ⌁︙ضع رابط
+⌁︙ضع سبام + العدد
 ⌁︙ضع تكرار + العدد
-⌁︙ضع التكرار بالطرد
-⌁︙ضع التكرار بالحذف
-⌁︙ضع عدد الاحرف + العدد
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ⌁︙رفع مميز • تنزيل مميز
 ⌁︙المميزين • حذف المميزين
