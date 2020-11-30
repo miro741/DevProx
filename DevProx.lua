@@ -857,9 +857,9 @@ t = "⌁︙قائمة الاوامر المضافه ↫ ⤈ \n┉ ≈ ┉ ≈ �
 for k,v in pairs(list) do
 Cmds = DevAbs:get(bot_id.."Set:Cmd:Group:New1"..msg.chat_id_..":"..v)
 if Cmds then 
-t = t..""..k.."⌯ ("..v..") • {"..Cmds.."}\n"
+t = t..""..k.."~ ("..v..") • {"..Cmds.."}\n"
 else
-t = t..""..k.."⌯ ("..v..") \n"
+t = t..""..k.."~ ("..v..") \n"
 end
 end
 if #list == 0 then
@@ -897,9 +897,9 @@ t = "⌁︙قائمة الصلاحيات المضافه ↫ ⤈ \n┉ ≈ ┉ �
 for k,v in pairs(list) do
 var = DevAbs:get(bot_id.."Comd:New:rt:bot:"..v..msg.chat_id_)
 if var then
-t = t..""..k.."⌯ "..v.." • ("..var..")\n"
+t = t..""..k.."~ "..v.." • ("..var..")\n"
 else
-t = t..""..k.."⌯ "..v.."\n"
+t = t..""..k.."~ "..v.."\n"
 end
 end
 Dev_Abs(msg.chat_id_, msg.id_, 1, t, 1, 'html')
@@ -1095,7 +1095,7 @@ local key = {
 {'تنظيف الكروبات','↫ قائمه العام ⌁','تنظيف المشتركين'},
 {'↫ اذاعه عام ⌁','↫ اذاعه خاص ⌁'},
 {'↫ اذاعه عام بالتوجيه ⌁','↫ اذاعه خاص بالتوجيه ⌁'},
-{'⌯ ❨ تعيين كلايش الاوامر ❩ ⌯'},
+{'~ تعيين كلايش الاوامر ~'},
 {'تعطيل البوت الخدمي','تفعيل البوت الخدمي'},
 {'نسخه ملف السورس','تحديث السورس','جلب نسخه الكروبات'},
 {'↫ حذف رد عام ⌁','↫ الردود العام ⌁','↫ اضف رد عام ⌁'},
@@ -1106,9 +1106,8 @@ local key = {
 }
 send_inline(msg.chat_id_,Sudo_Welcome,key)
 return false
-end end end
-if ChatType == 'pv' then 
-if text == '⌯ ❨ تعيين كلايش الاوامر ❩ ⌯' then 
+end end
+if text == '~ تعيين كلايش الاوامر ~' then 
 if is_leader(msg) then 
 local Sudo_Welcome = '⌁︙اهلا بك مجددا عزيزي المطور \n⌁︙اليك الازرار الخاصه بتعديل وتغيير كلايش سورس ديف بروكس فقط اضغط على الامر الذي تريد تنفيذه'
 local key = {
@@ -1121,9 +1120,7 @@ local key = {
 }
 send_inline(msg.chat_id_,Sudo_Welcome,key)
 return false
-end end end
-
-if ChatType == 'pv' then 
+end end
 if text == '/start' then  
 if not DevAbs:get(DevProx..'Start:Time'..msg.sender_user_id_) then
 local inline = {{{text="⌁ ︙ المطور ︙ ⌁",url="t.me/"..(DevUser or "Dev_Prox")}}}
@@ -1138,41 +1135,7 @@ end
 DevAbs:setex(DevProx..'Start:Time'..msg.sender_user_id_,300,true)
 return false
 end 
-end
-if text and DevAbs:get(DevProx..'Start:Bots') then
-if text == 'الغاء' then   
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تم الغاء حفظ كليشة الستارت', 1, 'md')
-DevAbs:del(DevProx..'Start:Bots') 
-return false
-end
-DevAbs:set(DevProx.."Start:Bot",text)  
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تم حفظ كليشة الستارت', 1, 'md')
-DevAbs:del(DevProx..'Start:Bots') 
-return false
-end
-if is_leader(msg) then
-if text == 'تعيين رد الخاص' or text == 'ضع كليشه ستارت' or text == '↫ تعيين رد الخاص ⌁' then 
-DevAbs:set(DevProx..'Start:Bots',true) 
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙ارسل لي كليشة الستارت الان', 1, 'md')
-return false
-end
-if text == 'حذف رد الخاص' or text == 'حذف كليشه ستارت' or text == '↫ حذف رد الخاص ⌁' then 
-DevAbs:del(DevProx..'Start:Bot') 
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تم حذف كليشة الستارت بنجاح', 1, 'md')
-end
-if text == 'جلب رد الخاص' then  
-local start = DevAbs:get(DevProx.."Start:Bot")
-if start then 
-Start_Source = start
-else
-Start_Source = "⌁︙مرحبا انا بوت اسمي "..name_bot.."\n⌁︙اختصاصي حماية المجموعات\n⌁︙من التفليش والسبام والخخ .. . ،\n⌁︙تفعيلي سهل ومجانا فقط قم برفعي ادمن في مجموعتك وارسل امر ↫ تفعيل\n⌁︙سيتم رفع الادمنيه والمنشئ تلقائيا"
-end 
-Dev_Abs(msg.chat_id_, msg.id_, 1, Start_Source, 1, 'md')
-return false
-end
-end
 --     Source DevProx     --
-if ChatType == 'pv' then 
 if not is_leader(msg) and not DevAbs:sismember(DevProx..'BaN:In:User',msg.sender_user_id_) and not DevAbs:get(DevProx..'Texting:In:Bv') then
 Dev_Abs(msg.sender_user_id_, msg.id_, 1, '⌁︙تم ارسال رسالتك الى [المطور](t.me/'..DevUser..')', 1, 'md') 
 tdcli_function({ID ="GetChat",chat_id_=DevId},function(arg,chat)  
@@ -1231,6 +1194,40 @@ end,nil);
 end,nil);
 end 
 end 
+--     Source DevProx     --
+if text and DevAbs:get(DevProx..'Start:Bots') then
+if text == 'الغاء' then   
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تم الغاء حفظ كليشة الستارت', 1, 'md')
+DevAbs:del(DevProx..'Start:Bots') 
+return false
+end
+DevAbs:set(DevProx.."Start:Bot",text)  
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تم حفظ كليشة الستارت', 1, 'md')
+DevAbs:del(DevProx..'Start:Bots') 
+return false
+end
+if is_leader(msg) then
+if text == 'تعيين رد الخاص' or text == 'ضع كليشه ستارت' or text == '↫ تعيين رد الخاص ⌁' then 
+DevAbs:set(DevProx..'Start:Bots',true) 
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙ارسل لي كليشة الستارت الان', 1, 'md')
+return false
+end
+if text == 'حذف رد الخاص' or text == 'حذف كليشه ستارت' or text == '↫ حذف رد الخاص ⌁' then 
+DevAbs:del(DevProx..'Start:Bot') 
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تم حذف كليشة الستارت بنجاح', 1, 'md')
+end
+if text == 'جلب رد الخاص' then  
+local start = DevAbs:get(DevProx.."Start:Bot")
+if start then 
+Start_Source = start
+else
+Start_Source = "⌁︙مرحبا انا بوت اسمي "..name_bot.."\n⌁︙اختصاصي حماية المجموعات\n⌁︙من التفليش والسبام والخخ .. . ،\n⌁︙تفعيلي سهل ومجانا فقط قم برفعي ادمن في مجموعتك وارسل امر ↫ تفعيل\n⌁︙سيتم رفع الادمنيه والمنشئ تلقائيا"
+end 
+Dev_Abs(msg.chat_id_, msg.id_, 1, Start_Source, 1, 'md')
+return false
+end
+end
+--     Source DevProx     --
 if is_leader(msg) then
 if text == 'تفعيل التواصل' or text == '↫ تفعيل التواصل ⌁' then   
 local ABS_PROX = '⌁︙اهلا عزيزي ↫ '..abs_rank(msg)..' \n⌁︙تم تفعيل التواصل بنجاح'
@@ -4072,7 +4069,7 @@ DevAbs:srem(DevProx..'abs:vipmem:'..msg.chat_id_,msg.sender_user_id_)
 DevAbs:srem(DevProx..'bot:donky:'..msg.chat_id_,msg.sender_user_id_)
 DevAbs:del(DevProx..'yesdel'..msg.sender_user_id_..'', 'delyes')
 DevAbs:del(DevProx..'nodel'..msg.sender_user_id_..'', 'delno')
-Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙تم تنزيلك من ↫ ⤈\n⌯ ( "..monshid..''..owners..''..admins..''..vipmem..''..donky.." ) ⌯ \n", 1, "md")
+Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙تم تنزيلك من ↫ ⤈\n~ ( "..monshid..''..owners..''..admins..''..vipmem..''..donky.." ) ~ \n", 1, "md")
 else 
 DevAbs:del(DevProx..'yesdel'..msg.sender_user_id_..'', 'delyes')
 DevAbs:del(DevProx..'nodel'..msg.sender_user_id_..'', 'delno')
@@ -4113,9 +4110,9 @@ i = 0
 for k, v in pairs(f2.members_) do
 i = i + 1
 if DevAbs:get(DevProx..'Save:UserName'..v.user_id_) then
-text = text..""..i.." ⌯ ❨ [@"..DevAbs:get(DevProx..'Save:UserName'..v.user_id_).."] ❩\n"
+text = text..""..i.."~ : [@"..DevAbs:get(DevProx..'Save:UserName'..v.user_id_).."]\n"
 else
-text = text..""..i.." ⌯ ❨ "..v.user_id_.." ❩\n"
+text = text..""..i.."~ : "..v.user_id_.."\n"
 end
 end 
 Dev_Abs(msg.chat_id_, msg.id_, 1, text, 1, 'md')
@@ -4135,9 +4132,9 @@ i = 0
 for k, v in pairs(f2.members_) do
 i = i + 1
 if DevAbs:get(DevProx..'Save:UserName'..v.user_id_) then
-text = text..""..i.." ⌯ ❨ [@"..DevAbs:get(DevProx..'Save:UserName'..v.user_id_).."] ❩\n"
+text = text..""..i.."~ : [@"..DevAbs:get(DevProx..'Save:UserName'..v.user_id_).."]\n"
 else
-text = text..""..i.." ⌯ ❨ "..v.user_id_.." ❩\n"
+text = text..""..i.."~ : "..v.user_id_.."\n"
 end
 end 
 Dev_Abs(msg.chat_id_, msg.id_, 1, text, 1, 'md')
@@ -4891,7 +4888,7 @@ if DevAbs:sismember(DevProx..'abs:vipmem:'..msg.chat_id_, result.sender_user_id_
 vipmem = 'المميزين • ' else vipmem = ''
 end
 if absmasco(result.sender_user_id_,msg.chat_id_) ~= false then
-Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙المسخدم ↫ ["..absc9.."]\n⌁︙تم تنزيله من ↫ ⤈\n⌯ ( "..SudoBot..''..ownerall..''..adminall..''..vpall..''..monsh..''..monshid..''..owner..''..admins..''..vipmem.." ) ⌯ \n", 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙المسخدم ↫ ["..absc9.."]\n⌁︙تم تنزيله من ↫ ⤈\n~ ( "..SudoBot..''..ownerall..''..adminall..''..vpall..''..monsh..''..monshid..''..owner..''..admins..''..vipmem.." ) ~ \n", 1, 'md')
 else 
 Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙العضو ↫ ["..absc9.."]\n⌁︙لم تتم ترقيته مسبقا", 1, 'md')
 end
@@ -4966,7 +4963,7 @@ if DevAbs:sismember(DevProx..'abs:vipmem:'..msg.chat_id_, result.id_) then
 vipmem = 'المميزين • ' else vipmem = ''
 end
 if absmasco(result.id_,msg.chat_id_) ~= false then
-Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙المسخدم ↫ ["..absc9.."]\n⌁︙تم تنزيله من ↫ ⤈\n⌯ ( "..SudoBot..''..ownerall..''..adminall..''..vpall..''..monsh..''..monshid..''..owner..''..admins..''..vipmem.." ) ⌯ \n ", 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙المسخدم ↫ ["..absc9.."]\n⌁︙تم تنزيله من ↫ ⤈\n~ ( "..SudoBot..''..ownerall..''..adminall..''..vpall..''..monsh..''..monshid..''..owner..''..admins..''..vipmem.." ) ~ \n ", 1, 'md')
 else 
 Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙العضو ↫ ["..absc9.."]\n⌁︙لم تتم ترقيته مسبقا", 1, 'md')
 end 
@@ -5590,9 +5587,9 @@ text = "⌁︙قائمة المقيدين ↫ ⤈ \n┉ ≈ ┉ ≈ ┉ ≈ ┉ 
 for k,v in pairs(list) do
 local username = DevAbs:get(DevProx..'Save:UserName'..v)
 if username then
-text = text..""..k.."⌯ ❨[@"..username.."]❩\n"
+text = text..""..k.."~ : [@"..username.."]\n"
 else
-text = text..""..k.."⌯ ❨`"..v.."`❩\n"
+text = text..""..k.."~ : `"..v.."`\n"
 end end
 if #list == 0 then
 text = "⌁︙*لا يوجد مقيدين*"
@@ -5687,9 +5684,9 @@ text = "⌁︙قائمة المميزين ↫ ⤈ \n┉ ≈ ┉ ≈ ┉ ≈ ┉ 
 for k,v in pairs(list) do
 local username = DevAbs:get(DevProx..'Save:UserName'..v)
 if username then
-text = text..""..k.."⌯ ❨[@"..username.."]❩\n"
+text = text..""..k.."~ : [@"..username.."]\n"
 else
-text = text..""..k.."⌯ ❨`"..v.."`❩\n"
+text = text..""..k.."~ : `"..v.."`\n"
 end end
 if #list == 0 then 
 text = "⌁︙*لا يوجد مميزين*"
@@ -5706,9 +5703,9 @@ text = "⌁︙قائمة الادمنيه ↫ ⤈ \n┉ ≈ ┉ ≈ ┉ ≈ ┉ 
 for k,v in pairs(list) do
 local username = DevAbs:get(DevProx..'Save:UserName'..v)
 if username then
-text = text..""..k.."⌯ ❨[@"..username.."]❩\n"
+text = text..""..k.."~ : [@"..username.."]\n"
 else
-text = text..""..k.."⌯ ❨`"..v.."`❩\n"
+text = text..""..k.."~ : `"..v.."`\n"
 end end
 if #list == 0 then
 text = "⌁︙*لا يوجد ادمنيه*"
@@ -5724,9 +5721,9 @@ text = "⌁︙قائمة المدراء ↫ ⤈ \n┉ ≈ ┉ ≈ ┉ ≈ ┉ �
 for k,v in pairs(list) do
 local username = DevAbs:get(DevProx..'Save:UserName'..v)
 if username then
-text = text..""..k.."⌯ ❨[@"..username.."]❩\n"
+text = text..""..k.."~ : [@"..username.."]\n"
 else
-text = text..""..k.."⌯ ❨`"..v.."`❩\n"
+text = text..""..k.."~ : `"..v.."`\n"
 end end
 if #list == 0 then 
 text = "⌁︙*لا يوجد مدراء*"
@@ -5742,9 +5739,9 @@ text = "⌁︙قائمة المنشئين ↫ ⤈ \n┉ ≈ ┉ ≈ ┉ ≈ ┉ 
 for k,v in pairs(list) do
 local username = DevAbs:get(DevProx..'Save:UserName'..v)
 if username then
-text = text..""..k.."⌯ ❨[@"..username.."]❩\n"
+text = text..""..k.."~ : [@"..username.."]\n"
 else
-text = text..""..k.."⌯ ❨`"..v.."`❩\n"
+text = text..""..k.."~ : `"..v.."`\n"
 end end
 if #list == 0 then 
 text = "⌁︙*لا يوجد منشئين*"
@@ -5760,9 +5757,9 @@ text = "⌁︙قائمة المنشئين الاساسيين ↫ ⤈ \n┉ ≈ �
 for k,v in pairs(list) do
 local username = DevAbs:get(DevProx..'Save:UserName'..v)
 if username then
-text = text..""..k.."⌯ ❨[@"..username.."]❩\n"
+text = text..""..k.."~ : [@"..username.."]\n"
 else
-text = text..""..k.."⌯ ❨`"..v.."`❩\n"
+text = text..""..k.."~ : `"..v.."`\n"
 end end
 if #list == 0 then 
 text = "⌁︙*لا يوجد منشئين اساسيين*"
@@ -5796,9 +5793,9 @@ text = "⌁︙قائمة المكتومين ↫ ⤈ \n┉ ≈ ┉ ≈ ┉ ≈ �
 for k,v in pairs(list) do
 local username = DevAbs:get(DevProx..'Save:UserName'..v)
 if username then
-text = text..""..k.."⌯ ❨[@"..username.."]❩\n"
+text = text..""..k.."~ : [@"..username.."]\n"
 else
-text = text..""..k.."⌯ ❨`"..v.."`❩\n"
+text = text..""..k.."~ : `"..v.."`\n"
 end end
 if #list == 0 then 
 text = "⌁︙*لا يوجد مكتومين*"
@@ -5812,9 +5809,9 @@ text = "⌁︙قائمة المحظورين ↫ ⤈ \n┉ ≈ ┉ ≈ ┉ ≈ �
 for k,v in pairs(list) do
 local username = DevAbs:get(DevProx..'Save:UserName'..v)
 if username then
-text = text..""..k.."⌯ ❨[@"..username.."]❩\n"
+text = text..""..k.."~ : [@"..username.."]\n"
 else
-text = text..""..k.."⌯ ❨`"..v.."`❩\n"
+text = text..""..k.."~ : `"..v.."`\n"
 end end
 if #list == 0 then 
 text = "⌁︙*لا يوجد محظورين*"
@@ -5829,9 +5826,9 @@ text = "⌁︙قائمة مطاية المجموعه 😹💔 ↫ ⤈ \n┉ ≈ 
 for k,v in pairs(list) do
 local username = DevAbs:get(DevProx..'Save:UserName'..v)
 if username then
-text = text..""..k.."⌯ ❨[@"..username.."]❩\n"
+text = text..""..k.."~ : [@"..username.."]\n"
 else
-text = text..""..k.."⌯ ❨`"..v.."`❩\n"
+text = text..""..k.."~ : `"..v.."`\n"
 end end
 if #list == 0 then
 text = "⌁︙*لا يوجد مطايه كلها اوادم* 😹💔"
@@ -5848,9 +5845,9 @@ text = "⌁︙قائمة المحظورين عام ↫ ⤈ \n┉ ≈ ┉ ≈ ┉
 for k,v in pairs(BanAll) do
 local username = DevAbs:get(DevProx..'Save:UserName'..v)
 if username then
-text = text..""..k.."⌯ ❨[@"..username.."]❩\n"
+text = text..""..k.."~ : [@"..username.."]\n"
 else
-text = text..""..k.."⌯ ❨`"..v.."`❩\n"
+text = text..""..k.."~ : `"..v.."`\n"
 end end
 else
 text = ""
@@ -5860,9 +5857,9 @@ text = text.."⌁︙قائمة المكتومين عام ↫ ⤈ \n┉ ≈ ┉ �
 for k,v in pairs(MuteAll) do
 local username = DevAbs:get(DevProx..'Save:UserName'..v)
 if username then
-text = text..""..k.."⌯ ❨[@"..username.."]❩\n"
+text = text..""..k.."~ : [@"..username.."]\n"
 else
-text = text..""..k.."⌯ ❨`"..v.."`❩\n"
+text = text..""..k.."~ : `"..v.."`\n"
 end end
 else
 text = text
@@ -5881,9 +5878,9 @@ text = "⌁︙قائمة المطورين ↫ ⤈ \n┉ ≈ ┉ ≈ ┉ ≈ ┉ 
 for k,v in pairs(list) do
 local username = DevAbs:get(DevProx..'Save:UserName'..v)
 if username then
-text = text..""..k.."⌯ ❨[@"..username.."]❩\n"
+text = text..""..k.."~ : [@"..username.."]\n"
 else
-text = text..""..k.."⌯ ❨`"..v.."`❩\n"
+text = text..""..k.."~ : `"..v.."`\n"
 end end
 if #list == 0 then
 text = "⌁︙*عذرا لم يتم رفع اي مطورين*"
@@ -5897,9 +5894,9 @@ text = "⌁︙قائمة المدراء العامين ↫ ⤈ \n┉ ≈ ┉ ≈
 for k,v in pairs(list) do
 local username = DevAbs:get(DevProx..'Save:UserName'..v)
 if username then
-text = text..""..k.."⌯ ❨[@"..username.."]❩\n"
+text = text..""..k.."~ : [@"..username.."]\n"
 else
-text = text..""..k.."⌯ ❨`"..v.."`❩\n"
+text = text..""..k.."~ : `"..v.."`\n"
 end end
 if #list == 0 then 
 text = "⌁︙*لا يوجد مدراء عامين*"
@@ -5913,9 +5910,9 @@ text = "⌁︙قائمة المميزين العام ↫ ⤈ \n┉ ≈ ┉ ≈ �
 for k,v in pairs(list) do
 local username = DevAbs:get(DevProx..'Save:UserName'..v)
 if username then
-text = text..""..k.."⌯ ❨[@"..username.."]❩\n"
+text = text..""..k.."~ : [@"..username.."]\n"
 else
-text = text..""..k.."⌯ ❨`"..v.."`❩\n"
+text = text..""..k.."~ : `"..v.."`\n"
 end end
 if #list == 0 then 
 text = "⌁︙*لا يوجد مميزين عام*"
@@ -5930,9 +5927,9 @@ text = "⌁︙قائمة الادمنيه العامين ↫ ⤈ \n┉ ≈ ┉ �
 for k,v in pairs(list) do
 local username = DevAbs:get(DevProx..'Save:UserName'..v)
 if username then
-text = text..""..k.."⌯ ❨[@"..username.."]❩\n"
+text = text..""..k.."~ : [@"..username.."]\n"
 else
-text = text..""..k.."⌯ ❨`"..v.."`❩\n"
+text = text..""..k.."~ : `"..v.."`\n"
 end end
 if #list == 0 then
 text = "⌁︙*لا يوجد ادمنيه عامين*"
@@ -6286,7 +6283,7 @@ local abs = (DevProx..'bot:filters:'..msg.chat_id_)
 local list = DevAbs:hkeys(abs)
 text = "⌁︙قائمة المنع ↫ ⤈ \n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n"
 for k, v in pairs(list) do
-text = text..k..'⌯ ❨ '..v..' ❩\n'
+text = text..k..'~ ❨ '..v..' ❩\n'
 end
 if #list == 0 then
 text = "⌁︙لا توجد كلمات ممنوعه"
@@ -6300,7 +6297,7 @@ local abs = (DevProx..'bot:freewords:')
 local list = DevAbs:hkeys(abs) 
 text = '⌁︙قائمة المنع العام ↫ ⤈ \n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n'
 for k, v in pairs(list) do
-text = text..k..'⌯ ❨ '..v..' ❩\n'
+text = text..k..'~ ❨ '..v..' ❩\n'
 end
 if #list == 0 then
 text = "⌁︙لا توجد كلمات ممنوعه عام"
@@ -6913,7 +6910,7 @@ else
 local list = DevAbs:smembers(DevProx.."bot:groups")
 local t = '⌁︙مجموعات البوت ↫ ⤈ \n'
 for k,v in pairs(list) do
-t = t..k.." ⌯ ❨`"..v.."`❩\n" 
+t = t..k.."~ : `"..v.."`\n" 
 end
 if #list == 0 then
 t = '⌁︙*لا يوجد مجموعات مفعله*'
@@ -7707,7 +7704,7 @@ elseif result.members_[i].status_.ID == "ChatMemberStatusEditor" then
 t = t + 1
 ab = ' ✯'
 end
-text = text.."⌯ [@"..data.username_..']'..ab.."\n"
+text = text.."~ [@"..data.username_..']'..ab.."\n"
 if #admins == 0 then
 Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙*لاتوجد بوتات هنا*", 1, 'md')
 return false end
@@ -7851,8 +7848,7 @@ DevAbs:del(DevProx..'bot:donky:'..msg.chat_id_)
 DevAbs:del(DevProx..'abs:vipmem:'..msg.chat_id_)
 DevAbs:del(DevProx..'bot:filters:'..msg.chat_id_)
 DevAbs:del(DevProx..'abs:Muted:'..msg.chat_id_)
-local ABS_PROX = '⌁︙اهلا عزيزي ↫ '..abs_rank(msg)..' \n⌁︙تم حذف ↫ ❨ قائمة المنع • المحظورين • المكتومين • الادمنيه • المميزين • المطايه ❩ بنجاح \n ✓'
-absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 14, string.len(msg.sender_user_id_))
+Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙تم حذف ↫ ❨ قائمة المنع • المحظورين • المكتومين • الادمنيه • المميزين • المطايه ❩ بنجاح \n ✓", 1, 'md')
 end end
 --     Source DevProx     --
 if text and text:match("^حذف جميع الرتب$") and ChCheck(msg) or text and text:match("^مسح جميع الرتب$") and ChCheck(msg) or text and text:match("^تنزيل جميع الرتب$") and ChCheck(msg) then
@@ -8048,7 +8044,7 @@ t = "⌁︙قائمة الزخرفه ↫ ⤈\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ �
 i = 0
 for k,v in pairs(Zrf.ok) do
 i = i + 1
-t = t..i.."⌯ `"..v.."` \n"
+t = t..i.."~ `"..v.."` \n"
 end
 Dev_Abs(msg.chat_id_, msg.id_, 1, t, 1, 'md')
 DevAbs:del(DevProx..'Zrf:Abs'..msg.chat_id_..''..msg.sender_user_id_)
@@ -8057,7 +8053,7 @@ end
 if not DevAbs:get(DevProx..'bot:Zrf:Abs'..msg.chat_id_) then
 if text == 'زخرفه' and ChCheck(msg) or text == 'الزخرفه' and ChCheck(msg)  then  
 DevAbs:setex(DevProx.."Zrf:Abs"..msg.chat_id_..""..msg.sender_user_id_,10000,true)
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙ارسل لي الكلمه لزخرفتها \nيمكنك الزخرفة باللغه { en } ⌯ { ar } ', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙ارسل لي الكلمه لزخرفتها \nيمكنك الزخرفة باللغه { en } ~ { ar } ', 1, 'md')
 end
 end
 --     Source DevProx     --
@@ -8070,7 +8066,7 @@ t = "⌁︙قائمة الزخرفه ↫ ⤈\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ �
 i = 0
 for k,v in pairs(Zrf.ok) do
 i = i + 1
-t = t..i.."⌯ `"..v.."` \n"
+t = t..i.."~ `"..v.."` \n"
 end
 Dev_Abs(msg.chat_id_, msg.id_, 1, t, 1, 'md')
 end
@@ -8350,7 +8346,7 @@ if text == 'تفعيل التنبيه' then
 if not is_sudo(msg) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙للمطور الاساسي فقط', 1, 'md')
 else 
-local  ABS_PROX = '⌁︙تم تفعيل التنبيه على تغيير \n ⌯ ( صوره • اسم • معرف ) ⌯ : للاعضاء \n⌁︙في جميع مجموعات البوت ' 
+local  ABS_PROX = '⌁︙تم تفعيل التنبيه على تغيير \n ~ ( صوره • اسم • معرف ) ~ : للاعضاء \n⌁︙في جميع مجموعات البوت ' 
 Dev_Abs( msg.chat_id_, msg.id_, 1, ABS_PROX, 1, "md") 
 DevAbs:del(DevProx..'lock:bot:ttt'..bot_id) 
 end 
@@ -8359,7 +8355,7 @@ if text == 'تعطيل التنبيه' then
 if not is_sudo(msg) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙للمطور الاساسي فقط', 1, 'md')
 else 
-ABS_PROX = '⌁︙تم تعطيل التنبيه على تغيير \n ⌯ ( صوره • اسم • معرف ) ⌯ : للاعضاء\n⌁︙في جميع مجموعات البوت '
+ABS_PROX = '⌁︙تم تعطيل التنبيه على تغيير \n ~ ( صوره • اسم • معرف ) ~ : للاعضاء\n⌁︙في جميع مجموعات البوت '
 Dev_Abs( msg.chat_id_, msg.id_, 1, ABS_PROX, 1, "md") 
 DevAbs:set(DevProx..'lock:bot:ttt'..bot_id,true) 
 end
@@ -8367,13 +8363,13 @@ end
 if is_admin(msg.sender_user_id_, msg.chat_id_) then
 if text and text == "تفعيل تنبيه التغيرات" and ChCheck(msg) then
 if DevAbs:get(DevProx..'lock:bot:ttt'..bot_id) then 
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙التنبيه على تغيير\n ⌯ ( صوره • اسم • معرف ) ⌯ : للاعضاء\n⌁︙معطل في جميع مجموعات البوت من قبل المطور ', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙التنبيه على تغيير\n ~ ( صوره • اسم • معرف ) ~ : للاعضاء\n⌁︙معطل في جميع مجموعات البوت من قبل المطور ', 1, 'md')
 return false 
 end
 if not is_owner(msg.sender_user_id_, msg.chat_id_) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙للمشرفين فقط ', 1, 'md')
 else 
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تم تفعيل التنبيه على تغيير \n ⌯ ( صوره • اسم • معرف ) ⌯ : للاعضاء \n⌁︙في هذه المجموعه ', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تم تفعيل التنبيه على تغيير \n ~ ( صوره • اسم • معرف ) ~ : للاعضاء \n⌁︙في هذه المجموعه ', 1, 'md')
 DevAbs:del(DevProx.."lock:bot:ttt2:"..msg.chat_id_)
 end
 end
@@ -8381,7 +8377,7 @@ if text and text == "تعطيل تنبيه التغيرات" and ChCheck(msg) th
 if not is_owner(msg.sender_user_id_, msg.chat_id_) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙للمشرفين فقط ', 1, 'md')
 else 
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تم تعطيل التنبيه على تغيير \n ⌯ ( صوره • اسم • معرف ) ⌯ : للاعضاء \n⌁︙في هذه المجموعه ', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تم تعطيل التنبيه على تغيير \n ~ ( صوره • اسم • معرف ) ~ : للاعضاء \n⌁︙في هذه المجموعه ', 1, 'md')
 DevAbs:set(DevProx.."lock:bot:ttt2:"..msg.chat_id_,"ok")
 end
 end
@@ -8743,7 +8739,7 @@ dp = 'ملف 📁'
 elseif DevAbs:get(DevProx.."audio_repgp"..v..msg.chat_id_) then
 dp = 'اغنيه 🎶'
 end
-msg_rep = msg_rep ..k..'⌯ (*'..v..'*) ↫ {*'..dp..'*}\n' 
+msg_rep = msg_rep ..k..'~ (*'..v..'*) ↫ {*'..dp..'*}\n' 
 end
 Dev_Abs(msg.chat_id_, msg.id_, 1, msg_rep,1, 'md')
 end
@@ -8798,7 +8794,7 @@ dp = 'ملف 📁'
 elseif DevAbs:get(DevProx.."audio_repall"..v) then
 dp = 'اغنيه 🎶'
 end
-msg_rep = msg_rep ..k..'⌯ (*'..v..'*) ↫ {*'..dp..'*}\n' 
+msg_rep = msg_rep ..k..'~ (*'..v..'*) ↫ {*'..dp..'*}\n' 
 end
 Dev_Abs(msg.chat_id_, msg.id_, 1, msg_rep,1, "md")
 end
@@ -9412,7 +9408,7 @@ text = '\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n'
 for i=0 , #admins do 
 tdcli_function ({ID = "GetUser",user_id_ = admins[i].user_id_
 },function(arg,data) 
-text = text.."⌯ [@"..data.username_.."]\n"
+text = text.."~ [@"..data.username_.."]\n"
 if #admins == i then 
 sendText(msg.chat_id_, absname..'\n'..absid..'\n'..abstext..text,0,'md') 
 end
