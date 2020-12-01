@@ -4932,7 +4932,7 @@ Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙لاتستطيع تنزيل المطو�
 return false 
 end end
 if DevAbs:sismember(DevProx..'abs:SudoBot:',result.sender_user_id_) then
-SudoBot = 'المطورين • ' else SudoBot = '' end
+SudoBott = 'المطورين • ' else SudoBott = '' end
 if DevAbs:sismember(DevProx..'abs:ownerall:',result.sender_user_id_) then
 ownerall = 'المدراء العامين • ' else ownerall = '' end
 if DevAbs:sismember(DevProx..'abs:adminall:',result.sender_user_id_) then
@@ -4951,7 +4951,7 @@ if DevAbs:sismember(DevProx..'abs:vipmem:'..msg.chat_id_, result.sender_user_id_
 vipmem = 'المميزين • ' else vipmem = ''
 end
 if absmasco(result.sender_user_id_,msg.chat_id_) ~= false then
-Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙المسخدم ↫ ["..absc9.."]\n⌁︙تم تنزيله من ↫ ⤈\n~ ( "..SudoBot..''..ownerall..''..adminall..''..vpall..''..monsh..''..monshid..''..owner..''..admins..''..vipmem.." ) ~ \n", 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙المسخدم ↫ ["..absc9.."]\n⌁︙تم تنزيله من ↫ ⤈\n~ ( "..SudoBottt..''..ownerall..''..adminall..''..vpall..''..monsh..''..monshid..''..owner..''..admins..''..vipmem.." ) ~ \n", 1, 'md')
 else 
 Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙العضو ↫ ["..absc9.."]\n⌁︙لم تتم ترقيته مسبقا", 1, 'md')
 end
