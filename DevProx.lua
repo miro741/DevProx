@@ -684,6 +684,10 @@ if status == "reply" then
 Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙العضو ↫ ["..dp.first_name_.."](T.me/"..UserName..")".."\n"..text, 1, 'md')
 return false
 end
+if status == "ReplyAdd" then
+Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙بواسطة ↫ ["..dp.first_name_.."](T.me/"..UserName..")".."\n"..text, 1, 'md')
+return false
+end
 else
 Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙الحساب محذوف قم بالتاكد واعد المحاوله", 1, 'md')
 end
@@ -804,13 +808,15 @@ end
 DevAbs:del(bot_id.."Del:Cmd:Group"..msg.chat_id_..":"..msg.sender_user_id_)
 return false
 end
+if text and text:match('^'..(DevAbs:get("ABS_PROX:"..bot_id.."name_bot") or "بروكس")..' ') then
+data.message_.content_.text_ = data.message_.content_.text_:gsub('^'..(DevAbs:get("ABS_PROX:"..bot_id.."name_bot") or "بروكس")..' ','')
+end
 if data.message_.content_.text_ then
 local NewCmmd = DevAbs:get(bot_id.."Set:Cmd:Group:New1"..msg.chat_id_..":"..data.message_.content_.text_)
 if NewCmmd then
 data.message_.content_.text_ = (NewCmmd or data.message_.content_.text_)
 end
 end
-
 if text and DevAbs:get(bot_id.."Set:Cmd:Group"..msg.chat_id_..":"..msg.sender_user_id_) == "true" then
 DevAbs:set(bot_id.."Set:Cmd:Group:New"..msg.chat_id_,text)
 Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙ارسل الامر الجديد", 1, 'html')
@@ -1487,9 +1493,9 @@ DevAbs:sadd(DevProx.."abs:absmonsh:"..msg.chat_id_,owner_id)
 end end end
 getChannelMembers(msg.chat_id_, 0, 'Administrators', 200, promote_admin)
 if DevAbs:get(DevProx.."bot:enable:"..msg.chat_id_) then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙المجموعه ،بالتاكيد ،مفعله', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙المجموعه بالتاكيد مفعله', 1, 'md')
 else
-Text = '⌁︙اهلا عزيزي ↫ ['..CatchName(result.first_name_,15)..'](tg://user?id='..result.id_..') \nلقد تم تفعيل المجموعه بنجاح \nتم رفع الادمنيه ومنشئ المجموعه \n ✓'
+Text = '⌁︙اهلا عزيزي ↫ ['..CatchName(result.first_name_,15)..'](tg://user?id='..result.id_..') \n⌁︙تم تفعيل المجموعه بنجاح\n ✓'
 sendText(msg.chat_id_,Text,msg.id_/2097152/0.5,'md')
 DevAbs:incrby(DevProx..'abs:Sudos'..msg.sender_user_id_, 1)
 openChat(msg.chat_id_,ABS_PROX)
@@ -3964,8 +3970,7 @@ end
 getChannelMembers(msg.chat_id_,0, 'Administrators', 100, promote_admin)
 end
 --     Source DevProx     --
-if SudoBot(msg.sender_user_id_, msg.chat_id_) then
-if text ==  ""..name_bot..' غادر' or text == 'غادر' then
+if text == 'غادر' and SudoBot(msg.sender_user_id_, msg.chat_id_) then
 if DevAbs:get(DevProx.."Left:Bot"..bot_id) and not Leader(msg) then
 Dev_Abs(msg.chat_id_,msg.id_, 1, "⌁︙المغادره معطله من قبل المطور الاساسي", 1, 'md')
 return false  
@@ -3973,7 +3978,7 @@ end
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تم مغادرة المجموعه \n⌁︙تم حذف جميع بياناتها ', 1, 'md')
 chat_leave(msg.chat_id_, bot_id)
 DevAbs:srem(DevProx.."bot:groups",msg.chat_id_)
-end end
+end
 --     Source DevProx     --
 if text ==('موقعي') and ChCheck(msg) then
 tdcli_function ({ID = "GetChatMember",chat_id_ = msg.chat_id_,user_id_ = msg.sender_user_id_},function(arg,da) 
@@ -8497,9 +8502,9 @@ DevAbs:sadd(DevProx.."abs:absmonsh:"..msg.chat_id_,owner_id)
 end end end
 getChannelMembers(msg.chat_id_, 0, 'Administrators', 200, promote_admin)
 if DevAbs:get(DevProx.."bot:enable:"..msg.chat_id_) then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙المجموعه ،بالتاكيد ،مفعله', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙المجموعه بالتاكيد مفعله', 1, 'md')
 else
-Text = '⌁︙اهلا عزيزي ↫ ['..CatchName(result.first_name_,15)..'](tg://user?id='..result.id_..') \nلقد تم تفعيل المجموعه بنجاح \nتم رفع الادمنيه ومنشئ المجموعه \n ✓'
+Text = '⌁︙اهلا عزيزي ↫ ['..CatchName(result.first_name_,15)..'](tg://user?id='..result.id_..') \n⌁︙تم تفعيل المجموعه بنجاح\n ✓'
 sendText(msg.chat_id_,Text,msg.id_/2097152/0.5,'md')
 if not DevAbs:get(DevProx..'abs:SudosGp'..msg.sender_user_id_..msg.chat_id_) then 
 DevAbs:incrby(DevProx..'abs:Sudos'..msg.sender_user_id_,1)
@@ -8533,13 +8538,12 @@ end
 getUser(msg.sender_user_id_,adding)
 end
 --     Source DevProx     --
-if SudoBot(msg.sender_user_id_, msg.chat_id_) then
-if text ==  ""..name_bot..' تعطيل' or text == 'تعطيل' then
+if text == 'تعطيل' and SudoBot(msg.sender_user_id_, msg.chat_id_) then
 function remgroup(extra, result, success)
 if not DevAbs:get(DevProx.."bot:enable:"..msg.chat_id_) then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙المجموعه ،بالتاكيد ،معطله', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙المجموعه بالتاكيد معطله', 1, 'md')
 else
-Text = '⌁︙اهلا عزيزي ↫ ['..CatchName(result.first_name_,15)..'](tg://user?id='..result.id_..') \nلقد تم تعطيل المجموعه بنجاح \n ✓'
+Text = '⌁︙اهلا عزيزي ↫ ['..CatchName(result.first_name_,15)..'](tg://user?id='..result.id_..') \n⌁︙تم تعطيل المجموعه بنجاح \n ✓'
 sendText(msg.chat_id_,Text,msg.id_/2097152/0.5,'md')
 DevAbs:del(DevProx.."bot:enable:"..msg.chat_id_)
 DevAbs:srem("ABS_PROX:addg"..bot_id, msg.chat_id_)
@@ -8547,7 +8551,6 @@ local v = tonumber(DevId)
 end
 end
 getUser(msg.sender_user_id_,remgroup)
-end
 end
 end
 --     Source DevProx     --
@@ -8600,7 +8603,7 @@ sendDocument(DevId, 0, 0, 1, nil, './DevProx.lua', dl_cb, nil)
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙عزيزي المطور تم ارسال نسخة ملف السورس الى الخاص ', 1, 'md')
 end end
 --     Source DevProx     --
-if text == 'روابط الكروبات' and ChCheck(msg) or text == 'روابط المجموعات' and ChCheck(msg) then
+if text == 'روابط الكروبات' and ChCheck(msg) or text == 'روابط المجموعات' then
 if not Leader(msg) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙للمطور الاساسي فقط ', 1, 'md')
 else
@@ -8955,7 +8958,7 @@ end
 end
 --     Source DevProx     --
 if Admin(msg.sender_user_id_, msg.chat_id_) then
-if text and text:match("^تغيير اسم البوت$") or text and text:match("^وضع اسم البوت$") or text and text:match("^تغير اسم البوت$") then
+if text and text == "تغيير اسم البوت" or text and text == "وضع اسم البوت" or text and text == "تغير اسم البوت" then
 if not Leader(msg) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙للمطور الاساسي فقط ', 1, 'md')
 else
