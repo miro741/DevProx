@@ -6502,6 +6502,15 @@ local List = {
 ᯓ 𝗜𝗗 . #id 🇺🇸 ꙰
 ᯓ 𝗚𝗮𝗺𝗘𝗦 . #game 🇺🇸 ꙰
 ᯓ 𝗺𝗦𝗚𝗦 . #msgs 🇺🇸 ꙰
+]],
+[[
+- ᴜѕᴇʀɴᴀᴍᴇ ➥• #username .
+- ᴍѕɢѕ ➥• #msgs .
+- ѕᴛᴀᴛѕ ➥• #stast .
+- ʏᴏᴜʀ ɪᴅ ➥• #id  .
+- ᴇᴅɪᴛ ᴍsɢ ➥• #edit .
+- ᴅᴇᴛᴀɪʟs ➥• #auto . 
+- ɢᴀᴍᴇ ➥• #game .
 ]]}
 local Text_Rand = List[math.random(#List)]
 DevAbs:set("DevProx:ABS_PROX:id:text:"..bot_id..msg.chat_id_,Text_Rand)
