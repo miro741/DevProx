@@ -5712,6 +5712,7 @@ DevAbs:sadd(DevProx..'bot:mutet:'..msg.chat_id_,result.sender_user_id_) end end
 if tonumber(msg.reply_to_message_id_) == 0 then else
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, mut_time,nil) end end 
 --     Source DevProx     --
+if msg.content_.video_ or msg.content_.document_ or msg.content_.sticker_ or msg.content_.voice_ or msg.content_.audio_ or msg.content_.photo_ or msg.content_.animation_ then if msg.reply_to_message_id_ ~= 0 then DevAbs:sadd(DevProx.."abs:cleaner"..msg.chat_id_, msg.id_) else DevAbs:sadd(DevProx.."abs:cleaner"..msg.chat_id_, msg.id_) end end
 if Owner(msg.sender_user_id_, msg.chat_id_) and msg.reply_to_message_id_ ~= 0 then
 if text and text:match("^تثبيت$") and ChCheck(msg) then 
 if DevAbs:sismember(DevProx.."bot:pin:mutepin",msg.chat_id_) and not Monsh(msg.sender_user_id_, msg.chat_id_) then
@@ -7037,17 +7038,17 @@ changeChatMemberStatus(group[i], bot_id, "Left")
 w = w + 1
 end
 if data and data.type_ and data.type_.channel_ and data.type_.channel_.status_ and data.type_.channel_.status_.ID == "ChatMemberStatusLeft" then
-DevAbs:srem( DevProx.."bot:groups",group[i]) 
+DevAbs:srem(DevProx.."bot:groups",group[i]) 
 q = q + 1
 print('\27[30;35m THE BOT IS LEFT GROUP ↓\n'..group[i]..'\n\27[1;37m')
 end
 if data and data.type_ and data.type_.channel_ and data.type_.channel_.status_ and data.type_.channel_.status_.ID == "ChatMemberStatusKicked" then
-DevAbs:srem( DevProx.."bot:groups",group[i]) 
+DevAbs:srem(DevProx.."bot:groups",group[i]) 
 q = q + 1
 print('\27[30;36m»» THE BOT IS KICKED GROUP ↓\n'..group[i]..'\n\27[1;37m')
 end
 if data and data.code_ and data.code_ == 400 then
-DevAbs:srem( DevProx.."bot:groups",group[i]) 
+DevAbs:srem(DevProx.."bot:groups",group[i]) 
 w = w + 1
 end
 if #group == i then 
@@ -7067,15 +7068,13 @@ else
 DevProxgp1 = '\n⌁︙تم حذف ↫ { '..w..' } مجموعه بسبب تنزيل البوت الى عضو'
 end
 Dev_Abs(msg.chat_id_, msg.id_, 1,'⌁︙عدد الكروبات الان ↫ { '..#group..' }'..DevProxgp1..''..DevProxgp2..'\n⌁︙العدد الحقيقي الان  ↫ ( '..DevProxgp3..' ) \n ', 1, 'md')
-end
-end
+end end
 end,nil)
 end
 return false
 end 
 end
 --     Source DevProx     --
-if msg.content_.video_ or msg.content_.document_ or msg.content_.sticker_ or msg.content_.voice_ or msg.content_.audio_ or msg.content_.photo_ or msg.content_.animation_ then DevAbs:sadd(DevProx.."abs:cleaner"..msg.chat_id_, msg.id_) end
 if Cleaner(msg.sender_user_id_, msg.chat_id_) then
 if text == "الميديا" then   
 local M = DevAbs:scard(DevProx.."abs:cleaner"..msg.chat_id_)
