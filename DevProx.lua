@@ -7098,12 +7098,12 @@ return false
 end 
 end
 --     Source DevProx     --
-if text == "تفعيل امسح" and Monsh(msg.sender_user_id_, msg.chat_id_) and ChCheck(msg) then
+if text == "تفعيل امسح" and MonshId(msg.sender_user_id_, msg.chat_id_) and ChCheck(msg) then
 local ABS_PROX = '⌁︙اهلا عزيزي ↫ '..abs_rank(msg)..' \n⌁︙تم تفعيل امسح بنجاح'
 absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 14, string.len(msg.sender_user_id_))
 DevAbs:set(DevProx..'bot:Del:Abs'..msg.chat_id_,true)  
 end
-if text == "تعطيل امسح" and Monsh(msg.sender_user_id_, msg.chat_id_) and ChCheck(msg) then
+if text == "تعطيل امسح" and MonshId(msg.sender_user_id_, msg.chat_id_) and ChCheck(msg) then
 local ABS_PROX = '⌁︙اهلا عزيزي ↫ '..abs_rank(msg)..' \n⌁︙تم تعطيل امسح بنجاح'
 absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 14, string.len(msg.sender_user_id_))
 DevAbs:del(DevProx..'bot:Del:Abs'..msg.chat_id_) 
@@ -9432,6 +9432,7 @@ local text =  [[
 ⌁︙تفعيل • تعطيل ↫ الحظر
 ⌁︙تفعيل • تعطيل ↫ الكتم
 ⌁︙تفعيل • تعطيل ↫ نزلني
+⌁︙تفعيل • تعطيل ↫ امسح
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ⌁︙اوامر المنشئين الاساسيين ↫ ⤈
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
