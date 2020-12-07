@@ -799,29 +799,29 @@ DevAbs:del(DevProx..'yes'..data.sender_user_id_, 'delyes')
 DevAbs:del(DevProx..'no'..data.sender_user_id_, 'delno')
 if Admin(data.sender_user_id_, data.chat_id_) then
 local Text = "⌁︙لا استطيع طرد ↫ "..rank_abs(data.sender_user_id_, data.chat_id_)
-https.request("https://api.telegram.org/bot"..TokenBot..'/editMessageText?chat_id='..Chat_Id2..'&message_id='..Msg_Id2..'&text='..URL.escape(Text)..'&reply_to_message_id='..MsgId2..'&parse_mode=markdown&disable_web_page_preview=true')
+https.request("https://api.telegram.org/bot"..TokenBot..'/editMessageText?chat_id='..Chat_Id2..'&message_id='..Msg_Id2..'&text='..URL.escape(Text)..'&parse_mode=markdown&disable_web_page_preview=true')
 return false
 end
 tdcli_function({ID="ChangeChatMemberStatus",chat_id_=data.chat_id_,user_id_=data.sender_user_id_,status_={ID="ChatMemberStatusKicked"},},function(arg,da) 
 if (da and da.code_ and da.code_ == 400 and da.message_ == "CHAT_ADMIN_REQUIRED") then 
 local Text = "⌁︙ليس لدي صلاحية حظر المستخدمين يرجى تفعيلها !"
-https.request("https://api.telegram.org/bot"..TokenBot..'/editMessageText?chat_id='..Chat_Id2..'&message_id='..Msg_Id2..'&text='..URL.escape(Text)..'&reply_to_message_id='..MsgId2..'&parse_mode=markdown&disable_web_page_preview=true')
+https.request("https://api.telegram.org/bot"..TokenBot..'/editMessageText?chat_id='..Chat_Id2..'&message_id='..Msg_Id2..'&text='..URL.escape(Text)..'&parse_mode=markdown&disable_web_page_preview=true')
 return false  
 end
 if (da and da.code_ and da.code_ == 3) then 
 local Text = "⌁︙البوت ليس ادمن يرجى ترقيتي !"
-https.request("https://api.telegram.org/bot"..TokenBot..'/editMessageText?chat_id='..Chat_Id2..'&message_id='..Msg_Id2..'&text='..URL.escape(Text)..'&reply_to_message_id='..MsgId2..'&parse_mode=markdown&disable_web_page_preview=true')
+https.request("https://api.telegram.org/bot"..TokenBot..'/editMessageText?chat_id='..Chat_Id2..'&message_id='..Msg_Id2..'&text='..URL.escape(Text)..'&parse_mode=markdown&disable_web_page_preview=true')
 return false  
 end
 if da and da.code_ and da.code_ == 400 and da.message_ == "USER_ADMIN_INVALID" then 
 local Text = "⌁︙لا استطيع طرد مشرفين المجموعه"
-https.request("https://api.telegram.org/bot"..TokenBot..'/editMessageText?chat_id='..Chat_Id2..'&message_id='..Msg_Id2..'&text='..URL.escape(Text)..'&reply_to_message_id='..MsgId2..'&parse_mode=markdown&disable_web_page_preview=true')
+https.request("https://api.telegram.org/bot"..TokenBot..'/editMessageText?chat_id='..Chat_Id2..'&message_id='..Msg_Id2..'&text='..URL.escape(Text)..'&parse_mode=markdown&disable_web_page_preview=true')
 return false  
 end
 if da and da.ID and da.ID == "Ok" then
 chat_kick(data.chat_id_, data.sender_user_id_)
 local Text = "⌁︙تم طردك من المجموعه"
-https.request("https://api.telegram.org/bot"..TokenBot..'/editMessageText?chat_id='..Chat_Id2..'&message_id='..Msg_Id2..'&text='..URL.escape(Text)..'&reply_to_message_id='..MsgId2..'&parse_mode=markdown&disable_web_page_preview=true')
+https.request("https://api.telegram.org/bot"..TokenBot..'/editMessageText?chat_id='..Chat_Id2..'&message_id='..Msg_Id2..'&text='..URL.escape(Text)..'&parse_mode=markdown&disable_web_page_preview=true')
 return false
 end
 end,nil)  
@@ -830,7 +830,7 @@ if DataText == '/delno' and DevAbs:get(DevProx..'no'..data.sender_user_id_) == '
 DevAbs:del(DevProx..'yes'..data.sender_user_id_, 'delyes')
 DevAbs:del(DevProx..'no'..data.sender_user_id_, 'delno')
 local Text = "⌁︙تم الغاء امر اطردني"
-return https.request("https://api.telegram.org/bot"..TokenBot..'/editMessageText?chat_id='..Chat_Id2..'&message_id='..Msg_Id2..'&text='..URL.escape(Text)..'&reply_to_message_id='..MsgId2..'&parse_mode=markdown&disable_web_page_preview=true')
+return https.request("https://api.telegram.org/bot"..TokenBot..'/editMessageText?chat_id='..Chat_Id2..'&message_id='..Msg_Id2..'&text='..URL.escape(Text)..'&parse_mode=markdown&disable_web_page_preview=true')
 end
 else
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙عذرا هذه الخاصيه معطله ', 1, 'md')
@@ -857,17 +857,17 @@ DevAbs:srem(DevProx..'abs:admins:'..data.chat_id_,data.sender_user_id_)
 DevAbs:srem(DevProx..'abs:vipmem:'..data.chat_id_,data.sender_user_id_)
 DevAbs:srem(DevProx..'bot:donky:'..data.chat_id_,data.sender_user_id_)
 local Text = "⌁︙تم تنزيلك من ↫ ⤈\n~ ( "..monshid..''..owners..''..admins..''..vipmem..''..donky.." ) ~ \n"
-return https.request("https://api.telegram.org/bot"..TokenBot..'/editMessageText?chat_id='..Chat_Id2..'&message_id='..Msg_Id2..'&text='..URL.escape(Text)..'&reply_to_message_id='..MsgId2..'&parse_mode=markdown&disable_web_page_preview=true')
+return https.request("https://api.telegram.org/bot"..TokenBot..'/editMessageText?chat_id='..Chat_Id2..'&message_id='..Msg_Id2..'&text='..URL.escape(Text)..'&parse_mode=markdown&disable_web_page_preview=true')
 else 
 local Text = "⌁︙ليس لديك اي رتبه هنا"
-return https.request("https://api.telegram.org/bot"..TokenBot..'/editMessageText?chat_id='..Chat_Id2..'&message_id='..Msg_Id2..'&text='..URL.escape(Text)..'&reply_to_message_id='..MsgId2..'&parse_mode=markdown&disable_web_page_preview=true')
+return https.request("https://api.telegram.org/bot"..TokenBot..'/editMessageText?chat_id='..Chat_Id2..'&message_id='..Msg_Id2..'&text='..URL.escape(Text)..'&parse_mode=markdown&disable_web_page_preview=true')
 end
 end
 if DataText == '/nodel' and DevAbs:get(DevProx..'nodel'..data.sender_user_id_) == 'delno' then
 DevAbs:del(DevProx..'yesdel'..data.sender_user_id_, 'delyes')
 DevAbs:del(DevProx..'nodel'..data.sender_user_id_, 'delno')
 local Text = "⌁︙تم الغاء امر نزلني"
-return https.request("https://api.telegram.org/bot"..TokenBot..'/editMessageText?chat_id='..Chat_Id2..'&message_id='..Msg_Id2..'&text='..URL.escape(Text)..'&reply_to_message_id='..MsgId2..'&parse_mode=markdown&disable_web_page_preview=true')
+return https.request("https://api.telegram.org/bot"..TokenBot..'/editMessageText?chat_id='..Chat_Id2..'&message_id='..Msg_Id2..'&text='..URL.escape(Text)..'&parse_mode=markdown&disable_web_page_preview=true')
 end
 else 
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙عذرا هذه الخاصيه معطله', 1, 'md')
