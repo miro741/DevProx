@@ -5956,9 +5956,9 @@ for k,v in pairs(list) do
 local sudouser = DevAbs:get(DevProx..'abs:Sudos'..v) 
 local username = DevAbs:get(DevProx..'Save:UserName'..v)
 if username then
-text = text..""..k.."~ : [@"..username.."] ↬ "..(sudouser or 0).."\n"
+text = text..""..k.."~ : [@"..username.."] ↬ Gps : "..(sudouser or 0).."\n"
 else
-text = text..""..k.."~ : `"..v.."` ↬ "..(sudouser or 0).."\n"
+text = text..""..k.."~ : `"..v.."` ↬ Gps : "..(sudouser or 0).."\n"
 end end
 if #list == 0 then
 text = "⌁︙*عذرا لم يتم رفع اي مطورين*"
