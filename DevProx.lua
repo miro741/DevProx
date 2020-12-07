@@ -8088,7 +8088,7 @@ if DevAbs:get(DevProx.."bot:welcome"..msg.chat_id_) then send_welcome = 'مقف�
 if DevAbs:get(DevProx..'fshar'..msg.chat_id_) then lock_fshar = 'مفتوح' else lock_fshar = 'مقفل' end
 if DevAbs:get(DevProx..'kaf'..msg.chat_id_) then lock_kaf = 'مفتوح' else lock_kaf = 'مقفل' end
 if DevAbs:get(DevProx..'taf'..msg.chat_id_) then lock_taf = 'مفتوحه' else lock_taf = 'مقفله' end
-if DevAbs:get(DevProx..'farsi'..msg.chat_id_) then lock_farsi = 'مفتوحه' else lock_farsi = 'مقفله' end
+if DevAbs:get(DevProx..'farsi'..msg.chat_id_) then lock_farsi = 'مقفله' else lock_farsi = 'مفتوحه' end
 local Flood_Num = DevAbs:hget(DevProx.."abs:Spam:Group:User"..msg.chat_id_,"Num:Spam") or 5
 --     Source DevProx     --
 local TXTE = "⌁︙اعدادات المجموعه ↫ ⤈\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n"
@@ -8599,6 +8599,10 @@ Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙المجموعه بالتاكيد مف�
 else
 ReplyStatus(msg,result.id_,"ReplyAdd","⌁︙تم تفعيل المجموعه "..dp.title_)  
 DevAbs:set(DevProx.."bot:enable:"..msg.chat_id_,true)
+if not DevAbs:get(DevProx..'abs:SudosGp'..msg.sender_user_id_..msg.chat_id_) then 
+DevAbs:incrby(DevProx..'abs:Sudos'..msg.sender_user_id_,1)
+DevAbs:set(DevProx..'abs:SudosGp'..msg.sender_user_id_..msg.chat_id_,"abs")
+end
 local Name1 = result.first_name_
 local Name1 = Name1:gsub('"',"") 
 local Name1 = Name1:gsub("'","") 
