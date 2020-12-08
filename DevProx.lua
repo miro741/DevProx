@@ -1098,12 +1098,21 @@ end
 if msg.chat_id_ then
 local id = tostring(msg.chat_id_)
 if id:match("-100(%d+)") then
-DevAbs:incr(DevProx..'msg'..msg.chat_id_..':'..msg.sender_user_id_) 
+if not DevAbs:sismember(DevProx.."bot:groups",msg.chat_id_) then
+DevAbs:sadd(DevProx.."bot:groups",msg.chat_id_)
+end
+DevAbs:incr(DevProx..'user:msgs'..bot_id..os.date('%d')..':'..msg.chat_id_..':'..msg.sender_user_id_)
+DevAbs:incr(DevProx..'user:msgs'..msg.chat_id_..':'..msg.sender_user_id_)
 ChatType = 'sp' 
 elseif id:match("^(%d+)") then
-DevAbs:sadd(DevProx..'bot',msg.sender_user_id_)  
+if not DevAbs:sismember(DevProx.."bot:userss",msg.chat_id_) then
+DevAbs:sadd(DevProx.."bot:userss",msg.chat_id_)
+end
 ChatType = 'pv' 
 else
+if not DevAbs:sismember(DevProx.."bot:groups",msg.chat_id_) then
+DevAbs:sadd(DevProx.."bot:groups",msg.chat_id_)
+end
 ChatType = 'gp' 
 end
 end 
@@ -1267,13 +1276,6 @@ DevAbs:set(DevProx..'Texting:In:Bv',true)
 end
 end
 --     Source DevProx     --
-DevAbs:sadd(DevProx.."groups:users" .. msg.chat_id_, msg.sender_user_id_)
-DevAbs:incr(DevProx.."msgs:"..msg.sender_user_id_..":"..msg.chat_id_.."")
-if msg.content_.ID == "MessageChatDeleteMember" then
-if tonumber(msg.content_.user_.id_) == tonumber(bot_id) then
-DevAbs:del(DevProx.."bot:enable:" .. msg.chat_id_)
-DevAbs:srem(DevProx.."bot:groups", msg.chat_id_) 
-end end 
 function getUser(user_id, cb)
 tdcli_function ({
 ID = "GetUser",
@@ -1575,34 +1577,7 @@ if not DevAbs:get(DevProx.."bot:enable:"..msg.chat_id_) and not idf:match("^(%d+
 print("Return False [ Not Enable ]")
 return false
 end
---     Source DevProx     --
-if msg and msg.send_state_.ID == "MessageIsSuccessfullySent" then
-function get_mymsg_contact(extra, result, success)
-end
-getMessage(msg.chat_id_, msg.reply_to_message_id_,get_mymsg_contact)
-return
-end
---     Source DevProx     --
 DevAbs:incr(DevProx.."bot:allmsgs")
-if msg.chat_id_ then
-local id = tostring(msg.chat_id_)
-if id:match('-100(%d+)') then
-if msg.can_be_deleted_ == true then 
-DevAbs:sadd(DevProx.."bot:groups",msg.chat_id_)
-end
-if not DevAbs:sismember(DevProx.."bot:groups",msg.chat_id_) then
-DevAbs:sadd(DevProx.."bot:groups",msg.chat_id_)
-end
-elseif id:match('^(%d+)') then
-if not DevAbs:sismember(DevProx.."bot:userss",msg.chat_id_) then
-DevAbs:sadd(DevProx.."bot:userss",msg.chat_id_)
-end
-else
-if not DevAbs:sismember(DevProx.."bot:groups",msg.chat_id_) then
-DevAbs:sadd(DevProx.."bot:groups",msg.chat_id_)
-end
-end
-end
 --     Source DevProx     --
 -------- MSG TYPES ---------
 if msg.content_ then
@@ -2131,8 +2106,6 @@ local chat = msg.chat_id_
 DeleteMessage(chat,msgs)
 return
 end
-DevAbs:incr(DevProx..'user:msgs'..bot_id..os.date('%d')..':'..msg.chat_id_..':'..msg.sender_user_id_)
-DevAbs:incr(DevProx..'user:msgs'..msg.chat_id_..':'..msg.sender_user_id_)
 if msg.content_.ID == "MessagePinMessage" then
 if DevAbs:get(DevProx..'pinnedmsg'..msg.chat_id_) and DevAbs:get(DevProx..'bot:pin:mute'..msg.chat_id_) then
 unpinmsg(msg.chat_id_)
@@ -7202,7 +7175,7 @@ end,nil)
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تم تنظيف 100 من الرسائل المعدله', 1, 'md')
 end
 --     Source DevProx     --
-if text and text:match("^تنظيف الرسائل$") and Sudo(msg) and ChCheck(msg) then
+if text and text:match("^تنظيف الرسائل$") and Sudo(msg) then
 local allmgs = DevAbs:get(DevProx.."bot:allmsgs")
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تم تنظيف '..allmgs..' من رسائل الكروبات', 'md')
 DevAbs:del(DevProx.."bot:allmsgs")
