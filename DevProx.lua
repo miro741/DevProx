@@ -1315,13 +1315,6 @@ getChannelMembers(channel, 0, 'Kicked', limit,cb)
 end
 getChannelFull(channel,callback_admins)
 end
-function deleteMessagesFromUser(chat_id, user_id)
-tdcli_function ({
-ID = "DeleteMessagesFromUser",
-chat_id_ = chat_id,
-user_id_ = user_id
-}, dl_cb, nil)
-end
 function forwardMessages(chat_id, from_chat_id, message_ids, disable_notification)
 tdcli_function ({
 ID = "ForwardMessages",
@@ -1426,7 +1419,8 @@ end
 end  
 end
 if msg.content_.ID == "MessageChatDeleteMember" and tonumber(msg.content_.user_.id_) == tonumber(DevProx) then 
-DevAbs:del(DevProx.."bot:enable:"..msg.chat_id_)
+DevAbs:del(DevProx.."bot:enable:" .. msg.chat_id_)
+DevAbs:srem(DevProx.."bot:groups", msg.chat_id_) 
 function ABS_PROX(extra,result,success) 
 function  reslit(f1,f2)
 function DevProx3(t1,t2)
@@ -1575,6 +1569,10 @@ end,nil)
 if DevAbs:get(DevProx.."bot:enable:"..msg.chat_id_) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙المجموعه بالتاكيد مفعله', 1, 'md')
 else
+if tonumber(data.member_count_) < tonumber(DevAbs:get(DevProx..'abs:Num:Add:Bot') or 0) and not Leader(msg) then
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙عدد اعضاء المجموعه اقل من ↫ *'..(DevAbs:get(DevProx..'abs:Num:Add:Bot') or 0)..'* عضو', 1, 'md')
+return false
+end
 ReplyStatus(msg,result.id_,"ReplyAdd","⌁︙تم تفعيل المجموعه "..dp.title_)  
 DevAbs:set(DevProx.."bot:enable:"..msg.chat_id_,true)
 DevAbs:sadd(DevProx..'abs:monsh:'..msg.chat_id_,msg.sender_user_id_)
@@ -8265,6 +8263,12 @@ local rules = DevAbs:get(DevProx..'bot:rules'..msg.chat_id_)
 Dev_Abs(msg.chat_id_, msg.id_, 1, rules, 1, nil)
 end
 --     Source DevProx     --
+if text == "راسلني" then
+SendRep = {"ها هلاو","ها حبي كول","انطق","كول"};
+SendTo = SendRep[math.random(#SendRep)]
+https.request("https://api.telegram.org/bot"..TokenBot..'/sendmessage?chat_id='..msg.sender_user_id_..'&text='..URL.escape(SendTo))
+end
+--     Source DevProx     --
 if text == "تفعيل الزخرفه" and Owner(msg.sender_user_id_, msg.chat_id_) and ChCheck(msg) then
 local ABS_PROX = '⌁︙اهلا عزيزي ↫ '..abs_rank(msg)..' \n⌁︙تم تفعيل الزخرفه بنجاح'
 absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 14, string.len(msg.sender_user_id_))
@@ -8571,6 +8575,12 @@ end end
 getChat(txt[2], leavegp) 
 end end
 --     Source DevProx     --
+if text and text:match("^تعين عدد الاعضاء (%d+)$") and Leader(msg) or text and text:match("^تعيين عدد الاعضاء (%d+)$") and Leader(msg) then
+local Num = text:match("تعين عدد الاعضاء (%d+)$") or text:match("تعيين عدد الاعضاء (%d+)$")
+DevAbs:set(DevProx..'abs:Num:Add:Bot',Num) 
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تم وضع عدد الاعضاء ↫ *'..Num..'* عضو', 1, 'md')
+end
+--     Source DevProx     --
 if text == 'تفعيل البوت الخدمي' then 
 if not Sudo(msg) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙للمطور الاساسي فقط', 1, 'md')
@@ -8656,6 +8666,10 @@ Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙البوت ليس ادمن يرجى ت�
 return false  
 end
 tdcli_function ({ ID = "GetChannelFull", channel_id_ = msg.chat_id_:gsub("-100","")}, function(arg,data)  
+if tonumber(data.member_count_) < tonumber(DevAbs:get(DevProx..'abs:Num:Add:Bot') or 0) and not Leader(msg) then
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙عدد اعضاء المجموعه اقل من ↫ *'..(DevAbs:get(DevProx..'abs:Num:Add:Bot') or 0)..'* عضو', 1, 'md')
+return false
+end
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(extra,result,success)
 tdcli_function({ID ="GetChat",chat_id_=msg.chat_id_},function(arg,dp) 
 DevAbs:del(DevProx..'abs:absmonsh:'..msg.chat_id_)
@@ -9524,6 +9538,7 @@ local text =  [[
 ⌁︙ضع • حذف ↫ دعم
 ⌁︙تعيين الايدي العام
 ⌁︙غادر + -ايدي المجموعه
+⌁︙تعيين عدد الاعضاء + العدد
 ⌁︙حظر عام • الغاء العام
 ⌁︙كتم عام • الغاء العام
 ⌁︙قائمه العام • حذف قائمه العام
