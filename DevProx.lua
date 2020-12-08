@@ -16,7 +16,7 @@ lgi = require('lgi')
 notify = lgi.require('Notify')
 utf8 = require ('lua-utf8') 
 notify.init ("Telegram updates")
-DevAbs = Redis.connect('127.0.0.1', 6379)
+DevAbs = redis.connect('127.0.0.1', 6379)
 ServerDevProx = io.popen("echo $SSH_CLIENT | awk '{ print $1}'"):read('*a')
 --     Source DevProx     --
 function vardump(value)  
@@ -25,7 +25,7 @@ end
 local AutoSet = function()
 if not DevAbs:get(ServerDevProx.."IdDevProx") then
 io.write('\27[1;35m\nالان ارسل ايدي المطور الاساسي ↫ ⤈\n\27[0;33;49m')
-local SUDO = io.read()
+local SUDO = io.read():gsub(' ','')
 if tostring(SUDO):match('%d+') then
 io.write('\27[1;36mتم حفظ ايدي المطور الاساسي\n27[0;39;49m')
 DevAbs:set(ServerDevProx.."IdDevProx",SUDO)
@@ -73,7 +73,8 @@ serialized = serpent.block(data, {comment = false, name = "_"})
 else  
 serialized = serpent.dump(data)  
 end    
-file:write(serialized)    file:close()  
+file:write(serialized)
+file:close()  
 end
 local create_config_auto = function()
 config = {
@@ -109,30 +110,19 @@ file:close()
 os.execute('./ABS')
 end 
 create_config_auto()
-local serialize_to_file = function(data, file, uglify)  
-file = io.open(file, "w+")  
-local serialized  
-if not uglify then   
-serialized = serpent.block(data, {comment = false, name = "_"})  
-else   
-serialized = serpent.dump(data) 
-end  
-file:write(serialized)  
-file:close() 
-end 
 end
-local load_DevAbs = function()  
-local f = io.open("./config.lua", "r")  
+local Load_DevProx = function() 
+local f = io.open("./config.lua", "r") 
 if not f then 
-AutoSet()  
-else   
+AutoSet() 
+else 
 f:close() 
 DevAbs:del(ServerDevProx.."IdDevProx");DevAbs:del(ServerDevProx.."UserDevProx");DevAbs:del(ServerDevProx.."TokenDevProx")
-end  
+end 
 local config = loadfile("./config.lua")() 
 return config 
 end  
-_DevAbs = load_DevAbs() 
+Load_DevProx() 
 print("\27[36m"..[[                                           
 ---------------------------------------------
 |    ____             ____                  |
@@ -456,16 +446,6 @@ function sendPhoto(chat_id, reply_to_message_id, disable_notification, from_back
 tdcli_function ({ ID = "SendMessage", chat_id_ = chat_id, reply_to_message_id_ = reply_to_message_id, disable_notification_ = disable_notification, from_background_ = from_background, reply_markup_ = reply_markup, input_message_content_ = { ID = "InputMessagePhoto", photo_ = getInputFile(photo), added_sticker_file_ids_ = {}, width_ = 0, height_ = 0, caption_ = caption }, }, dl_cb, nil)
 end
 --     Source DevProx     --
-local sendRequest = function(request_id, chat_id, reply_to_message_id, disable_notification, from_background, reply_markup, input_message_content, callback, extra)
-tdcli_function({ ID = request_id, chat_id_ = chat_id, reply_to_message_id_ = reply_to_message_id, disable_notification_ = disable_notification, from_background_ = from_background, reply_markup_ = reply_markup, input_message_content_ = input_message_content }, callback or dl_cb, extra)
-end
-local sendDocument = function(chat_id, reply_to_message_id, disable_notification, from_background, reply_markup, document, caption, cb, cmd)
-local input_message_content = { ID = "InputMessageDocument", document_ = getInputFile(document), caption_ = caption } sendRequest("SendMessage", chat_id, reply_to_message_id, disable_notification, from_background, reply_markup, input_message_content, cb, cmd)
-end
-local Forward = function(chat_id, from_chat_id, message_id, cb)
-tdcli_function({ ID = "ForwardMessages", chat_id_ = chat_id, from_chat_id_ = from_chat_id, message_ids_ = message_id, disable_notification_ = 0, from_background_ = 1 }, cb or dl_cb, nil)
-end
---     Source DevProx     --
 function vardump(value)
 print(serpent.block(value, {comment=false}))
 end
@@ -697,15 +677,10 @@ end,nil)
 end
 --     Source DevProx     --
 local sendRequest = function(request_id, chat_id, reply_to_message_id, disable_notification, from_background, reply_markup, input_message_content, callback, extra)
-tdcli_function({
-ID = request_id,
-chat_id_ = chat_id,
-reply_to_message_id_ = reply_to_message_id,
-disable_notification_ = disable_notification,
-from_background_ = from_background,
-reply_markup_ = reply_markup,
-input_message_content_ = input_message_content
-}, callback or dl_cb, extra)
+tdcli_function({ ID = request_id, chat_id_ = chat_id, reply_to_message_id_ = reply_to_message_id, disable_notification_ = disable_notification, from_background_ = from_background, reply_markup_ = reply_markup, input_message_content_ = input_message_content }, callback or dl_cb, extra)
+end
+local sendDocument = function(chat_id, reply_to_message_id, disable_notification, from_background, reply_markup, document, caption, cb, cmd)
+local input_message_content = { ID = "InputMessageDocument", document_ = getInputFile(document), caption_ = caption } sendRequest("SendMessage", chat_id, reply_to_message_id, disable_notification, from_background, reply_markup, input_message_content, cb, cmd)
 end
 local function sendVoice(chat_id, reply_to_message_id, disable_notification, from_background, reply_markup, voice, duration, waveform, caption, cb, cmd)
 local input_message_content = { ID = "InputMessageVoice", voice_ = getInputFile(voice), duration_ = duration or 0, waveform_ = waveform, caption_ = caption } sendRequest('SendMessage', chat_id, reply_to_message_id, disable_notification, from_background, reply_markup, input_message_content, cb, cmd)
@@ -1299,32 +1274,6 @@ if tonumber(msg.content_.user_.id_) == tonumber(bot_id) then
 DevAbs:del(DevProx.."bot:enable:" .. msg.chat_id_)
 DevAbs:srem(DevProx.."bot:groups", msg.chat_id_) 
 end end 
-function chek_admin(chat_id,set) 
-local function promote_admin(extra,result,success)   
-limit = result.administrator_count_   
-if tonumber(limit) > 0 then 
-getChannelMembers(chat_id, 0, 'Administrators', limit,set)   
-end
-end
-getChannelFull(chat_id,promote_admin)
-end
-function channel_get_kicked(channel,cb)
-local function callback_admins(extra,result,success)
-limit = result.kicked_count_
-getChannelMembers(channel, 0, 'Kicked', limit,cb)
-end
-getChannelFull(channel,callback_admins)
-end
-function forwardMessages(chat_id, from_chat_id, message_ids, disable_notification)
-tdcli_function ({
-ID = "ForwardMessages",
-chat_id_ = chat_id,
-from_chat_id_ = from_chat_id,
-message_ids_ = message_ids, -- vector
-disable_notification_ = disable_notification,
-from_background_ = 1
-}, dl_cb, nil)
-end
 function getUser(user_id, cb)
 tdcli_function ({
 ID = "GetUser",
@@ -4096,16 +4045,16 @@ if text == 'اذاعه للكل بالتوجيه' and tonumber(msg.reply_to_mess
 function ABS_PROX(extra,result,success)
 local listgp = DevAbs:smembers(DevProx.."bot:groups")
 for k,v in pairs(listgp) do
-forwardMessages(v, msg.chat_id_, {[0] = result.id_}, 1)
+tdcli_function({ID="ForwardMessages", chat_id_ = v, from_chat_id_ = msg.chat_id_, message_ids_ = {[0] = result.id_}, disable_notification_ = 0, from_background_ = 1},function(a,t) end,nil) 
 end
 local listpv = DevAbs:smembers(DevProx.."bot:userss")
 for k,v in pairs(listpv) do
-forwardMessages(v, msg.chat_id_, {[0] = result.id_}, 1)
-end
+tdcli_function({ID="ForwardMessages", chat_id_ = v, from_chat_id_ = msg.chat_id_, message_ids_ = {[0] = result.id_}, disable_notification_ = 0, from_background_ = 1},function(a,t) end,nil) 
 end
 local gps = DevAbs:scard(DevProx..'bot:groups') or 0
 local pvs = DevAbs:scard(DevProx..'bot:userss') or 0
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تم اذاعة رسالتك بالتوجيه \n⌁︙‏في ↫ ❨ '..gps..' ❩ مجموعه \n⌁︙والى ↫ ❨ '..pvs..' ❩ مشترك \n ✓', 1, 'md')
+end
 getMessage(msg.chat_id_, tonumber(msg.reply_to_message_id_),ABS_PROX)
 end
 end
@@ -8656,6 +8605,7 @@ local ABS_PROX = '⌁︙اهلا عزيزي ↫ '..abs_rank(msg)..' \n⌁︙تم
 absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 14, string.len(msg.sender_user_id_))
 DevAbs:set(DevProx.."bot:tt:link:"..msg.chat_id_,"ok")
 end
+--     Source DevProx     --
 if text and text:match('^تفعيل$') and SudoBot(msg.sender_user_id_, msg.chat_id_) and ChCheck(msg) then
 if ChatType ~= 'sp' then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙المجموعه عاديه وليست خارقه لا تستطيع تفعيلي يرجى ان تضع سجل رسائل المجموعه ضاهر وليس مخفي ومن بعدها يمكنك رفعي ادمن ثم تفعيلي', 1, 'md')
@@ -8736,7 +8686,6 @@ end,nil)
 end,nil)
 end,nil)
 end
---     Source DevProx     --
 if text == 'تعطيل' and SudoBot(msg.sender_user_id_, msg.chat_id_) then
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(extra,result,success)
 tdcli_function({ID ="GetChat",chat_id_=msg.chat_id_},function(arg,dp) 
@@ -8946,12 +8895,7 @@ return false
 end 
 local list = DevAbs:smembers(DevProx..'bot:groups')   
 for k,v in pairs(list) do  
-tdcli_function({ID="ForwardMessages",
-chat_id_ = v,
-from_chat_id_ = msg.chat_id_,
-message_ids_ = {[0] = msg.id_},
-disable_notification_ = 0,
-from_background_ = 1},function(a,t) end,nil) 
+tdcli_function({ID="ForwardMessages", chat_id_ = v, from_chat_id_ = msg.chat_id_, message_ids_ = {[0] = msg.id_}, disable_notification_ = 0, from_background_ = 1},function(a,t) end,nil) 
 end   
 Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙تم اذاعة رسالتك بالتوجيه \n⌁︙‏في ↫ ❨ "..#list.." ❩ مجموعه \n ✓", 1, 'md')
 DevAbs:del(DevProx.."Send:FwdGp" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) 
@@ -8971,12 +8915,7 @@ return false
 end 
 local list = DevAbs:smembers(DevProx..'bot:userss')   
 for k,v in pairs(list) do  
-tdcli_function({ID="ForwardMessages",
-chat_id_ = v,
-from_chat_id_ = msg.chat_id_,
-message_ids_ = {[0] = msg.id_},
-disable_notification_ = 0,
-from_background_ = 1},function(a,t) end,nil) 
+tdcli_function({ID="ForwardMessages", chat_id_ = v, from_chat_id_ = msg.chat_id_, message_ids_ = {[0] = msg.id_}, disable_notification_ = 0, from_background_ = 1},function(a,t) end,nil) 
 end   
 Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙تم اذاعة رسالتك بالتوجيه \n⌁︙‏الى ↫ ❨ "..#list.." ❩ مشترك \n ✓", 1, 'md')
 DevAbs:del(DevProx.."Send:FwdPv" .. msg.chat_id_ .. ":" .. msg.sender_user_id_) 
