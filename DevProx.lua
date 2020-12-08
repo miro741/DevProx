@@ -793,7 +793,7 @@ local Chat_Id2 = data.chat_id_
 local MsgId2 = data.message_id_
 local DataText = data.payload_.data_
 local Msg_Id2 = data.message_id_/2097152/0.5
-if not DevAbs:get(DevProx.."abs:Kick:Me"..msg.chat_id_) then
+if not DevAbs:get(DevProx.."abs:Kick:Me"..data.chat_id_) then
 if DataText == '/delyes' and DevAbs:get(DevProx..'yes'..data.sender_user_id_) == 'delyes' then
 DevAbs:del(DevProx..'yes'..data.sender_user_id_, 'delyes')
 DevAbs:del(DevProx..'no'..data.sender_user_id_, 'delno')
@@ -833,10 +833,10 @@ local Text = "⌁︙تم الغاء امر اطردني"
 return https.request("https://api.telegram.org/bot"..TokenBot..'/editMessageText?chat_id='..Chat_Id2..'&message_id='..Msg_Id2..'&text='..URL.escape(Text)..'&parse_mode=markdown&disable_web_page_preview=true')
 end
 else
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙عذرا هذه الخاصيه معطله ', 1, 'md')
+Dev_Abs(data.chat_id_, data.id_, 1, '⌁︙عذرا هذه الخاصيه معطله ', 1, 'md')
 end
 --     Source DevProx     --
-if not DevAbs:get(DevProx.."abs:Del:Me"..msg.chat_id_) then
+if not DevAbs:get(DevProx.."abs:Del:Me"..data.chat_id_) then
 if DataText == '/yesdel' and DevAbs:get(DevProx..'yesdel'..data.sender_user_id_) == 'delyes' then
 DevAbs:del(DevProx..'yesdel'..data.sender_user_id_, 'delyes')
 DevAbs:del(DevProx..'nodel'..data.sender_user_id_, 'delno')
@@ -870,7 +870,7 @@ local Text = "⌁︙تم الغاء امر نزلني"
 return https.request("https://api.telegram.org/bot"..TokenBot..'/editMessageText?chat_id='..Chat_Id2..'&message_id='..Msg_Id2..'&text='..URL.escape(Text)..'&parse_mode=markdown&disable_web_page_preview=true')
 end
 else 
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙عذرا هذه الخاصيه معطله', 1, 'md')
+Dev_Abs(data.chat_id_, data.id_, 1, '⌁︙عذرا هذه الخاصيه معطله', 1, 'md')
 end
 end
 if data.ID == "UpdateNewMessage" then
