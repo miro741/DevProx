@@ -2575,19 +2575,15 @@ end
 --         Text           --
 elseif msg_type == 'MSG:Text' then
 if not VipMem(msg.sender_user_id_, msg.chat_id_) then
-end
---vardump(msg)
-if DevAbs:get(DevProx.."bot:group:link"..msg.chat_id_) == 'waiting' then
-if msg.content_.text_:match("(https://telegram.me/joinchat/%S+)") or msg.content_.text_:match("(https://t.me/joinchat/%S+)") then
-local glink = msg.content_.text_:match("(https://telegram.me/joinchat/%S+)") or msg.content_.text_:match("(https://t.me/joinchat/%S+)")
-local abs = "bot:group:link"..msg.chat_id_
-DevAbs:set(DevProx..abs,glink)
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تم صنع الرابط الجديد\n⌁︙ارسل (الرابط) لعرض الرابط', 1, 'md')
-end
-end
-DevAbs:set(DevProx..'bot:editid'.. msg.id_,msg.content_.text_)
-if not VipMem(msg.sender_user_id_, msg.chat_id_) then
 Filters(msg,text)
+if msg.forward_info_ then
+if DevAbs:get(DevProx..'bot:forward:mute'..msg.chat_id_) then
+if msg.forward_info_.ID == "MessageForwardedFromUser" or msg.forward_info_.ID == "MessageForwardedPost" then
+DeleteMessage(msg.chat_id_,{[0] = msg.id_})
+print("Deleted [Lock] [Fwd] [Text]")
+end
+end
+end
 if text:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]") or text:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]") or text:match("[Tt].[Mm][Ee]") or text:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Dd][Oo][Gg]") then
 if DevAbs:get(DevProx..'bot:links:mute'..msg.chat_id_) then
 DeleteMessage(msg.chat_id_,{[0] = msg.id_})
@@ -2597,14 +2593,6 @@ end
 if DevAbs:get(DevProx..'bot:text:mute'..msg.chat_id_) then
 DeleteMessage(msg.chat_id_,{[0] = msg.id_})
 print("Deleted [Lock] [Text]")
-end
-if msg.forward_info_ then
-if DevAbs:get(DevProx..'bot:forward:mute'..msg.chat_id_) then
-if msg.forward_info_.ID == "MessageForwardedFromUser" or msg.forward_info_.ID == "MessageForwardedPost" then
-DeleteMessage(msg.chat_id_,{[0] = msg.id_})
-print("Deleted [Lock] [Fwd] [Text]")
-end
-end
 end
 if msg.content_.text_:match("@") then
 if DevAbs:get(DevProx..'tags:lock'..msg.chat_id_) then
@@ -2651,6 +2639,16 @@ print("Deleted [Lock] [English] [Text]")
 end
 end
 end
+--     Source DevProx     --
+if DevAbs:get(DevProx.."bot:group:link"..msg.chat_id_) == 'waiting' then
+if msg.content_.text_:match("(https://telegram.me/joinchat/%S+)") or msg.content_.text_:match("(https://t.me/joinchat/%S+)") then
+local glink = msg.content_.text_:match("(https://telegram.me/joinchat/%S+)") or msg.content_.text_:match("(https://t.me/joinchat/%S+)")
+local abs = "bot:group:link"..msg.chat_id_
+DevAbs:set(DevProx..abs,glink)
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تم صنع الرابط الجديد\n⌁︙ارسل (الرابط) لعرض الرابط', 1, 'md')
+end
+end
+DevAbs:set(DevProx..'bot:editid'.. msg.id_,msg.content_.text_)
 --     Source DevProx     --
 local msg = data.message_
 text = msg.content_.text_
