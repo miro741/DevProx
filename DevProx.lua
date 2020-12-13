@@ -293,23 +293,22 @@ end
 function add_file(msg,chat,ID_FILE,File_Name)
 if File_Name:match('.json') then
 if File_Name:lower():match('(%d+)') ~= DevProx:lower() then 
-DevAbs13(chat,msg.id_,"⌁︙عذرا هذا الملف ليس تابع لهذا السورس")   
+send(chat,msg.id_,"⌁︙عذرا هذا الملف ليس تابع لهذا السورس")   
 return false 
 end
 local File = json:decode(https.request('https://api.telegram.org/bot' .. TokenBot .. '/getfile?file_id='..ID_FILE) ) 
 download_to_file('https://api.telegram.org/file/bot'..TokenBot..'/'..File.result.file_path, ''..File_Name) 
-DevAbs13(chat,msg.id_,"⌁︙جاري رفع الملف ... .")
+send(chat,msg.id_,"⌁︙جاري رفع الملف ... .")
 else
-DevAbs13(chat,msg.id_,"⌁︙لقد حدث خطاء \n⌁︙يرجى التحقق من صيغة الملف ")
+send(chat,msg.id_,"⌁︙لقد حدث خطاء \n⌁︙يرجى التحقق من صيغة الملف ")
 end
 local info_file = io.open('./'..DevProx..'.json', "r"):read('*a')
 local groups = JSON.decode(info_file)
-DevAbs13(chat,msg.id_,"⌁︙تم رفع النسخه بنجاح \n⌁︙تم تفعيل جميع المجموعات \n⌁︙تم استرجاع مشرفين المجموعات \n⌁︙تم استرجاع اوامر القفل والفتح في جميع مجموعات البوت ")
+send(chat,msg.id_,"⌁︙تم رفع النسخه بنجاح \n⌁︙تم تفعيل جميع المجموعات \n⌁︙تم استرجاع مشرفين المجموعات \n⌁︙تم استرجاع اوامر القفل والفتح في جميع مجموعات البوت ")
 vardump(groups)
 for idg,v in pairs(groups.GP_BOT) do
 DevAbs:sadd(DevProx.."bot:groups",idg)
 DevAbs:sadd(DevProx.."bot:userss",idg)
-DevAbs:set(DevProx.."bot:enable:"..idg,true)
 DevAbs:set(DevProx..'editmsg'..idg,true)
 DevAbs:set(DevProx..'bot:inline:mute'..idg,true)
 DevAbs:set(DevProx..'bot:photo:mute'..idg,true)
@@ -1107,9 +1106,6 @@ end
 if msg.chat_id_ then
 local id = tostring(msg.chat_id_)
 if id:match("-100(%d+)") then
-if not DevAbs:sismember(DevProx.."bot:groups",msg.chat_id_) then
-DevAbs:sadd(DevProx.."bot:groups",msg.chat_id_)
-end
 DevAbs:incr(DevProx..'user:msgs'..bot_id..os.date('%d')..':'..msg.chat_id_..':'..msg.sender_user_id_)
 DevAbs:incr(DevProx..'user:msgs'..msg.chat_id_..':'..msg.sender_user_id_)
 ChatType = 'sp' 
@@ -1119,9 +1115,6 @@ DevAbs:sadd(DevProx.."bot:userss",msg.chat_id_)
 end
 ChatType = 'pv' 
 else
-if not DevAbs:sismember(DevProx.."bot:groups",msg.chat_id_) then
-DevAbs:sadd(DevProx.."bot:groups",msg.chat_id_)
-end
 ChatType = 'gp' 
 end
 end 
@@ -1379,7 +1372,6 @@ end
 end  
 end
 if msg.content_.ID == "MessageChatDeleteMember" and tonumber(msg.content_.user_.id_) == tonumber(DevProx) then 
-DevAbs:del(DevProx.."bot:enable:" .. msg.chat_id_)
 DevAbs:srem(DevProx.."bot:groups", msg.chat_id_) 
 function ABS_PROX(extra,result,success) 
 function  reslit(f1,f2)
@@ -1526,7 +1518,7 @@ end,nil)
 end 
 end
 end,nil)
-if DevAbs:get(DevProx.."bot:enable:"..msg.chat_id_) then
+if DevAbs:sismember(DevProx..'bot:groups',msg.chat_id_) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙المجموعه بالتاكيد مفعله', 1, 'md')
 else
 if tonumber(data.member_count_) < tonumber(DevAbs:get(DevProx..'abs:Num:Add:Bot') or 0) and not Leader(msg) then
@@ -1534,7 +1526,7 @@ Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙عدد اعضاء المجموعه اق
 return false
 end
 ReplyStatus(msg,result.id_,"ReplyAdd","⌁︙تم تفعيل المجموعه "..dp.title_)  
-DevAbs:set(DevProx.."bot:enable:"..msg.chat_id_,true)
+DevAbs:sadd(DevProx.."bot:groups",msg.chat_id_)
 DevAbs:sadd(DevProx..'abs:monsh:'..msg.chat_id_,msg.sender_user_id_)
 local Name1 = result.first_name_
 local Name1 = Name1:gsub('"',"") 
@@ -1582,7 +1574,7 @@ DevAbs:set(DevProx..'Save:UserName'..msg.sender_user_id_,data.username_)
 end;end,nil) 
 --     Source DevProx     --
 local idf = tostring(msg.chat_id_)
-if not DevAbs:get(DevProx.."bot:enable:"..msg.chat_id_) and not idf:match("^(%d+)") and not SudoBot(msg.sender_user_id_, msg.chat_id_) then
+if not DevAbs:sismember(DevProx.."bot:groups",msg.chat_id_) and not idf:match("^(%d+)") and not SudoBot(msg.sender_user_id_, msg.chat_id_) then
 print("Return False [ Not Enable ]")
 return false
 end
@@ -6869,7 +6861,6 @@ for i = 1, #group do
 tdcli_function({ID='GetChat',chat_id_ = group[i]
 },function(arg,data)
 if data and data.type_ and data.type_.channel_ and data.type_.channel_.status_ and data.type_.channel_.status_.ID == "ChatMemberStatusMember" then
-print('\27[30;34m THE BOT IS NOT ADMIN ↓\n'..group[i]..'\n\27[1;37m')
 DevAbs:srem(DevProx.."bot:groups",group[i]) 
 changeChatMemberStatus(group[i], bot_id, "Left")
 w = w + 1
@@ -6877,12 +6868,10 @@ end
 if data and data.type_ and data.type_.channel_ and data.type_.channel_.status_ and data.type_.channel_.status_.ID == "ChatMemberStatusLeft" then
 DevAbs:srem(DevProx.."bot:groups",group[i]) 
 q = q + 1
-print('\27[30;35m THE BOT IS LEFT GROUP ↓\n'..group[i]..'\n\27[1;37m')
 end
 if data and data.type_ and data.type_.channel_ and data.type_.channel_.status_ and data.type_.channel_.status_.ID == "ChatMemberStatusKicked" then
 DevAbs:srem(DevProx.."bot:groups",group[i]) 
 q = q + 1
-print('\27[30;36m»» THE BOT IS KICKED GROUP ↓\n'..group[i]..'\n\27[1;37m')
 end
 if data and data.code_ and data.code_ == 400 then
 DevAbs:srem(DevProx.."bot:groups",group[i]) 
@@ -7567,8 +7556,8 @@ local Text = text:match("^تغير رد المطور (.*)$")
 DevAbs:set(DevProx.."abs:SudoBot:Rd"..msg.chat_id_,Text)
 Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙تم تغير رد المطور الى ↫ "..Text, 1, 'md')
 end
-if text and text:match("^تغير رد المنشئ الاساسي (.*)$") then
-local Text = text:match("^تغير رد المنشئ الاساسي (.*)$") 
+if text and text:match("^تغير رد منشئ الاساسي (.*)$") then
+local Text = text:match("^تغير رد منشئ الاساسي (.*)$") 
 DevAbs:set(DevProx.."abs:monsh:Rd"..msg.chat_id_,Text)
 Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙تم تغير رد المنشئ الاساسي الى ↫ "..Text, 1, 'md')
 end
@@ -8429,11 +8418,11 @@ end,nil)
 end 
 end
 end,nil)
-if DevAbs:get(DevProx.."bot:enable:"..msg.chat_id_) then
+if DevAbs:sismember(DevProx..'bot:groups',msg.chat_id_) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙المجموعه بالتاكيد مفعله', 1, 'md')
 else
 ReplyStatus(msg,result.id_,"ReplyAdd","⌁︙تم تفعيل المجموعه "..dp.title_)  
-DevAbs:set(DevProx.."bot:enable:"..msg.chat_id_,true)
+DevAbs:sadd(DevProx.."bot:groups",msg.chat_id_)
 if not DevAbs:get(DevProx..'abs:SudosGp'..msg.sender_user_id_..msg.chat_id_) then 
 DevAbs:incrby(DevProx..'abs:Sudos'..msg.sender_user_id_,1)
 DevAbs:set(DevProx..'abs:SudosGp'..msg.sender_user_id_..msg.chat_id_,"abs")
@@ -8470,11 +8459,11 @@ end
 if text == 'تعطيل' and SudoBot(msg.sender_user_id_, msg.chat_id_) and SourceCh(msg) then
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(extra,result,success)
 tdcli_function({ID ="GetChat",chat_id_=msg.chat_id_},function(arg,dp) 
-if not DevAbs:get(DevProx.."bot:enable:"..msg.chat_id_) then
+if not DevAbs:sismember(DevProx..'bot:groups',msg.chat_id_) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙المجموعه بالتاكيد معطله', 1, 'md')
 else
 ReplyStatus(msg,result.id_,"ReplyAdd","⌁︙تم تعطيل المجموعه "..dp.title_)  
-DevAbs:del(DevProx.."bot:enable:"..msg.chat_id_)
+DevAbs:srem(DevProx.."bot:groups",msg.chat_id_)
 local Name1 = result.first_name_
 local Name1 = Name1:gsub('"',"") 
 local Name1 = Name1:gsub("'","") 
@@ -8503,21 +8492,6 @@ end,nil)
 end,nil)
 end
 end
---     Source DevProx     --
-if text and text:match("^تفعيل الكروبات$") and Leader(msg) then
-local gps = DevAbs:smembers(DevProx.."bot:groups") or 0
-for i=1,#gps do
-DevAbs:set(DevProx.."bot:enable:"..gps[i],true)
-end
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تم تفعيل البوت في '..#gps..' مجموعه', 1, 'md')
-end   
-if text and text:match("^تعطيل الكروبات$") and Leader(msg) then
-local gps = DevAbs:smembers(DevProx.."bot:groups") or 0
-for i=1,#gps do
-DevAbs:del(DevProx.."bot:enable:"..gps[i],true)
-end
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تم تعطيل البوت في '..#gps..' مجموعه', 1, 'md')
-end   
 --     Source DevProx     --
 if text and text:match("^الدعم$") or text and text:match("^المطور$") then
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(extra,result,success)
@@ -9132,7 +9106,7 @@ local text =  [[
 ⌁︙اعاده التثبيت
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ⌁︙تغير رد + اسم الرتبه + النص ↫ ⤈
-⌁︙المطور • المنشئ الاساسي
+⌁︙المطور • منشئ الاساسي
 ⌁︙المنشئ • المدير • الادمن
 ⌁︙المميز • المنظف • العضو
 ⌁︙حذف ردود الرتب
@@ -9280,7 +9254,6 @@ local text =  [[
 ⌁︙تفعيل • تعطيل ↫ التواصل
 ⌁︙تفعيل • تعطيل ↫ المغادره
 ⌁︙تفعيل • تعطيل ↫ رد الخاص
-⌁︙تفعيل • تعطيل ↫ الكروبات
 ⌁︙تفعيل • تعطيل ↫ البوت الخدمي
 ⌁︙تفعيل • تعطيل ↫ الاشتراك الاجباري
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
