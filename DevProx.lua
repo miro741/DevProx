@@ -47,6 +47,8 @@ print('\27[1;31m┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\nلم يتم حفظ توكن
 end  
 os.execute('lua DevProx.lua') 
 end 
+local SUDO = DevAbs:get(ServerDevProx.."IdDevProx")
+local token = DevAbs:get(ServerDevProx.."TokenDevProx")
 botid = token:match("(%d+)")
 local create = function(data, file, uglify)  
 file = io.open(file, "w+")   
@@ -61,8 +63,8 @@ file:close()
 end
 local create_config_auto = function()
 config = {
-SUDO = DevAbs:get(ServerDevProx.."IdDevProx"),
-token = DevAbs:get(ServerDevProx.."TokenDevProx"),
+SUDO = SUDO,
+token = token,
 bot_id = botid,
 sudo_users = {SUDO}, 
 }
