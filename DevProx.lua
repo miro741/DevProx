@@ -493,13 +493,6 @@ end
 tdcli_function ({ ID = "GetChannelMembers", channel_id_ = getChatId(channel_id).ID, filter_ = { ID = "ChannelMembers" .. filter }, offset_ = offset, limit_ = limit }, dl_cb, nil)
 end
 --     Source DevProx     --
-function getChannelFull(channel_id)
-tdcli_function ({ ID = "GetChannelFull", channel_id_ = getChatId(channel_id).ID }, dl_cb, nil)
-end
-function getChannelFull(channel_id,cb)
-tdcli_function ({ ID = "GetChannelFull", channel_id_ = getChatId(channel_id).ID }, cb, nil)
-end
---     Source DevProx     --
 function getInputMessageContent(file, filetype, caption)
 if file:match('/') or file:match('.') then
 infile = {ID = "InputFileLocal", path_ = file}
@@ -526,10 +519,6 @@ elseif filetype == 'voice' then
 inmsg = {ID = "InputMessageVoice", voice_ = infile, caption_ = caption}
 end
 return inmsg
-end
---     Source DevProx     --
-function getUser(user_id, cb)
-tdcli_function ({ ID = "GetUser", user_id_ = user_id }, cb, nil)
 end
 --     Source DevProx     --
 function pin(channel_id, message_id, disable_notification) 
@@ -1430,8 +1419,6 @@ end
 getUser(msg.sender_user_id_, abbs)
 end
 --     Source DevProx     --
-local function openChat(chat_id,dl_cb) tdcli_function ({ ID = "GetChat", chat_id_ = chat_id }, dl_cb, nil) end
-function TitleName(GroupID) tdcli_function({ID ="GetChat",chat_id_=GroupID},function(arg,data) ChatName = data.title_ ChatName = ChatName:gsub('"',"") ChatName = ChatName:gsub("'","") ChatName = ChatName:gsub("`","") ChatName = ChatName:gsub("*","") ChatName = ChatName:gsub("{","") ChatName = ChatName:gsub("}","") end,nil) return ChatName end
 function MuteTime(chat_id,user_id,time) local mut = 'https://api.telegram.org/bot'..TokenBot.. '/restrictChatMember?chat_id=' .. chat_id .. '&user_id=' .. user_id..'&can_post_messages=false&until_date='..time return https.request(mut) end
 --     Source DevProx     --
 if (data.ID == "UpdateNewMessage") then
@@ -2723,7 +2710,7 @@ getUser(msg.sender_user_id_,get_warning)
 end end
 --     Source DevProx     --
 if Leader(msg) then
-if text == 'جلب نسخه الكروبات' or text == 'جلب نسخه البوت' or text == 'جلب نسخه احتياطيه' then
+if text == 'جلب نسخه الكروبات' and SourceCh(msg) or text == 'جلب نسخه احتياطيه' and SourceCh(msg) then
 local list = DevAbs:smembers(DevProx..'bot:groups')  
 local GetJson = '{"BotId": '..DevProx..',"GroupsList":{'  
 for k,v in pairs(list) do 
@@ -2817,7 +2804,7 @@ File:write(GetJson)
 File:close()
 sendDocument(msg.chat_id_, msg.id_, 0, 1, nil, './'..DevProx..'.json', '⌁︙يحتوي الملف على ↫ '..#list..' مجموعه',dl_cb, nil)
 end
-if text == 'رفع النسخه' and tonumber(msg.reply_to_message_id_) > 0 then   
+if text == 'رفع النسخه' and tonumber(msg.reply_to_message_id_) > 0 or text == 'رفع النسخه الاحتياطيه' and tonumber(msg.reply_to_message_id_) > 0 then   
 function by_reply(extra, result, success)   
 if result.content_.document_ then 
 local ID_FILE = result.content_.document_.document_.persistent_id_ 
@@ -4601,12 +4588,10 @@ end
 --     Source DevProx     --
 if text == ("تنزيل الكل") and msg.reply_to_message_id_ ~= 0 and Owner(msg.sender_user_id_, msg.chat_id_) and ChCheck(msg) then 
 function promote_by_reply(extra, result, success)
-local user_info_ = DevAbs:get(DevProx..'user:Name' .. result.sender_user_id_)
-local absc9 = user_info_ if user_info_ then
 if LeaderId(result.sender_user_id_) == true then
 Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙لاتستطيع تنزيل المطور الاساسي", 1, 'md')
 return false 
-end end
+end
 if DevAbs:sismember(DevProx..'abs:SudoBot:',result.sender_user_id_) then
 sudobot = 'المطورين • ' else sudobot = '' end
 if DevAbs:sismember(DevProx..'abs:ownerall:',result.sender_user_id_) then
@@ -4629,9 +4614,9 @@ if DevAbs:sismember(DevProx..'abs:Cleaner:'..msg.chat_id_, result.sender_user_id
 cleaner = 'المنظفين • ' else cleaner = ''
 end
 if absmasco(result.sender_user_id_,msg.chat_id_) ~= false then
-Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙المسخدم ↫ ["..absc9.."]\n⌁︙تم تنزيله من ↫ ⤈\n~ ( "..sudobot..''..ownerall..''..adminall..''..vpall..''..monsh..''..monshid..''..owner..''..admins..''..vipmem..''..cleaner.." ) ~ \n", 1, 'md')
+ReplyStatus(msg,result.sender_user_id_,"reply","⌁︙تم تنزيله من ↫ ⤈\n~ ( "..sudobot..''..ownerall..''..adminall..''..vpall..''..monsh..''..monshid..''..owner..''..admins..''..vipmem..''..cleaner.." ) ~")  
 else 
-Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙العضو ↫ ["..absc9.."]\n⌁︙لم تتم ترقيته مسبقا", 1, 'md')
+ReplyStatus(msg,result.sender_user_id_,"reply","⌁︙لم تتم ترقيته مسبقا")  
 end
 if masco(msg.sender_user_id_,msg.chat_id_) == 'botow' then
 DevAbs:srem(DevProx..'abs:SudoBot:', result.sender_user_id_)
@@ -4682,13 +4667,11 @@ end
 if text and text:match("^تنزيل الكل @(.*)$") and Owner(msg.sender_user_id_, msg.chat_id_) and ChCheck(msg) then
 local rem = {string.match(text, "^(تنزيل الكل) @(.*)$")}
 function remm(extra, result, success)
-local user_info_ = DevAbs:get(DevProx..'user:Name' .. result.id_)
-local absc9 = user_info_ if user_info_ then
 if result.id_ then
 if LeaderId(result.id_) == true then
 Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙لاتستطيع تنزيل المطور الاساسي", 1, 'md')
 return false 
-end end
+end
 if DevAbs:sismember(DevProx..'abs:SudoBot:',result.id_) then
 sudobot = 'المطورين • ' else sudobot = '' end
 if DevAbs:sismember(DevProx..'abs:ownerall:',result.id_) then
@@ -4711,9 +4694,9 @@ if DevAbs:sismember(DevProx..'abs:Cleaner:'..msg.chat_id_, result.id_) then
 cleaner = 'المنظفين • ' else cleaner = ''
 end
 if absmasco(result.id_,msg.chat_id_) ~= false then
-Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙المسخدم ↫ ["..absc9.."]\n⌁︙تم تنزيله من ↫ ⤈\n~ ( "..sudobot..''..ownerall..''..adminall..''..vpall..''..monsh..''..monshid..''..owner..''..admins..''..vipmem..''..cleaner.." ) ~ \n ", 1, 'md')
+ReplyStatus(msg,result.id_,"reply","⌁︙تم تنزيله من ↫ ⤈\n~ ( "..sudobot..''..ownerall..''..adminall..''..vpall..''..monsh..''..monshid..''..owner..''..admins..''..vipmem..''..cleaner.." ) ~")  
 else 
-Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙العضو ↫ ["..absc9.."]\n⌁︙لم تتم ترقيته مسبقا", 1, 'md')
+ReplyStatus(msg,result.id_,"reply","⌁︙لم تتم ترقيته مسبقا")  
 end 
 if masco(msg.sender_user_id_,msg.chat_id_) == 'botow' then
 DevAbs:srem(DevProx..'abs:SudoBot:', result.id_)
@@ -4757,41 +4740,35 @@ elseif masco(msg.sender_user_id_,msg.chat_id_) == 'owner' then
 DevAbs:srem(DevProx..'abs:admins:'..msg.chat_id_, result.id_)
 DevAbs:srem(DevProx..'abs:vipmem:'..msg.chat_id_, result.id_)
 end
+else
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙المعرف غير صحيح*', 1, 'md')
 end
 end
 resolve_username(rem[2],remm)
 end
 --     Source DevProx     --
-if text:match("^رفع ادمن بالكروب$") and Monsh(msg.sender_user_id_, msg.chat_id_) and msg.reply_to_message_id_ and ChCheck(msg) or text:match("^رفع ادمن الكروب$")  and Monsh(msg.sender_user_id_, msg.chat_id_) and msg.reply_to_message_id_ and ChCheck(msg) then
+if Monsh(msg.sender_user_id_, msg.chat_id_) then
+if text:match("^رفع ادمن بالكروب$") and msg.reply_to_message_id_ and ChCheck(msg) or text:match("^رفع ادمن الكروب$") and msg.reply_to_message_id_ and ChCheck(msg) then
 function promote_by_reply(extra, result, success)
-local user_info_ = DevAbs:get(DevProx..'user:Name' .. result.sender_user_id_)
-local absc9 = user_info_ if user_info_ then
 HTTPS.request("https://api.telegram.org/bot" .. TokenBot .. "/promoteChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" ..result.sender_user_id_.."&can_change_info=True&can_delete_messages=True&can_invite_users=True&can_restrict_members=True&can_pin_messages=True&can_promote_members=false")
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙العضو ↫ ['..absc9..']\n⌁︙تم رفعه ادمن في الكروب', 1, 'md')
-end
+ReplyStatus(msg,result.sender_user_id_,"reply","⌁︙تم رفعه ادمن في الكروب")  
 end
 getMessage(msg.chat_id_, msg.reply_to_message_id_,promote_by_reply)
 end
-if text:match("^تنزيل ادمن بالكروب$") and Monsh(msg.sender_user_id_, msg.chat_id_) and msg.reply_to_message_id_ and ChCheck(msg) or text:match("^تنزيل ادمن الكروب$")  and Monsh(msg.sender_user_id_, msg.chat_id_) and msg.reply_to_message_id_ and ChCheck(msg) then
+if text:match("^تنزيل ادمن بالكروب$") and msg.reply_to_message_id_ and ChCheck(msg) or text:match("^تنزيل ادمن الكروب$") and msg.reply_to_message_id_ and ChCheck(msg) then
 function promote_by_reply(extra, result, success)
-local user_info_ = DevAbs:get(DevProx..'user:Name' .. result.sender_user_id_)
-local absc9 = user_info_ if user_info_ then
 HTTPS.request("https://api.telegram.org/bot" .. TokenBot .. "/promoteChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" ..result.sender_user_id_.."&can_change_info=false&can_delete_messages=false&can_invite_users=false&can_restrict_members=false&can_pin_messages=false&can_promote_members=false")
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙ادمن الكروب ↫ ['..absc9..']\n⌁︙تم تنزيله ادمن من الكروب', 1, 'md')
-end
+ReplyStatus(msg,result.sender_user_id_,"reply","⌁︙تم تنزيله ادمن من الكروب")  
 end
 getMessage(msg.chat_id_, msg.reply_to_message_id_,promote_by_reply)
 end 
-if text:match("^رفع بكل الصلاحيات$") and Monsh(msg.sender_user_id_, msg.chat_id_) and msg.reply_to_message_id_ and ChCheck(msg) or text:match("^رفع بكل صلاحيات$")  and Monsh(msg.sender_user_id_, msg.chat_id_) and msg.reply_to_message_id_ and ChCheck(msg) then
+if text:match("^رفع بكل الصلاحيات$") and msg.reply_to_message_id_ and ChCheck(msg) or text:match("^رفع بكل صلاحيات$") and msg.reply_to_message_id_ and ChCheck(msg) then
 function promote_by_reply(extra, result, success)
-local user_info_ = DevAbs:get(DevProx..'user:Name' .. result.sender_user_id_)
-local absc9 = user_info_ if user_info_ then
 HTTPS.request("https://api.telegram.org/bot" .. TokenBot .. "/promoteChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" ..result.sender_user_id_.."&can_change_info=True&can_delete_messages=True&can_invite_users=True&can_restrict_members=True&can_pin_messages=True&can_promote_members=True")
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙العضو ↫ ['..absc9..']\n⌁︙تم رفعه ادمن في جميع الصلاحيات', 1, 'md')
-end
+ReplyStatus(msg,result.sender_user_id_,"reply","⌁︙تم رفعه ادمن في جميع الصلاحيات")  
 end
 getMessage(msg.chat_id_, msg.reply_to_message_id_,promote_by_reply)
+end
 end
 --     Source DevProx     --
 if Admin(msg.sender_user_id_, msg.chat_id_) then
@@ -4799,7 +4776,7 @@ if msg.reply_to_message_id_ ~= 0 then
 if text:match("^مسح$") and ChCheck(msg) or text:match("^حذف$") and ChCheck(msg) then
 DeleteMessage(msg.chat_id_,{[0] = msg.reply_to_message_id_})
 DeleteMessage(msg.chat_id_,{[0] = msg.id_})
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تم حذف الرساله مع رسالة الامر ', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تم حذف الرساله مع رسالة الامر', 1, 'md')
 end end end
 --     Source DevProx     --
 if MonshId(msg.sender_user_id_, msg.chat_id_) then
