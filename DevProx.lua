@@ -2807,7 +2807,7 @@ end
 GetJson = GetJson..'],'
 end
 if LinkGroups then
-Get_Json = Get_Json..'"LinkGroups":"'..LinkGroups..'",'
+GetJson = GetJson..'"LinkGroups":"'..LinkGroups..'",'
 end
 GetJson = GetJson..'"Welcomes":"'..Welcomes..'"}'
 end
