@@ -271,7 +271,7 @@ file:close()
 return file_path, code 
 end 
 --     Source DevProx     --
-function add_file(msg,chat,ID_FILE,File_Name)
+function AddFile(msg,chat,ID_FILE,File_Name)
 if File_Name:match('.json') then
 if File_Name:lower():match('(%d+)') ~= DevProx:lower() then 
 send(chat,msg.id_,"⌁︙عذرا هذا الملف ليس تابع لهذا السورس")   
@@ -2809,7 +2809,7 @@ function by_reply(extra, result, success)
 if result.content_.document_ then 
 local ID_FILE = result.content_.document_.document_.persistent_id_ 
 local File_Name = result.content_.document_.file_name_
-add_file(msg,msg.chat_id_,ID_FILE,File_Name)
+AddFile(msg,msg.chat_id_,ID_FILE,File_Name)
 end   
 end
 tdcli_function ({ ID = "GetMessage", chat_id_ = msg.chat_id_, message_id_ = tonumber(msg.reply_to_message_id_) }, by_reply, nil)
