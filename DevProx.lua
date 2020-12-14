@@ -277,9 +277,9 @@ if File_Name:lower():match('(%d+)') ~= DevProx:lower() then
 send(chat,msg.id_,"⌁︙عذرا هذا الملف ليس تابع لهذا السورس")   
 return false 
 end
+send(chat,msg.id_,"⌁︙جاري رفع الملف ... .")
 local File = json:decode(https.request('https://api.telegram.org/bot' .. TokenBot .. '/getfile?file_id='..ID_FILE) ) 
 download_to_file('https://api.telegram.org/file/bot'..TokenBot..'/'..File.result.file_path, ''..File_Name) 
-send(chat,msg.id_,"⌁︙جاري رفع الملف ... .")
 else
 send(chat,msg.id_,"⌁︙لقد حدث خطاء \n⌁︙يرجى التحقق من صيغة الملف ")
 end
@@ -287,68 +287,57 @@ local info_file = io.open('./'..DevProx..'.json', "r"):read('*a')
 local groups = JSON.decode(info_file)
 send(chat,msg.id_,"⌁︙تم رفع النسخه بنجاح \n⌁︙تم تفعيل جميع المجموعات \n⌁︙تم استرجاع مشرفين المجموعات \n⌁︙تم استرجاع اوامر القفل والفتح في جميع مجموعات البوت ")
 vardump(groups)
-for idg,v in pairs(groups.GP_BOT) do
-DevAbs:sadd(DevProx.."bot:groups",idg)
-DevAbs:sadd(DevProx.."bot:userss",idg)
-DevAbs:set(DevProx..'editmsg'..idg,true)
-DevAbs:set(DevProx..'bot:inline:mute'..idg,true)
-DevAbs:set(DevProx..'bot:photo:mute'..idg,true)
-DevAbs:set(DevProx..'bot:spam:mute'..idg,true)
-DevAbs:set(DevProx..'bot:video:mute'..idg,true)
-DevAbs:set(DevProx..'bot:gifs:mute'..idg,true)
-DevAbs:set(DevProx..'bot:music:mute'..idg,true)
-DevAbs:set(DevProx..'bot:voice:mute'..idg,true)
-DevAbs:set(DevProx..'bot:links:mute'..idg,true)
-DevAbs:set(DevProx..'bot:location:mute'..idg,true)
-DevAbs:set(DevProx..'tags:lock'..idg,true)
-DevAbs:set(DevProx..'bot:document:mute'..idg,true)
-DevAbs:set(DevProx..'bot:abstag:mute'..idg,true)
-DevAbs:set(DevProx..'bot:contact:mute'..idg,true)
-DevAbs:set(DevProx..'bot:webpage:mute'..idg,true)
-DevAbs:set(DevProx..'bot:sticker:mute'..idg,true)
-DevAbs:set(DevProx..'markdown:lock'..idg,true)
-DevAbs:set(DevProx..'bot:forward:mute'..idg,true)
-if v.ABSMNSH then
-for k,idabsmsh in pairs(v.ABSMNSH) do
-DevAbs:sadd(DevProx..'abs:absmonsh:'..idg,idabsmsh)  
+for IdGps,v in pairs(groups.GroupsList) do
+DevAbs:sadd(DevProx.."bot:groups",IdGps) DevAbs:sadd(DevProx.."bot:userss",IdGps)
+DevAbs:set(DevProx..'bot:links:mute'..IdGps,true) DevAbs:set(DevProx..'bot:forward:mute'..IdGps,true) DevAbs:set(DevProx.."abs:Lock:Bots"..IdGps,"del") DevAbs:hset(DevProx.."abs:Spam:Group:User"..IdGps ,"Spam:User","del") DevAbs:set(DevProx..'bot:video:mute'..IdGps,true) DevAbs:set(DevProx..'bot:gifs:mute'..IdGps,true) DevAbs:set(DevProx..'editmsg'..IdGps,true)
+DevAbs:set(DevProx..'bot:sticker:mute'..IdGps,true) DevAbs:set(DevProx..'farsi'..IdGps,true) DevAbs:del(DevProx.."fshar"..IdGps) DevAbs:del(DevProx.."taf"..IdGps) DevAbs:del(DevProx.."kaf"..IdGps) DevAbs:set('DevProx:id:photo'..IdGps,true) DevAbs:set(DevProx..'bot:spam:mute'..IdGps,true) DevAbs:set(DevProx..'bot:webpage:mute'..IdGps,true)
+if v.AbsMonshs then
+for k,IdAbsMonshs in pairs(v.AbsMonshs) do
+DevAbs:sadd(DevProx..'abs:absmonsh:'..IdGps,IdAbsMonshs)  
 print('تم رفع منشئين المجموعات')
 end
 end
-if v.MNSH then
-for k,idmsh in pairs(v.MNSH) do
-DevAbs:sadd(DevProx..'abs:monsh:'..idg,idmsh)  
+if v.Monshs then
+for k,IdMonshs in pairs(v.Monshs) do
+DevAbs:sadd(DevProx..'abs:monsh:'..IdGps,IdMonshs)  
 print('تم رفع ( '..k..' ) منشئين اساسيين')
 end
 end
-if v.MNSHID then
-for k,idmshid in pairs(v.MNSHID) do
-DevAbs:sadd(DevProx..'abs:monshid:'..idg,idmshid)  
+if v.MonshIds then
+for k,IdMonshIds in pairs(v.MonshIds) do
+DevAbs:sadd(DevProx..'abs:monshid:'..IdGps,IdMonshIds)  
 print('تم رفع ( '..k..' ) منشئين')
 end
 end
-if v.MDER then
-for k,idmder in pairs(v.MDER) do
-DevAbs:sadd(DevProx..'abs:owners:'..idg,idmder)  
+if v.Owners then
+for k,IdOwners in pairs(v.Owners) do
+DevAbs:sadd(DevProx..'abs:owners:'..IdGps,IdOwners)  
 print('تم رفع ( '..k..' ) مدراء')
 end
 end
-if v.MOD then
-for k,idmod in pairs(v.MOD) do
-vardump(idmod)
-DevAbs:sadd(DevProx..'abs:admins:'..idg,idmod)  
+if v.Admins then
+for k,idmod in pairs(v.Admins) do
+vardump(IdAdmins)
+DevAbs:sadd(DevProx..'abs:admins:'..IdGps,IdAdmins)  
 print('تم رفع ( '..k..' ) ادمنيه')
 end
 end
-if v.VIP then
-for k,idvip in pairs(v.VIP) do
-DevAbs:sadd(DevProx..'abs:vipmem:'..idg,idvip)  
+if v.Vips then
+for k,IdVips in pairs(v.Vips) do
+DevAbs:sadd(DevProx..'abs:vipmem:'..IdGps,IdVips)  
 print('تم رفع ( '..k..' ) مميزين')
 end
 end
-if v.linkgroup then
-if v.linkgroup ~= "" then
-DevAbs:set(DevProx.."bot:group:link"..idg,v.linkgroup)   
+if v.LinkGroups then
+if v.LinkGroups ~= "" then
+DevAbs:set(DevProx.."bot:group:link"..IdGps,v.LinkGroups)   
 print('( تم وضع روابط المجموعات )')
+end
+end
+if v.Welcomes then
+if v.Welcomes ~= "" then
+DevAbs:set(DevProx.."welcome:"..IdGps,v.Welcomes)   
+print('( تم وضع ترحيب المجموعات )')
 end
 end
 end
@@ -2736,99 +2725,97 @@ end end
 if Leader(msg) then
 if text == 'جلب نسخه الكروبات' or text == 'جلب نسخه البوت' or text == 'جلب نسخه احتياطيه' then
 local list = DevAbs:smembers(DevProx..'bot:groups')  
-local t = '{"BOT_ID": '..DevProx..',"GP_BOT":{'  
-for k,v in pairs(list) do   
-NAME = TitleName(v) or ''
-NAME = NAME:gsub('"','')
-NAME = NAME:gsub('#','')
-NAME = NAME:gsub([[\]],'')
-link = DevAbs:get(DevProx.."bot:group:link"..v) or ''
-welcome = DevAbs:get(DevProx..'welcome:'..v) or ''
-ABSMNSH = DevAbs:smembers(DevProx..'abs:absmonsh:'..v)
-MNSH = DevAbs:smembers(DevProx..'abs:monsh:'..v)
-MNSHID = DevAbs:smembers(DevProx..'abs:monshid:'..v)
-MDER = DevAbs:smembers(DevProx..'abs:owners:'..v)
-MOD = DevAbs:smembers(DevProx..'abs:admins:'..v)
-VIP = DevAbs:smembers(DevProx..'abs:vipmem:'..v)
+local GetJson = '{"BotId": '..DevProx..',"GroupsList":{'  
+for k,v in pairs(list) do 
+LinkGroups = DevAbs:get(DevProx.."bot:group:link"..v)
+Welcomes = DevAbs:get(DevProx..'welcome:'..v) or ''
+AbsMonshs = DevAbs:smembers(DevProx..'abs:absmonsh:'..v)
+Monshs = DevAbs:smembers(DevProx..'abs:monsh:'..v)
+MonshIds = DevAbs:smembers(DevProx..'abs:monshid:'..v)
+Owners = DevAbs:smembers(DevProx..'abs:owners:'..v)
+Admis = DevAbs:smembers(DevProx..'abs:admins:'..v)
+Vips = DevAbs:smembers(DevProx..'abs:vipmem:'..v)
 if k == 1 then
-t = t..'"'..v..'":{"GP_NAME":"'..NAME..'",'
+GetJson = GetJson..'"'..v..'":{'
 else
-t = t..',"'..v..'":{"GP_NAME":"'..NAME..'",'
+GetJson = GetJson..',"'..v..'":{'
 end
-
-if #VIP ~= 0 then 
-t = t..'"VIP":['
-for k,v in pairs(VIP) do
+if #Vips ~= 0 then 
+GetJson = GetJson..'"Vips":['
+for k,v in pairs(Vips) do
 if k == 1 then
-t =  t..'"'..v..'"'
+GetJson =  GetJson..'"'..v..'"'
 else
-t =  t..',"'..v..'"'
+GetJson =  GetJson..',"'..v..'"'
 end
 end   
-t = t..'],'
+GetJson = GetJson..'],'
 end
-if #MOD ~= 0 then
-t = t..'"MOD":['
-for k,v in pairs(MOD) do
+if #Admis ~= 0 then
+GetJson = GetJson..'"Admis":['
+for k,v in pairs(Admis) do
 if k == 1 then
-t =  t..'"'..v..'"'
+GetJson =  GetJson..'"'..v..'"'
 else
-t =  t..',"'..v..'"'
+GetJson =  GetJson..',"'..v..'"'
 end
 end   
-t = t..'],'
+GetJson = GetJson..'],'
 end
-if #MDER ~= 0 then
-t = t..'"MDER":['
-for k,v in pairs(MDER) do
+if #Owners ~= 0 then
+GetJson = GetJson..'"Owners":['
+for k,v in pairs(Owners) do
 if k == 1 then
-t =  t..'"'..v..'"'
+GetJson =  GetJson..'"'..v..'"'
 else
-t =  t..',"'..v..'"'
+GetJson =  GetJson..',"'..v..'"'
 end
 end   
-t = t..'],'
+GetJson = GetJson..'],'
 end
-if #MNSHID ~= 0 then
-t = t..'"MNSHID":['
-for k,v in pairs(MNSHID) do
+if #MonshIds ~= 0 then
+GetJson = GetJson..'"MonshIds":['
+for k,v in pairs(MonshIds) do
 if k == 1 then
-t =  t..'"'..v..'"'
+GetJson =  GetJson..'"'..v..'"'
 else
-t =  t..',"'..v..'"'
+GetJson =  GetJson..',"'..v..'"'
 end
 end   
-t = t..'],'
+GetJson = GetJson..'],'
 end
-if #MNSH ~= 0 then
-t = t..'"MNSH":['
-for k,v in pairs(MNSH) do
+if #Monshs ~= 0 then
+GetJson = GetJson..'"Monshs":['
+for k,v in pairs(Monshs) do
 if k == 1 then
-t =  t..'"'..v..'"'
+GetJson =  GetJson..'"'..v..'"'
 else
-t =  t..',"'..v..'"'
+GetJson =  GetJson..',"'..v..'"'
 end
 end   
-t = t..'],'
+GetJson = GetJson..'],'
 end
-if #ABSMNSH ~= 0 then
-t = t..'"ABSMNSH":['
-for k,v in pairs(ABSMNSH) do
+if #AbsMonshs ~= 0 then
+GetJson = GetJson..'"AbsMonshs":['
+for k,v in pairs(AbsMonshs) do
 if k == 1 then
-t =  t..'"'..v..'"'
+GetJson =  GetJson..'"'..v..'"'
 else
-t =  t..',"'..v..'"'
+GetJson =  GetJson..',"'..v..'"'
 end
 end   
-t = t..'],'
+GetJson = GetJson..'],'
 end
-t = t..'"linkgroup":"'..link..'"}'
+if LinkGroups then
+Get_Json = Get_Json..'"LinkGroups":"'..LinkGroups..'",'
 end
-t = t..'}}'
+GetJson = GetJson..'"Welcomes":"'..Welcomes..'"}'
+end
+GetJson = GetJson..'}}'
 local File = io.open('./'..bot_id..'.json', "w")
-File:write(t)
+File:write(GetJson)
 File:close()
-sendDocument(msg.chat_id_, msg.id_, 0, 1, nil, './'..DevProx..'.json', '⌁︙عدد كروبات البوت : ('..#list..')',dl_cb, nil)
+sendDocument(msg.chat_id_, msg.id_, 0, 1, nil, './'..DevProx..'.json', '⌁︙يحتوي الملف على ↫ '..#list..' مجموعه',dl_cb, nil)
 end
 if text == 'رفع النسخه' and tonumber(msg.reply_to_message_id_) > 0 then   
 function by_reply(extra, result, success)   
