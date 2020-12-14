@@ -62,7 +62,7 @@ local create_config_auto = function()
 config = {
 SUDO = DevAbs:get(ServerDevProx.."IdDevProx"),
 token = DevAbs:get(ServerDevProx.."TokenDevProx"),
-bot_id = token:match("(%d+)"),
+bot_id = DevAbs:get(ServerDevProx.."TokenDevProx"):match("(%d+)"),
 sudo_users = {DevAbs:get(ServerDevProx.."IdDevProx")}, 
 }
 create(config, "./config.lua")   
