@@ -284,7 +284,7 @@ local groups = JSON.decode(info_file)
 send(chat,msg.id_,"⌁︙تم رفع النسخه بنجاح \n⌁︙تم تفعيل جميع المجموعات \n⌁︙تم استرجاع مشرفين المجموعات \n⌁︙تم استرجاع اوامر القفل والفتح في جميع مجموعات البوت ")
 vardump(groups)
 for IdGps,v in pairs(groups.GroupsList) do
-DevAbs:sadd(DevProx.."bot:groups",IdGps) DevAbs:sadd(DevProx.."bot:userss",IdGps)
+DevAbs:sadd(DevProx.."bot:groups",IdGps) 
 DevAbs:set(DevProx..'bot:links:mute'..IdGps,true) DevAbs:set(DevProx..'bot:forward:mute'..IdGps,true) DevAbs:set(DevProx.."abs:Lock:Bots"..IdGps,"del") DevAbs:hset(DevProx.."abs:Spam:Group:User"..IdGps ,"Spam:User","del") DevAbs:set(DevProx..'bot:video:mute'..IdGps,true) DevAbs:set(DevProx..'bot:gifs:mute'..IdGps,true) DevAbs:set(DevProx..'editmsg'..IdGps,true)
 DevAbs:set(DevProx..'bot:sticker:mute'..IdGps,true) DevAbs:set(DevProx..'farsi'..IdGps,true) DevAbs:del(DevProx.."fshar"..IdGps) DevAbs:del(DevProx.."taf"..IdGps) DevAbs:del(DevProx.."kaf"..IdGps) DevAbs:set('DevProx:id:photo'..IdGps,true) DevAbs:set(DevProx..'bot:spam:mute'..IdGps,true) DevAbs:set(DevProx..'bot:webpage:mute'..IdGps,true)
 if v.AbsMonshs then
