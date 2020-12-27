@@ -160,8 +160,28 @@ function dl_cb(arg, data)
 end
 --     Source DevProx     --
 ----------  Sudo  ----------
-function Sudo(msg) local var = false for k,v in pairs(SudoUsers) do if msg.sender_user_id_ == v then var = true end end if msg.sender_user_id_ == tonumber(DevId) then var = true end return var end
-function SudoId(user_id) local var = false for k,v in pairs(SudoUsers) do if user_id == v then var = true end end if user_id == tonumber(DevId) then var = true end return var end
+function Sudo(msg) 
+local var = false 
+for k,v in pairs(SudoUsers) do 
+if msg.sender_user_id_ == v then 
+var = true 
+end end 
+if msg.sender_user_id_ == tonumber(DevId) then 
+var = true 
+end 
+return var 
+end
+function SudoId(user_id) 
+local var = false 
+for k,v in pairs(SudoUsers) do 
+if user_id == v then 
+var = true 
+end end 
+if user_id == tonumber(DevId) then 
+var = true 
+end 
+return var 
+end
 --     Source DevProx     --
 ----------  Bot  -----------
 function Bot(msg) 
