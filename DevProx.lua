@@ -7875,7 +7875,7 @@ end
 if not DevAbs:get(DevProx..'Abs:Nsba:Abs'..msg.chat_id_) then
 if text == "نسبه الحب" and SourceCh(msg) or text == "نسبة الحب" and SourceCh(msg) then
 DevAbs:set(DevProx..'Nsba:Abs'..msg.chat_id_..msg.sender_user_id_,true) 
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙ارسل اسمك واسم الشخص الاخر\n⌁︙مثال ↫ حسين وفاطمة', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙قم بارسل اسمين لحساب نسبة الحب بينهما كمثال ↫ جاك وروز', 1, 'md')
 end
 end
 if text and text ~= "نسبه الحب" and text ~= "نسبة الحب" and DevAbs:get(DevProx..'Nsba:Abs'..msg.chat_id_..msg.sender_user_id_) then
