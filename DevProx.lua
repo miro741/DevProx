@@ -7861,6 +7861,29 @@ Dev_Abs(msg.chat_id_, msg.id_, 1, t, 1, 'html')
 end
 end
 --     Source DevProx     --
+if text == "تفعيل نسبه الحب" and Manager(msg) and SourceCh(msg) or text == "تفعيل نسبة الحب" and Manager(msg) and SourceCh(msg) then
+local DevProxTEAM = '⌁︙اهلا عزيزي ↫ '..AbsRank(msg)..' \n⌁︙تم تفعيل نسبة الحب'
+absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, DevProxTEAM, 14, string.len(msg.sender_user_id_))
+DevAbs:del(DevProx..'Abs:Nsba:Abs'..msg.chat_id_) 
+end
+if text == "تعطيل نسبه الحب" and Manager(msg) and SourceCh(msg) or text == "تعطيل نسبة الحب" and Manager(msg) and SourceCh(msg) then
+local DevProxTEAM = '⌁︙اهلا عزيزي ↫ '..AbsRank(msg)..' \n⌁︙تم تعطيل نسبة الحب'
+absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, DevProxTEAM, 14, string.len(msg.sender_user_id_))
+DevAbs:set(DevProx..'Abs:Nsba:Abs'..msg.chat_id_,true)  
+end
+--     Source DevProx     --
+if not DevAbs:get(DevProx..'Abs:Nsba:Abs'..msg.chat_id_) then
+if text == "نسبه الحب" and SourceCh(msg) or text == "نسبة الحب" and SourceCh(msg) then
+DevAbs:set(DevProx..'Nsba:Abs'..msg.chat_id_..msg.sender_user_id_,true) 
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙ارسل اسمك واسم الشخص الاخر\n⌁︙مثال ↫ حسين وفاطمة', 1, 'md')
+end
+end
+if text and text ~= "نسبه الحب" and text ~= "نسبة الحب" and DevAbs:get(DevProx..'Nsba:Abs'..msg.chat_id_..msg.sender_user_id_) then
+Abs = math.random(0,100);
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙نسبة الحب بين '..text..' هي : '..Abs..'%', 1, 'md')
+DevAbs:del(DevProx..'Nsba:Abs'..msg.chat_id_..msg.sender_user_id_) 
+end
+--     Source DevProx     --
 if text == "تفعيل حساب العمر" and Manager(msg) and SourceCh(msg) then
 local DevProxTEAM = '⌁︙اهلا عزيزي ↫ '..AbsRank(msg)..' \n⌁︙تم تفعيل حساب العمر'
 absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, DevProxTEAM, 14, string.len(msg.sender_user_id_))
@@ -9065,6 +9088,7 @@ local text =  [[
 ⌁︙تفعيل • تعطيل ↫ ضافني
 ⌁︙تفعيل • تعطيل ↫ الابراج
 ⌁︙تفعيل • تعطيل ↫ الزخرفه
+⌁︙تفعيل • تعطيل ↫ نسبة الحب
 ⌁︙تفعيل • تعطيل ↫ حساب العمر
 ⌁︙تفعيل • تعطيل ↫ ردود المطور
 ⌁︙تفعيل • تعطيل ↫ ردود المدير
@@ -9239,6 +9263,7 @@ local text =  [[
 ⌁︙منو ضافني • مشاهدات المنشور • الرابط 
 ⌁︙ايدي المجموعه • معلومات المجموعه 
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
+⌁︙نسبه الحب
 ⌁︙كول + الكلمه
 ⌁︙زخرفه + اسمك
 ⌁︙برج + نوع البرج
