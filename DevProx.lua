@@ -1801,7 +1801,7 @@ local Text = Text:gsub('#id',msg.sender_user_id_)
 local Text = Text:gsub('#edit',edit_msg)
 local Text = Text:gsub('#msgs',(user_msgs or 'لا يوجد'))
 local Text = Text:gsub('#stast',(IdRank(msg.sender_user_id_, msg.chat_id_) or 'لا يوجد'))
-Dev_Abs(msg.chat_id_, msg.id_, 1, Text ,  1, "md")
+send(msg.chat_id_,msg.id_,Text)
 end
 getUser(msg.sender_user_id_, DevProxTEAM)
 end
@@ -1896,7 +1896,7 @@ local Text = Text:gsub('#id',msg.sender_user_id_)
 local Text = Text:gsub('#edit',edit_msg)
 local Text = Text:gsub('#msgs',(user_msgs or 'لا يوجد'))
 local Text = Text:gsub('#stast',(IdRank(msg.sender_user_id_, msg.chat_id_) or 'لا يوجد'))
-Dev_Abs(msg.chat_id_, msg.id_, 1, Text ,  1, "md")
+send(msg.chat_id_,msg.id_,Text)
 end
 getUser(msg.sender_user_id_, DevProxTEAM)
 end
