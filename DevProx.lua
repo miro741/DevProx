@@ -8717,9 +8717,6 @@ end end
 --     Source DevProx     --
 if msg.content_.text_ == 'الردود' and Manager(msg) and ChCheck(msg) or msg.content_.text_ == 'ردود المدير' and Manager(msg) and ChCheck(msg) then
 local redod = DevAbs:smembers(DevProx..'Abs:Manager:GpRed'..msg.chat_id_..'')
-if #redod == 0 then
-send(msg.chat_id_,msg.id_,'⌁︙لا توجد ردود مضافه')
-else
 MsgRep = '⌁︙ردود المدير ↫ ⤈ \n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n'
 for k,v in pairs(redod) do
 if DevAbs:get(DevProx.."Abs:Gif:GpRed"..v..msg.chat_id_) then
@@ -8739,11 +8736,12 @@ dp = 'ملف 📁'
 elseif DevAbs:get(DevProx.."Abs:Audio:GpRed"..v..msg.chat_id_) then
 dp = 'اغنيه 🎶'
 end
-MsgRep = MsgRep..k..'~ (`'..v..'`) ↫ {*'..dp..'*}\n' 
+MsgRep = MsgRep..''..k..'~ (`'..v..'`) ↫ {*'..dp..'*}\n' 
+end
+if #redod == 0 then
+MsgRep = '⌁︙لا توجد ردود مضافه'
 end
 send(msg.chat_id_,msg.id_,MsgRep)
-end
-return false
 end
 --     Source DevProx     --
 if msg.content_.text_ == 'حذف الردود' and Manager(msg) and ChCheck(msg) or msg.content_.text_ == 'مسح الردود' and Manager(msg) and ChCheck(msg) or msg.content_.text_ == 'حذف ردود المدير' and Manager(msg) and ChCheck(msg) or msg.content_.text_ == 'مسح ردود المدير' and Manager(msg) and ChCheck(msg) then
@@ -8770,9 +8768,6 @@ end
 --     Source DevProx     --
 if  msg.content_.text_ == "ردود المطور" and Sudo(msg) or msg.content_.text_ == "الردود العام" and Sudo(msg) or msg.content_.text_ == "ردود العام" and Sudo(msg) or msg.content_.text_ == "↫ الردود العام ⌁" and Sudo(msg) then
 local redod = DevAbs:smembers(DevProx.."Abs:Sudo:AllRed")
-if #redod == 0 then
-send(msg.chat_id_,msg.id_,'⌁︙لا توجد ردود مضافه')
-else
 MsgRep = '⌁︙ردود المطور ↫ ⤈ \n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n'
 for k,v in pairs(redod) do
 if DevAbs:get(DevProx.."Abs:Gif:AllRed"..v) then
@@ -8792,11 +8787,12 @@ dp = 'ملف 📁'
 elseif DevAbs:get(DevProx.."Abs:Audio:AllRed"..v) then
 dp = 'اغنيه 🎶'
 end
-MsgRep = MsgRep..k..'~ (`'..v..'`) ↫ {*'..dp..'*}\n' 
+MsgRep = MsgRep..''..k..'~ (`'..v..'`) ↫ {*'..dp..'*}\n' 
+end
+if #redod == 0 then
+MsgRep = '⌁︙لا توجد ردود مضافه'
 end
 send(msg.chat_id_,msg.id_,MsgRep)
-end
-return false
 end
 --     Source DevProx     --
 if msg.content_.text_ == "حذف ردود المطور" and Sudo(msg) or msg.content_.text_ == "حذف ردود العام" and Sudo(msg) or msg.content_.text_ == "مسح ردود المطور" and Sudo(msg) then
