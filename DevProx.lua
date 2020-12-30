@@ -7879,9 +7879,15 @@ Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙ارسل اسمك واسم الشخص �
 end
 end
 if text and text ~= "نسبه الحب" and text ~= "نسبة الحب" and DevAbs:get(DevProx..'Nsba:Abs'..msg.chat_id_..msg.sender_user_id_) then
+if text and text == 'الغاء' then 
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تم الغاء امر نسبة الحب ', 1, 'md')
+DevAbs:del(DevProx..'Nsba:Abs'..msg.chat_id_..msg.sender_user_id_) 
+return false 
+end 
 Abs = math.random(0,100);
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙نسبة الحب بين '..text..' هي : '..Abs..'%', 1, 'md')
 DevAbs:del(DevProx..'Nsba:Abs'..msg.chat_id_..msg.sender_user_id_) 
+return false 
 end
 --     Source DevProx     --
 if text == "تفعيل حساب العمر" and Manager(msg) and SourceCh(msg) then
