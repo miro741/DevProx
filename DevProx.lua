@@ -1683,8 +1683,8 @@ end
 end
 --     Source DevProx     --
 if msg.content_.text_ then
-local content_text = DevAbs:get(DevProx..'Abs:Add:GpRed'..msg.sender_user_id_..''..msg.chat_id_..'')
-if content_text == 'DelGpRed' then
+local DelGpRed = DevAbs:get(DevProx..'Abs:Add:GpRed'..msg.sender_user_id_..''..msg.chat_id_..'')
+if DelGpRed == 'DelGpRed' then
 Dev_Abs(msg.chat_id_, msg.id_, 1,'⌁︙الكلمه ↫ '..msg.content_.text_..' تم حذفها',  1, "html")
 DevAbs:del(DevProx..'Abs:Add:GpRed'..msg.sender_user_id_..''..msg.chat_id_..'')
 DevAbs:del(DevProx..'Abs:Gif:GpRed'..msg.content_.text_..''..msg.chat_id_..'')
@@ -1700,8 +1700,8 @@ return false
 end
 end
 if msg.content_.text_ then
-local content_text = DevAbs:get(DevProx.."Abs:Add:AllRed"..msg.sender_user_id_)
-if content_text == 'DelAllRed' then
+local DelAllRed = DevAbs:get(DevProx.."Abs:Add:AllRed"..msg.sender_user_id_)
+if DelAllRed == 'DelAllRed' then
 Dev_Abs(msg.chat_id_, msg.id_, 1,'⌁︙الكلمه ↫ '..msg.content_.text_..' تم حذفها',  1, "html")
 DevAbs:del(DevProx.."Abs:Add:AllRed"..msg.sender_user_id_)
 DevAbs:del(DevProx.."Abs:Gif:AllRed"..msg.content_.text_)
@@ -1718,8 +1718,8 @@ end
 end
 --     Source DevProx     --
 if msg.content_.text_ or msg.content_.video_ or msg.content_.document_ or msg.content_.sticker_ or msg.content_.voice_ or msg.content_.audio_ or msg.content_.photo_ or msg.content_.animation_ then 
-local content_text = DevAbs:get(DevProx..'Abs:Add:GpRed'..msg.sender_user_id_..''..msg.chat_id_..'')
-if content_text == 'SaveGpRed' then 
+local SaveGpRed = DevAbs:get(DevProx..'Abs:Add:GpRed'..msg.sender_user_id_..''..msg.chat_id_..'')
+if SaveGpRed == 'SaveGpRed' then 
 if text == 'الغاء' then
 local DelManagerRep = DevAbs:get(DevProx..'DelManagerRep'..msg.chat_id_..'')
 DevAbs:srem(DevProx..'Abs:Manager:GpRed'..msg.chat_id_..'',DelManagerRep)
@@ -1730,16 +1730,16 @@ DevAbs:del(DevProx..'DelManagerRep'..msg.chat_id_..'')
 return false
 end
 DevAbs:del(DevProx..'Abs:Add:GpRed'..msg.sender_user_id_..''..msg.chat_id_..'')
-local content_text = DevAbs:get(DevProx..'Abs:Add:GpText'..msg.sender_user_id_..''..msg.chat_id_..'')
-if msg.content_.video_ then DevAbs:set(DevProx..'Abs:Video:GpRed'..content_text..''..msg.chat_id_..'', msg.content_.video_.video_.persistent_id_)
+local SaveGpRed = DevAbs:get(DevProx..'Abs:Add:GpText'..msg.sender_user_id_..''..msg.chat_id_..'')
+if msg.content_.video_ then DevAbs:set(DevProx..'Abs:Video:GpRed'..SaveGpRed..''..msg.chat_id_..'', msg.content_.video_.video_.persistent_id_)
 end
-if msg.content_.document_ then DevAbs:set(DevProx..'Abs:File:GpRed'..content_text..''..msg.chat_id_..'', msg.content_.document_.document_.persistent_id_)
+if msg.content_.document_ then DevAbs:set(DevProx..'Abs:File:GpRed'..SaveGpRed..''..msg.chat_id_..'', msg.content_.document_.document_.persistent_id_)
 end
-if msg.content_.sticker_ then DevAbs:set(DevProx..'Abs:Stecker:GpRed'..content_text..''..msg.chat_id_..'', msg.content_.sticker_.sticker_.persistent_id_) 
+if msg.content_.sticker_ then DevAbs:set(DevProx..'Abs:Stecker:GpRed'..SaveGpRed..''..msg.chat_id_..'', msg.content_.sticker_.sticker_.persistent_id_) 
 end 
-if msg.content_.voice_ then DevAbs:set(DevProx..'Abs:Voice:GpRed'..content_text..''..msg.chat_id_..'', msg.content_.voice_.voice_.persistent_id_) 
+if msg.content_.voice_ then DevAbs:set(DevProx..'Abs:Voice:GpRed'..SaveGpRed..''..msg.chat_id_..'', msg.content_.voice_.voice_.persistent_id_) 
 end
-if msg.content_.audio_ then DevAbs:set(DevProx..'Abs:Audio:GpRed'..content_text..''..msg.chat_id_..'', msg.content_.audio_.audio_.persistent_id_) 
+if msg.content_.audio_ then DevAbs:set(DevProx..'Abs:Audio:GpRed'..SaveGpRed..''..msg.chat_id_..'', msg.content_.audio_.audio_.persistent_id_) 
 end
 if msg.content_.photo_ then
 if msg.content_.photo_.sizes_[0] then
@@ -1754,12 +1754,12 @@ end
 if msg.content_.photo_.sizes_[3] then
 photo_in_group = msg.content_.photo_.sizes_[3].photo_.persistent_id_
 end
-DevAbs:set(DevProx..'Abs:Photo:GpRed'..content_text..''..msg.chat_id_..'', photo_in_group) 
+DevAbs:set(DevProx..'Abs:Photo:GpRed'..SaveGpRed..''..msg.chat_id_..'', photo_in_group) 
 end
-if msg.content_.animation_ then DevAbs:set(DevProx..'Abs:Gif:GpRed'..content_text..''..msg.chat_id_..'', msg.content_.animation_.animation_.persistent_id_) 
+if msg.content_.animation_ then DevAbs:set(DevProx..'Abs:Gif:GpRed'..SaveGpRed..''..msg.chat_id_..'', msg.content_.animation_.animation_.persistent_id_) 
 end 
 if msg.content_.text_ then
-DevAbs:set(DevProx..'Abs:Text:GpRed'..content_text..''..msg.chat_id_..'', msg.content_.text_)
+DevAbs:set(DevProx..'Abs:Text:GpRed'..SaveGpRed..''..msg.chat_id_..'', msg.content_.text_)
 end 
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تم حفظ الرد الجديد', 1, 'md') 
 DevAbs:del(DevProx..'Abs:Add:GpText'..msg.sender_user_id_..''..msg.chat_id_..'')
@@ -1809,8 +1809,8 @@ end
 --     Source DevProx     --
 text = msg.content_.text_
 if msg.content_.text_ or msg.content_.video_ or msg.content_.document_ or msg.content_.sticker_ or msg.content_.voice_ or msg.content_.audio_ or msg.content_.photo_ or msg.content_.animation_ then
-local content_text = DevAbs:get(DevProx.."Abs:Add:AllRed"..msg.sender_user_id_)
-if content_text == 'SaveAllRed' then
+local SaveAllRed = DevAbs:get(DevProx.."Abs:Add:AllRed"..msg.sender_user_id_)
+if SaveAllRed == 'SaveAllRed' then
 if text == 'الغاء' then
 local DelSudoRep = DevAbs:get(DevProx..'DelSudoRep')
 DevAbs:del(DevProx.."Abs:Sudo:AllRed",DelSudoRep)
@@ -1821,21 +1821,21 @@ DevAbs:del(DevProx.."DelSudoRep")
 return false
 end
 DevAbs:del(DevProx.."Abs:Add:AllRed"..msg.sender_user_id_)
-local content_text = DevAbs:get(DevProx.."Abs:Add:AllText"..msg.sender_user_id_)
+local SaveAllRed = DevAbs:get(DevProx.."Abs:Add:AllText"..msg.sender_user_id_)
 if msg.content_.video_ then
-DevAbs:set(DevProx.."Abs:Video:AllRed"..content_text, msg.content_.video_.video_.persistent_id_)
+DevAbs:set(DevProx.."Abs:Video:AllRed"..SaveAllRed, msg.content_.video_.video_.persistent_id_)
 end
 if msg.content_.document_ then
-DevAbs:set(DevProx.."Abs:File:AllRed"..content_text, msg.content_.document_.document_.persistent_id_)
+DevAbs:set(DevProx.."Abs:File:AllRed"..SaveAllRed, msg.content_.document_.document_.persistent_id_)
 end
 if msg.content_.sticker_ then
-DevAbs:set(DevProx.."Abs:Stecker:AllRed"..content_text, msg.content_.sticker_.sticker_.persistent_id_)
+DevAbs:set(DevProx.."Abs:Stecker:AllRed"..SaveAllRed, msg.content_.sticker_.sticker_.persistent_id_)
 end
 if msg.content_.voice_ then
-DevAbs:set(DevProx.."Abs:Voice:AllRed"..content_text, msg.content_.voice_.voice_.persistent_id_)
+DevAbs:set(DevProx.."Abs:Voice:AllRed"..SaveAllRed, msg.content_.voice_.voice_.persistent_id_)
 end
 if msg.content_.audio_ then
-DevAbs:set(DevProx.."Abs:Audio:AllRed"..content_text, msg.content_.audio_.audio_.persistent_id_)
+DevAbs:set(DevProx.."Abs:Audio:AllRed"..SaveAllRed, msg.content_.audio_.audio_.persistent_id_)
 end
 if msg.content_.photo_ then
 if msg.content_.photo_.sizes_[0] then
@@ -1850,13 +1850,13 @@ end
 if msg.content_.photo_.sizes_[3] then
 photo_in_all_groups = msg.content_.photo_.sizes_[3].photo_.persistent_id_
 end
-DevAbs:set(DevProx.."Abs:Photo:AllRed"..content_text, photo_in_all_groups)
+DevAbs:set(DevProx.."Abs:Photo:AllRed"..SaveAllRed, photo_in_all_groups)
 end
 if msg.content_.animation_ then
-DevAbs:set(DevProx.."Abs:Gif:AllRed"..content_text, msg.content_.animation_.animation_.persistent_id_)
+DevAbs:set(DevProx.."Abs:Gif:AllRed"..SaveAllRed, msg.content_.animation_.animation_.persistent_id_)
 end
 if msg.content_.text_ then
-DevAbs:set(DevProx.."Abs:Text:AllRed"..content_text, msg.content_.text_)
+DevAbs:set(DevProx.."Abs:Text:AllRed"..SaveAllRed, msg.content_.text_)
 end 
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تم حفظ الرد الجديد', 1, 'md') 
 DevAbs:del(DevProx.."Abs:Add:AllText"..msg.sender_user_id_)
@@ -2929,6 +2929,7 @@ Dev_Abs(msg.chat_id_, msg.id_, 1,'⌁︙عدد النقاط التي ربحته�
 end
 end
 if text ==  'حذف رسائلي' and ChCheck(msg) or text ==  'مسح رسائلي' and ChCheck(msg) then DevAbs:del(DevProx..'Abs:UsersMsgs'..msg.chat_id_..':'..msg.sender_user_id_) Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تم حذف جميع رسائلك', 1, 'md') end
+if text ==  'حذف نقاطي' and ChCheck(msg) or text ==  'مسح نقاطي' and ChCheck(msg) then DevAbs:del(DevProx..'Abs:GamesNumber'..msg.chat_id_..msg.sender_user_id_) Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تم حذف جميع نقاطك', 1, 'md') end
 --     Source DevProx     --
 if text == 'سمايلات' and ChCheck(msg) or text == 'السمايلات' and ChCheck(msg) then
 if DevAbs:get(DevProx..'Abs:Lock:Games'..msg.chat_id_) then
@@ -8682,8 +8683,8 @@ DevAbs:set(DevProx..'Abs:Add:GpRed'..msg.sender_user_id_..''..msg.chat_id_,'SetG
 Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙حسنا ارسل الكلمه الان " ,  1, "md")
 return false    end
 if msg.content_.text_ then
-local content_DevAbs2 = DevAbs:get(DevProx..'Abs:Add:GpRed'..msg.sender_user_id_..''..msg.chat_id_..'')
-if content_DevAbs2 == 'SetGpRed' then
+local SetGpRed = DevAbs:get(DevProx..'Abs:Add:GpRed'..msg.sender_user_id_..''..msg.chat_id_..'')
+if SetGpRed == 'SetGpRed' then
 Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙ارسل لي الرد سواء كان ↫ ⤈\n❨ ملف • ملصق • متحركه • صوره\n • فيديو • بصمه • صوت • رساله ❩\n⌁︙يمكنك اضافة الى النص ↫ ⤈\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n `#username` ↬ معرف المستخدم\n `#msgs` ↬ عدد الرسائل\n `#name` ↬ اسم المستخدم\n `#id` ↬ ايدي المستخدم\n `#stast` ↬ رتبة المستخدم\n `#edit` ↬ عدد السحكات\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n⌁︙للخروج ارسل ↫ ( الغاء )\n ✓" ,  1, "md")
 DevAbs:set(DevProx..'Abs:Add:GpRed'..msg.sender_user_id_..''..msg.chat_id_..'','SaveGpRed')
 DevAbs:set(DevProx..'Abs:Add:GpText'..msg.sender_user_id_..''..msg.chat_id_..'',msg.content_.text_)
@@ -8704,8 +8705,8 @@ DevAbs:set(DevProx.."Abs:Add:AllRed"..msg.sender_user_id_,'SetAllRed')
 Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙حسنا ارسل الكلمه الان " ,  1, "md")
 return false    end
 if msg.content_.text_ then
-local content_DevAbs2 = DevAbs:get(DevProx.."Abs:Add:AllRed"..msg.sender_user_id_)
-if content_DevAbs2 == 'SetAllRed' then
+local SetAllRed = DevAbs:get(DevProx.."Abs:Add:AllRed"..msg.sender_user_id_)
+if SetAllRed == 'SetAllRed' then
 Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙ارسل لي الرد سواء كان ↫ ⤈\n❨ ملف • ملصق • متحركه • صوره\n • فيديو • بصمه • صوت • رساله ❩\n⌁︙يمكنك اضافة الى النص ↫ ⤈\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n `#username` ↬ معرف المستخدم\n `#msgs` ↬ عدد الرسائل\n `#name` ↬ اسم المستخدم\n `#id` ↬ ايدي المستخدم\n `#stast` ↬ رتبة المستخدم\n `#edit` ↬ عدد السحكات\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n⌁︙للخروج ارسل ↫ ( الغاء )\n ✓" ,  1, "md")
 DevAbs:set(DevProx.."Abs:Add:AllRed"..msg.sender_user_id_,'SaveAllRed')
 DevAbs:set(DevProx.."Abs:Add:AllText"..msg.sender_user_id_, msg.content_.text_)
@@ -8717,9 +8718,9 @@ end end
 if msg.content_.text_ == 'الردود' and Manager(msg) and ChCheck(msg) or msg.content_.text_ == 'ردود المدير' and Manager(msg) and ChCheck(msg) then
 local redod = DevAbs:smembers(DevProx..'Abs:Manager:GpRed'..msg.chat_id_..'')
 if #redod == 0 then
-Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙لا توجد ردود مضافه" ,  1, "md")
+send(msg.chat_id_,msg.id_,'⌁︙لا توجد ردود مضافه')
 else
-msg_rep = '⌁︙ردود المدير ↫ ⤈ \n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n'
+MsgRep = '⌁︙ردود المدير ↫ ⤈ \n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n'
 for k,v in pairs(redod) do
 if DevAbs:get(DevProx.."Abs:Gif:GpRed"..v..msg.chat_id_) then
 dp = 'متحركه 🎭'
@@ -8738,9 +8739,9 @@ dp = 'ملف 📁'
 elseif DevAbs:get(DevProx.."Abs:Audio:GpRed"..v..msg.chat_id_) then
 dp = 'اغنيه 🎶'
 end
-msg_rep = msg_rep ..k..'~ (*'..v..'*) ↫ {*'..dp..'*}\n' 
+MsgRep = MsgRep..k..'~ (`'..v..'`) ↫ {*'..dp..'*}\n' 
 end
-Dev_Abs(msg.chat_id_, msg.id_, 1, msg_rep,1, 'md')
+send(msg.chat_id_,msg.id_,MsgRep)
 end
 return false
 end
@@ -8751,7 +8752,6 @@ if #redod == 0 then
 Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙لا توجد ردود مضافه" ,  1, "md")
 else
 for k,v in pairs(redod) do
-DevAbs:del(DevProx..'Abs:Add:GpRed'..msg.sender_user_id_..''..msg.chat_id_..'')
 DevAbs:del(DevProx..'Abs:Gif:GpRed'..v..msg.chat_id_)
 DevAbs:del(DevProx..'Abs:Voice:GpRed'..v..msg.chat_id_)
 DevAbs:del(DevProx..'Abs:Audio:GpRed'..v..msg.chat_id_)
@@ -8760,7 +8760,7 @@ DevAbs:del(DevProx..'Abs:Stecker:GpRed'..v..msg.chat_id_)
 DevAbs:del(DevProx..'Abs:Video:GpRed'..v..msg.chat_id_)
 DevAbs:del(DevProx..'Abs:File:GpRed'..v..msg.chat_id_)
 DevAbs:del(DevProx..'Abs:Text:GpRed'..v..msg.chat_id_)
-DevAbs:del(DevProx..'Abs:Manager:GpRed'..msg.chat_id_..'',msg.content_.text_)
+DevAbs:del(DevProx..'Abs:Manager:GpRed'..msg.chat_id_)
 end
 local DevProxTEAM = '⌁︙اهلا عزيزي ↫ '..AbsRank(msg)..' \n⌁︙تم حذف ردود المدير\n ✓'
 absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, DevProxTEAM, 14, string.len(msg.sender_user_id_))
@@ -8771,10 +8771,9 @@ end
 if  msg.content_.text_ == "ردود المطور" and Sudo(msg) or msg.content_.text_ == "الردود العام" and Sudo(msg) or msg.content_.text_ == "ردود العام" and Sudo(msg) or msg.content_.text_ == "↫ الردود العام ⌁" and Sudo(msg) then
 local redod = DevAbs:smembers(DevProx.."Abs:Sudo:AllRed")
 if #redod == 0 then
-Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙لا توجد ردود مضافه" ,  1, "md")
+send(msg.chat_id_,msg.id_,'⌁︙لا توجد ردود مضافه')
 else
-local i = 1
-msg_rep = '⌁︙ردود المطور ↫ ⤈ \n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n'
+MsgRep = '⌁︙ردود المطور ↫ ⤈ \n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n'
 for k,v in pairs(redod) do
 if DevAbs:get(DevProx.."Abs:Gif:AllRed"..v) then
 dp = 'متحركه 🎭'
@@ -8793,9 +8792,9 @@ dp = 'ملف 📁'
 elseif DevAbs:get(DevProx.."Abs:Audio:AllRed"..v) then
 dp = 'اغنيه 🎶'
 end
-msg_rep = msg_rep ..k..'~ (*'..v..'*) ↫ {*'..dp..'*}\n' 
+MsgRep = MsgRep..k..'~ (`'..v..'`) ↫ {*'..dp..'*}\n' 
 end
-Dev_Abs(msg.chat_id_, msg.id_, 1, msg_rep,1, "md")
+send(msg.chat_id_,msg.id_,MsgRep)
 end
 return false
 end
@@ -8815,7 +8814,7 @@ DevAbs:del(DevProx.."Abs:Stecker:AllRed"..v)
 DevAbs:del(DevProx.."Abs:Video:AllRed"..v)
 DevAbs:del(DevProx.."Abs:File:AllRed"..v)
 DevAbs:del(DevProx.."Abs:Text:AllRed"..v)
-DevAbs:del(DevProx.."Abs:Sudo:AllRed",msg.content_.text_)
+DevAbs:del(DevProx.."Abs:Sudo:AllRed")
 end
 local DevProxTEAM = '⌁︙اهلا عزيزي ↫ '..AbsRank(msg)..' \n⌁︙تم حذف ردود المطور \n ✓'
 absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, DevProxTEAM, 14, string.len(msg.sender_user_id_))
