@@ -3178,7 +3178,7 @@ name = string.gsub(name,'الثلج','انا ابن الماء فان تركون
 name = string.gsub(name,'الاسفنج','كلي ثقوب ومع ذالك احفض الماء فمن اكون ؟')
 name = string.gsub(name,'الصوت','اسير بلا رجلين ولا ادخل الا بالاذنين فمن انا ؟')
 name = string.gsub(name,'بلم','حامل ومحمول نصف ناشف ونصف مبلول فمن اكون ؟ ')
-DevProxTEAM = '⌁︙اول واحد يحلها يربح ↫ '..name.
+DevProxTEAM = '⌁︙اول واحد يحلها يربح ↫ '..name
 Dev_Abs(msg.chat_id_, msg.id_, 1,DevProxTEAM, 1, 'md')
 return false
 end end
