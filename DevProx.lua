@@ -2216,8 +2216,8 @@ BotText = "مفعله في السابق\n⌁︙ارسل ↫ الاوامر وا�
 else 
 BotText = "معطله يجب رفعي مشرف\n⌁︙بعد ذلك يرجى ارسال امر ↫ تفعيل\n⌁︙سيتم رفع الادمنيه والمنشئ تلقائيا"
 end 
-local AbsText = DevAbs:get(DevProx.."Abs:Text:BotWelcome") or "⌁︙مرحبا انا بوت اسمي "..NameBot.."\n⌁︙حالة المجموعه ↫ "..BotText.."\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉"
-local AbsPhoto = DevAbs:get(DevProx.."Abs:Photo:BotWelcome") or ""..abbas.photos_[0].sizes_[1].photo_.persistent_id_..""
+local AbsText = (DevAbs:get(DevProx.."Abs:Text:BotWelcome") or "⌁︙مرحبا انا بوت اسمي "..NameBot.."\n⌁︙حالة المجموعه ↫ "..BotText.."\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉")
+local AbsPhoto = (DevAbs:get(DevProx.."Abs:Photo:BotWelcome") or abbas.photos_[0].sizes_[1].photo_.persistent_id_)
 if DevAbs:get(DevProx.."Abs:Photo:BotWelcome") or abbas.photos_[0] then
 sendPhoto(msg.chat_id_,msg.id_,0,1,nil,AbsPhoto,AbsText)
 else 
@@ -7861,32 +7861,66 @@ Dev_Abs(msg.chat_id_, msg.id_, 1, t, 1, 'html')
 end
 end
 --     Source DevProx     --
-if text == "تفعيل نسبه الحب" and Manager(msg) and SourceCh(msg) or text == "تفعيل نسبة الحب" and Manager(msg) and SourceCh(msg) then
-local DevProxTEAM = '⌁︙اهلا عزيزي ↫ '..AbsRank(msg)..' \n⌁︙تم تفعيل نسبة الحب'
+if text and (text == "تفعيل اوامر النسب" or text == "تفعيل نسبه الحب" or text == "تفعيل نسبه الرجوله" or text == "تفعيل نسبه الانوثه") and Manager(msg) and SourceCh(msg) then
+local DevProxTEAM = '⌁︙اهلا عزيزي ↫ '..AbsRank(msg)..' \n⌁︙تم تفعيل اوامر النسب'
 absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, DevProxTEAM, 14, string.len(msg.sender_user_id_))
 DevAbs:del(DevProx..'Abs:Nsba:Abs'..msg.chat_id_) 
 end
-if text == "تعطيل نسبه الحب" and Manager(msg) and SourceCh(msg) or text == "تعطيل نسبة الحب" and Manager(msg) and SourceCh(msg) then
-local DevProxTEAM = '⌁︙اهلا عزيزي ↫ '..AbsRank(msg)..' \n⌁︙تم تعطيل نسبة الحب'
+if text and (text == "تعطيل اوامر النسب" or text == "تعطيل نسبه الحب" or text == "تعطيل نسبه الرجوله" or text == "تعطيل نسبه الانوثه") and Manager(msg) and SourceCh(msg) then
+local DevProxTEAM = '⌁︙اهلا عزيزي ↫ '..AbsRank(msg)..' \n⌁︙تم تعطيل اوامر النسب'
 absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, DevProxTEAM, 14, string.len(msg.sender_user_id_))
 DevAbs:set(DevProx..'Abs:Nsba:Abs'..msg.chat_id_,true)  
 end
 --     Source DevProx     --
 if not DevAbs:get(DevProx..'Abs:Nsba:Abs'..msg.chat_id_) then
 if text == "نسبه الحب" and SourceCh(msg) or text == "نسبة الحب" and SourceCh(msg) then
-DevAbs:set(DevProx..'Nsba:Abs'..msg.chat_id_..msg.sender_user_id_,true) 
+DevAbs:set(DevProx..'LoveNsba:Abs'..msg.chat_id_..msg.sender_user_id_,true) 
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙قم بارسل اسمين لحساب نسبة الحب بينهما كمثال ↫ جاك وروز', 1, 'md')
 end
 end
-if text and text ~= "نسبه الحب" and text ~= "نسبة الحب" and DevAbs:get(DevProx..'Nsba:Abs'..msg.chat_id_..msg.sender_user_id_) then
+if text and text ~= "نسبه الحب" and text ~= "نسبة الحب" and DevAbs:get(DevProx..'LoveNsba:Abs'..msg.chat_id_..msg.sender_user_id_) then
 if text and text == 'الغاء' then 
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تم الغاء امر نسبة الحب ', 1, 'md')
-DevAbs:del(DevProx..'Nsba:Abs'..msg.chat_id_..msg.sender_user_id_) 
+DevAbs:del(DevProx..'LoveNsba:Abs'..msg.chat_id_..msg.sender_user_id_) 
 return false 
 end 
 Abs = math.random(0,100);
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙نسبة الحب بين '..text..' هي : '..Abs..'%', 1, 'md')
-DevAbs:del(DevProx..'Nsba:Abs'..msg.chat_id_..msg.sender_user_id_) 
+DevAbs:del(DevProx..'LoveNsba:Abs'..msg.chat_id_..msg.sender_user_id_) 
+return false 
+end
+if not DevAbs:get(DevProx..'Abs:Nsba:Abs'..msg.chat_id_) then
+if text and (text == "نسبه الرجوله" or text == "نسبة الرجوله" or text == "نسبه رجوله" or text == "نسبة رجوله") and SourceCh(msg) then
+DevAbs:set(DevProx..'RjolaNsba:Abs'..msg.chat_id_..msg.sender_user_id_,true) 
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙قم بارسل اسم الشخص لقياس نسبة رجولته كمثال ↫ جاك', 1, 'md')
+end
+end
+if text and text ~= "نسبه الرجوله" and text ~= "نسبة الرجوله" and text ~= "نسبه رجوله" and text ~= "نسبة رجوله" and DevAbs:get(DevProx..'RjolaNsba:Abs'..msg.chat_id_..msg.sender_user_id_) then
+if text and text == 'الغاء' then 
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تم الغاء امر نسبة الرجوله ', 1, 'md')
+DevAbs:del(DevProx..'RjolaNsba:Abs'..msg.chat_id_..msg.sender_user_id_) 
+return false 
+end 
+Abs = math.random(0,100);
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙نسبة رجولة '..text..' هي : '..Abs..'%', 1, 'md')
+DevAbs:del(DevProx..'RjolaNsba:Abs'..msg.chat_id_..msg.sender_user_id_) 
+return false 
+end
+if not DevAbs:get(DevProx..'Abs:Nsba:Abs'..msg.chat_id_) then
+if text and (text == "نسبه الانوثه" or text == "نسبة الانوثه" or text == "نسبه انوثه" or text == "نسبة انوثه") and SourceCh(msg) then
+DevAbs:set(DevProx..'AnothaNsba:Abs'..msg.chat_id_..msg.sender_user_id_,true) 
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙قم بارسل اسم الشخص لقياس نسبة انوثته كمثال ↫ روز', 1, 'md')
+end
+end
+if text and text ~= "نسبه الانوثه" and text ~= "نسبة الانوثه" and text ~= "نسبه انوثه" and text ~= "نسبة انوثه" and DevAbs:get(DevProx..'AnothaNsba:Abs'..msg.chat_id_..msg.sender_user_id_) then
+if text and text == 'الغاء' then 
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تم الغاء امر نسبة الانوثه ', 1, 'md')
+DevAbs:del(DevProx..'AnothaNsba:Abs'..msg.chat_id_..msg.sender_user_id_) 
+return false 
+end 
+Abs = math.random(0,100);
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙نسبة انوثة '..text..' هي : '..Abs..'%', 1, 'md')
+DevAbs:del(DevProx..'AnothaNsba:Abs'..msg.chat_id_..msg.sender_user_id_) 
 return false 
 end
 --     Source DevProx     --
@@ -7907,6 +7941,27 @@ local TextAge = text:match("^احسب (.*)$") or text:match("^عمري (.*)$")
 UrlAge = https.request('https://apiabs.ml/age.php?age='..URL.escape(TextAge)) 
 Age = JSON.decode(UrlAge) 
 t = Age.ok.abs
+Dev_Abs(msg.chat_id_, msg.id_, 1, t, 1, 'html')
+end
+end
+--     Source DevProx     --
+if text == "تفعيل معاني الاسماء" and Manager(msg) and SourceCh(msg) then
+local DevProxTEAM = '⌁︙اهلا عزيزي ↫ '..AbsRank(msg)..' \n⌁︙تم تفعيل معاني الاسماء'
+absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, DevProxTEAM, 14, string.len(msg.sender_user_id_))
+DevAbs:del(DevProx..'Abs:Mean:Abs'..msg.chat_id_) 
+end
+if text == "تعطيل معاني الاسماء" and Manager(msg) and SourceCh(msg) then
+local DevProxTEAM = '⌁︙اهلا عزيزي ↫ '..AbsRank(msg)..' \n⌁︙تم تعطيل معاني الاسماء'
+absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, DevProxTEAM, 14, string.len(msg.sender_user_id_))
+DevAbs:set(DevProx..'Abs:Mean:Abs'..msg.chat_id_,true)  
+end
+--     Source DevProx     --
+if not DevAbs:get(DevProx..'Abs:Mean:Abs'..msg.chat_id_) then
+if text and text:match("^معنى الاسم (.*)$") and SourceCh(msg) or text and text:match("^معنى اسم (.*)$") and SourceCh(msg) then 
+local TextMean = text:match("^معنى الاسم (.*)$") or text:match("^معنى اسم (.*)$") 
+UrlMean = https.request('https://apiabs.ml/Mean.php?Abs='..URL.escape(TextMean)) 
+Mean = JSON.decode(UrlMean) 
+t = Mean.ok.abs
 Dev_Abs(msg.chat_id_, msg.id_, 1, t, 1, 'html')
 end
 end
@@ -8000,7 +8055,7 @@ end
 --     Source DevProx     --
 if text and text:match("^ضع اسم (.*)$") and Manager(msg) and ChCheck(msg) then
 local txt = {string.match(text, "^(ضع اسم) (.*)$")}
-tdcli_function ({ ID = "ChangeChatTitle",chat_id_ = msg.chat_id_,title_ = txt },function(arg,data) 
+tdcli_function ({ ID = "ChangeChatTitle",chat_id_ = msg.chat_id_,title_ = txt[2] },function(arg,data) 
 if data.message_ == "Channel chat title can be changed by administrators only" then
 send(msg.chat_id_,msg.id_,"⌁︙البوت ليس ادمن يرجى ترقيتي !")  
 return false  
@@ -9017,8 +9072,6 @@ local text =  [[
 ⌁︙قائمه المنع
 ⌁︙حذف قائمه المنع
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
-⌁︙تفعيل • تعطيل ↫ الحظر
-⌁︙تفعيل • تعطيل ↫ الكتم
 ⌁︙تفعيل • تعطيل ↫ الرابط
 ⌁︙تفعيل • تعطيل ↫ الالعاب
 ⌁︙تفعيل • تعطيل ↫ الترحيب
@@ -9089,16 +9142,12 @@ local text =  [[
 ⌁︙تعيين الايدي ↫ لتعيين الكليشه
 ⌁︙حذف الايدي ↫ لحذف الكليشه
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
-⌁︙تفعيل • تعطيل ↫ اطردني
-⌁︙تفعيل • تعطيل ↫ الايدي
-⌁︙تفعيل • تعطيل ↫ ضافني
-⌁︙تفعيل • تعطيل ↫ الابراج
-⌁︙تفعيل • تعطيل ↫ الزخرفه
-⌁︙تفعيل • تعطيل ↫ نسبة الحب
-⌁︙تفعيل • تعطيل ↫ حساب العمر
-⌁︙تفعيل • تعطيل ↫ ردود المطور
-⌁︙تفعيل • تعطيل ↫ ردود المدير
-⌁︙تفعيل • تعطيل ↫ الايدي بالصوره
+⌁︙تفعيل • تعطيل + الامر ↫ ⤈
+⌁︙اطردني • الايدي بالصوره
+⌁︙الابراج • معاني الاسماء
+⌁︙الايدي • اوامر النسب
+⌁︙ردود المدير • ردود المطور
+⌁︙ضافني • حساب العمر • الزخرفه
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ⌁︙[Source Channel](https://t.me/Dev_Prox)
 ]]
@@ -9133,10 +9182,9 @@ local text =  [[
 ⌁︙المنظفين • حذف المنظفين
 ⌁︙رفع مدير • تنزيل مدير
 ⌁︙المدراء • حذف المدراء
-⌁︙تفعيل • تعطيل ↫ الحظر
-⌁︙تفعيل • تعطيل ↫ الكتم
-⌁︙تفعيل • تعطيل ↫ نزلني
-⌁︙تفعيل • تعطيل ↫ امسح
+⌁︙تفعيل • تعطيل + الامر ↫ ⤈
+⌁︙نزلني • امسح
+⌁︙الحظر • الكتم
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ⌁︙اوامر المنشئين الاساسيين ↫ ⤈
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
@@ -9230,13 +9278,10 @@ local text =  [[
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ⌁︙تفعيل ملف + اسم الملف
 ⌁︙تعطيل ملف + اسم الملف
-⌁︙تفعيل • تعطيل ↫ الاذاعه
-⌁︙تفعيل • تعطيل ↫ التواصل
-⌁︙تفعيل • تعطيل ↫ المغادره
-⌁︙تفعيل • تعطيل ↫ رد الخاص
-⌁︙تفعيل • تعطيل ↫ ترحيب البوت
-⌁︙تفعيل • تعطيل ↫ البوت الخدمي
-⌁︙تفعيل • تعطيل ↫ الاشتراك الاجباري
+⌁︙تفعيل • تعطيل + الامر ↫ ⤈
+⌁︙الاذاعه • الاشتراك الاجباري
+⌁︙ترحيب البوت • المغادره
+⌁︙البوت الخدمي • التواصل
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ⌁︙[Source Channel](https://t.me/Dev_Prox)
 ]]
@@ -9267,12 +9312,13 @@ local text =  [[
 ⌁︙نقاطي • بيع نقاطي • القوانين • زخرفه 
 ⌁︙رابط الحذف • نزلني • اطردني • المطور 
 ⌁︙منو ضافني • مشاهدات المنشور • الرابط 
+⌁︙نسبه الحب • نسبه الانوثه • نسبه الرجوله
 ⌁︙ايدي المجموعه • معلومات المجموعه 
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
-⌁︙نسبه الحب
 ⌁︙كول + الكلمه
 ⌁︙زخرفه + اسمك
 ⌁︙برج + نوع البرج
+⌁︙معنى اسم + الاسم
 ⌁︙احسب + تاريخ ميلادك
 ⌁︙رفع مطي • تنزيل مطي
 ⌁︙بوسه • بوسها ↫ بالرد
