@@ -687,6 +687,26 @@ end
 end,nil)   
 end
 --     Source DevProx     --
+function GetCustomTitle(user_id,chat_id)
+local Check = https.request('https://api.telegram.org/bot'..TokenBot..'/getChatMember?chat_id='..chat_id..'&user_id='..user_id)
+local GetInfo = JSON.decode(Check)
+if GetInfo.ok == true then
+if GetInfo.result.status == "creator" then 
+Status = "المالك"
+elseif GetInfo.result.status == "administrator" then 
+Status = "مشرف"
+else
+Status = false
+end
+if GetInfo.result.custom_title then 
+Abs = GetInfo.result.custom_title
+else 
+Abs = Status
+end
+end
+return Abs
+end
+--     Source DevProx     --
 local sendRequest = function(request_id, chat_id, reply_to_message_id, disable_notification, from_background, reply_markup, input_message_content, callback, extra)
 tdcli_function({ ID = request_id, chat_id_ = chat_id, reply_to_message_id_ = reply_to_message_id, disable_notification_ = disable_notification, from_background_ = from_background, reply_markup_ = reply_markup, input_message_content_ = input_message_content }, callback or dl_cb, extra)
 end
@@ -2902,7 +2922,7 @@ end
 if ChatType == 'sp' or ChatType == 'gp'  then
 if text == 'بوت' or text == 'بوتت' then 
 NameBot = (DevAbs:get(DevProx..'Abs:NameBot') or 'بروكس')
-local DevProxTEAM = {"لتكول بوت اسمي "..NameBot.." 😒🔪","عندي اسم تره 😒💔","صيحولي "..NameBot.." كافي بوت 😒🔪","انت البوت لك 😒💔"} 
+local DevProxTEAM = {"لتكول بوت اسمي "..NameBot.." 😒🔪","اسمي القميل "..NameBot.." 😚♥️","عندي اسم تره 😒💔","صيحولي "..NameBot.." كافي بوت 😒🔪","انت البوت لك 😒💔"} 
 DevAbs2 = math.random(#DevProxTEAM) 
 Dev_Abs(msg.chat_id_, msg.id_, 1, DevProxTEAM[DevAbs2] , 1, 'html') 
 return false
@@ -3890,6 +3910,7 @@ if text:match("^ايديي$") and ChCheck(msg) then Dev_Abs(msg.chat_id_, msg.id
 if text:match("^رتبتي$") and ChCheck(msg) then Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙رتبتك ↫ '..IdRank(msg.sender_user_id_, msg.chat_id_), 1, 'html') end
 if text:match("^ايدي المجموعه$") and ChCheck(msg) then Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙ايدي المجموعه ↫ `"..msg.chat_id_.."`", 1, 'md') end
 if text == 'مسح سحكاتي' or text == 'مسح تعديلاتي' or text == 'حذف سحكاتي' or text == 'حذف تعديلاتي' then DevAbs:del(DevProx..'Abs:EditMsg'..msg.chat_id_..msg.sender_user_id_) Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تم حذف جميع تعديلاتك بنجاح' , 1, 'md') end
+if text == 'مسح جهاتي' or text == 'مسح اضافاتي' or text == 'حذف جهاتي' or text == 'حذف اضافاتي' then DevAbs:del(DevProx..'Abs:ContactNumber'..msg.chat_id_..':'..msg.sender_user_id_) Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تم حذف جميع جهاتك المضافه' , 1, 'md') end
 --     Source DevProx     --
 if text == "المطور" then 
 local DevCh1 = DevAbs:get(DevProx.."DevAbs3")
@@ -4769,32 +4790,44 @@ ReplyStatus(msg,user,"reply","⌁︙تم تنزيله من قائمة الممي
 end end 
 --     Source DevProx     --
 if BasicConstructor(msg) then
-if text:match("^رفع ادمن بالكروب$") and msg.reply_to_message_id_ and ChCheck(msg) or text:match("^رفع ادمن الكروب$") and msg.reply_to_message_id_ and ChCheck(msg) then
+if text and text:match("^رفع مشرف$") and msg.reply_to_message_id_ then
 function promote_by_reply(extra, result, success)
 HTTPS.request("https://api.telegram.org/bot" .. TokenBot .. "/promoteChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" ..result.sender_user_id_.."&can_change_info=True&can_delete_messages=True&can_invite_users=True&can_restrict_members=True&can_pin_messages=True&can_promote_members=false")
-ReplyStatus(msg,result.sender_user_id_,"reply","⌁︙تم رفعه ادمن في الكروب")  
+ReplyStatus(msg,result.sender_user_id_,"reply","⌁︙تم رفعه مشرف في المجموعه")  
 end
 getMessage(msg.chat_id_, msg.reply_to_message_id_,promote_by_reply)
 end
-if text:match("^تنزيل ادمن بالكروب$") and msg.reply_to_message_id_ and ChCheck(msg) or text:match("^تنزيل ادمن الكروب$") and msg.reply_to_message_id_ and ChCheck(msg) then
+if text and text:match("^تنزيل مشرف$") and msg.reply_to_message_id_ then
 function promote_by_reply(extra, result, success)
 HTTPS.request("https://api.telegram.org/bot" .. TokenBot .. "/promoteChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" ..result.sender_user_id_.."&can_change_info=false&can_delete_messages=false&can_invite_users=false&can_restrict_members=false&can_pin_messages=false&can_promote_members=false")
-ReplyStatus(msg,result.sender_user_id_,"reply","⌁︙تم تنزيله ادمن من الكروب")  
+ReplyStatus(msg,result.sender_user_id_,"reply","⌁︙تم تنزيله من مشرفين المجموعه")  
 end
 getMessage(msg.chat_id_, msg.reply_to_message_id_,promote_by_reply)
 end 
-if text:match("^رفع بكل الصلاحيات$") and msg.reply_to_message_id_ and ChCheck(msg) or text:match("^رفع بكل صلاحيات$") and msg.reply_to_message_id_ and ChCheck(msg) then
+if text and (text:match("^رفع بكل الصلاحيات$") or text:match("^رفع بكل صلاحيات$")) and msg.reply_to_message_id_ then
 function promote_by_reply(extra, result, success)
 HTTPS.request("https://api.telegram.org/bot" .. TokenBot .. "/promoteChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" ..result.sender_user_id_.."&can_change_info=True&can_delete_messages=True&can_invite_users=True&can_restrict_members=True&can_pin_messages=True&can_promote_members=True")
-ReplyStatus(msg,result.sender_user_id_,"reply","⌁︙تم رفعه ادمن في جميع الصلاحيات")  
+ReplyStatus(msg,result.sender_user_id_,"reply","⌁︙تم رفعه مشرف في جميع الصلاحيات")  
 end
 getMessage(msg.chat_id_, msg.reply_to_message_id_,promote_by_reply)
+end
+if text and (text:match("^وضع لقب (.*)$") or text:match("^رفع مشرف (.*)$") or text:match("^ضع لقب (.*)$")) and SourceCh(msg) then
+local Abs = text:match("^وضع لقب (.*)$") or text:match("^رفع مشرف (.*)$") or text:match("^ضع لقب (.*)$")
+function ReplySet(extra, result, success)
+https.request("https://api.telegram.org/bot"..TokenBot.."/promoteChatMember?chat_id=" .. msg.chat_id_ .. "&user_id=" ..result.sender_user_id_.."&can_change_info=false&can_delete_messages=false&can_invite_users=True&can_restrict_members=false&can_pin_messages=True&can_promote_members=false")
+ReplyStatus(msg,result.sender_user_id_,"reply","⌁︙تم اضافة ↫ "..Abs.." كلقب له")  
+https.request("https://api.telegram.org/bot"..TokenBot.."/setChatAdministratorCustomTitle?chat_id=" .. msg.chat_id_ .. "&user_id=" ..result.sender_user_id_.."&custom_title="..Abs)
+end
+if tonumber(tonumber(msg.reply_to_message_id_)) == 0 then
+else
+getMessage(msg.chat_id_, tonumber(msg.reply_to_message_id_),ReplySet)
+end
 end
 end
 --     Source DevProx     --
 if Admin(msg) then
 if msg.reply_to_message_id_ ~= 0 then
-if text:match("^مسح$") and ChCheck(msg) or text:match("^حذف$") and ChCheck(msg) then
+if text and (text:match("^مسح$") or text:match("^حذف$")) and ChCheck(msg) then
 DeleteMessage(msg.chat_id_,{[0] = msg.reply_to_message_id_})
 DeleteMessage(msg.chat_id_,{[0] = msg.id_})
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تم حذف الرساله مع رسالة الامر', 1, 'md')
@@ -5895,21 +5928,31 @@ Tkeed = 'مكتوم'
 elseif DevAbs:sismember(DevProx..'Abs:Tkeed:'..msg.chat_id_,result.sender_user_id_) then
 Tkeed = 'مقيد'
 else
-Tkeed = 'لا يوجد'
+Tkeed = false
 end
-if DevAbs:sismember(DevProx..'Abs:SudoBot:',result.sender_user_id_) then
+if Tkeed ~= false then
+Tked = '\n⌁︙القيود ↫ '..Tkeed
+else 
+Tked = '' 
+end
+if DevAbs:sismember(DevProx..'Abs:SudoBot:',result.sender_user_id_) and SudoBot(msg) then
 sudobot = '\n⌁︙عدد الكروبات ↫ '..(DevAbs:get(DevProx..'Abs:Sudos'..result.sender_user_id_) or 0)..'' 
 else 
 sudobot = '' 
+end
+if GetCustomTitle(result.sender_user_id_,msg.chat_id_) ~= false then
+CustomTitle = '\n⌁︙لقبه ↫ '..GetCustomTitle(result.sender_user_id_,msg.chat_id_)
+else 
+CustomTitle = '' 
 end
 if data.first_name_ == false then 
 Dev_Abs(msg.chat_id_, msg.id_, 1,'⌁︙الحساب محذوف', 1, 'md')
 return false  end
 if data.username_ == false then
-Text = '⌁︙اسمه ↫ ['..CatchName(data.first_name_,20)..'](tg://user?id='..result.sender_user_id_..')\n⌁︙ايديه ↫ ❨ `'..result.sender_user_id_..'` ❩\n⌁︙رتبته ↫ '..IdRank(result.sender_user_id_, msg.chat_id_)..''..sudobot..'\n⌁︙رسائله ↫ ❨ '..user_msgs..' ❩\n⌁︙تفاعله ↫ '..formsgs(user_msgs)..'\n⌁︙نقاطه ↫ ❨ '..user_nkt..' ❩\n⌁︙القيود ↫ '..Tkeed
+Text = '⌁︙اسمه ↫ ['..CatchName(data.first_name_,20)..'](tg://user?id='..result.sender_user_id_..')\n⌁︙ايديه ↫ ❨ `'..result.sender_user_id_..'` ❩\n⌁︙رتبته ↫ '..IdRank(result.sender_user_id_, msg.chat_id_)..''..sudobot..'\n⌁︙رسائله ↫ ❨ '..user_msgs..' ❩\n⌁︙تفاعله ↫ '..formsgs(user_msgs)..''..CustomTitle..'\n⌁︙نقاطه ↫ ❨ '..user_nkt..' ❩'..Tked
 SendText(msg.chat_id_,Text,msg.id_/2097152/0.5,'md')
 else
-Dev_Abs(msg.chat_id_, msg.id_, 1,'⌁︙معرفه ↫ [@'..data.username_..']\n⌁︙ايديه ↫ ❨ `'..result.sender_user_id_..'` ❩\n⌁︙رتبته ↫ '..IdRank(result.sender_user_id_, msg.chat_id_)..''..sudobot..'\n⌁︙رسائله ↫ ❨ '..user_msgs..' ❩\n⌁︙تفاعله ↫ '..formsgs(user_msgs)..'\n⌁︙نقاطه ↫ ❨ '..user_nkt..' ❩\n⌁︙القيود ↫ '..Tkeed, 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1,'⌁︙معرفه ↫ [@'..data.username_..']\n⌁︙ايديه ↫ ❨ `'..result.sender_user_id_..'` ❩\n⌁︙رتبته ↫ '..IdRank(result.sender_user_id_, msg.chat_id_)..''..sudobot..'\n⌁︙رسائله ↫ ❨ '..user_msgs..' ❩\n⌁︙تفاعله ↫ '..formsgs(user_msgs)..''..CustomTitle..'\n⌁︙نقاطه ↫ ❨ '..user_nkt..' ❩'..Tked, 1, 'md')
 end
 end,nil)
 end 
@@ -5947,17 +5990,27 @@ Tkeed = 'مكتوم'
 elseif DevAbs:sismember(DevProx..'Abs:Tkeed:'..msg.chat_id_,res.id_) then
 Tkeed = 'مقيد'
 else
-Tkeed = 'لا يوجد'
+Tkeed = false
 end
-if DevAbs:sismember(DevProx..'Abs:SudoBot:',res.id_) then
+if Tkeed ~= false then
+Tked = '\n⌁︙القيود ↫ '..Tkeed
+else 
+Tked = '' 
+end
+if DevAbs:sismember(DevProx..'Abs:SudoBot:',res.id_) and SudoBot(msg) then
 sudobot = '\n⌁︙عدد الكروبات ↫ '..(DevAbs:get(DevProx..'Abs:Sudos'..res.id_) or 0)..'' 
 else 
 sudobot = '' 
 end
+if GetCustomTitle(res.id_,msg.chat_id_) ~= false then
+CustomTitle = '\n⌁︙لقبه ↫ '..GetCustomTitle(res.id_,msg.chat_id_)
+else 
+CustomTitle = '' 
+end
 if data.first_name_ == false then
 Dev_Abs(msg.chat_id_, msg.id_, 1,'⌁︙الحساب محذوف', 1, 'md')
 return false  end
-Dev_Abs(msg.chat_id_, msg.id_, 1,'⌁︙معرفه ↫ [@'..data.username_..']\n⌁︙ايديه ↫ ❨ `'..res.id_..'` ❩\n⌁︙رتبته ↫ '..IdRank(res.id_, msg.chat_id_)..''..sudobot..'\n⌁︙رسائله ↫ ❨ '..user_msgs..' ❩\n⌁︙تفاعله ↫ '..formsgs(user_msgs)..'\n⌁︙نقاطه ↫ ❨ '..user_nkt..' ❩\n⌁︙القيود ↫ '..Tkeed, 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1,'⌁︙معرفه ↫ [@'..data.username_..']\n⌁︙ايديه ↫ ❨ `'..res.id_..'` ❩\n⌁︙رتبته ↫ '..IdRank(res.id_, msg.chat_id_)..''..sudobot..'\n⌁︙رسائله ↫ ❨ '..user_msgs..' ❩\n⌁︙تفاعله ↫ '..formsgs(user_msgs)..''..CustomTitle..'\n⌁︙نقاطه ↫ ❨ '..user_nkt..' ❩'..Tked, 1, 'md')
 end,nil)
 end 
 end,nil)
@@ -5983,21 +6036,31 @@ Tkeed = 'مكتوم'
 elseif DevAbs:sismember(DevProx..'Abs:Tkeed:'..msg.chat_id_,iduser) then
 Tkeed = 'مقيد'
 else
-Tkeed = 'لا يوجد'
+Tkeed = false
 end
-if DevAbs:sismember(DevProx..'Abs:SudoBot:',iduser) then
+if Tkeed ~= false then
+Tked = '\n⌁︙القيود ↫ '..Tkeed
+else 
+Tked = '' 
+end
+if DevAbs:sismember(DevProx..'Abs:SudoBot:',iduser) and SudoBot(msg) then
 sudobot = '\n⌁︙عدد الكروبات ↫ '..(DevAbs:get(DevProx..'Abs:Sudos'..iduser) or 0)..'' 
 else 
 sudobot = '' 
+end
+if GetCustomTitle(iduser,msg.chat_id_) ~= false then
+CustomTitle = '\n⌁︙لقبه ↫ '..GetCustomTitle(iduser,msg.chat_id_)
+else 
+CustomTitle = '' 
 end
 if data.first_name_ == false then
 Dev_Abs(msg.chat_id_, msg.id_, 1,'⌁︙الحساب محذوف', 1, 'md')
 return false  end
 if data.username_ == false then
-Text = '⌁︙اسمه ↫ ['..CatchName(data.first_name_,20)..'](tg://user?id='..iduser..')\n⌁︙ايديه ↫ ❨ `'..iduser..'` ❩\n⌁︙رتبته ↫ '..IdRank(data.id_, msg.chat_id_)..''..sudobot..'\n⌁︙رسائله ↫ ❨ '..user_msgs..' ❩\n⌁︙تفاعله ↫ '..formsgs(user_msgs)..'\n⌁︙نقاطه ↫ ❨ '..user_nkt..' ❩\n⌁︙القيود ↫ '..Tkeed
+Text = '⌁︙اسمه ↫ ['..CatchName(data.first_name_,20)..'](tg://user?id='..iduser..')\n⌁︙ايديه ↫ ❨ `'..iduser..'` ❩\n⌁︙رتبته ↫ '..IdRank(data.id_, msg.chat_id_)..''..sudobot..'\n⌁︙رسائله ↫ ❨ '..user_msgs..' ❩\n⌁︙تفاعله ↫ '..formsgs(user_msgs)..''..CustomTitle..'\n⌁︙نقاطه ↫ ❨ '..user_nkt..' ❩'..Tked
 SendText(msg.chat_id_,Text,msg.id_/2097152/0.5,'md')
 else
-Dev_Abs(msg.chat_id_, msg.id_, 1,'⌁︙معرفه ↫ [@'..data.username_..']\n⌁︙ايديه ↫ ❨ `'..iduser..'` ❩\n⌁︙رتبته ↫ '..IdRank(data.id_, msg.chat_id_)..''..sudobot..'\n⌁︙رسائله ↫ ❨ '..user_msgs..' ❩\n⌁︙تفاعله ↫ '..formsgs(user_msgs)..'\n⌁︙نقاطه ↫ ❨ '..user_nkt..' ❩\n⌁︙القيود ↫ '..Tkeed, 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1,'⌁︙معرفه ↫ [@'..data.username_..']\n⌁︙ايديه ↫ ❨ `'..iduser..'` ❩\n⌁︙رتبته ↫ '..IdRank(data.id_, msg.chat_id_)..''..sudobot..'\n⌁︙رسائله ↫ ❨ '..user_msgs..' ❩\n⌁︙تفاعله ↫ '..formsgs(user_msgs)..''..CustomTitle..'\n⌁︙نقاطه ↫ ❨ '..user_nkt..' ❩'..Tked, 1, 'md')
 end
 end,nil)
 return false 
@@ -9188,10 +9251,11 @@ local text =  [[
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ⌁︙اوامر المنشئين الاساسيين ↫ ⤈
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
+⌁︙وضع لقب + اللقب
 ⌁︙تفعيل • تعطيل ↫ الرفع
 ⌁︙رفع منشئ • تنزيل منشئ
 ⌁︙المنشئين • حذف المنشئين
-⌁︙رفع • تنزيل ↫ ادمن بالكروب
+⌁︙رفع • تنزيل ↫ مشرف
 ⌁︙رفع بكل الصلاحيات
 ⌁︙حذف القوائم
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
@@ -9725,14 +9789,11 @@ tdcli_function ({ID = "PinChannelMessage",channel_id_ = msg.chat_id_:gsub('-100'
 end end end
 --     Source DevProx     --
 elseif (data.ID == "UpdateOption" and data.name_ == "my_id") then
-print('\27[30;32mجاري تنظيف المشتركين والمجموعات الوهميه يرجى الانتظار\n\27[1;37m')
+print('\27[30;32mجاري تنظيف المجموعات الوهميه يرجى الانتظار\n\27[1;37m')
 local PvList = DevAbs:smembers(DevProx..'Abs:Users')  
 for k,v in pairs(PvList) do 
-tdcli_function({ID = "SendChatAction",chat_id_ = v, action_ = {ID = "SendMessageTypingAction", progress_ = 100}},function(arg,data) 
-if data.ID and data.ID == "Ok" then
-else
-DevAbs:srem(DevProx.."Abs:Users",v)
-end end,nil) end 
+tdcli_function({ID='GetChat',chat_id_ = v},function(arg,data) end,nil) 
+end 
 local GpList = DevAbs:smembers(DevProx..'Abs:Groups') 
 for k,v in pairs(GpList) do 
 tdcli_function({ID='GetChat',chat_id_ = v},function(arg,data)
