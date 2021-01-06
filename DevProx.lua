@@ -4211,7 +4211,7 @@ end
 resolve_username(rem[2],remm)
 end
 --     Source DevProx     --
---       Set SudoBot        --
+--       Set SudoBot      --
 if Sudo(msg) then
 if text ==('رفع مطور') and SourceCh(msg) then
 function sudo_reply(extra, result, success)
@@ -4239,7 +4239,7 @@ DevAbs:sadd(DevProx..'Abs:SudoBot:',user)
 ReplyStatus(msg,user,"reply","⌁︙تم رفعه في قائمة المطورين")  
 end
 --     Source DevProx     --
---       Rem SudoBot        --
+--       Rem SudoBot      --
 if text ==('تنزيل مطور') and SourceCh(msg) then
 function prom_reply(extra, result, success)
 DevAbs:srem(DevProx..'Abs:SudoBot:',result.sender_user_id_)
@@ -4266,7 +4266,7 @@ DevAbs:srem(DevProx..'Abs:SudoBot:',user)
 ReplyStatus(msg,user,"reply","⌁︙تم تنزيله من قائمة المطورين")  
 end end
 --     Source DevProx     --
---      Set ManagerAll      --
+--      Set ManagerAll    --
 if SudoBot(msg) then
 if text ==('رفع مدير عام') and SourceCh(msg) then
 function raf_reply(extra, result, success)
@@ -4294,7 +4294,7 @@ DevAbs:sadd(DevProx..'Abs:ManagerAll:',user)
 ReplyStatus(msg,user,"reply","⌁︙تم رفعه في قائمة المدراء العامين")  
 end
 --     Source DevProx     --
---      Rem ManagerAll      --
+--      Rem ManagerAll    --
 if text ==('تنزيل مدير عام') and SourceCh(msg) then
 function prom_reply(extra, result, success)
 DevAbs:srem(DevProx..'Abs:ManagerAll:',result.sender_user_id_)
@@ -4431,7 +4431,7 @@ DevAbs:srem(DevProx..'Abs:VipAll:',user)
 ReplyStatus(msg,user,"reply","⌁︙تم تنزيله من قائمة المميزين العام")  
 end end
 --     Source DevProx     --
---       Set BasicConstructor        --
+--  Set BasicConstructor  --
 if ChatType == 'sp' or ChatType == 'gp'  then
 if AbsConstructor(msg) then
 if text ==('رفع منشئ اساسي') and SourceCh(msg) then
@@ -4460,7 +4460,7 @@ DevAbs:sadd(DevProx..'Abs:BasicConstructor:'..msg.chat_id_,user)
 ReplyStatus(msg,user,"reply","⌁︙تم رفعه منشئ اساسي")  
 end
 --     Source DevProx     --
---       Rem BasicConstructor        --
+--  Rem BasicConstructor  --
 if text ==('تنزيل منشئ اساسي') and SourceCh(msg) then
 function prom_reply(extra, result, success)
 DevAbs:srem(DevProx..'Abs:BasicConstructor:'..msg.chat_id_,result.sender_user_id_)
@@ -4490,7 +4490,7 @@ if text ==('رفع منشئ اساسي') and not AbsConstructor(msg) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙هذا الامر لمنشئ المجموعه والمطورين فقط', 1, 'md')
 end
 --     Source DevProx     --
---      Set Constructor       --
+--    Set  Constructor    --
 if BasicConstructor(msg) then
 if text ==('رفع منشئ') and SourceCh(msg) then
 function raf_reply(extra, result, success)
@@ -4518,7 +4518,7 @@ DevAbs:sadd(DevProx..'Abs:Constructor:'..msg.chat_id_,user)
 ReplyStatus(msg,user,"reply","⌁︙تم رفعه في قائمة المنشئين")  
 end
 --     Source DevProx     --
---      Rem Constructor       --
+--    Rem  Constructor    --
 if text ==('تنزيل منشئ') and SourceCh(msg) then
 function prom_reply(extra, result, success)
 DevAbs:srem(DevProx..'Abs:Constructor:'..msg.chat_id_,result.sender_user_id_)
@@ -4546,7 +4546,7 @@ ReplyStatus(msg,user,"reply","⌁︙تم تنزيله من قائمة المنش
 end 
 end
 --     Source DevProx     --
---       Set Manager        --
+--      Set Manager       --
 if Constructor(msg) then
 if text ==('رفع مدير') and SourceCh(msg) then
 function prom_reply(extra, result, success)
@@ -4574,7 +4574,7 @@ DevAbs:sadd(DevProx..'Abs:Managers:'..msg.chat_id_,user)
 ReplyStatus(msg,user,"reply","⌁︙تم رفعه في قائمة المدراء")  
 end
 --     Source DevProx     --
---       Rem Manager        --
+--       Rem Manager      --
 if text ==('تنزيل مدير') and SourceCh(msg) then
 function prom_reply(extra, result, success)
 DevAbs:srem(DevProx..'Abs:Managers:'..msg.chat_id_,result.sender_user_id_)
@@ -4601,7 +4601,7 @@ DevAbs:srem(DevProx..'Abs:Managers:'..msg.chat_id_,user)
 ReplyStatus(msg,user,"reply","⌁︙تم تنزيله من قائمة المدراء")  
 end 
 --     Source DevProx     --
---       Set Cleaner       --
+--       Set Cleaner      --
 if text ==('رفع منظف') and SourceCh(msg) then
 function prom_reply(extra, result, success)
 DevAbs:sadd(DevProx..'Abs:Cleaner:'..msg.chat_id_,result.sender_user_id_)
@@ -4628,7 +4628,7 @@ DevAbs:sadd(DevProx..'Abs:Cleaner:'..msg.chat_id_,user)
 ReplyStatus(msg,user,"reply","⌁︙تم رفعه في قائمة المنظفين")  
 end
 --     Source DevProx     --
---       Rem Cleaner       --
+--       Rem Cleaner      --
 if text ==('تنزيل منظف') and SourceCh(msg) then
 function prom_reply(extra, result, success)
 DevAbs:srem(DevProx..'Abs:Cleaner:'..msg.chat_id_,result.sender_user_id_)
@@ -8035,7 +8035,6 @@ if text == "الروابط" then if DevAbs:get(DevProx..'Abs:Lock:Links'..msg.ch
 if text == "المعرف" or text == "المعرفات" then if DevAbs:get(DevProx..'Abs:Lock:Tags'..msg.chat_id_) then lock_tag = 'مقفوله' else lock_tag = 'مفتوحه' end local DevProxTEAM = "\n" .."⌁︙المعرف ↫ "..lock_tag.."\n" Dev_Abs(msg.chat_id_, msg.id_, 1, DevProxTEAM, 1, 'md') end
 if text == "المتحركه" or text == "الملصقات المتحركه" then if DevAbs:get(DevProx..'Abs:Lock:Gifs'..msg.chat_id_) then mute_gifs = 'مقفوله' else mute_gifs = 'مفتوحه' end local DevProxTEAM = "\n" .."⌁︙المتحركه ↫ "..mute_gifs.."\n" Dev_Abs(msg.chat_id_, msg.id_, 1, DevProxTEAM, 1, 'md') end
 if text == "الملصقات" then if DevAbs:get(DevProx..'Abs:Lock:Stickers'..msg.chat_id_) then lock_sticker = 'مقفوله' else lock_sticker = 'مفتوحه' end local DevProxTEAM = "\n" .."⌁︙الملصقات ↫ "..lock_sticker.."\n" Dev_Abs(msg.chat_id_, msg.id_, 1, DevProxTEAM, 1, 'md') end
-if text == "الملفات" then if DevAbs:get(DevProx..'Abs:Lock:Document'..msg.chat_id_) then lock_file = 'مقفوله' else lock_file = 'مفتوحه' end local DevProxTEAM = "\n" .."⌁︙الملفات ↫ "..lock_file.."\n" Dev_Abs(msg.chat_id_, msg.id_, 1, DevProxTEAM, 1, 'md') end
 if text == "الصور" then if DevAbs:get(DevProx..'Abs:Lock:Photo'..msg.chat_id_) then mute_photo = 'مقفوله' else mute_photo = 'مفتوحه' end local DevProxTEAM = "\n" .."⌁︙الصور ↫ "..mute_photo.."\n" Dev_Abs(msg.chat_id_, msg.id_, 1, DevProxTEAM, 1, 'md') end
 if text == "الفيديو" or text == "الفيديوهات" then if DevAbs:get(DevProx..'Abs:Lock:Videos'..msg.chat_id_) then mute_video = 'مقفوله' else mute_video = 'مفتوحه' end local DevProxTEAM = "\n" .."⌁︙الفيديو ↫ "..mute_video.."\n" Dev_Abs(msg.chat_id_, msg.id_, 1, DevProxTEAM, 1, 'md') end
 if text == "الاونلاين" then if DevAbs:get(DevProx..'Abs:Lock:Inline'..msg.chat_id_) then mute_in = 'مقفل' else mute_in = 'مفتوح' end local DevProxTEAM = "\n" .."⌁︙الاونلاين ↫ "..mute_in.."\n" Dev_Abs(msg.chat_id_, msg.id_, 1, DevProxTEAM, 1, 'md') end
