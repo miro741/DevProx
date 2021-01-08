@@ -653,14 +653,10 @@ local function Filters(msg, value)
 local abs = (DevProx..'Abs:Filters:'..msg.chat_id_)
 if abs then
 local names = DevAbs:hkeys(abs)
-local text = ''
 local value = value:gsub(' ','')
 for i=1, #names do
-if string.match(value:lower(), names[i]:lower()) and not Admin(msg)then
-local id = msg.id_
-local msgs = {[0] = id}
-local chat = msg.chat_id_
-DeleteMessage(chat,msgs)
+if string.match(value:lower(), names[i]:lower()) and not VipMem(msg) then
+DeleteMessage(msg.chat_id_,{[0] = msg.id_})
 end
 end
 end
@@ -725,14 +721,6 @@ end
 local sendSticker = function(chat_id, reply_to_message_id, disable_notification, from_background, reply_markup, sticker)
 local input_message_content = { ID = "InputMessageSticker", sticker_ = getInputFile(sticker), width_ = 0, height_ = 0 } sendRequest("SendMessage", chat_id, reply_to_message_id, disable_notification, from_background, reply_markup, input_message_content, cb, cmd)
 end 
-local function getChannelMembers(channel_id, offset, filter, limit,cb) 
-tdcli_function ({ 
-ID = "GetChannelMembers",
-channel_id_ = getChatId(channel_id).ID,
-filter_ = {ID = "ChannelMembers" .. filter},
-offset_ = offset,limit_ = limit}, 
-cb, nil) 
-end
 function formsgs(msgs) 
 local MsgText = ''  
 if tonumber(msgs) < 100 then 
@@ -1056,7 +1044,7 @@ return false
 end 
 end
 
-if text and text:match("رفع (.*)") and tonumber(msg.reply_to_message_id_) > 0 and ChCheck(msg) then 
+if text and text:match("رفع (.*)") and tonumber(msg.reply_to_message_id_) > 0 then 
 local DEV_ABBAS = text:match("رفع (.*)")
 if DevAbs:sismember(DevProx.."Coomds"..msg.chat_id_,DEV_ABBAS) then
 function by_reply(extra, result, success)   
@@ -1082,7 +1070,7 @@ end
 tdcli_function ({ ID = "GetMessage", chat_id_ = msg.chat_id_, message_id_ = tonumber(msg.reply_to_message_id_) }, by_reply, nil)
 end
 end
-if text and text:match("تنزيل (.*)") and tonumber(msg.reply_to_message_id_) > 0 and ChCheck(msg) then 
+if text and text:match("تنزيل (.*)") and tonumber(msg.reply_to_message_id_) > 0 then 
 local DEV_ABBAS = text:match("تنزيل (.*)")
 if DevAbs:sismember(DevProx.."Coomds"..msg.chat_id_,DEV_ABBAS) then
 function by_reply(extra, result, success)   
@@ -1108,7 +1096,7 @@ end
 tdcli_function ({ ID = "GetMessage", chat_id_ = msg.chat_id_, message_id_ = tonumber(msg.reply_to_message_id_) }, by_reply, nil)
 end
 end
-if text and text:match("^رفع (.*) @(.*)") and ChCheck(msg) then 
+if text and text:match("^رفع (.*) @(.*)") then 
 local text1 = {string.match(text, "^(رفع) (.*) @(.*)$")}
 if DevAbs:sismember(DevProx.."Coomds"..msg.chat_id_,text1[2]) then
 function py_username(extra, result, success)   
@@ -1136,7 +1124,7 @@ end
 tdcli_function ({ID = "SearchPublicChat",username_ = text1[3]},py_username,nil) 
 end 
 end
-if text and text:match("^تنزيل (.*) @(.*)") and ChCheck(msg) then 
+if text and text:match("^تنزيل (.*) @(.*)") then 
 local text1 = {string.match(text, "^(تنزيل) (.*) @(.*)$")}
 if DevAbs:sismember(DevProx.."Coomds"..msg.chat_id_,text1[2]) then
 function py_username(extra, result, success)   
@@ -3627,12 +3615,12 @@ end
 end
 --     Source DevProx     --
 if text == 'رفع المشرفين' and ChCheck(msg) or text == 'رفع الادمنيه' and ChCheck(msg) then  
-local function promote_admin(extra, result, success)  
+tdcli_function ({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub("-100",""),filter_ = {ID = "ChannelMembersAdministrators"},offset_ = 0,limit_ = 200},function(arg,abbas) 
 DevAbs:del(DevProx..'Abs:AbsConstructor:'..msg.chat_id_)
 local num = 0
-local admins = result.members_  
+local admins = abbas.members_  
 for i=0 , #admins do   
-if result.members_[i].bot_info_ == false and result.members_[i].status_.ID == "ChatMemberStatusEditor" then
+if abbas.members_[i].bot_info_ == false and abbas.members_[i].status_.ID == "ChatMemberStatusEditor" then
 DevAbs:sadd(DevProx..'Abs:Admins:'..msg.chat_id_, admins[i].user_id_)   
 num = num + 1
 tdcli_function ({ID = "GetUser",user_id_ = admins[i].user_id_},function(arg,dp) 
@@ -3643,7 +3631,7 @@ end,nil)
 else
 DevAbs:srem(DevProx..'Abs:Admins:'..msg.chat_id_, admins[i].user_id_)   
 end 
-if result.members_[i].status_.ID == "ChatMemberStatusCreator" then  
+if abbas.members_[i].status_.ID == "ChatMemberStatusCreator" then  
 Manager_id = admins[i].user_id_  
 DevAbs:sadd(DevProx..'Abs:BasicConstructor:'..msg.chat_id_,Manager_id)  
 DevAbs:sadd(DevProx..'Abs:AbsConstructor:'..msg.chat_id_,Manager_id)   
@@ -3654,8 +3642,7 @@ Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙لا يوجد ادمنيه ليتم ر�
 else
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تم رفع '..num..' من الادمنيه \n⌁︙تم رفع منشئ المجموعه', 1, 'md')
 end
-end
-getChannelMembers(msg.chat_id_,0, 'Administrators', 100, promote_admin)
+end,nil) 
 end
 --     Source DevProx     --
 if text == 'غادر' and SudoBot(msg) then
@@ -7534,7 +7521,7 @@ end
 end
 --     Source DevProx     --
 if text == "كشف البوتات" and ChCheck(msg) then 
-local function cb(extra,result,success)
+tdcli_function ({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub("-100",""),filter_ = {ID = "ChannelMembersBots"},offset_ = 0,limit_ = 100 },function(extra,result,success)
 local admins = result.members_  
 text = '⌁︙*قائمة البوتات* ↫ ⤈ \n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n'
 local n = 0
@@ -7560,8 +7547,7 @@ Dev_Abs(msg.chat_id_, msg.id_, 1, text..a..f, 1, 'md')
 end
 end,nil)
 end
-end
-getChannelMembers(msg.chat_id_, 0, 'Bots', 200,cb)
+end,nil)
 end
 if text == 'حذف البوتات' and ChCheck(msg) or text == 'طرد البوتات' and ChCheck(msg) or text == 'مسح البوتات' and ChCheck(msg) then
 tdcli_function ({ ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub("-100",""),filter_ = {ID = "ChannelMembersBots"},offset_ = 0,limit_ = 100 },function(arg,dp)  
@@ -8267,7 +8253,7 @@ end,nil)
 end
 --     Source DevProx     --
 if text and text:match("^مسح المحظورين$") or text and text:match("^حذف المحظورين$") and ChCheck(msg) or text and text:match("^مسح المطرودين$") or text and text:match("^حذف المطرودين$") and ChCheck(msg) then
-local function removeblocklist(extra, result)
+local function RemoveBlockList(extra, result)
 if tonumber(result.total_count_) == 0 then 
 Dev_Abs(msg.chat_id_, msg.id_, 0,'⌁︙*لا يوجد محظورين*', 1, 'md')
 DevAbs:del(DevProx..'Abs:Ban:'..msg.chat_id_)
@@ -8282,7 +8268,7 @@ local DevProxTEAM = '⌁︙اهلا عزيزي ↫ '..AbsRank(msg)..' \n⌁︙ت
 absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, DevProxTEAM, 14, string.len(msg.sender_user_id_))
 end
 end
-getChannelMembers(msg.chat_id_, 0, 'Kicked', 200, removeblocklist, {chat_id_ = msg.chat_id_, msg_id_ = msg.id_}) 
+tdcli_function({ID="GetChannelMembers",channel_id_ = msg.chat_id_:gsub("-100",""),filter_ = {ID = "ChannelMembersKicked"},offset_ = 0,limit_ = 200}, RemoveBlockList, {chat_id_ = msg.chat_id_, msg_id_ = msg.id_})    
 end
 end
 --     Source DevProx     --
@@ -9743,39 +9729,40 @@ DevProxFiles(msg)
 --     Source DevProx     --
 elseif (data.ID == "UpdateMessageEdited") then
 local msg = data
-function get_msg_contact(extra, result, success)
+tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.message_id_)},function(extra, result, success)
 DevAbs:incr(DevProx..'Abs:EditMsg'..result.chat_id_..result.sender_user_id_)
 local text = result.content_.text_ or result.content_.caption_
 local Text = result.content_.text_
-if DevAbs:get(DevProx..'Abs:Lock:EditMsgs'..msg.chat_id_) and not Text and not BasicConstructor(msg) then
+if DevAbs:get(DevProx..'Abs:Lock:EditMsgs'..msg.chat_id_) and not Text and not BasicConstructor(result) then
 DeleteMessage(msg.chat_id_,{[0] = data.message_id_})
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,dp) 
 local absname = '⌁︙العضو ↫ ['..CatchName(dp.first_name_,15)..'](tg://user?id='..dp.id_..')'
 local absid = '⌁︙ايديه ↫ `'..dp.id_..'`'
 local abstext = '⌁︙قام بالتعديل على الميديا'
-local function cb(extra,result,success)
-local admins = result.members_  
+local abstxt = '┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n⌁︙تعالو يامشرفين اكو مخرب'
+tdcli_function ({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub("-100",""),filter_ = {ID = "ChannelMembersAdministrators"},offset_ = 0,limit_ = 100},function(arg,abbas) 
+local admins = abbas.members_  
 text = '\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n'
 for i=0 , #admins do 
 tdcli_function ({ID = "GetUser",user_id_ = admins[i].user_id_},function(arg,data) 
+if data.first_name_ ~= false then
 text = text.."~ [@"..data.username_.."]\n"
+end
 if #admins == i then 
-SendText(msg.chat_id_, absname..'\n'..absid..'\n'..abstext..text,0,'md') 
+SendText(msg.chat_id_, absname..'\n'..absid..'\n'..abstext..text..abstxt,0,'md') 
 end
 end,nil)
 end
-end
-getChannelMembers(msg.chat_id_, 0, 'Administrators', 200,cb)
+end,nil)
 end,nil)
 end
-if not VipMem(msg) then
+if not VipMem(result) then
 Filters(result, text)
 if text:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]") or text:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]") or text:match("[Tt].[Mm][Ee]") or text:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Dd][Oo][Gg]") or text:match("#") or text:match("@") or text:match("[Hh][Tt][Tt][Pp][Ss]://") or text:match("[Hh][Tt][Tt][Pp]://") or text:match(".[Cc][Oo][Mm]") or text:match(".[Oo][Rr][Gg]") or text:match("[Ww][Ww][Ww].") or text:match(".[Xx][Yy][Zz]") then
 if DevAbs:get(DevProx..'Abs:Lock:EditMsgs'..msg.chat_id_) then
 DeleteMessage(msg.chat_id_,{[0] = data.message_id_})
 end end end 
-end
-getMessage(msg.chat_id_, msg.message_id_,get_msg_contact)
+end,nil)
 --     Source DevProx     --
 elseif (data.ID == "UpdateMessageSendSucceeded") then
 local msg = data.message_
