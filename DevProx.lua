@@ -7934,12 +7934,12 @@ Dev_Abs(msg.chat_id_, msg.id_, 1, t, 1, 'html')
 end
 end
 --     Source DevProx     --
-if text and (text == "تفعيل اوامر النسب" or text == "تفعيل نسبه الحب" or text == "تفعيل نسبه الرجوله" or text == "تفعيل نسبه الانوثه") and Manager(msg) and SourceCh(msg) then
+if text and (text == "تفعيل اوامر النسب" or text == "تفعيل نسبه الحب" or text == "تفعيل نسبه الكره" or text == "تفعيل نسبه الرجوله" or text == "تفعيل نسبه الانوثه" or text == "تفعيل نسبه الغباء") and Manager(msg) and SourceCh(msg) then
 local DevProxTEAM = '⌁︙اهلا عزيزي ↫ '..AbsRank(msg)..' \n⌁︙تم تفعيل اوامر النسب'
 absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, DevProxTEAM, 14, string.len(msg.sender_user_id_))
 DevAbs:del(DevProx..'Abs:Nsba:Abs'..msg.chat_id_) 
 end
-if text and (text == "تعطيل اوامر النسب" or text == "تعطيل نسبه الحب" or text == "تعطيل نسبه الرجوله" or text == "تعطيل نسبه الانوثه") and Manager(msg) and SourceCh(msg) then
+if text and (text == "تعطيل اوامر النسب" or text == "تعطيل نسبه الحب" or text == "تعطيل نسبه الكره" or text == "تعطيل نسبه الرجوله" or text == "تعطيل نسبه الانوثه" or text == "تعطيل نسبه الغباء") and Manager(msg) and SourceCh(msg) then
 local DevProxTEAM = '⌁︙اهلا عزيزي ↫ '..AbsRank(msg)..' \n⌁︙تم تعطيل اوامر النسب'
 absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, DevProxTEAM, 14, string.len(msg.sender_user_id_))
 DevAbs:set(DevProx..'Abs:Nsba:Abs'..msg.chat_id_,true)  
@@ -7960,6 +7960,23 @@ end
 Abs = math.random(0,100);
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙نسبة الحب بين '..text..' هي : '..Abs..'%', 1, 'md')
 DevAbs:del(DevProx..'LoveNsba:Abs'..msg.chat_id_..msg.sender_user_id_) 
+return false 
+end
+if not DevAbs:get(DevProx..'Abs:Nsba:Abs'..msg.chat_id_) then
+if text == "نسبه الكره" and SourceCh(msg) or text == "نسبة الكره" and SourceCh(msg) then
+DevAbs:set(DevProx..'HataNsba:Abs'..msg.chat_id_..msg.sender_user_id_,true) 
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙قم بارسل اسمين لحساب نسبة الكره بينهما كمثال ↫ جاك وروز', 1, 'md')
+end
+end
+if text and text ~= "نسبه الكره" and text ~= "نسبة الكره" and DevAbs:get(DevProx..'HataNsba:Abs'..msg.chat_id_..msg.sender_user_id_) then
+if text and text == 'الغاء' then 
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تم الغاء امر نسبة الكره ', 1, 'md')
+DevAbs:del(DevProx..'HataNsba:Abs'..msg.chat_id_..msg.sender_user_id_) 
+return false 
+end 
+Abs = math.random(0,100);
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙نسبة الكره بين '..text..' هي : '..Abs..'%', 1, 'md')
+DevAbs:del(DevProx..'HataNsba:Abs'..msg.chat_id_..msg.sender_user_id_) 
 return false 
 end
 if not DevAbs:get(DevProx..'Abs:Nsba:Abs'..msg.chat_id_) then
@@ -7994,6 +8011,23 @@ end
 Abs = math.random(0,100);
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙نسبة انوثة '..text..' هي : '..Abs..'%', 1, 'md')
 DevAbs:del(DevProx..'AnothaNsba:Abs'..msg.chat_id_..msg.sender_user_id_) 
+return false 
+end
+if not DevAbs:get(DevProx..'Abs:Nsba:Abs'..msg.chat_id_) then
+if text and (text == "نسبه الغباء" or text == "نسبة الغباء") and SourceCh(msg) then
+DevAbs:set(DevProx..'StupidNsba:Abs'..msg.chat_id_..msg.sender_user_id_,true) 
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙قم بارسل اسم الشخص لقياس نسبة غبائه كمثال ↫ جاك او روز', 1, 'md')
+end
+end
+if text and text ~= "نسبه الغباء" and text ~= "نسبة الغباء" and DevAbs:get(DevProx..'StupidNsba:Abs'..msg.chat_id_..msg.sender_user_id_) then
+if text and text == 'الغاء' then 
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تم الغاء امر نسبة الغباء ', 1, 'md')
+DevAbs:del(DevProx..'StupidNsba:Abs'..msg.chat_id_..msg.sender_user_id_) 
+return false 
+end 
+Abs = math.random(0,100);
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙نسبة غباء '..text..' هي : '..Abs..'%', 1, 'md')
+DevAbs:del(DevProx..'StupidNsba:Abs'..msg.chat_id_..msg.sender_user_id_) 
 return false 
 end
 --     Source DevProx     --
@@ -9385,8 +9419,9 @@ local text =  [[
 ⌁︙نقاطي • بيع نقاطي • القوانين • زخرفه 
 ⌁︙رابط الحذف • نزلني • اطردني • المطور 
 ⌁︙منو ضافني • مشاهدات المنشور • الرابط 
-⌁︙نسبه الحب • نسبه الانوثه • نسبه الرجوله
 ⌁︙ايدي المجموعه • معلومات المجموعه 
+⌁︙نسبه الحب • نسبه الكره • نسبه الغباء 
+⌁︙نسبه الرجوله • نسبه الانوثه 
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ⌁︙كول + الكلمه
 ⌁︙زخرفه + اسمك
