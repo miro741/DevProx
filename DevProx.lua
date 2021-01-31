@@ -47,7 +47,6 @@ print('\27[1;31m┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\nلم يتم حفظ توكن
 end  
 os.execute('lua DevProx.lua') 
 end 
-DevAbs:set(DevAbs:get(ServerDevProx.."TokenDevProx"):match("(%d+)")..'Abs:Error',true)
 local create = function(data, file, uglify)  
 file = io.open(file, "w+")   
 local serialized   
@@ -9461,98 +9460,6 @@ io.popen("rm -rf ~/.telegram-cli/data/profile_photo/*")
 print("\27[31;47m\n        ( تم تحديث ملفات البوت )        \n\27[0;34;49m\n") 
 Dev_Abs(msg.chat_id_, msg.id_, 1, "⌁︙تم تحديث ملفات البوت", 1, "md")
 end 
-if text == 'نقل الاحصائيات' then
-local Users = DevAbs:smembers(DevProx.."bot:userss")
-local Groups = DevAbs:smembers(DevProx..'bot:groups')
-local Sudos = DevAbs:smembers(DevProx.."abs:SudoBot:")
-if DevAbs:get('ABS_PROX:'..DevProx..'name_bot') then
-DevAbs:set(DevProx..'Abs:NameBot',(DevAbs:get('ABS_PROX:'..DevProx..'name_bot') or 'بروكس'))
-end
-for i = 1, #Users do
-local id = Users[i]
-if id:match("^(%d+)") then
-DevAbs:sadd(DevProx..'Abs:Users',Users[i]) 
-end
-end
-for i = 1, #Sudos do
-DevAbs:sadd(DevProx..'Abs:SudoBot:',Sudos[i]) 
-end
-for i = 1, #Groups do
-DevAbs:sadd(DevProx..'Abs:Groups',Groups[i]) 
-if DevAbs:get(DevProx.."bot:group:link"..Groups[i]) then
-DevAbs:set(DevProx.."Abs:Groups:Links"..Groups[i],DevAbs:get(DevProx.."bot:group:link"..Groups[i]))
-end
-if DevAbs:get(DevProx.."welcome:"..Groups[i]) then
-DevAbs:set(DevProx..'Abs:Groups:Welcomes'..Groups[i],DevAbs:get(DevProx.."welcome:"..Groups[i]))
-end
-local list1 = DevAbs:smembers(DevProx..'abs:absmonsh:'..Groups[i])
-for k,v in pairs(list1) do
-DevAbs:sadd(DevProx.."Abs:AbsConstructor:"..Groups[i], v)
-end
-local list2 = DevAbs:smembers(DevProx..'abs:monsh:'..Groups[i])
-for k,v in pairs(list2) do
-DevAbs:sadd(DevProx.."Abs:Constructor:"..Groups[i], v)
-end
-local list3 = DevAbs:smembers(DevProx..'abs:monshid:'..Groups[i])
-for k,v in pairs(list3) do
-DevAbs:sadd(DevProx.."Abs:BasicConstructor:"..Groups[i], v)
-end
-local list4 = DevAbs:smembers(DevProx..'abs:owners:'..Groups[i])
-for k,v in pairs(list4) do
-DevAbs:sadd(DevProx.."Abs:Managers:"..Groups[i], v)
-end
-local list5 = DevAbs:smembers(DevProx..'abs:admins:'..Groups[i])
-for k,v in pairs(list5) do
-DevAbs:sadd(DevProx.."Abs:Admins:"..Groups[i], v)
-end
-local list6 = DevAbs:smembers(DevProx..'abs:vipmem:'..Groups[i])
-for k,v in pairs(list6) do
-DevAbs:sadd(DevProx.."Abs:VipMem:"..Groups[i], v)
-end
-local list7 = DevAbs:smembers(DevProx..'abs:Cleaner:'..Groups[i])
-for k,v in pairs(list7) do
-DevAbs:sadd(DevProx.."Abs:Cleaner:"..Groups[i], v)
-end
-DevAbs:set(DevProx.."Abs:Lock:Bots"..Groups[i],"del") DevAbs:hset(DevProx.."Abs:Spam:Group:User"..Groups[i] ,"Spam:User","del") 
-LockList ={'Abs:Lock:Links','Abs:Lock:Forwards','Abs:Lock:Videos','Abs:Lock:Gifs','Abs:Lock:EditMsgs','Abs:Lock:Stickers','Abs:Lock:Farsi','Abs:Lock:Spam','Abs:Lock:WebLinks'}
-for i,Lock in pairs(LockList) do
-DevAbs:set(DevProx..Lock..Groups[i],true)
-end
-end
-send(msg.chat_id_, msg.id_,'⌁︙تم نقل ↫ '..#Groups..' مجموعه\n⌁︙تم نقل ↫ '..#Users..' مشترك\n⌁︙من التحديث القديم الى التحديث الجديد')
-DevAbs:del('ABS_PROX:') DevAbs:del(DevProx..'bot:') DevAbs:del(DevProx..'ABS_PROX:')
-DevAbs:del(DevProx..'user:msgs'..msg.chat_id_) DevAbs:del(DevProx..'abs:')
-end
-if text == 'تصحيح الاخطاء' then
-if not DevAbs:get(DevProx..'Abs:Error') then
-local ErrorGroups = DevAbs:smembers(DevProx..'Abs:Groups')
-for i = 1, #ErrorGroups do
-local ErrorList1 = DevAbs:smembers(DevProx..'Abs:Constructor:'..ErrorGroups[i])
-for k,v in pairs(ErrorList1) do
-DevAbs:sadd(DevProx.."Abs:BasicConstructorError:"..ErrorGroups[i], v)
-end
-local ErrorList2 = DevAbs:smembers(DevProx..'Abs:BasicConstructor:'..ErrorGroups[i])
-for k,v in pairs(ErrorList2) do
-DevAbs:sadd(DevProx.."Abs:ConstructorError:"..ErrorGroups[i], v)
-end
-DevAbs:del(DevProx.."Abs:Constructor:"..ErrorGroups[i]) DevAbs:del(DevProx.."Abs:BasicConstructor:"..ErrorGroups[i])
-local ErrorList22 = DevAbs:smembers(DevProx..'Abs:BasicConstructorError:'..ErrorGroups[i])
-for k,v in pairs(ErrorList22) do
-DevAbs:sadd(DevProx.."Abs:BasicConstructor:"..ErrorGroups[i], v)
-end
-local ErrorList11 = DevAbs:smembers(DevProx..'Abs:ConstructorError:'..ErrorGroups[i])
-for k,v in pairs(ErrorList11) do
-DevAbs:sadd(DevProx.."Abs:Constructor:"..ErrorGroups[i], v)
-end
-DevAbs:del(DevProx.."Abs:ConstructorError:"..ErrorGroups[i]) DevAbs:del(DevProx.."Abs:BasicConstructorError:"..ErrorGroups[i])
-end
-io.popen("mkdir Files")
-DevAbs:set(DevProx..'Abs:Error',true)
-send(msg.chat_id_, msg.id_,'⌁︙تم تصحيح اخطاء التحديث القديم')
-else
-send(msg.chat_id_, msg.id_,'⌁︙لديك اخر نسخه من التحديث لاتوجد اخطاء')
-end
-end
 --     Source DevProx     --
 if text == 'الملفات' then
 Files = '\n⌁︙الملفات المفعله في البوت ↫ ⤈ \n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n'
