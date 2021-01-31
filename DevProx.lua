@@ -1933,10 +1933,6 @@ return false
 end 
 if Type == "del" then 
 DeleteMessage(msg.chat_id_,{[0] = msg.id_})   
-tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,dp) 
-Text = '⌁︙العضو ↫ ['..CatchName(dp.first_name_,15)..'](tg://user?id='..dp.id_..') \n⌁︙قام بالتكرار تم حذف رسائله '
-SendText(msg.chat_id_,Text,0,'md')
-end,nil) 
 my_ide = msg.sender_user_id_
 msgm = msg.id_
 local num = 100
@@ -6420,7 +6416,7 @@ end
 --     Source DevProx     --
 if ChatType == 'sp' or ChatType == 'gp'  then
 if Admin(msg) then
-if text and text:match("^قفل (.*)$") and ChCheck(msg) then
+if text and text:match("^قفل (.*)$") then
 local lockptf = {string.match(text, "^(قفل) (.*)$")}
 if lockptf[2] == "التعديل" then
 if not DevAbs:get(DevProx..'Abs:Lock:EditMsgs'..msg.chat_id_) then
@@ -6881,7 +6877,7 @@ end
 --     Source DevProx     --
 if ChatType == 'sp' or ChatType == 'gp'  then
 if Admin(msg) then
-if text and text:match("^فتح (.*)$") and ChCheck(msg) then
+if text and text:match("^فتح (.*)$") then
 local unlockpts = {string.match(text, "^(فتح) (.*)$")}
 if unlockpts[2] == "التعديل" then
 if DevAbs:get(DevProx..'Abs:Lock:EditMsgs'..msg.chat_id_) then
@@ -6980,7 +6976,7 @@ end
 end
 --     Source DevProx     --
 if Admin(msg) then
-if text and text:match("^قفل (.*)$") and ChCheck(msg) then
+if text and text:match("^قفل (.*)$") then
 local LockText = {string.match(text, "^(قفل) (.*)$")}
 if LockText[2] == "الدردشه" then
 if not DevAbs:get(DevProx..'Abs:Lock:Text'..msg.chat_id_) then
@@ -7184,7 +7180,7 @@ end
 end
 --     Source DevProx     --
 if Admin(msg) then
-if text and text:match("^فتح (.*)$") and ChCheck(msg) then
+if text and text:match("^فتح (.*)$") then
 local UnLockText = {string.match(text, "^(فتح) (.*)$")}
 if UnLockText[2] == "الدردشه" then
 if DevAbs:get(DevProx..'Abs:Lock:Text'..msg.chat_id_) then
@@ -7835,7 +7831,7 @@ Dev_Abs(msg.chat_id_, msg.id_, 1, TXTE, 1, 'md')
 end
 end
 --     Source DevProx     --
-if text and text:match("^كول (.*)$") and ChCheck(msg) then
+if text and text:match("^كول (.*)$") then
 local txt = {string.match(text, "^(كول) (.*)$")}
 Dev_Abs(msg.chat_id_,0, 1, txt[2], 1, 'md')
 DeleteMessage(msg.chat_id_,{[0] = msg.id_})
@@ -7872,7 +7868,6 @@ local DevProxTEAM = '⌁︙اهلا عزيزي ↫ '..AbsRank(msg)..' \n⌁︙ت
 absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, DevProxTEAM, 14, string.len(msg.sender_user_id_))
 DevAbs:set(DevProx..'Abs:Zrf:Abs'..msg.chat_id_,true)  
 end
---     Source DevProx     --
 if DevAbs:get(DevProx..'Zrf:Abs'..msg.chat_id_..''..msg.sender_user_id_) then 
 if text and text == 'الغاء' then 
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙تم الغاء امر الزخرفه', 1, 'md')
@@ -7897,7 +7892,6 @@ DevAbs:setex(DevProx.."Zrf:Abs"..msg.chat_id_..""..msg.sender_user_id_,300,true)
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙ارسل لي الكلمه لزخرفتها \nيمكنك الزخرفة باللغه { en } ~ { ar } ', 1, 'md')
 end
 end
---     Source DevProx     --
 if not DevAbs:get(DevProx..'Abs:Zrf:Abs'..msg.chat_id_) then
 if text and text:match("^زخرفه (.*)$") and SourceCh(msg) or text and text:match("^زخرف (.*)$") and SourceCh(msg) then 
 local TextZrf = text:match("^زخرفه (.*)$") or text:match("^زخرف (.*)$") 
@@ -7923,7 +7917,6 @@ local DevProxTEAM = '⌁︙اهلا عزيزي ↫ '..AbsRank(msg)..' \n⌁︙ت
 absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, DevProxTEAM, 14, string.len(msg.sender_user_id_))
 DevAbs:set(DevProx..'Abs:Brg:Abs'..msg.chat_id_,true)  
 end
---     Source DevProx     --
 if not DevAbs:get(DevProx..'Abs:Brg:Abs'..msg.chat_id_) then
 if text and text:match("^برج (.*)$") and SourceCh(msg) or text and text:match("^برجي (.*)$") and SourceCh(msg) then 
 local TextBrg = text:match("^برج (.*)$") or text:match("^برجي (.*)$") 
@@ -7944,7 +7937,6 @@ local DevProxTEAM = '⌁︙اهلا عزيزي ↫ '..AbsRank(msg)..' \n⌁︙ت
 absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, DevProxTEAM, 14, string.len(msg.sender_user_id_))
 DevAbs:set(DevProx..'Abs:Nsba:Abs'..msg.chat_id_,true)  
 end
---     Source DevProx     --
 if not DevAbs:get(DevProx..'Abs:Nsba:Abs'..msg.chat_id_) then
 if text == "نسبه الحب" and SourceCh(msg) or text == "نسبة الحب" and SourceCh(msg) then
 DevAbs:set(DevProx..'LoveNsba:Abs'..msg.chat_id_..msg.sender_user_id_,true) 
@@ -8041,7 +8033,6 @@ local DevProxTEAM = '⌁︙اهلا عزيزي ↫ '..AbsRank(msg)..' \n⌁︙ت
 absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, DevProxTEAM, 14, string.len(msg.sender_user_id_))
 DevAbs:set(DevProx..'Abs:Age:Abs'..msg.chat_id_,true)  
 end
---     Source DevProx     --
 if not DevAbs:get(DevProx..'Abs:Age:Abs'..msg.chat_id_) then
 if text and text:match("^احسب (.*)$") and SourceCh(msg) or text and text:match("^عمري (.*)$") and SourceCh(msg) then 
 local TextAge = text:match("^احسب (.*)$") or text:match("^عمري (.*)$") 
@@ -8062,7 +8053,6 @@ local DevProxTEAM = '⌁︙اهلا عزيزي ↫ '..AbsRank(msg)..' \n⌁︙ت
 absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, DevProxTEAM, 14, string.len(msg.sender_user_id_))
 DevAbs:set(DevProx..'Abs:Mean:Abs'..msg.chat_id_,true)  
 end
---     Source DevProx     --
 if not DevAbs:get(DevProx..'Abs:Mean:Abs'..msg.chat_id_) then
 if text and text:match("^معنى الاسم (.*)$") and SourceCh(msg) or text and text:match("^معنى اسم (.*)$") and SourceCh(msg) then 
 local TextMean = text:match("^معنى الاسم (.*)$") or text:match("^معنى اسم (.*)$") 
