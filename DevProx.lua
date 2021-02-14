@@ -402,7 +402,7 @@ vardump(JsonInfo)
 DevAbs:set(DevProx.."Abs:NameBot",JsonInfo.BotName) 
 for IdGps,v in pairs(JsonInfo.GroupsList) do
 DevAbs:sadd(DevProx.."Abs:Groups",IdGps) 
-DevAbs:set(DevProx.."Abs:Lock:Bots"..IdGps,"del") DevAbs:hset(DevProx.."Abs:Spam:Group:User"..IdGps ,"Spam:User","del") 
+DevAbs:set(DevProx.."Abs:Lock:Bots"..IdGps,"del") DevAbs:hset(DevProx.."Abs:Spam:Group:User"..IdGps ,"Spam:User","keed") 
 LockList ={'Abs:Lock:Links','Abs:Lock:Contact','Abs:Lock:Forwards','Abs:Lock:Videos','Abs:Lock:Gifs','Abs:Lock:EditMsgs','Abs:Lock:Stickers','Abs:Lock:Farsi','Abs:Lock:Spam','Abs:Lock:WebLinks','Abs:Lock:Photo'}
 for i,Lock in pairs(LockList) do
 DevAbs:set(DevProx..Lock..IdGps,true)
@@ -1911,12 +1911,10 @@ end
 --     Source DevProx     --
 --       Spam Send        --
 function NotSpam(msg,Type)
+tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,dp) 
+local GetName = '['..CatchName(dp.first_name_,15)..'](tg://user?id='..dp.id_..')'
 if Type == "kick" then 
 ChatKick(msg.chat_id_,msg.sender_user_id_) 
-tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,dp) 
-Text = '⌁︙العضو ↫ ['..CatchName(dp.first_name_,15)..'](tg://user?id='..dp.id_..') \n⌁︙قام بالتكرار المحدد تم طرده '
-SendText(msg.chat_id_,Text,0,'md')
-end,nil)
 my_ide = msg.sender_user_id_
 msgm = msg.id_
 local num = 100
@@ -1928,6 +1926,8 @@ DeleteMessage(msg.chat_id_, {[0] = data.messages_[0].id_})
 end;end;end, nil)
 msgm = msgm - 1048576
 end
+Text = '⌁︙العضو ↫ '..GetName..' \n⌁︙قام بالتكرار المحدد تم طرده '
+SendText(msg.chat_id_,Text,0,'md')
 return false  
 end 
 if Type == "del" then 
@@ -1948,10 +1948,6 @@ end
 if Type == "keed" then
 https.request("https://api.telegram.org/bot" .. TokenBot .. "/restrictChatMember?chat_id=" ..msg.chat_id_.. "&user_id=" ..msg.sender_user_id_.."") 
 DevAbs:sadd(DevProx..'Abs:Tkeed:'..msg.chat_id_, msg.sender_user_id_)
-tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,dp) 
-Text = '⌁︙العضو ↫ ['..CatchName(dp.first_name_,15)..'](tg://user?id='..dp.id_..') \n⌁︙قام بالتكرار المحدد تم تقييده '
-SendText(msg.chat_id_,Text,0,'md')
-end,nil)
 my_ide = msg.sender_user_id_
 msgm = msg.id_
 local num = 100
@@ -1963,14 +1959,12 @@ DeleteMessage(msg.chat_id_, {[0] = data.messages_[0].id_})
 end;end;end, nil)
 msgm = msgm - 1048576
 end
+Text = '⌁︙العضو ↫ '..GetName..' \n⌁︙قام بالتكرار المحدد تم تقييده '
+SendText(msg.chat_id_,Text,0,'md')
 return false  
 end  
 if Type == "mute" then
 DevAbs:sadd(DevProx..'Abs:Muted:'..msg.chat_id_,msg.sender_user_id_)
-tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,dp) 
-Text = '⌁︙العضو ↫ ['..CatchName(dp.first_name_,15)..'](tg://user?id='..dp.id_..') \n⌁︙قام بالتكرار المحدد تم كتمه '
-SendText(msg.chat_id_,Text,0,'md')
-end,nil)
 my_ide = msg.sender_user_id_
 msgm = msg.id_
 local num = 100
@@ -1982,8 +1976,11 @@ DeleteMessage(msg.chat_id_, {[0] = data.messages_[0].id_})
 end;end;end, nil)
 msgm = msgm - 1048576
 end
+Text = '⌁︙العضو ↫ '..GetName..' \n⌁︙قام بالتكرار المحدد تم كتمه '
+SendText(msg.chat_id_,Text,0,'md')
 return false  
 end
+end,nil)
 end  
 --  end functions DevProx --
 --     Source DevProx     --
@@ -5918,6 +5915,48 @@ getMessage(msg.chat_id_, msg.reply_to_message_id_,unfilter_by_reply)
 end
 end
 --     Source DevProx     --
+if text == "تفعيل تحويل الصيغ" and Manager(msg) and SourceCh(msg) then
+local DevProxTEAM = '⌁︙اهلا عزيزي ↫ '..AbsRank(msg)..' \n⌁︙تم تفعيل تحويل الصيغ'
+absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, DevProxTEAM, 14, string.len(msg.sender_user_id_))
+DevAbs:del(DevProx..'Abs:Thwel:Abs'..msg.chat_id_) 
+end
+if text == "تعطيل تحويل الصيغ" and Manager(msg) and SourceCh(msg) then
+local DevProxTEAM = '⌁︙اهلا عزيزي ↫ '..AbsRank(msg)..' \n⌁︙تم تعطيل تحويل الصيغ'
+absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, DevProxTEAM, 14, string.len(msg.sender_user_id_))
+DevAbs:set(DevProx..'Abs:Thwel:Abs'..msg.chat_id_,true)  
+end
+if text == 'تحويل' and not DevAbs:get(DevProx..'Abs:Thwel:Abs'..msg.chat_id_) then  
+if tonumber(msg.reply_to_message_id_) > 0 then 
+function ThwelByReply(extra, result, success)
+if result.content_.photo_ then 
+local Abs = json:decode(https.request('https://api.telegram.org/bot'.. TokenBot..'/getfile?file_id='..result.content_.photo_.sizes_[1].photo_.persistent_id_)) 
+download_to_file('https://api.telegram.org/file/bot'..TokenBot..'/'..Abs.result.file_path,msg.sender_user_id_..'.png') 
+sendSticker(msg.chat_id_, msg.id_, 0, 1,nil, './'..msg.sender_user_id_..'.png')
+os.execute('rm -rf ./'..msg.sender_user_id_..'.png') 
+end   
+if result.content_.sticker_ then 
+local Abs = json:decode(https.request('https://api.telegram.org/bot'.. TokenBot..'/getfile?file_id='..result.content_.sticker_.sticker_.persistent_id_)) 
+download_to_file('https://api.telegram.org/file/bot'..TokenBot..'/'..Abs.result.file_path,msg.sender_user_id_..'.jpg') 
+sendPhoto(msg.chat_id_, msg.id_, 0, 1,nil, './'..msg.sender_user_id_..'.jpg','⌁︙تم تحويل الملصق الى صوره')     
+os.execute('rm -rf ./'..msg.sender_user_id_..'.jpg') 
+end
+if result.content_.audio_ then 
+local Abs = json:decode(https.request('https://api.telegram.org/bot'.. TokenBot..'/getfile?file_id='..result.content_.audio_.audio_.persistent_id_)) 
+download_to_file('https://api.telegram.org/file/bot'..TokenBot..'/'..Abs.result.file_path,msg.sender_user_id_..'.ogg') 
+sendVoice(msg.chat_id_, msg.id_, 0, 1,nil, './'..msg.sender_user_id_..'.ogg',"⌁︙تم تحويل الـMp3 الى بصمه")
+os.execute('rm -rf ./'..msg.sender_user_id_..'.ogg') 
+end   
+if result.content_.voice_ then 
+local Abs = json:decode(https.request('https://api.telegram.org/bot'.. TokenBot..'/getfile?file_id='..result.content_.voice_.voice_.persistent_id_)) 
+download_to_file('https://api.telegram.org/file/bot'..TokenBot..'/'..Abs.result.file_path,msg.sender_user_id_..'.mp3') 
+sendAudio(msg.chat_id_, msg.id_, 0, 1,nil, './'..msg.sender_user_id_..'.mp3')  
+os.execute('rm -rf ./'..msg.sender_user_id_..'.mp3') 
+end
+end
+getMessage(msg.chat_id_, tonumber(msg.reply_to_message_id_),ThwelByReply) 
+end
+end
+--     Source DevProx     --
 if text ==("كشف") and msg.reply_to_message_id_ ~= 0 and ChCheck(msg) or text ==("ايدي") and msg.reply_to_message_id_ ~= 0 and ChCheck(msg) then 
 function id_by_reply(extra, result, success) 
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
@@ -7303,7 +7342,7 @@ if text and text:match("^قفل التفليش$") or text and text:match("^تف�
 if not Constructor(msg) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙للمنشئين فقط', 1, 'md')
 else
-DevAbs:set(DevProx.."Abs:Lock:Bots"..msg.chat_id_,"del") DevAbs:hset(DevProx.."Abs:Spam:Group:User"..msg.chat_id_ ,"Spam:User","del") 
+DevAbs:set(DevProx.."Abs:Lock:Bots"..msg.chat_id_,"del") DevAbs:hset(DevProx.."Abs:Spam:Group:User"..msg.chat_id_ ,"Spam:User","keed") 
 LockList ={'Abs:Lock:Links','Abs:Lock:Contact','Abs:Lock:Forwards','Abs:Lock:Videos','Abs:Lock:Gifs','Abs:Lock:EditMsgs','Abs:Lock:Stickers','Abs:Lock:Farsi','Abs:Lock:Spam','Abs:Lock:WebLinks','Abs:Lock:Photo'}
 for i,Lock in pairs(LockList) do
 DevAbs:set(DevProx..Lock..msg.chat_id_,true)
@@ -7329,7 +7368,7 @@ if not Constructor(msg) then
 Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙للمنشئين فقط', 1, 'md')
 else
 DevAbs:del(DevProx..'Abs:Lock:Fshar'..msg.chat_id_) DevAbs:del(DevProx..'Abs:Lock:Taf'..msg.chat_id_) DevAbs:del(DevProx..'Abs:Lock:Kfr'..msg.chat_id_) 
-DevAbs:set(DevProx.."Abs:Lock:Bots"..msg.chat_id_,"del") DevAbs:hset(DevProx.."Abs:Spam:Group:User"..msg.chat_id_ ,"Spam:User","del") 
+DevAbs:set(DevProx.."Abs:Lock:Bots"..msg.chat_id_,"del") DevAbs:hset(DevProx.."Abs:Spam:Group:User"..msg.chat_id_ ,"Spam:User","keed") 
 LockList ={'Abs:Lock:EditMsgs','Abs:Lock:Farsi','Abs:Lock:TagServr','Abs:Lock:Inline','Abs:Lock:Photo','Abs:Lock:Spam','Abs:Lock:Videos','Abs:Lock:Gifs','Abs:Lock:Music','Abs:Lock:Voice','Abs:Lock:Links','Abs:Lock:Location','Abs:Lock:Tags','Abs:Lock:Stickers','Abs:Lock:Markdown','Abs:Lock:Forwards','Abs:Lock:Document','Abs:Lock:Contact','Abs:Lock:Hashtak','Abs:Lock:WebLinks'}
 for i,Lock in pairs(LockList) do
 DevAbs:set(DevProx..Lock..msg.chat_id_,true)
@@ -9124,9 +9163,9 @@ local text =  [[
 ⌁︙حذف الايدي ↫ لحذف الكليشه
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ⌁︙تفعيل • تعطيل + الامر ↫ ⤈
-⌁︙اطردني • الايدي بالصوره
-⌁︙الابراج • معاني الاسماء
-⌁︙الايدي • اوامر النسب
+⌁︙اطردني • الايدي بالصوره • الابراج
+⌁︙معاني الاسماء • اوامر النسب
+⌁︙الايدي • تحويل الصيغ
 ⌁︙ردود المدير • ردود المطور
 ⌁︙ضافني • حساب العمر • الزخرفه
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
@@ -9308,6 +9347,7 @@ local text =  [[
 ⌁︙هينه • هينها ↫ بالرد • بالمعرف
 ⌁︙صيحه • صيحها ↫ بالرد • بالمعرف
 ⌁︙ايدي • كشف  ↫ بالرد • بالمعرف • بالايدي
+⌁︙تحويل + بالرد ↫ صوره • ملصق • صوت • بصمه
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ⌁︙[Source Channel](https://t.me/Dev_Prox)
 ]]
