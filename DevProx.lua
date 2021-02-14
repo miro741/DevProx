@@ -702,6 +702,19 @@ end
 return Abs
 end
 --     Source DevProx     --
+function GetBio(chat_id)
+local Check = https.request('https://api.telegram.org/bot'..TokenBot..'/getChat?chat_id='..chat_id)
+local GetInfo = JSON.decode(Check)
+if GetInfo.ok == true then
+if GetInfo.result.bio then 
+Abs = GetInfo.result.bio
+else 
+Abs = "لا يوجد"
+end
+end
+return Abs
+end
+--     Source DevProx     --
 local sendRequest = function(request_id, chat_id, reply_to_message_id, disable_notification, from_background, reply_markup, input_message_content, callback, extra)
 tdcli_function({ ID = request_id, chat_id_ = chat_id, reply_to_message_id_ = reply_to_message_id, disable_notification_ = disable_notification, from_background_ = from_background, reply_markup_ = reply_markup, input_message_content_ = input_message_content }, callback or dl_cb, extra)
 end
@@ -1945,7 +1958,7 @@ msgm = msgm - 1048576
 end
 return false  
 end 
-if Type == "keed" then
+if Type == "keed" and not DevAbs:sismember(DevProx..'Abs:Tkeed:'..msg.chat_id_, msg.sender_user_id_) then
 https.request("https://api.telegram.org/bot" .. TokenBot .. "/restrictChatMember?chat_id=" ..msg.chat_id_.. "&user_id=" ..msg.sender_user_id_.."") 
 DevAbs:sadd(DevProx..'Abs:Tkeed:'..msg.chat_id_, msg.sender_user_id_)
 my_ide = msg.sender_user_id_
@@ -1963,7 +1976,7 @@ Text = '⌁︙العضو ↫ '..GetName..' \n⌁︙قام بالتكرار ال�
 SendText(msg.chat_id_,Text,0,'md')
 return false  
 end  
-if Type == "mute" then
+if Type == "mute" and not DevAbs:sismember(DevProx..'Abs:Muted:'..msg.chat_id_, msg.sender_user_id_) then
 DevAbs:sadd(DevProx..'Abs:Muted:'..msg.chat_id_,msg.sender_user_id_)
 my_ide = msg.sender_user_id_
 msgm = msg.id_
@@ -5915,12 +5928,12 @@ getMessage(msg.chat_id_, msg.reply_to_message_id_,unfilter_by_reply)
 end
 end
 --     Source DevProx     --
-if text == "تفعيل تحويل الصيغ" and Manager(msg) and SourceCh(msg) then
+if text and (text == "تفعيل تحويل الصيغ" or text == "تفعيل التحويل") and Manager(msg) and SourceCh(msg) then
 local DevProxTEAM = '⌁︙اهلا عزيزي ↫ '..AbsRank(msg)..' \n⌁︙تم تفعيل تحويل الصيغ'
 absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, DevProxTEAM, 14, string.len(msg.sender_user_id_))
 DevAbs:del(DevProx..'Abs:Thwel:Abs'..msg.chat_id_) 
 end
-if text == "تعطيل تحويل الصيغ" and Manager(msg) and SourceCh(msg) then
+if text and (text == "تعطيل تحويل الصيغ" or text == "تعطيل التحويل") and Manager(msg) and SourceCh(msg) then
 local DevProxTEAM = '⌁︙اهلا عزيزي ↫ '..AbsRank(msg)..' \n⌁︙تم تعطيل تحويل الصيغ'
 absmoned(msg.chat_id_, msg.sender_user_id_, msg.id_, DevProxTEAM, 14, string.len(msg.sender_user_id_))
 DevAbs:set(DevProx..'Abs:Thwel:Abs'..msg.chat_id_,true)  
@@ -6285,7 +6298,7 @@ end
 --     Source DevProx     --
 if Sudo(msg) then
 if text and text:match("^تعيين الايدي العام$") or text and text:match("^تعين الايدي العام$") or text and text:match("^تعيين كليشة الايدي$") then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙رجائا اتبع التعليمات للتعيين \n⌁︙لطبع كليشة الايدي ارسل كليشه تحتوي على النصوص التي باللغه الانجليزيه ادناه ↫ ⤈\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n `#username` ↬ لطبع المعرف\n `#id` ↬ لطبع الايدي \n `#photos` ↬ لطبع عدد الصور \n `#stast` ↬ لطبع الرتب \n `#msgs` ↬ لطبع عدد الرسائل \n `#msgday` ↬ لطبع الرسائل اليوميه \n `#auto` ↬ لطبع التفاعل \n `#game` ↬ لطبع عدد النقاط \n `#cont` ↬ لطبع عدد الجهات \n `#edit` ↬ لطبع عدد السحكات \n `#Description` ↬ لطبع تعليق الصور\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙رجائا اتبع التعليمات للتعيين \n⌁︙لطبع كليشة الايدي ارسل كليشه تحتوي على النصوص التي باللغه الانجليزيه ادناه ↫ ⤈\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n `#username` ↬ لطبع المعرف\n `#id` ↬ لطبع الايدي \n `#photos` ↬ لطبع عدد الصور \n `#stast` ↬ لطبع الرتب \n `#msgs` ↬ لطبع عدد الرسائل \n `#msgday` ↬ لطبع الرسائل اليوميه \n `#CustomTitle` ↬ لطبع اللقب \n `#bio` ↬ لطبع البايو \n `#auto` ↬ لطبع التفاعل \n `#game` ↬ لطبع عدد النقاط \n `#cont` ↬ لطبع عدد الجهات \n `#edit` ↬ لطبع عدد السحكات \n `#Description` ↬ لطبع تعليق الصور\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉', 1, 'md')
 DevAbs:set("DevProx:New:id:"..DevProx..msg.sender_user_id_,'DevProxTEAM')
 return "DevProxTEAM"
 end
@@ -6307,7 +6320,7 @@ end
 end
 --     Source DevProx     --
 if text and text:match("^تعيين الايدي$") and ChCheck(msg) or text and text:match("^تعين الايدي$") and ChCheck(msg) then
-Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙رجائا اتبع التعليمات للتعيين \n⌁︙لطبع كليشة الايدي ارسل كليشه تحتوي على النصوص التي باللغه الانجليزيه ادناه ↫ ⤈\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n `#username` ↬ لطبع المعرف\n `#id` ↬ لطبع الايدي \n `#photos` ↬ لطبع عدد الصور \n `#stast` ↬ لطبع الرتب \n `#msgs` ↬ لطبع عدد الرسائل \n `#msgday` ↬ لطبع الرسائل اليوميه \n `#auto` ↬ لطبع التفاعل \n `#game` ↬ لطبع عدد النقاط \n `#cont` ↬ لطبع عدد الجهات \n `#edit` ↬ لطبع عدد السحكات \n `#Description` ↬ لطبع تعليق الصور\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉', 1, 'md')
+Dev_Abs(msg.chat_id_, msg.id_, 1, '⌁︙رجائا اتبع التعليمات للتعيين \n⌁︙لطبع كليشة الايدي ارسل كليشه تحتوي على النصوص التي باللغه الانجليزيه ادناه ↫ ⤈\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉\n `#username` ↬ لطبع المعرف\n `#id` ↬ لطبع الايدي \n `#photos` ↬ لطبع عدد الصور \n `#stast` ↬ لطبع الرتب \n `#msgs` ↬ لطبع عدد الرسائل \n `#msgday` ↬ لطبع الرسائل اليوميه \n `#CustomTitle` ↬ لطبع اللقب \n `#bio` ↬ لطبع البايو \n `#auto` ↬ لطبع التفاعل \n `#game` ↬ لطبع عدد النقاط \n `#cont` ↬ لطبع عدد الجهات \n `#edit` ↬ لطبع عدد السحكات \n `#Description` ↬ لطبع تعليق الصور\n┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉', 1, 'md')
 DevAbs:set("DevProx:New:id:"..DevProx..msg.chat_id_..msg.sender_user_id_,'DevProxTEAM')
 return "DevProxTEAM"
 end
@@ -6334,6 +6347,7 @@ else
 if text and (text:match("^ايدي$") or text:match("^id$") or text:match("^Id$")) and ChCheck(msg) then
 function DevProxTEAM(extra,abbas,success)
 if abbas.username_ then username = '@'..abbas.username_ else username = 'لا يوجد' end
+if GetCustomTitle(msg.sender_user_id_,msg.chat_id_) ~= false then CustomTitle = GetCustomTitle(msg.sender_user_id_,msg.chat_id_) else CustomTitle = 'لا يوجد' end
 local function getpro(extra, abbas, success) 
 local msgsday = DevAbs:get(DevProx..'Abs:UsersMsgs'..DevProx..os.date('%d')..':'..msg.chat_id_..':'..msg.sender_user_id_) or 0
 local edit_msg = DevAbs:get(DevProx..'Abs:EditMsg'..msg.chat_id_..msg.sender_user_id_) or 0
@@ -6349,6 +6363,8 @@ if not DevAbs:get(DevProx..'Abs:Lock:Id:Photo'..msg.chat_id_) then
 if DevAbs:get(DevProx.."Abs:AllIds:Text") then
 newpicid = DevAbs:get(DevProx.."Abs:AllIds:Text")
 newpicid = newpicid:gsub('#username',(username or 'لا يوجد'))
+newpicid = newpicid:gsub('#CustomTitle',(CustomTitle or 'لا يوجد'))
+newpicid = newpicid:gsub('#bio',(GetBio(msg.sender_user_id_) or 'لا يوجد'))
 newpicid = newpicid:gsub('#photos',(abbas.total_count_ or 'لا يوجد')) 
 newpicid = newpicid:gsub('#game',(user_nkt or 'لا يوجد'))
 newpicid = newpicid:gsub('#edit',(edit_msg or 'لا يوجد'))
@@ -6367,6 +6383,8 @@ sendPhoto(msg.chat_id_, msg.id_, 0, 1, nil, abbas.photos_[0].sizes_[1].photo_.pe
 else 
 local new_id = DevAbs:get(DevProx.."Abs:GpIds:Text"..msg.chat_id_)
 local new_id = new_id:gsub('#username',(username or 'لا يوجد'))
+local new_id = new_id:gsub('#CustomTitle',(CustomTitle or 'لا يوجد'))
+local new_id = new_id:gsub('#bio',(GetBio(msg.sender_user_id_) or 'لا يوجد'))
 local new_id = new_id:gsub('#photos',(abbas.total_count_ or '')) 
 local new_id = new_id:gsub('#game',(user_nkt or 'لا يوجد'))
 local new_id = new_id:gsub('#edit',(edit_msg or 'لا يوجد'))
@@ -6383,6 +6401,8 @@ else
 if DevAbs:get(DevProx.."Abs:AllIds:Text") then
 newallid = DevAbs:get(DevProx.."Abs:AllIds:Text")
 newallid = newallid:gsub('#username',(username or 'لا يوجد'))
+newallid = newallid:gsub('#CustomTitle',(CustomTitle or 'لا يوجد'))
+newallid = newallid:gsub('#bio',(GetBio(msg.sender_user_id_) or 'لا يوجد'))
 newallid = newallid:gsub('#photos',(abbas.total_count_ or 'لا يوجد')) 
 newallid = newallid:gsub('#game',(user_nkt or 'لا يوجد'))
 newallid = newallid:gsub('#edit',(edit_msg or 'لا يوجد'))
@@ -6401,6 +6421,8 @@ Dev_Abs(msg.chat_id_, msg.id_, 1, newallid, 1, 'html')
 else
 local new_id = DevAbs:get(DevProx.."Abs:GpIds:Text"..msg.chat_id_)
 local new_id = new_id:gsub('#username',(username or 'لا يوجد'))
+local new_id = new_id:gsub('#CustomTitle',(CustomTitle or 'لا يوجد'))
+local new_id = new_id:gsub('#bio',(GetBio(msg.sender_user_id_) or 'لا يوجد'))
 local new_id = new_id:gsub('#photos',(abbas.total_count_ or 'لا يوجد')) 
 local new_id = new_id:gsub('#game',(user_nkt or 'لا يوجد'))
 local new_id = new_id:gsub('#edit',(edit_msg or 'لا يوجد'))
@@ -6421,6 +6443,8 @@ else
 if DevAbs:get(DevProx.."Abs:AllIds:Text") then
 notpicid = DevAbs:get(DevProx.."Abs:AllIds:Text")
 notpicid = notpicid:gsub('#username',(username or 'لا يوجد'))
+notpicid = notpicid:gsub('#CustomTitle',(CustomTitle or 'لا يوجد'))
+notpicid = notpicid:gsub('#bio',(GetBio(msg.sender_user_id_) or 'لا يوجد'))
 notpicid = notpicid:gsub('#photos',(abbas.total_count_ or 'لا يوجد')) 
 notpicid = notpicid:gsub('#game',(user_nkt or 'لا يوجد'))
 notpicid = notpicid:gsub('#edit',(edit_msg or 'لا يوجد'))
