@@ -1978,7 +1978,7 @@ DeleteMessage(msg.chat_id_, {[0] = data.messages_[0].id_})
 end;end;end, nil)
 msgm = msgm - 1048576
 end
-Text = '⌁︙العضو ↫ '..GetName..' \n⌁︙قام بالتكرار المحدد تم تقييده '
+Text = '⌁︙العضو ↫ '..GetName..' \n⌁︙قام بالتكرار المحدد تم تقيده '
 SendText(msg.chat_id_,Text,0,'md')
 return false  
 end  
@@ -6563,7 +6563,7 @@ ReplyStatus(msg,msg.sender_user_id_,"ReplyBy","⌁︙تم قفل البوتات 
 DevAbs:set(DevProx.."Abs:Lock:Bots"..msg.chat_id_,"kick")  
 end
 if lockptf[2] == "البوتات بالتقييد" or lockptf[2] == "البوتات بالتقيد" then
-ReplyStatus(msg,msg.sender_user_id_,"ReplyBy","⌁︙تم قفل البوتات بالتقييد")  
+ReplyStatus(msg,msg.sender_user_id_,"ReplyBy","⌁︙تم قفل البوتات بالتقيد")  
 DevAbs:set(DevProx.."Abs:Lock:Bots"..msg.chat_id_,"ked")  
 end
 if lockptf[2] == "التكرار" or lockptf[2] == "التكرار بالحذف" then 
@@ -6576,7 +6576,7 @@ ReplyStatus(msg,msg.sender_user_id_,"ReplyBy","⌁︙تم قفل التكرار 
 end
 if lockptf[2] == "التكرار بالتقيد" or lockptf[2] == "التكرار بالتقييد" then 
 DevAbs:hset(DevProx.."Abs:Spam:Group:User"..msg.chat_id_ ,"Spam:User","keed")  
-ReplyStatus(msg,msg.sender_user_id_,"ReplyBy","⌁︙تم قفل التكرار بالتقييد")  
+ReplyStatus(msg,msg.sender_user_id_,"ReplyBy","⌁︙تم قفل التكرار بالتقيد")  
 end
 if lockptf[2] == "التكرار بالكتم" then 
 DevAbs:hset(DevProx.."Abs:Spam:Group:User"..msg.chat_id_ ,"Spam:User","mute")  
@@ -7719,7 +7719,7 @@ end
 if DevAbs:hget(DevProx.."Abs:Spam:Group:User"..msg.chat_id_, "Spam:User") == "kick" then     
 flood = "بالطرد"     
 elseif DevAbs:hget(DevProx.."Abs:Spam:Group:User"..msg.chat_id_,"Spam:User") == "keed" then     
-flood = "بالتقييد"     
+flood = "بالتقيد"     
 elseif DevAbs:hget(DevProx.."Abs:Spam:Group:User"..msg.chat_id_,"Spam:User") == "mute" then     
 flood = "بالكتم"           
 elseif DevAbs:hget(DevProx.."Abs:Spam:Group:User"..msg.chat_id_,"Spam:User") == "del" then     
@@ -7731,7 +7731,7 @@ end
 if DevAbs:get(DevProx.."Abs:Lock:Bots"..msg.chat_id_) == "del" then
 lock_bots = "بالحذف"
 elseif DevAbs:get(DevProx.."Abs:Lock:Bots"..msg.chat_id_) == "ked" then
-lock_bots = "بالتقييد"   
+lock_bots = "بالتقيد"   
 elseif DevAbs:get(DevProx.."Abs:Lock:Bots"..msg.chat_id_) == "kick" then
 lock_bots = "بالطرد"    
 else
@@ -9106,10 +9106,10 @@ local text =  [[
 ⌁︙قفل • فتح + الامر ↫ ⤈
 ⌁︙التكرار بالطرد
 ⌁︙التكرار بالكتم
-⌁︙التكرار بالتقييد
+⌁︙التكرار بالتقيد
 ⌁︙الفارسيه بالطرد
 ⌁︙البوتات بالطرد
-⌁︙البوتات بالتقييد
+⌁︙البوتات بالتقيد
 ┉ ≈ ┉ ≈ ┉ ≈ ┉ ≈ ┉
 ⌁︙[Source Channel](https://t.me/Dev_Prox)
 ]]
